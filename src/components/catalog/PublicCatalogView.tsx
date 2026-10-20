@@ -6,6 +6,8 @@ import { Catalog, CatalogProductView } from '@/types';
 import { DesignSelector, SelectedItemState } from './DesignSelector';
 import { SelectedDesignsDrawer } from './SelectedDesignsDrawer';
 import { InquiryModal } from './InquiryModal';
+import { WhatsAppSelectionModal } from './WhatsAppSelectionModal';
+import { QuickViewModal } from './QuickViewModal';
 import { ImageLightbox } from '@/components/ui/ImageLightbox';
 import {
   Sparkles,
@@ -24,8 +26,10 @@ interface PublicCatalogViewProps {
 export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps) {
   const [selections, setSelections] = useState<Map<string, SelectedItemState>>(new Map());
   const [activeLightboxProduct, setActiveLightboxProduct] = useState<CatalogProductView | null>(null);
+  const [quickViewProduct, setQuickViewProduct] = useState<CatalogProductView | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+  const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
   const [submittedRefNo, setSubmittedRefNo] = useState<string | null>(null);
 
   const settings = catalog.presentation_settings || {
@@ -63,7 +67,7 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
     });
   };
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830122334';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] pb-32">
@@ -98,6 +102,16 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
       {/* Catalog Hero Banner */}
       <div className="bg-white border-b border-[#E7E0D5] py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {(catalog.cover_image_url || catalog.presentation_settings?.coverImageUrl) && (
+            <div className="w-full h-48 sm:h-72 rounded-2xl overflow-hidden mb-6 border border-[#E7E0D5] shadow-xs relative">
+              <img
+                src={catalog.cover_image_url || catalog.presentation_settings?.coverImageUrl}
+                alt={catalog.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+            </div>
+          )}
           <div className="max-w-3xl space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#722F37]/10 text-[#722F37] text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
@@ -175,6 +189,7 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
                 setActiveLightboxProduct(p);
                 setLightboxIndex(0);
               }}
+              onQuickView={(p) => setQuickViewProduct(p)}
               allowSizes={settings.showSizes}
               allowQuantity={settings.allowQuantityBreakdown ?? true}
             />
@@ -189,6 +204,16 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
         onClearAll={handleClearAll}
         onRemoveItem={handleRemoveItem}
         onSubmitInquiry={() => setInquiryModalOpen(true)}
+        onOpenWhatsApp={() => setWhatsappModalOpen(true)}
+      />
+
+      {/* WhatsApp Selection Review Modal */}
+      <WhatsAppSelectionModal
+        catalog={catalog}
+        products={products}
+        selections={selections}
+        isOpen={whatsappModalOpen}
+        onClose={() => setWhatsappModalOpen(false)}
       />
 
       {/* Inquiry Submission Modal */}
@@ -202,6 +227,21 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
           setSubmittedRefNo(ref);
         }}
       />
+
+      {/* Quick View Modal */}
+      {quickViewProduct && (
+        <QuickViewModal
+          product={quickViewProduct}
+          selectedState={selections.get(quickViewProduct.id)}
+          isOpen={Boolean(quickViewProduct)}
+          onClose={() => setQuickViewProduct(null)}
+          onSaveSelection={handleItemChange}
+          onOpenLightbox={(p) => {
+            setActiveLightboxProduct(p);
+            setLightboxIndex(0);
+          }}
+        />
+      )}
 
       {/* Lightbox for Zoom */}
       {activeLightboxProduct && (

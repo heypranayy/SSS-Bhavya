@@ -7,8 +7,8 @@ import { ShieldCheck, Lock, Mail, ArrowRight, Loader2, Sparkles } from 'lucide-r
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@bhavyafashions.com');
-  const [password, setPassword] = useState('bhavya2026admin');
+  const [email, setEmail] = useState('sss@bhavyafashions.com');
+  const [password, setPassword] = useState('Bhavya@2026');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -18,20 +18,55 @@ export default function AdminLoginPage() {
     setErrorMsg('');
 
     try {
-      // Basic credential check for admin portal access
-      if (!email.trim() || !password.trim()) {
-        throw new Error('Please enter both email and password.');
+      const cleanEmail = email.trim().toLowerCase();
+      const cleanPass = password.trim();
+
+      let matchedStaff = false;
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = localStorage.getItem('bhavya_staff_accounts');
+          if (stored) {
+            const list = JSON.parse(stored);
+            if (Array.isArray(list)) {
+              const found = list.find(
+                (s: any) =>
+                  s.email?.toLowerCase() === cleanEmail &&
+                  s.password === cleanPass &&
+                  s.status !== 'suspended'
+              );
+              if (found) matchedStaff = true;
+            }
+          }
+        } catch {}
       }
 
-      // Simulate authentication / session initialization
-      await new Promise(r => setTimeout(r, 600));
-
-      router.push('/admin');
+      // Validate credentials against super admin or registered staff
+      if (
+        (cleanEmail === 'sss@bhavyafashions.com' && cleanPass === 'Bhavya@2026') ||
+        (cleanEmail === 'admin@bhavyafashions.com' && cleanPass === 'bhavya2026admin') ||
+        matchedStaff
+      ) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('bhavya_admin_auth', 'authenticated');
+          localStorage.setItem('bhavya_admin_user', cleanEmail);
+          document.cookie = 'bhavya_admin_auth=authenticated; path=/; max-age=86400';
+        }
+        await new Promise((r) => setTimeout(r, 400));
+        router.push('/admin');
+      } else {
+        throw new Error('Invalid credentials. Please check your email and password.');
+      }
     } catch (err: any) {
       setErrorMsg(err.message || 'Authentication failed. Please verify credentials.');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleAutofillSuperAdmin = () => {
+    setEmail('sss@bhavyafashions.com');
+    setPassword('Bhavya@2026');
+    setErrorMsg('');
   };
 
   return (
@@ -43,8 +78,11 @@ export default function AdminLoginPage() {
           </span>
         </Link>
         <p className="text-xs uppercase tracking-widest text-[#78716C] font-semibold">
-          Wholesale Administration Portal
+          Super Admin & Wholesale Command Center
         </p>
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#1C1917] text-[#C5A059] text-[10px] font-mono tracking-wider font-bold">
+          ⚡ STAMPED & POWERED BY GEXART TECHNOLOGIES
+        </div>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
@@ -120,9 +158,23 @@ export default function AdminLoginPage() {
             </div>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-[#F3ECE2] text-center">
-            <p className="text-[11px] text-[#78716C]">
-              Demo login credentials are pre-filled for convenience.
+          <div className="mt-6 pt-4 border-t border-[#F3ECE2] space-y-3">
+            <div className="bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5] flex items-center justify-between">
+              <div className="text-left text-xs">
+                <span className="font-bold text-[#1C1917] block">Super Admin ID</span>
+                <span className="font-mono text-[#722F37] text-[11px]">sss@bhavyafashions.com</span>
+              </div>
+              <button
+                type="button"
+                onClick={handleAutofillSuperAdmin}
+                className="px-2.5 py-1 bg-[#1C1917] text-[#C5A059] rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-black transition-colors"
+              >
+                Auto-Fill
+              </button>
+            </div>
+
+            <p className="text-[10px] text-center text-[#78716C]">
+              Engineered & Secured by <strong className="text-[#1C1917]">Gexart Technologies</strong> (www.gexart.com)
             </p>
           </div>
         </div>

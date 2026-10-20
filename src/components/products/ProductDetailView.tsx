@@ -32,7 +32,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
   ];
 
   const currentImage = images[selectedImageIndex] || images[0];
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830122334';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
   const whatsappMessage = encodeURIComponent(
     `Hello Bhavya Fashions, I am interested in wholesale design ${product.code} (${product.title}) priced at ₹${product.base_wholesale_price}/pc (MOQ ${product.moq} pcs). Please share available color options and ratio packing details.`
@@ -116,15 +116,28 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                 <span className="text-xs text-[#78716C] uppercase tracking-wider block font-medium">
                   Wholesale Trade Price
                 </span>
-                <div className="text-3xl font-bold text-[#722F37] tracking-tight">
-                  {formatINR(product.base_wholesale_price)}
-                  <span className="text-xs font-normal text-[#78716C] ml-1.5">/ piece (+ GST)</span>
-                </div>
+                {product.price_on_enquiry !== false && product.price_on_request !== false ? (
+                  <div className="text-2xl sm:text-3xl font-bold text-[#722F37] tracking-tight">
+                    Price on Enquiry
+                    <span className="text-xs font-normal text-[#78716C] ml-2 font-mono">
+                      (Quote on Request)
+                    </span>
+                  </div>
+                ) : product.base_wholesale_price ? (
+                  <div className="text-3xl font-bold text-[#722F37] tracking-tight">
+                    {formatINR(product.base_wholesale_price)}
+                    <span className="text-xs font-normal text-[#78716C] ml-1.5">/ piece (+ GST)</span>
+                  </div>
+                ) : (
+                  <div className="text-2xl sm:text-3xl font-bold text-[#722F37] tracking-tight">
+                    Price on Enquiry
+                  </div>
+                )}
               </div>
 
               <div className="text-right">
                 <span className="inline-block bg-[#F3ECE2] text-[#1C1917] font-bold text-xs px-3 py-1 rounded-full border border-[#E7E0D5]">
-                  MOQ: {product.moq} Pieces (Set)
+                  MOQ: {product.moq ? `${product.moq} Pieces (Set)` : 'On Request'}
                 </span>
               </div>
             </div>

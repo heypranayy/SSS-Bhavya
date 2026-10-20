@@ -12,6 +12,7 @@ interface SelectedDesignsDrawerProps {
   onClearAll: () => void;
   onRemoveItem: (productId: string) => void;
   onSubmitInquiry: () => void;
+  onOpenWhatsApp: () => void;
 }
 
 export function SelectedDesignsDrawer({
@@ -20,6 +21,7 @@ export function SelectedDesignsDrawer({
   onClearAll,
   onRemoveItem,
   onSubmitInquiry,
+  onOpenWhatsApp,
 }: SelectedDesignsDrawerProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -155,15 +157,23 @@ export function SelectedDesignsDrawer({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+            <button
+              type="button"
+              onClick={onOpenWhatsApp}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#25D366] text-white text-xs uppercase tracking-wider font-bold shadow-md hover:bg-[#20ba59] transition-all"
+            >
+              <Send className="w-3.5 h-3.5 rotate-[-20deg]" />
+              <span>Send Selection on WhatsApp ({totalPieces} pcs)</span>
+            </button>
+
             <button
               type="button"
               onClick={onSubmitInquiry}
               disabled={hasMoqIssues}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[#722F37] text-white text-xs uppercase tracking-wider font-bold shadow-md hover:bg-[#5C1D24] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#E7E0D5] bg-white text-[#1C1917] text-xs uppercase tracking-wider font-bold hover:bg-[#FAF7F2] transition-all disabled:opacity-50"
             >
-              <Send className="w-4 h-4" />
-              <span>Submit Wholesale Inquiry ({totalPieces} pcs)</span>
+              <span>Dispatch Docket Form</span>
             </button>
           </div>
         </div>

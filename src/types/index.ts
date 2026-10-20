@@ -1,4 +1,5 @@
 export type StockStatus = 'in_stock' | 'low_stock' | 'made_to_order' | 'out_of_stock';
+export type PriceDisplayMode = 'show' | 'request' | 'contact';
 
 export interface Category {
   id: string;
@@ -16,12 +17,14 @@ export interface Collection {
   image_url?: string;
   is_featured?: boolean;
   product_count?: number;
+  display_order?: number;
 }
 
 export interface ProductImage {
   id: string;
   product_id?: string;
   image_url: string;
+  local_url?: string;
   storage_path?: string;
   display_order: number;
   is_primary: boolean;
@@ -48,6 +51,9 @@ export interface Product {
   color: string;
   style_type: string;
   base_wholesale_price: number;
+  price_display_mode?: PriceDisplayMode;
+  price_on_enquiry?: boolean;
+  price_on_request?: boolean;
   currency: string;
   moq: number;
   stock_status: StockStatus;
@@ -73,6 +79,7 @@ export interface Customer {
   custom_price_tier?: string;
   notes?: string;
   created_at: string;
+  updated_at?: string;
 }
 
 export type CatalogMode = 'dynamic' | 'curated' | 'hybrid';
@@ -145,6 +152,7 @@ export interface CatalogPresentationSettings {
   columnsDesktop: number; // 2, 3, 4
   columnsMobile: number; // 1, 2
   showPrices: boolean;
+  priceDisplayMode?: PriceDisplayMode;
   showMoq: boolean;
   showSizes: boolean;
   showStockStatus: boolean;
@@ -174,6 +182,7 @@ export interface Catalog {
   access_code?: string | null;
   customer_greeting?: string;
   custom_message?: string;
+  cover_image_url?: string | null;
   presentation_settings: CatalogPresentationSettings;
   rule_groups?: FilterRuleGroup[];
   overrides?: CatalogOverride[];
@@ -181,6 +190,13 @@ export interface Catalog {
   updated_at: string;
   views_count?: number;
   inquiries_count?: number;
+  share_count?: number;
+  share_history?: Array<{
+    id: string;
+    timestamp: string;
+    channel: 'whatsapp' | 'copy_link' | 'direct';
+    recipient?: string;
+  }>;
 }
 
 export interface CatalogProductView extends Product {
@@ -191,6 +207,7 @@ export interface CatalogProductView extends Product {
 }
 
 export type InquiryStatus = 'new' | 'contacted' | 'follow_up' | 'closed';
+export type InquiryType = 'website' | 'catalog' | 'price_request';
 
 export interface InquiryItem {
   id?: string;
@@ -208,8 +225,17 @@ export interface InquiryItem {
 export interface Inquiry {
   id: string;
   reference_no: string;
+  inquiry_type?: InquiryType; // 'website' | 'catalog' | 'price_request'
+  source_page?: string;
+  assigned_staff?: string;
   catalog_id?: string;
+  catalog_title?: string;
   customer_id?: string;
+  product_id?: string;
+  product_code?: string;
+  product_title?: string;
+  selected_variant?: string;
+  requested_quantity?: number;
   buyer_name: string;
   business_name: string;
   phone: string;

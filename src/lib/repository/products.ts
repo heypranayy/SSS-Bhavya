@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { Product, Category, Collection } from '@/types';
 import { SEED_CATEGORIES, SEED_COLLECTIONS, SEED_PRODUCTS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
@@ -7,12 +9,86 @@ let inMemoryProducts: Product[] = [...SEED_PRODUCTS];
 let inMemoryCollections: Collection[] = [...SEED_COLLECTIONS];
 let inMemoryCategories: Category[] = [...SEED_CATEGORIES];
 
+function getCustomProductsFilePath(): string {
+  return path.join(process.cwd(), 'src', 'lib', 'data', 'custom-products.json');
+}
+
+function loadPersistedProducts(): Product[] {
+  try {
+    const filePath = getCustomProductsFilePath();
+    if (fs.existsSync(filePath)) {
+      const data = fs.readFileSync(filePath, 'utf-8');
+      if (data.trim()) return JSON.parse(data);
+    }
+  } catch (err) {
+    console.error('Failed to read custom products:', err);
+  }
+  return [];
+}
+
+function savePersistedProducts(products: Product[]): void {
+  try {
+    const filePath = getCustomProductsFilePath();
+    fs.writeFileSync(filePath, JSON.stringify(products, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Failed to write custom products:', err);
+  }
+}
+
+function getDeletedProductsFilePath(): string {
+  return path.join(process.cwd(), 'src', 'lib', 'data', 'deleted-products.json');
+}
+
+function loadDeletedProductIds(): Set<string> {
+  try {
+    const filePath = getDeletedProductsFilePath();
+    if (fs.existsSync(filePath)) {
+      const data = fs.readFileSync(filePath, 'utf-8');
+      if (data.trim()) {
+        const arr = JSON.parse(data);
+        if (Array.isArray(arr)) return new Set(arr);
+      }
+    }
+  } catch {}
+  return new Set();
+}
+
+function saveDeletedProductIds(ids: Set<string>): void {
+  try {
+    const filePath = getDeletedProductsFilePath();
+    fs.writeFileSync(filePath, JSON.stringify(Array.from(ids), null, 2), 'utf-8');
+  } catch {}
+}
+
 function isSupabaseConfigured(): boolean {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   return Boolean(url && !url.includes('placeholder') && !url.includes('your-project-id'));
 }
 
 export async function getAllProducts(): Promise<Product[]> {
+  const deletedIds = loadDeletedProductIds();
+  const persisted = loadPersistedProducts();
+  const mergedMap = new Map<string, Product>();
+
+  for (const p of SEED_PRODUCTS) {
+    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+      mergedMap.set(p.id, p);
+    }
+  }
+  for (const p of inMemoryProducts) {
+    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+      mergedMap.set(p.id, p);
+    }
+  }
+  for (const p of persisted) {
+    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+      mergedMap.set(p.id, p);
+    }
+  }
+
+  const all = Array.from(mergedMap.values());
+  inMemoryProducts = all;
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -30,6 +106,7 @@ export async function getAllProducts(): Promise<Product[]> {
       if (!error && data && data.length > 0) {
         return data.map((p: any) => ({
           ...p,
+          price_display_mode: p.price_display_mode || 'request',
           images: p.images || [],
           variants: p.variants || [],
           collections: p.collections?.map((c: any) => c.collection) || [],
@@ -40,7 +117,12 @@ export async function getAllProducts(): Promise<Product[]> {
     }
   }
 
-  return [...inMemoryProducts];
+  return all.map((p) => ({
+    ...p,
+    price_on_enquiry: p.price_on_enquiry ?? true,
+    price_on_request: p.price_on_enquiry ?? true,
+    price_display_mode: (p.price_on_enquiry ?? true) ? 'request' : (p.price_display_mode || 'request'),
+  }));
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
@@ -64,34 +146,56 @@ export async function getCategories(): Promise<Category[]> {
   return [...inMemoryCategories];
 }
 
+import { getAllCollections, getCollectionBySlug as getColBySlug } from './collections';
+
 export async function getCollections(): Promise<Collection[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = createAdminClient();
-      const { data, error } = await supabase.from('collections').select('*').order('display_order');
-      if (!error && data && data.length > 0) return data;
-    } catch {}
-  }
-  return [...inMemoryCollections];
+  return getAllCollections();
 }
 
 export async function getCollectionBySlug(slug: string): Promise<Collection | null> {
-  const collections = await getCollections();
-  return collections.find(c => c.slug === slug) || null;
+  return getColBySlug(slug);
 }
 
 export async function saveProduct(productData: Partial<Product>): Promise<Product> {
+  const persisted = loadPersistedProducts();
+
   if (productData.id) {
-    // Update
-    const index = inMemoryProducts.findIndex(p => p.id === productData.id);
-    if (index !== -1) {
-      inMemoryProducts[index] = {
-        ...inMemoryProducts[index],
+    const deletedIds = loadDeletedProductIds();
+    if (deletedIds.has(productData.id)) {
+      deletedIds.delete(productData.id);
+      if (productData.code) deletedIds.delete(productData.code);
+      saveDeletedProductIds(deletedIds);
+    }
+
+    // Update if already persisted
+    const pIdx = persisted.findIndex(p => p.id === productData.id);
+    if (pIdx !== -1) {
+      persisted[pIdx] = {
+        ...persisted[pIdx],
         ...productData,
         updated_at: new Date().toISOString(),
       } as Product;
-      return inMemoryProducts[index];
+      savePersistedProducts(persisted);
+      inMemoryProducts = inMemoryProducts.map(p => p.id === productData.id ? persisted[pIdx] : p);
+      return persisted[pIdx];
     }
+
+    // Existing seed or in-memory product edited
+    const existing = [...SEED_PRODUCTS, ...inMemoryProducts].find(p => p.id === productData.id);
+    const updatedProduct: Product = {
+      ...(existing || {}),
+      ...productData,
+      id: productData.id,
+      updated_at: new Date().toISOString(),
+    } as Product;
+
+    persisted.unshift(updatedProduct);
+    savePersistedProducts(persisted);
+    inMemoryProducts = inMemoryProducts.map(p => p.id === productData.id ? updatedProduct : p);
+    if (!inMemoryProducts.some(p => p.id === productData.id)) {
+      inMemoryProducts.unshift(updatedProduct);
+    }
+    return updatedProduct;
   }
 
   // Create new
@@ -106,9 +210,12 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     fabric: productData.fabric || 'Pure Cotton 60-60',
     color: productData.color || 'Standard',
     style_type: productData.style_type || 'Straight Kurti',
-    base_wholesale_price: Number(productData.base_wholesale_price) || 499,
+    base_wholesale_price: productData.base_wholesale_price !== undefined && productData.base_wholesale_price !== null && !isNaN(Number(productData.base_wholesale_price)) ? Number(productData.base_wholesale_price) : 0,
     currency: 'INR',
-    moq: Number(productData.moq) || 6,
+    moq: productData.moq !== undefined && productData.moq !== null && !isNaN(Number(productData.moq)) ? Number(productData.moq) : 0,
+    price_on_enquiry: productData.price_on_enquiry ?? true,
+    price_on_request: productData.price_on_enquiry ?? true,
+    price_display_mode: (productData.price_on_enquiry ?? true) ? 'request' : (productData.price_display_mode || 'request'),
     stock_status: productData.stock_status || 'in_stock',
     is_active: productData.is_active ?? true,
     is_featured: productData.is_featured ?? false,
@@ -126,12 +233,27 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     updated_at: new Date().toISOString(),
   };
 
+  persisted.unshift(newProduct);
+  savePersistedProducts(persisted);
   inMemoryProducts.unshift(newProduct);
   return newProduct;
 }
 
 export async function deleteProduct(id: string): Promise<boolean> {
-  const initialLength = inMemoryProducts.length;
-  inMemoryProducts = inMemoryProducts.filter(p => p.id !== id);
-  return inMemoryProducts.length < initialLength;
+  const deletedIds = loadDeletedProductIds();
+  deletedIds.add(id);
+
+  const all = [...loadPersistedProducts(), ...inMemoryProducts, ...SEED_PRODUCTS];
+  const target = all.find(p => p.id === id || p.code === id);
+  if (target) {
+    deletedIds.add(target.id);
+    if (target.code) deletedIds.add(target.code);
+  }
+  saveDeletedProductIds(deletedIds);
+
+  const persisted = loadPersistedProducts();
+  const next = persisted.filter(p => p.id !== id && p.code !== id);
+  savePersistedProducts(next);
+  inMemoryProducts = inMemoryProducts.filter(p => p.id !== id && p.code !== id);
+  return true;
 }

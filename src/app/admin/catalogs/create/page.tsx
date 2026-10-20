@@ -1,20 +1,28 @@
 import React from 'react';
 import { getAllProducts, getCategories, getCollections } from '@/lib/repository/products';
-import { getAllCustomers } from '@/lib/repository/catalogs';
+import { getAllCustomers, getCatalogById, getAllCatalogs } from '@/lib/repository/catalogs';
 import { UniversalCatalogBuilder } from '@/components/admin/UniversalCatalogBuilder';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Create Catalog | Universal Dynamic Engine | Bhavya Fashions',
+  title: 'Catalog Builder & Editor | Bhavya Fashions Wholesale',
 };
 
-export default async function CreateCatalogPage() {
-  const [products, categories, collections, customers] = await Promise.all([
+interface CreateCatalogPageProps {
+  searchParams: Promise<{ id?: string }>;
+}
+
+export default async function CreateCatalogPage({ searchParams }: CreateCatalogPageProps) {
+  const { id } = await searchParams;
+
+  const [products, categories, collections, customers, initialCatalog, allCatalogs] = await Promise.all([
     getAllProducts(),
     getCategories(),
     getCollections(),
     getAllCustomers(),
+    id ? getCatalogById(id) : Promise.resolve(null),
+    getAllCatalogs(),
   ]);
 
   return (
@@ -23,6 +31,8 @@ export default async function CreateCatalogPage() {
       categories={categories}
       collections={collections}
       customers={customers}
+      initialCatalog={initialCatalog}
+      existingCatalogs={allCatalogs}
     />
   );
 }

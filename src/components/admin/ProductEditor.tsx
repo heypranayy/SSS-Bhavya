@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Product, Category, Collection, ProductImage } from '@/types';
-import { saveProduct } from '@/lib/repository/products';
+import { ImageUploadDropzone } from '@/components/ui/ImageUploadDropzone';
 import { ArrowLeft, Save, Plus, Trash2, Image as ImageIcon, Sparkles, Loader2 } from 'lucide-react';
 
 interface ProductEditorProps {
@@ -28,8 +28,21 @@ export function ProductEditor({
   const [fabric, setFabric] = useState(initialProduct?.fabric || 'Pure Cotton 60-60');
   const [color, setColor] = useState(initialProduct?.color || 'Pastel Wine');
   const [styleType, setStyleType] = useState(initialProduct?.style_type || '3-Piece Kurti Pant Dupatta');
-  const [price, setPrice] = useState<number>(initialProduct?.base_wholesale_price || 699);
-  const [moq, setMoq] = useState<number>(initialProduct?.moq || 6);
+  const [priceOnEnquiry, setPriceOnEnquiry] = useState<boolean>(
+    initialProduct?.price_on_enquiry !== undefined
+      ? Boolean(initialProduct.price_on_enquiry)
+      : true // Ticked by default for all products!
+  );
+  const [price, setPrice] = useState<string>(
+    initialProduct?.base_wholesale_price !== undefined && initialProduct?.base_wholesale_price !== null
+      ? String(initialProduct.base_wholesale_price)
+      : ''
+  );
+  const [moq, setMoq] = useState<string>(
+    initialProduct?.moq !== undefined && initialProduct?.moq !== null
+      ? String(initialProduct.moq)
+      : ''
+  );
   const [stockStatus, setStockStatus] = useState(initialProduct?.stock_status || 'in_stock');
   const [isFeatured, setIsFeatured] = useState(initialProduct?.is_featured || false);
   const [images, setImages] = useState<ProductImage[]>(
@@ -73,36 +86,54 @@ export function ProductEditor({
     try {
       const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
-      await saveProduct({
-        id: initialProduct?.id,
-        code: code.trim().toUpperCase(),
-        title: title.trim(),
-        slug,
-        description: description.trim(),
-        category_id: categoryId,
-        fabric: fabric.trim(),
-        color: color.trim(),
-        style_type: styleType.trim(),
-        base_wholesale_price: Number(price),
-        currency: 'INR',
-        moq: Number(moq),
-        stock_status: stockStatus as any,
-        is_active: true,
-        is_featured: isFeatured,
-        images,
-        variants: [
-          { id: 'v-m', size: 'M', stock_quantity: 50, is_available: true },
-          { id: 'v-l', size: 'L', stock_quantity: 50, is_available: true },
-          { id: 'v-xl', size: 'XL', stock_quantity: 50, is_available: true },
-          { id: 'v-xxl', size: 'XXL', stock_quantity: 30, is_available: true },
-        ],
+      const res = await fetch('/api/products/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: initialProduct?.id,
+          code: code.trim().toUpperCase(),
+          title: title.trim(),
+          description: description.trim(),
+          category_id: categoryId,
+          fabric: fabric.trim(),
+          color: color.trim(),
+          style_type: styleType.trim(),
+          base_wholesale_price: price.trim() && !isNaN(Number(price)) ? Number(price) : 0,
+          moq: moq.trim() && !isNaN(Number(moq)) ? Number(moq) : 0,
+          price_on_enquiry: priceOnEnquiry,
+          price_on_request: priceOnEnquiry,
+          stock_status: stockStatus,
+          is_featured: isFeatured,
+          images,
+        }),
       });
 
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to save product');
+
       router.push('/admin/products');
+      router.refresh();
     } catch (err: any) {
       alert(err.message || 'Failed to save product');
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleDeleteProduct = async () => {
+    if (!initialProduct?.id) return;
+    if (!confirm(`Are you sure you want to permanently delete design "${initialProduct.title}" (${initialProduct.code})? This cannot be undone.`)) return;
+    try {
+      const res = await fetch('/api/products/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: initialProduct.id }),
+      });
+      if (!res.ok) throw new Error('Failed to delete product');
+      router.push('/admin/products');
+      router.refresh();
+    } catch (err: any) {
+      alert(err.message || 'Failed to delete product');
     }
   };
 
@@ -126,6 +157,18 @@ export function ProductEditor({
             </h1>
           </div>
         </div>
+
+        {isEditing && (
+          <button
+            type="button"
+            onClick={handleDeleteProduct}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 transition-colors shadow-2xs"
+            title="Delete this design permanently"
+          >
+            <Trash2 className="w-3.5 h-3.5 text-red-600" />
+            <span>Delete Design</span>
+          </button>
+        )}
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
@@ -165,6 +208,28 @@ export function ProductEditor({
             </div>
           </div>
 
+          {/* Price on Enquiry Checkbox Banner - Ticked by Default */}
+          <div className="bg-[#FAF7F2] p-4 rounded-xl border border-[#C5A059]/40 flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="price_on_enquiry"
+              checked={priceOnEnquiry}
+              onChange={(e) => setPriceOnEnquiry(e.target.checked)}
+              className="w-4 h-4 mt-0.5 rounded text-[#722F37] focus:ring-[#722F37] border-[#C5A059] cursor-pointer"
+            />
+            <div className="space-y-0.5">
+              <label htmlFor="price_on_enquiry" className="text-xs font-bold text-[#1C1917] cursor-pointer flex items-center gap-2">
+                <span>Price on Enquiry / Quote on Request</span>
+                <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">
+                  ✓ Ticked by Default
+                </span>
+              </label>
+              <p className="text-[11px] text-[#78716C] leading-relaxed">
+                When checked (default), exact price is hidden across all buyer-facing catalogs and displayed as &ldquo;Quote on Request&rdquo; / &ldquo;Price on Enquiry&rdquo;, even if a base wholesale price is entered below.
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-semibold text-[#1C1917] mb-1">
@@ -183,26 +248,26 @@ export function ProductEditor({
 
             <div>
               <label className="block text-xs font-semibold text-[#1C1917] mb-1">
-                Base Wholesale Price (INR) *
+                Base Wholesale Price (INR) <span className="text-zinc-400 font-normal">(Optional)</span>
               </label>
               <input
                 type="number"
-                required
+                placeholder="Optional internal rate"
                 value={price}
-                onChange={(e) => setPrice(Number(e.target.value))}
+                onChange={(e) => setPrice(e.target.value)}
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-bold"
               />
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-[#1C1917] mb-1">
-                Minimum Order Quantity (MOQ) *
+                Minimum Order Quantity (MOQ) <span className="text-zinc-400 font-normal">(Optional)</span>
               </label>
               <input
                 type="number"
-                required
+                placeholder="Optional (e.g. 6)"
                 value={moq}
-                onChange={(e) => setMoq(Number(e.target.value))}
+                onChange={(e) => setMoq(e.target.value)}
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-bold"
               />
             </div>
@@ -269,8 +334,26 @@ export function ProductEditor({
             High-Resolution Photography Gallery
           </h2>
 
-          {/* Add Image by URL */}
-          <div className="flex gap-2">
+          {/* Upload Image from System (Auto-compressed < 50KB) */}
+          <ImageUploadDropzone
+            label="Upload Product Photograph from System (Auto-compressed < 50KB in High-Res)"
+            onUploadComplete={(url: string) => {
+              if (url) {
+                setImages((prev) => [
+                  ...prev,
+                  {
+                    id: `img-${Date.now()}`,
+                    image_url: url,
+                    display_order: prev.length,
+                    is_primary: prev.length === 0,
+                  },
+                ]);
+              }
+            }}
+          />
+
+          {/* Or Add Image by URL */}
+          <div className="flex gap-2 pt-2">
             <input
               type="url"
               placeholder="Paste high-res image URL (e.g. Unsplash or Supabase storage)..."

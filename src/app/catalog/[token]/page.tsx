@@ -5,12 +5,14 @@ import { getCatalogByToken, recordCatalogAccess } from '@/lib/repository/catalog
 import { getAllProducts } from '@/lib/repository/products';
 import { resolveCatalogProducts } from '@/lib/engine/filter-engine';
 import { PublicCatalogView } from '@/components/catalog/PublicCatalogView';
+import { CataloguePasscodeChallenge } from '@/components/catalog/CataloguePasscodeChallenge';
 import { AlertCircle, Clock, ShieldAlert, PhoneCall } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
 interface CatalogPageProps {
   params: Promise<{ token: string }>;
+  searchParams: Promise<{ code?: string }>;
 }
 
 export async function generateMetadata({ params }: CatalogPageProps) {
@@ -27,8 +29,9 @@ export async function generateMetadata({ params }: CatalogPageProps) {
   };
 }
 
-export default async function CatalogPage({ params }: CatalogPageProps) {
+export default async function CatalogPage({ params, searchParams }: CatalogPageProps) {
   const { token } = await params;
+  const { code } = await searchParams;
   const catalog = await getCatalogByToken(token);
 
   if (!catalog) {
@@ -73,7 +76,7 @@ export default async function CatalogPage({ params }: CatalogPageProps) {
           </p>
           <div className="pt-2">
             <a
-              href={`https://wa.me/919830122334?text=${encodeURIComponent(`Hello Bhavya Fashions, my catalog link ${catalog.public_token} is showing revoked. Please share an updated active catalog.`)}`}
+              href={`https://wa.me/919830729210?text=${encodeURIComponent(`Hello Bhavya Fashions, my catalog link ${catalog.public_token} is showing revoked. Please share an updated active catalog.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider"
@@ -107,7 +110,7 @@ export default async function CatalogPage({ params }: CatalogPageProps) {
           </p>
           <div className="pt-2">
             <a
-              href={`https://wa.me/919830122334?text=${encodeURIComponent(`Hello Bhavya Fashions, my catalog link ${catalog.title} has expired. Please refresh the link.`)}`}
+              href={`https://wa.me/919830729210?text=${encodeURIComponent(`Hello Bhavya Fashions, my catalog link ${catalog.title} has expired. Please refresh the link.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider"
@@ -121,6 +124,21 @@ export default async function CatalogPage({ params }: CatalogPageProps) {
     );
   }
 
+  // Handle secret Access Code protection
+  if (catalog.access_code && catalog.access_code.trim()) {
+    const isUnlocked = code && code.trim().toLowerCase() === catalog.access_code.trim().toLowerCase();
+    if (!isUnlocked) {
+      return (
+        <CataloguePasscodeChallenge
+          catalogTitle={catalog.title}
+          catalogSubtitle={catalog.subtitle}
+          token={catalog.public_token}
+          expectedCode={catalog.access_code}
+        />
+      );
+    }
+  }
+
   // Record access view event
   recordCatalogAccess(catalog.id).catch(() => {});
 
@@ -131,6 +149,7 @@ export default async function CatalogPage({ params }: CatalogPageProps) {
     ruleGroups: catalog.rule_groups,
     overrides: catalog.overrides,
     customerDiscountPct: catalog.customer?.discount_pct,
+    priceDisplayMode: (catalog.presentation_settings as any)?.priceDisplayMode || 'request',
   });
 
   return (

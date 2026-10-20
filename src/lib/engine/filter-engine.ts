@@ -120,9 +120,10 @@ export function resolveCatalogProducts(
     ruleGroups?: FilterRuleGroup[];
     overrides?: CatalogOverride[];
     customerDiscountPct?: number;
+    priceDisplayMode?: 'show' | 'request' | 'contact';
   }
 ): CatalogProductView[] {
-  const { mode, ruleGroups = [], overrides = [], customerDiscountPct = 0 } = options;
+  const { mode, ruleGroups = [], overrides = [], customerDiscountPct = 0, priceDisplayMode } = options;
   const productMap = new Map<string, Product>(allProducts.map(p => [p.id, p]));
   const overrideMap = new Map<string, CatalogOverride>(overrides.map(o => [o.product_id, o]));
 
@@ -184,6 +185,7 @@ export function resolveCatalogProducts(
 
     return {
       ...prod,
+      price_display_mode: priceDisplayMode || prod.price_display_mode || 'request',
       quoted_price: quotedPrice,
       is_pinned: override?.is_pinned || false,
       presentation_note: override?.presentation_note,

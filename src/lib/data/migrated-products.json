@@ -1,0 +1,5469 @@
+[
+  {
+    "id": "p-migrated-29589",
+    "code": "DN11059",
+    "title": "11059 Kurti Pant Dupatta",
+    "slug": "11059-kurti-pant-dupatta",
+    "description": "Elevate your everyday wardrobe with this vibrant lime-green ethnic suit set. Designed for both style and comfort, it features a classic straight tunic with subtle gold embroidery along the neckline, paired with matching tailored pants. Complete with a graceful, lightweight dupatta draped effortlessly over the shoulder, this ensemble offers a fresh, elegant look that's perfect for festive celebrations, family gatherings, or casual outings.\nFABRIC- KESARIA SILK\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "KESARIA SILK",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29589-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_m8id4fm8id4fm8id-Photoroom.png",
+        "storage_path": "migrated/29589/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11059 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11059-0.png"
+      },
+      {
+        "id": "img-migrated-29589-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.12-AM-1.jpeg",
+        "storage_path": "migrated/29589/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11059 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11059-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29589-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29589-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29589-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29589-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.466Z",
+    "updated_at": "2026-10-15T18:40:15.467Z",
+    "legacy_metadata": {
+      "original_id": 29589,
+      "permalink": "https://bhavyafashions.com/product/11059-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29584",
+    "code": "DN11109",
+    "title": "11109 kurti Pant Dupatta",
+    "slug": "11109-kurti-pant-dupatta",
+    "description": "This vibrant bright red and orange three-piece suit set brings an energetic, joyful feel to any occasion. The straight-fit kurta features an intricate ikat-inspired geometric pattern throughout, highlighted by a subtle embellished round neck and three-quarter sleeves. Paired with comfortable solid red straight trousers and a matching printed dupatta featuring bandhani-style motifs and paisley borders, this outfit is a perfect mix of traditional charm and modern flair for festive gatherings or celebrations.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29584-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_wt2psowt2psowt2p-Photoroom.png",
+        "storage_path": "migrated/29584/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11109 kurti Pant Dupatta",
+        "local_url": "/images/products/dn11109-0.png"
+      },
+      {
+        "id": "img-migrated-29584-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.10-AM.jpeg",
+        "storage_path": "migrated/29584/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11109 kurti Pant Dupatta",
+        "local_url": "/images/products/dn11109-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29584-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29584-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29584-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29584-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.467Z",
+    "updated_at": "2026-10-15T18:40:15.467Z",
+    "legacy_metadata": {
+      "original_id": 29584,
+      "permalink": "https://bhavyafashions.com/product/11109-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29580",
+    "code": "DN10996",
+    "title": "10996 Kurti Pant Dupatta",
+    "slug": "10966-kurti-pant-dupatta",
+    "description": "This rust-orange three-piece kurta set has a warm, cheerful vibe. The straight-fit kurta is made from a soft fabric, perhaps cotton, featuring a distinct white block-print pattern. The detailed patterned border along the V-neckline is a charming touch. It comes with plain matching trousers and a lightweight dupatta that repeats the white motifs and borders, making it a perfectly coordinated outfit for casual get-togethers or a comfortable day out.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29580-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_gmfh8ogmfh8ogmfh-Photoroom.png",
+        "storage_path": "migrated/29580/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10996 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10996-0.png"
+      },
+      {
+        "id": "img-migrated-29580-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.07-AM.jpeg",
+        "storage_path": "migrated/29580/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10996 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10996-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29580-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29580-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29580-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29580-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29580-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.467Z",
+    "updated_at": "2026-10-15T18:40:15.467Z",
+    "legacy_metadata": {
+      "original_id": 29580,
+      "permalink": "https://bhavyafashions.com/product/10966-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29575",
+    "code": "DN10977",
+    "title": "10977 Kurti Pant Dupatta",
+    "slug": "10977-kurti-pant-dupatta",
+    "description": "This charming powder blue three-piece suit set offers an elegant and complete look for any casual or semi-formal event. The straight-cut kurta features a lovely all-over white block-style floral print and a beautiful, detailed embellished neckline that adds a touch of sophistication. Paired with coordinating plain light-blue straight trousers and a beautifully printed matching dupatta with tassels, this outfit is both comfortable and stylish. Perfect for everyday wear, family gatherings, or stylish day outings, it’s a delightful choice that combines tradition with modern ease.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29575-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_kzheynkzheynkzhe-Photoroom.png",
+        "storage_path": "migrated/29575/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10977 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10977-0.png"
+      },
+      {
+        "id": "img-migrated-29575-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.04-AM.jpeg",
+        "storage_path": "migrated/29575/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10977 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10977-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29575-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29575-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29575-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29575-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.467Z",
+    "updated_at": "2026-10-15T18:40:15.467Z",
+    "legacy_metadata": {
+      "original_id": 29575,
+      "permalink": "https://bhavyafashions.com/product/10977-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29570",
+    "code": "DN11057",
+    "title": "11057 Kurti Pant Dupatta",
+    "slug": "11057-kurti-pant-dupatta",
+    "description": "This stunning peacock blue three-piece suit set offers a regal yet effortless look for any special event. The straight-cut silk-blend tunic features delicate zardozi-style metallic embroidery along the neckline and chest, subtly accented with tiny scattered bootis and three-quarter sleeves. Paired with matching solid straight trousers and a lightweight woven dupatta decorated with elegant golden jacquard patterns and borders, this rich outfit combines traditional sophistication with comfortable, easy-to-wear elegance.\nFABRIC- KESARIA SILK\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "KESARIA SILK",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29570-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_wd6a16wd6a16wd6a-Photoroom.png",
+        "storage_path": "migrated/29570/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11057 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11057-0.png"
+      },
+      {
+        "id": "img-migrated-29570-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.02-AM.jpeg",
+        "storage_path": "migrated/29570/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11057 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11057-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29570-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29570-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29570-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29570-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.467Z",
+    "updated_at": "2026-10-15T18:40:15.467Z",
+    "legacy_metadata": {
+      "original_id": 29570,
+      "permalink": "https://bhavyafashions.com/product/11057-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29565",
+    "code": "DN11104",
+    "title": "11104 Kurti Pant Dupatta",
+    "slug": "11104-kurti-pant-dupatta",
+    "description": "This three-piece suit set in a sophisticated coffee brown features an intricate traditional print across the straight-cut kurta. Detailed floral and paisley patterns in soft pinks, teal, and beige adorn the bodice, hem, and cuffs. The matching trousers are clean-cut with unique pearl-beaded button accents at the ankles, and the look is completed with a beautifully printed dupatta. It’s a stylish and complete outfit perfect for celebratory events and festive occasions.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29565-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_2485qn2485qn2485-Photoroom.png",
+        "storage_path": "migrated/29565/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11104 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11104-0.png"
+      },
+      {
+        "id": "img-migrated-29565-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.00-AM.jpeg",
+        "storage_path": "migrated/29565/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11104 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11104-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29565-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29565-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29565-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29565-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29565-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29565,
+      "permalink": "https://bhavyafashions.com/product/11104-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29560",
+    "code": "DN11058",
+    "title": "11058 Kurti Pant Dupatta",
+    "slug": "11058-kurti-pant-dupatta",
+    "description": "This striking hot pink three-piece suit set brings an elegant festive flair to any celebration. The straight-fit kurta features intricate metallic embroidery along the round neckline and chest, complemented by delicate scattered motifs across the front and comfortable three-quarter sleeves. It comes complete with matching straight-fit pants and a coordinating dupatta adorned with a rich golden woven border and subtle bootis. Crafted from a smooth, premium fabric, it offers a perfectly balanced blend of traditional charm and graceful comfort.\nFABRIC- KESARIA SILK\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "KESARIA SILK",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29560-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_r974ewr974ewr974-Photoroom.png",
+        "storage_path": "migrated/29560/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11058 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11058-0.png"
+      },
+      {
+        "id": "img-migrated-29560-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.58-AM.jpeg",
+        "storage_path": "migrated/29560/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11058 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11058-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29560-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29560-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29560-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29560-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29560,
+      "permalink": "https://bhavyafashions.com/product/11058-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29554",
+    "code": "DN11108",
+    "title": "11108 Kurti Pant Dupatta",
+    "slug": "11108-kurti-pant-dupatta",
+    "description": "This sophisticated brown three-piece suit set features an intricate floral kalamkari-inspired print in muted earthy tones. The straight-cut kurta comes with a detailed round neckline embellished with subtle embroidery, three-quarter sleeves, and side slits for a comfortable fit. It includes a matching printed dupatta draped elegantly over the shoulder and is paired with solid dark brown straight trousers. Crafted from a soft, smooth fabric, this set is an excellent choice for festive celebrations, family gatherings, or formal evening occasions.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29554-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_wf7vkgwf7vkgwf7v-Photoroom.png",
+        "storage_path": "migrated/29554/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11108 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11108-0.png"
+      },
+      {
+        "id": "img-migrated-29554-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.56-AM.jpeg",
+        "storage_path": "migrated/29554/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11108 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11108-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29554-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29554-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29554-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29554-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29554,
+      "permalink": "https://bhavyafashions.com/product/11108-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29549",
+    "code": "DN11068",
+    "title": "11068 Kurti Pant",
+    "slug": "11068-kurti-pant",
+    "description": "This vibrant pink two-piece kurta set brings a cheerful burst of color to your wardrobe with its intricate orange geometric bandhani-style print. The straight-fit kurta features a stylish V-neckline framed with delicate silver embroidered borders, comfortable three-quarter sleeves, and classic side slits for an easy silhouette. Paired with matching solid pink straight trousers, this lightweight and breathable ensemble is a lovely choice for festive occasions, family functions, or bright daytime celebrations.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29549-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_35ikl135ikl135ik-Photoroom.png",
+        "storage_path": "migrated/29549/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11068 Kurti Pant",
+        "local_url": "/images/products/dn11068-0.png"
+      },
+      {
+        "id": "img-migrated-29549-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.54-AM.jpeg",
+        "storage_path": "migrated/29549/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11068 Kurti Pant",
+        "local_url": "/images/products/dn11068-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29549-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29549-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29549-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29549-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29549,
+      "permalink": "https://bhavyafashions.com/product/11068-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29544",
+    "code": "DN11015",
+    "title": "11015 Kurti Pant",
+    "slug": "11015-kurti-pant",
+    "description": "This striking off-white two-piece kurta set features a bold, classic red ikat print that gives it a vibrant, traditional appeal. The long straight-cut tunic comes with a round neck embellished with subtle embroidery along the collar, comfortable three-quarter sleeves, and convenient side slits. Paired with simple off-white straight-fit trousers, this ensemble offers a clean, balanced look crafted from soft, breathable fabric—perfect for festive occasions, family gatherings, or stylish daywear.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29544-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_wumbz7wumbz7wumb-Photoroom.png",
+        "storage_path": "migrated/29544/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11015 Kurti Pant",
+        "local_url": "/images/products/dn11015-0.png"
+      },
+      {
+        "id": "img-migrated-29544-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.52-AM.jpeg",
+        "storage_path": "migrated/29544/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11015 Kurti Pant",
+        "local_url": "/images/products/dn11015-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29544-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29544-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29544-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29544-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29544,
+      "permalink": "https://bhavyafashions.com/product/11015-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29539",
+    "code": "DN11081",
+    "title": "11081 Kurti Pant",
+    "slug": "11081-kurti-pant",
+    "description": "This elegant off-white two-piece kurta set features a lovely watercolor-style floral print in cheerful shades of pink, orange, and blue. The straight-fit kurta is detailed with a soft round neckline enhanced by delicate embroidery along the collar, three-quarter sleeves, and side slits for ease of movement. Paired with plain off-white straight-cut trousers, this set offers a light, breathable, and gracefully balanced look, making it ideal for casual outings, workdays, or daytime gatherings.\nFABRIC- FANCY FABRIC\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29539-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_hoe0cnhoe0cnhoe0-Photoroom.png",
+        "storage_path": "migrated/29539/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11081 Kurti Pant",
+        "local_url": "/images/products/dn11081-0.png"
+      },
+      {
+        "id": "img-migrated-29539-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.50-AM.jpeg",
+        "storage_path": "migrated/29539/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11081 Kurti Pant",
+        "local_url": "/images/products/dn11081-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29539-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29539-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29539-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29539-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29539,
+      "permalink": "https://bhavyafashions.com/product/11081-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29534",
+    "code": "DN11096",
+    "title": "11096 Cord Set",
+    "slug": "11096-cord-set",
+    "description": "This off-white two-piece co-ord set brings a fun, tropical charm to your casual closet. The knee-length tunic features a clean notch neck with button details and three-quarter sleeves, finished with playful textured embroidery along the hem that showcases palm trees, cute huts, and maroon hearts. The matching straight-leg trousers carry the same beachy motif at the ankles for a coordinated look. Made from soft, breathable cotton-blend fabric, it’s an effortless outfit for weekend outings, vacations, or relaxed daytime plans.\nFABRIC- HANLOOM COTTON\nSIZES- 38/40/42/44/46",
+    "category_id": "cat-coord-sets",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": true,
+    "images": [
+      {
+        "id": "img-migrated-29534-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_bdb26ubdb26ubdb2-Photoroom.png",
+        "storage_path": "migrated/29534/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11096 Cord Set",
+        "local_url": "/images/products/dn11096-0.png"
+      },
+      {
+        "id": "img-migrated-29534-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.48-AM.jpeg",
+        "storage_path": "migrated/29534/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11096 Cord Set",
+        "local_url": "/images/products/dn11096-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29534-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29534-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29534-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29534-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29534-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29534,
+      "permalink": "https://bhavyafashions.com/product/11096-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29529",
+    "code": "DN11027",
+    "title": "11027 Cord Set",
+    "slug": "11027-cord-set",
+    "description": "This lively cream-colored two-piece co-ord set brings a bright splash of color to your everyday style. It features a bold, abstract ikat print in vibrant shades of yellow, hot pink, orange, and green across both the top and straight-cut trousers. The mid-length tunic comes with a comfortable mandarin collar, three-quarter sleeves, and cute mini tassel accents along the front placket. Made from a light and breathable fabric, it’s an effortless choice for casual day outings, weekend get-togethers, or stylish loungewear.\nFABRIC- MUSLIN\nSIZES- 40/42/44/46",
+    "category_id": "cat-coord-sets",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29529-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_16n4it16n4it16n4-Photoroom.png",
+        "storage_path": "migrated/29529/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11027 Cord Set",
+        "local_url": "/images/products/dn11027-0.png"
+      },
+      {
+        "id": "img-migrated-29529-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.47-AM.jpeg",
+        "storage_path": "migrated/29529/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11027 Cord Set",
+        "local_url": "/images/products/dn11027-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29529-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29529-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29529-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29529-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29529,
+      "permalink": "https://bhavyafashions.com/product/11027-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29524",
+    "code": "DN11029",
+    "title": "11029 Cord Set",
+    "slug": "11029-cord-set",
+    "description": "This striking black two-piece co-ord set blends modern ethnic style with a bold art-inspired print. The straight tunic top features a mandarin collar with white tassel ties and short placket detailing, adorned with detailed white batik-style motifs across the front and sleeves. It pairs seamlessly with matching printed straight trousers that boast subtle scattered prints and a decorative geometric border at the hem. Crafted from soft, smooth fabric, this set offers a comfortable yet sophisticated look that's perfect for casual outings, office wear, or social gatherings.\nFABRIC- MUSLIN\nSIZES- 40/42/44/46",
+    "category_id": "cat-coord-sets",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29524-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_gfy1kpgfy1kpgfy1-Photoroom.png",
+        "storage_path": "migrated/29524/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11029 Cord Set",
+        "local_url": "/images/products/dn11029-0.png"
+      },
+      {
+        "id": "img-migrated-29524-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.44-AM.jpeg",
+        "storage_path": "migrated/29524/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11029 Cord Set",
+        "local_url": "/images/products/dn11029-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29524-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29524-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29524-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29524-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29524,
+      "permalink": "https://bhavyafashions.com/product/11029-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29519",
+    "code": "DN2574",
+    "title": "2574 Midi",
+    "slug": "2574-midi",
+    "description": "This chic black midi dress effortlessly combines bohemian charm with everyday comfort. It features striking circular embroidery in warm earth tones across the yoke and upper sleeves, paired with a keyhole neckline accented by delicate tassel ties. The three-quarter sleeves end in stylish flared bell cuffs, while the gathered waist falls gracefully into a relaxed, airy skirt. Made from lightweight, soft fabric, this versatile dress is ideal for evening catch-ups, dinner dates, or casual weekend outings.\nFABRIC- RAYON\nSIZES- 36/38/40/42/44",
+    "category_id": "cat-western-midi",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Western Midi / Top",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29519-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_lo9rsjlo9rsjlo9r-Photoroom.png",
+        "storage_path": "migrated/29519/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "2574 Midi",
+        "local_url": "/images/products/dn2574-0.png"
+      },
+      {
+        "id": "img-migrated-29519-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.42-AM.jpeg",
+        "storage_path": "migrated/29519/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "2574 Midi",
+        "local_url": "/images/products/dn2574-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29519-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29519-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29519-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29519-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Western Midi / Top",
+        "slug": "cat-western-midi"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29519,
+      "permalink": "https://bhavyafashions.com/product/2574-midi/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Top/midi"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29514",
+    "code": "DN2496",
+    "title": "2496 Midi",
+    "slug": "2496-midi",
+    "description": "This elegant black knee-length dress brings a sophisticated, timeless look with a touch of traditional flair. It features an eye-catching paisley and floral embroidered bodice in warm earth tones, complete with a round neckline, delicate tie-front tassel detail, and matching embroidered cuffs on the three-quarter sleeves. The gathered waist cascades into a flowing, comfortable skirt that offers an effortless silhouette. Crafted from soft, breathable fabric, it’s a versatile piece perfect for casual outings, evening dinners, or festive occasions.\nFABRIC- RAYON\nSIZES- 36/38/40/42/44",
+    "category_id": "cat-western-midi",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Western Midi / Top",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29514-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_uge3x7uge3x7uge3-Photoroom.png",
+        "storage_path": "migrated/29514/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "2496 Midi",
+        "local_url": "/images/products/dn2496-0.png"
+      },
+      {
+        "id": "img-migrated-29514-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.41-AM.jpeg",
+        "storage_path": "migrated/29514/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "2496 Midi",
+        "local_url": "/images/products/dn2496-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29514-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29514-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29514-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29514-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Western Midi / Top",
+        "slug": "cat-western-midi"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29514,
+      "permalink": "https://bhavyafashions.com/product/2496-midi/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Top/midi"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29509",
+    "code": "DN11060",
+    "title": "11060 Aline Kurti",
+    "slug": "11060-aline-kurti",
+    "description": "This warm beige shirt-style dress features a cheerful sunflower floral print in warm shades of orange, yellow, and brown. Designed with a neat collar, three-quarter sleeves, and a full button-down front, it offers a smart yet relaxed silhouette. The matching thin tie belt at the waist comes with tassel details, letting you adjust the fit for a flattering shape. Crafted from lightweight, soft fabric, this knee-length dress is a comfortable and stylish choice for casual outings, brunch, or everyday wear.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-single-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Single Kurti",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29509-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_xr3lxtxr3lxtxr3l-Photoroom.png",
+        "storage_path": "migrated/29509/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11060 Aline Kurti",
+        "local_url": "/images/products/dn11060-0.png"
+      },
+      {
+        "id": "img-migrated-29509-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.38-AM.jpeg",
+        "storage_path": "migrated/29509/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11060 Aline Kurti",
+        "local_url": "/images/products/dn11060-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29509-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29509-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29509-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29509-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Single Kurti",
+        "slug": "cat-single-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29509,
+      "permalink": "https://bhavyafashions.com/product/11060-aline-kurti/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Single kurti"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29504",
+    "code": "DN11016",
+    "title": "11016 Kurti Pant Dupatta",
+    "slug": "11016-kurti-pant-dupatta",
+    "description": "This sunny pastel yellow three-piece suit set brings a fresh, cheerful vibe to any daytime event. The straight-cut kurta features intricate white thread embroidery and Schiffli cutwork along the front panel, hemline, and sleeve cuffs. It comes with matching light yellow straight trousers for a clean look, paired with a soft white organza-blend dupatta adorned with yellow floral prints and delicate tassels. Crafted from light, breathable fabric, this breezy outfit is perfect for summer celebrations, festive gatherings, or daytime occasions.\nFABRIC- MUL CHANDERI\nSIZES- 38/40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29504-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_btlusvbtlusvbtlu-Photoroom.png",
+        "storage_path": "migrated/29504/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11016 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11016-0.png"
+      },
+      {
+        "id": "img-migrated-29504-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.36-AM.jpeg",
+        "storage_path": "migrated/29504/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11016 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11016-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29504-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29504-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29504-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29504-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29504-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29504,
+      "permalink": "https://bhavyafashions.com/product/11016-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29499",
+    "code": "DN11080",
+    "title": "11080 Kurti Pant Dupatta",
+    "slug": "11080-kurti-pant-dupatta",
+    "description": "This vibrant bright pink three-piece suit set brings a bold, celebratory energy to any occasion. The straight-cut kurta is decorated with detailed golden-orange geometric print work along the neckline and hem, paired with matching solid pink straight trousers. To finish the look, it comes with a lightweight printed dupatta draped over the shoulder, featuring rich ikat and tribal-inspired patterns with neat corner tassels. Made from a comfortable, breathable fabric, it’s an ideal outfit for festive events, family gatherings, or bright daytime celebrations.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29499-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_yq19pryq19pryq19-Photoroom.png",
+        "storage_path": "migrated/29499/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11080 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11080-0.png"
+      },
+      {
+        "id": "img-migrated-29499-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.33-AM.jpeg",
+        "storage_path": "migrated/29499/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11080 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11080-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29499-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29499-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29499-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29499-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29499-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29499,
+      "permalink": "https://bhavyafashions.com/product/11080-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29494",
+    "code": "DN11097",
+    "title": "11097 Cord Set",
+    "slug": "11097-cord-set",
+    "description": "This vibrant two-piece suit set brings a fresh, cheerful pop of color to your wardrobe. Set against a clean cream background, it features bold, oversized floral prints in lovely shades of pink and red along the hemline, sleeves, and trousers. The straight-cut tunic is designed with a relaxed V-notch neckline accented by delicate red embroidery and charming tassel ties at the front. Paired with matching wide-leg trousers, this soft and airy cotton set is perfect for casual day outs, summer gatherings, or effortless everyday style.\nFABRIC- VISCOSE MUSLIN\nSIZES- 38/40/42/44/46",
+    "category_id": "cat-coord-sets",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29494-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_tsgi3etsgi3etsgi-Photoroom.png",
+        "storage_path": "migrated/29494/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11097 Cord Set",
+        "local_url": "/images/products/dn11097-0.png"
+      },
+      {
+        "id": "img-migrated-29494-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.30-AM.jpeg",
+        "storage_path": "migrated/29494/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11097 Cord Set",
+        "local_url": "/images/products/dn11097-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29494-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29494-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29494-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29494-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29494-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29494,
+      "permalink": "https://bhavyafashions.com/product/11097-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29489",
+    "code": "DN10968",
+    "title": "10968 Kurti Pant Dupatta",
+    "slug": "10968-kurti-pant-dupatta",
+    "description": "This beautiful deep magenta suit set is all about effortless elegance. It features a flared Anarkali-style kurta with comfortable three-quarter sleeves, detailed with lovely gold embroidery around the neckline and chest for a traditional touch. The matching solid pants provide a clean, modern finish. To complete the look, it comes with a striking dupatta covered in rich purple and gold stripes that adds a lovely pop of contrast. Crafted from soft, breathable fabric, this set is a perfect choice for festive occasions, family gatherings, or any time you want to feel special.\nFABRIC- MUL CHANDERI\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29489-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_bvt38fbvt38fbvt3-Photoroom.png",
+        "storage_path": "migrated/29489/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10968 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10968-0.png"
+      },
+      {
+        "id": "img-migrated-29489-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.27-AM.jpeg",
+        "storage_path": "migrated/29489/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10968 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10968-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29489-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29489-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29489-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29489-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29489,
+      "permalink": "https://bhavyafashions.com/product/10968-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29484",
+    "code": "DN3787",
+    "title": "3787 Kurti Pant",
+    "slug": "3787-kurti-pant",
+    "description": "This stylish olive green two-piece suit set offers a chic, modern take on traditional wear. The straight-cut kurta features delicate floral outline embroidery across the body, a flattering V-neckline with subtle stitched detailing, and three-quarter sleeves finished with zigzag embroidery on the cuffs. It comes with matching olive trousers that feature the same decorative stitching along the hem. Made from comfortable, breathable fabric, it’s an effortless choice for everyday elegance, office wear, or casual outings.\nFABRIC- COTTON\nSIZES- 38/40/42/44",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29484-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_d6gb16d6gb16d6gb-Photoroom.png",
+        "storage_path": "migrated/29484/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3787 Kurti Pant",
+        "local_url": "/images/products/dn3787-0.png"
+      },
+      {
+        "id": "img-migrated-29484-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.25-AM.jpeg",
+        "storage_path": "migrated/29484/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3787 Kurti Pant",
+        "local_url": "/images/products/dn3787-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29484-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29484-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29484-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29484-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29484,
+      "permalink": "https://bhavyafashions.com/product/3787-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29478",
+    "code": "DN10432",
+    "title": "10432 Gown",
+    "slug": "10432-gown",
+    "description": "This light blue flared Anarkali dress features a lovely all-over floral block print in soft yellow and green tones. It has a rounded neckline tied with cute tassel details at the front, three-quarter sleeves, and a tiered hemline highlighted by classic paisley and floral border patterns. Made from soft, breathable cotton, this breezy dress offers a comfortable, effortless fit that is ideal for casual outings, summer days, or relaxed family gatherings.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-gowns",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Anarkali / Gown",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29478-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_mz0dl8mz0dl8mz0d-Photoroom.png",
+        "storage_path": "migrated/29478/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10432 Gown",
+        "local_url": "/images/products/dn10432-0.png"
+      },
+      {
+        "id": "img-migrated-29478-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.22-AM.jpeg",
+        "storage_path": "migrated/29478/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10432 Gown",
+        "local_url": "/images/products/dn10432-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29478-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29478-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29478-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29478-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Anarkali / Gown",
+        "slug": "cat-gowns"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29478,
+      "permalink": "https://bhavyafashions.com/product/10432-gown/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Gowns"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29471",
+    "code": "DN11248",
+    "title": "11248 Kurti Pant Dupatta",
+    "slug": "11248-kurti-pant-dupatta",
+    "description": "This classic black three-piece suit set offers a timeless, sophisticated look that is perfect for any special occasion. The straight-cut kurta features detailed geometric and tribal-inspired yoke embroidery on the chest, finished with charming small tassels for an added touch of style. It comes with matching straight black trousers for a clean, tailored silhouette and is paired with a rich maroon printed dupatta adorned with traditional patterns and tassel trims. Crafted from soft, breathable fabric, it keeps you comfortable all day while effortlessly looking polished and elegant.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29471-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_8uowou8uowou8uow-Photoroom.png",
+        "storage_path": "migrated/29471/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11248 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11248-0.png"
+      },
+      {
+        "id": "img-migrated-29471-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.20-AM.jpeg",
+        "storage_path": "migrated/29471/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11248 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11248-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29471-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29471-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29471-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29471-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29471,
+      "permalink": "https://bhavyafashions.com/product/11248-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29466",
+    "code": "DN11012",
+    "title": "11012 Kurti Pant Dupatta",
+    "slug": "11012-kurti-pant-dupatta",
+    "description": "This elegant beige silk-blend suit set offers a timeless, sophisticated look that’s perfect for special occasions and festive celebrations. The straight-cut kurta features delicate maroon embroidery around the neckline, complemented by matching straight pants for a graceful, tailored fit. To top off the ensemble, it includes a stunning sheer dupatta adorned with rich gold floral weave details that catch the light beautifully. Crafted from lightweight, comfortable fabric, this set combines classic charm with effortless style.\nFABRIC- DOLA FANCY SILK\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29466-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_5a6pl45a6pl45a6p-Photoroom.png",
+        "storage_path": "migrated/29466/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11012 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11012-0.png"
+      },
+      {
+        "id": "img-migrated-29466-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.18-AM.jpeg",
+        "storage_path": "migrated/29466/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11012 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11012-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29466-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29466-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29466-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29466-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29466,
+      "permalink": "https://bhavyafashions.com/product/11012-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29462",
+    "code": "DN10937",
+    "title": "10937 Cord Set",
+    "slug": "10937-cord-set",
+    "description": "This is a really light and breezy two-piece set in a clean cream color. It features a lovely all-over blue print of palm trees, giving it a calm, summery vibe. The top is a comfortable kurti-style shirt with a neat embroidered border along the collar and sleeves, and it’s paired with matching straight-leg trousers. Made from breathable cotton, it's a perfect go-to outfit that looks naturally elegant and keeps you feeling relaxed all day long.\nFABRIC- COTTON FLEX\nSIZES- 38/40/42/44/46",
+    "category_id": "cat-coord-sets",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29462-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_un82awun82awun82-Photoroom.png",
+        "storage_path": "migrated/29462/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10937 Cord Set",
+        "local_url": "/images/products/dn10937-0.png"
+      },
+      {
+        "id": "img-migrated-29462-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.16-AM.jpeg",
+        "storage_path": "migrated/29462/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10937 Cord Set",
+        "local_url": "/images/products/dn10937-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29462-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29462-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29462-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29462-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29462-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29462,
+      "permalink": "https://bhavyafashions.com/product/10937-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29437",
+    "code": "DN11088",
+    "title": "11088 Aline Kurti Plazzo",
+    "slug": "11088-aline-kurti-plazzo",
+    "description": "This is a beautiful, easy-to-wear kurta set in a deep navy blue that is perfect for any day. It features a lovely all-over paisley print in a natural cream color that really stands out. The top is a straight, mid-length kurta with classic three-quarter sleeves, and it’s paired with matching wide-leg trousers that are incredibly comfortable to move around in. We also added a simple band collar with small buttons down the front to give it a neat, finished look. Made from a breathable cotton blend, it's a great go-to outfit that looks naturally elegant and keeps you feeling relaxed all day long.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-single-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Single Kurti",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29437-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_1c97jz1c97jz1c97-Photoroom.png",
+        "storage_path": "migrated/29437/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11088 Aline Kurti Plazzo",
+        "local_url": "/images/products/dn11088-0.png"
+      },
+      {
+        "id": "img-migrated-29437-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.05-AM.jpeg",
+        "storage_path": "migrated/29437/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11088 Aline Kurti Plazzo",
+        "local_url": "/images/products/dn11088-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29437-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29437-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29437-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29437-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Single Kurti",
+        "slug": "cat-single-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29437,
+      "permalink": "https://bhavyafashions.com/product/11088-aline-kurti-plazzo/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Single kurti"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29442",
+    "code": "DN11089",
+    "title": "11089 Aline Kurti Plazzo",
+    "slug": "11089-aline-kurti-plazzo",
+    "description": "This is a really stylish and comfortable two-piece set in a deep, rich maroon. It features a lovely all-over leaf pattern that has a slightly textured, dotted look. The top is a straight-cut, mid-length kurta with a neat mandarin collar and three-quarter sleeves, making it perfect for office wear or a casual day out. It comes with matching wide-leg trousers that are incredibly comfortable to move around in. We also added buttons all the way down the front for a neat, finished look. Made from a breathable cotton blend, it's a great go-to outfit that looks naturally elegant and keeps you feeling relaxed all day long.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-single-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Single Kurti",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29442-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_e06p7be06p7be06p-Photoroom.png",
+        "storage_path": "migrated/29442/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11089 Aline Kurti Plazzo",
+        "local_url": "/images/products/dn11089-0.png"
+      },
+      {
+        "id": "img-migrated-29442-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.07-AM.jpeg",
+        "storage_path": "migrated/29442/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11089 Aline Kurti Plazzo",
+        "local_url": "/images/products/dn11089-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29442-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29442-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29442-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29442-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Single Kurti",
+        "slug": "cat-single-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29442,
+      "permalink": "https://bhavyafashions.com/product/11089-aline-kurti-plazzo/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Single kurti"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29457",
+    "code": "DN11231",
+    "title": "11231 Kurti Pant Dupatta",
+    "slug": "11231-kurti-pant-dupatta",
+    "description": "This beautiful mustard yellow salwar suit set is perfect for when you want a comfy yet stylish look. It features a simple straight-cut kurta with three-quarter sleeves, accented by detailed ethnic patterns on the chest and contrasting borders on the cuffs and hem. The lovely little tassels at the neck add a fun, elegant touch. Paired with comfortable matching yellow pants and a stunning maroon patterned dupatta, it’s an easy, ready-to-wear outfit for family gatherings or everyday elegance.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29457-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_ljbxghljbxghljbx-Photoroom.png",
+        "storage_path": "migrated/29457/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11231 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11231-0.png"
+      },
+      {
+        "id": "img-migrated-29457-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.14-AM.jpeg",
+        "storage_path": "migrated/29457/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11231 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11231-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29457-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29457-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29457-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29457-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29457,
+      "permalink": "https://bhavyafashions.com/product/11231-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29452",
+    "code": "DN11215",
+    "title": "11215 Kurti Pant Dupatta",
+    "slug": "11215-kurti-pant-dupatta",
+    "description": "This beautiful three-piece suit set comes in a warm, rusty orange color that’s perfect for any occasion. The straight-cut kurta features detailed geometric patterns on the chest and contrasting dark cuffs, finished with small, dangling charms for a bit of extra style. It’s paired with matching solid pants and a lovely dark charcoal grey dupatta that is covered in matching traditional prints. Made with breathable cotton-blend fabric, this outfit is designed to keep you comfortable all day long while still looking sophisticated.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29452-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_87wxc987wxc987wx-Photoroom.png",
+        "storage_path": "migrated/29452/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11215 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11215-0.png"
+      },
+      {
+        "id": "img-migrated-29452-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.12-AM.jpeg",
+        "storage_path": "migrated/29452/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11215 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11215-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29452-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29452-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29452-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29452-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29452-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29452,
+      "permalink": "https://bhavyafashions.com/product/11215-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29447",
+    "code": "DN11230",
+    "title": "11230 Kurti Pant Dupatta",
+    "slug": "11230-kurti-pant-dupatta",
+    "description": "This is a really elegant and comfortable three-piece suit set in a rich, deep maroon color. The top is a straight-cut kurta with three-quarter sleeves, featuring a beautifully embroidered patch on the chest in blue, cream, and red, finished with delicate small pearls hanging from the bottom edge. It comes with matching straight-fit pants for an easy, comfortable look. To tie it all together, there's a matching patterned dupatta with cool circular blue and brown designs on it. It's a great outfit for work, family gatherings, or just when you want to feel a bit more dressed up and confident without trying too hard.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29447-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_e2h5lge2h5lge2h5-Photoroom.png",
+        "storage_path": "migrated/29447/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11230 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11230-0.png"
+      },
+      {
+        "id": "img-migrated-29447-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.09-AM.jpeg",
+        "storage_path": "migrated/29447/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11230 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11230-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29447-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29447-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29447-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29447-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29447-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29447,
+      "permalink": "https://bhavyafashions.com/product/11230-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29432",
+    "code": "DN11073",
+    "title": "11073 Kurti Pant",
+    "slug": "11073-kurti-pant",
+    "description": "Add a touch of warmth and grace to your day with this soft peach kurti set. Crafted from comfortable, breathable fabric, it features a subtle floral print throughout and a neatly embroidered V-neckline for a bit of refined detail. Paired with matching straight-fit trousers, this easygoing outfit is perfect for office wear, casual days out, or simple everyday elegance.\nFABRIC- VATICAN\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29432-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_36q11t36q11t36q1-Photoroom.png",
+        "storage_path": "migrated/29432/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11073 Kurti Pant",
+        "local_url": "/images/products/dn11073-0.png"
+      },
+      {
+        "id": "img-migrated-29432-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.03-AM.jpeg",
+        "storage_path": "migrated/29432/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11073 Kurti Pant",
+        "local_url": "/images/products/dn11073-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29432-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29432-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29432-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29432-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29432,
+      "permalink": "https://bhavyafashions.com/product/11073-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29427",
+    "code": "DN11052",
+    "title": "11052 Afghani Kurti Pant",
+    "slug": "11052-afghani-kurti-pant",
+    "description": "Elevate your casual ethnic look with this stylish red and beige printed kurti set. Designed with a distinct geometric pattern, it features an elegant embellished neckline accented with playful tassels. Paired with comfortable beige pleated bottoms, this outfit offers a relaxed yet chic fit—ideal for daily wear, office outings, or casual get-togethers.\nFABRIC- MODAL\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29427-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_a80oeva80oeva80o-Photoroom.png",
+        "storage_path": "migrated/29427/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11052 Afghani Kurti Pant",
+        "local_url": "/images/products/dn11052-0.png"
+      },
+      {
+        "id": "img-migrated-29427-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.56.01-AM.jpeg",
+        "storage_path": "migrated/29427/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11052 Afghani Kurti Pant",
+        "local_url": "/images/products/dn11052-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29427-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29427-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29427-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29427-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29427,
+      "permalink": "https://bhavyafashions.com/product/11052-afghani-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29422",
+    "code": "DN11093",
+    "title": "11093 Kurti Sharara",
+    "slug": "11093-kurti-sharara",
+    "description": "This vibrant red suit set is perfect for adding a pop of color to your wardrobe. It features a beautiful, traditional Bandhani print with an eye-catching geometric design that really stands out. The elegant neckline is detailed with intricate embroidery, and the set comes with super comfortable, flowy palazzo pants that make it so easy to wear all day long. It's a great choice for casual parties or family get-togethers when you want to feel both stylish and relaxed.\nFABRIC- RAYON\nSIZES- 40/42/44/46",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29422-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_gdqwblgdqwblgdqw-Photoroom.png",
+        "storage_path": "migrated/29422/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11093 Kurti Sharara",
+        "local_url": "/images/products/dn11093-0.png"
+      },
+      {
+        "id": "img-migrated-29422-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.55.59-AM.jpeg",
+        "storage_path": "migrated/29422/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11093 Kurti Sharara",
+        "local_url": "/images/products/dn11093-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29422-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29422-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29422-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29422-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29422,
+      "permalink": "https://bhavyafashions.com/product/11093-kurti-sharara/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29414",
+    "code": "DN11083",
+    "title": "11083 Kurti Pant Dupatta",
+    "slug": "11083-kurti-pant-dupatta",
+    "description": "Add effortless charm to your collection with this deep blue printed salwar suit set. Crafted from lightweight, comfortable fabric, it features intricate traditional geometric patterns along the front panel and sleeve borders. Paired with solid navy trousers and a matching ikat-inspired printed dupatta, this versatile set is perfect for casual workdays, family get-togethers, or daily ethnic wear.\nFABRIC- COTTON\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29414-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_69gu7x69gu7x69gu-Photoroom.png",
+        "storage_path": "migrated/29414/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11083 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11083-0.png"
+      },
+      {
+        "id": "img-migrated-29414-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.55.57-AM.jpeg",
+        "storage_path": "migrated/29414/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11083 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn11083-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29414-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29414-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29414-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29414-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29414,
+      "permalink": "https://bhavyafashions.com/product/11083-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29404",
+    "code": "DN10992",
+    "title": "10992 Kurti Pant Dupatta",
+    "slug": "10992-kurti-pant-dupatta",
+    "description": "Bring vibrant energy to your everyday look with this striking orange salwar suit set. Made from light, breathable fabric, it features a elegant V-neckline detailed with subtle embroidery and charming tassel accents. The set is completed with matching orange trousers and a softly draped floral print dupatta, making it a stylish choice for casual outings, family gatherings, or office wear.\nFABRIC- Cotton\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29404-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_z5n6alz5n6alz5n6-Photoroom.png",
+        "storage_path": "migrated/29404/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10992 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10992-0.png"
+      },
+      {
+        "id": "img-migrated-29404-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.55.55-AM.jpeg",
+        "storage_path": "migrated/29404/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10992 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10992-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29404-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29404-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29404-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29404-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29404,
+      "permalink": "https://bhavyafashions.com/product/10992-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29398",
+    "code": "DN11506",
+    "title": "11506 Kurti pant Dupatta Modal",
+    "slug": "11506-kurti-pant-dupatta",
+    "description": "Brighten up your ethnic wardrobe with this classic red leheriya print suit set. Crafted from soft, breathable fabric, it features delicate embroidery along the neckline and a matching dupatta with traditional border details. Perfect for festive gatherings, casual celebrations, or everyday elegance, this set blends traditional style with modern comfort.\nFABRIC- Modal\nSIZES- 40/42/44/46",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29398-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_34323n34323n3432-Photoroom-Photoroom.png",
+        "storage_path": "migrated/29398/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "11506 Kurti pant Dupatta Modal",
+        "local_url": "/images/products/dn11506-0.png"
+      },
+      {
+        "id": "img-migrated-29398-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.55.53-AM.jpeg",
+        "storage_path": "migrated/29398/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "11506 Kurti pant Dupatta Modal",
+        "local_url": "/images/products/dn11506-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29398-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29398-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29398-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29398-3xl",
+        "size": "3XL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29398,
+      "permalink": "https://bhavyafashions.com/product/11506-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29392",
+    "code": "DN2556",
+    "title": "2556 MIDI Rayon",
+    "slug": "2556-midi-rayon",
+    "description": "This turquoise-blue tiered midi dress features a relaxed, flowy silhouette crafted with intricate ethnic embroidery. The top is designed with a high band collar and a front keyhole tie finished with delicate tassels, leading down into an ornate yoke detailed with vibrant pink, orange, and white circular motifs. Complementing the bodice, the long bell sleeves feature matching embroidered cuffs, while the tiered, layered skirt is accented with circular mandala patterns near the hem. Styled for effortlessness, it offers a blend of traditional craftsmanship and contemporary boho-chic fashion.\nFABRIC- RAYON\nSIZES- 38/40/42/44",
+    "category_id": "cat-western-midi",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Western Midi / Top",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29392-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-26-at-1.21.17-PM-Photoroom.png",
+        "storage_path": "migrated/29392/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "2556 MIDI Rayon",
+        "local_url": "/images/products/dn2556-0.png"
+      },
+      {
+        "id": "img-migrated-29392-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.12-AM.jpeg",
+        "storage_path": "migrated/29392/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "2556 MIDI Rayon",
+        "local_url": "/images/products/dn2556-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29392-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29392-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29392-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29392-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Western Midi / Top",
+        "slug": "cat-western-midi"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29392,
+      "permalink": "https://bhavyafashions.com/product/2556-midi-rayon/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Top/midi"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29193",
+    "code": "DN3816",
+    "title": "3816 Kurti Pant Dupatta",
+    "slug": "3816-kurti-pant-dupatta",
+    "description": "Radiate timeless elegance in this vibrant orange Anarkali set, featuring intricate gold embroidery and a gracefully flowing dupatta. It is the perfect blend of traditional craftsmanship and modern sophistication for your next special occasion.\nITEM - Embroidery kurti with pant and Organza dupatta\nFABRIC - Mul Chanderi\nSIZES - M-2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29193-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/3816-AI.jpg",
+        "storage_path": "migrated/29193/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3816 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3816-0.jpg"
+      },
+      {
+        "id": "img-migrated-29193-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3816.jpeg",
+        "storage_path": "migrated/29193/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3816 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3816-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29193-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29193-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29193-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29193-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29193,
+      "permalink": "https://bhavyafashions.com/product/3816-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29191",
+    "code": "DN10604",
+    "title": "10604 Kurti Pant Dupatta",
+    "slug": "10604-kurti-pant-dupatta",
+    "description": "Embrace timeless elegance with this cream-colored floral salwar suit, featuring intricate red and orange embroidery for a vibrant touch. This beautifully detailed ensemble offers a perfect blend of traditional grace and modern sophistication for any special occasion.\nITEM - Printed Kurti with Pant and Dupatta\nFABRIC - Pure Muslin\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29191-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10604-AI.jpeg",
+        "storage_path": "migrated/29191/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10604 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10604-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29191-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10604-KPD.jpeg",
+        "storage_path": "migrated/29191/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10604 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10604-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29191-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29191-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29191-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29191-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29191,
+      "permalink": "https://bhavyafashions.com/product/10604-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29188",
+    "code": "DN10781",
+    "title": "10781 Co-ord Set",
+    "slug": "10781-co-ord-set",
+    "description": "Step into a world of serene artistry with this digital printed co-ord set, featuring a tranquil landscape and a dreamer gazing toward the horizon. Crafted for the modern woman who values both comfort and a unique narrative style, this ensemble blends soft hues with a contemporary straight-cut silhouette.\nITEM - Embroided Co-ord Set\nFABRIC - Pure Muslin\nSIZES - L-3XL",
+    "category_id": "cat-coord-sets",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29188-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10781-ai.jpeg",
+        "storage_path": "migrated/29188/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10781 Co-ord Set",
+        "local_url": "/images/products/dn10781-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29188-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10781-CS.jpeg",
+        "storage_path": "migrated/29188/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10781 Co-ord Set",
+        "local_url": "/images/products/dn10781-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29188-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29188-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29188-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29188-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.468Z",
+    "updated_at": "2026-10-15T18:40:15.468Z",
+    "legacy_metadata": {
+      "original_id": 29188,
+      "permalink": "https://bhavyafashions.com/product/10781-co-ord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29186",
+    "code": "DN10844",
+    "title": "10844 Kurti Pant Dupatta",
+    "slug": "10844-kurti-pant-dupatta",
+    "description": "Drape yourself in sophistication. This Armani silk masterpiece features delicate hand-embellished details for a look that's truly one-of-a-kind.&#8221;\nITEM - Printed kurti with Pant and Dupatta\nFABRIC - Armani Silk\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29186-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10844-AI.jpeg",
+        "storage_path": "migrated/29186/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10844 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10844-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29186-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10844-KPD.jpeg",
+        "storage_path": "migrated/29186/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10844 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10844-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29186-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29186-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29186-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29186-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29186,
+      "permalink": "https://bhavyafashions.com/product/10844-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29184",
+    "code": "DN10674",
+    "title": "10674 Co-ord Set",
+    "slug": "10674-co-ord-set",
+    "description": "Embrace effortless elegance with this peach-toned ensemble, featuring delicate white floral embroidery that adds a touch of sophisticated charm. Perfectly tailored for comfort and style, it's the ideal choice for any occasion that calls for a graceful, contemporary look.\nITEM - Embroided co-ord set\nFABRIC - Fancy Rayon\nSIZES - M-3XL",
+    "category_id": "cat-coord-sets",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29184-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10674-AI.jpg",
+        "storage_path": "migrated/29184/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10674 Co-ord Set",
+        "local_url": "/images/products/dn10674-0.jpg"
+      },
+      {
+        "id": "img-migrated-29184-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10674-AI.jpg",
+        "storage_path": "migrated/29184/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10674 Co-ord Set",
+        "local_url": "/images/products/dn10674-1.jpg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29184-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29184,
+      "permalink": "https://bhavyafashions.com/product/10674-co-ord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29181",
+    "code": "DN3373",
+    "title": "3373 Kurti Pant Dupatta",
+    "slug": "3373-kurti-pant-dupatta",
+    "description": "Radiate effortless grace in this vibrant lime-green ensemble, featuring intricate floral embroidery and a shimmering gold-bordered dupatta. It is the perfect blend of traditional craftsmanship and contemporary style for any festive occasion.\nITEM - Embroided Kurti with Pant\nFABRIC - Mul chanderi\nSIZES - M- 2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29181-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3373-AI.jpeg",
+        "storage_path": "migrated/29181/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3373 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3373-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29181-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3373.jpeg",
+        "storage_path": "migrated/29181/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3373 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3373-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29181-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29181-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29181-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29181-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29181,
+      "permalink": "https://bhavyafashions.com/product/3373-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29179",
+    "code": "DN3380",
+    "title": "3380 Kurti Pant Dupatta",
+    "slug": "3380-kurti-pant-dupatta",
+    "description": "Radiate timeless elegance in this deep teal silk set, featuring intricate gold embroidery and a matching Banarasi-style dupatta. It is the perfect blend of traditional craftsmanship and modern grace for your next celebration\nITEM - Embroided Kurti Pant with Dupatta\nFABRIC - Roman Silk\nSIZES - M-2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29179-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3380-AI.jpeg",
+        "storage_path": "migrated/29179/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3380 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3380-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29179-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3380.jpeg",
+        "storage_path": "migrated/29179/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3380 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3380-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29179-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29179-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29179-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29179-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29179,
+      "permalink": "https://bhavyafashions.com/product/3380-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29177",
+    "code": "DN10668",
+    "title": "10668 Cord Set",
+    "slug": "10668-cord-set",
+    "description": "Effortless elegance meets timeless design in this striking black tunic, adorned with intricate white floral embroidery. Perfect for every place weather it is office or an outing with your friends.\nITEM - Embroided Co-ord set\nFABRIC - Rayon\nSIZES - M-3XL",
+    "category_id": "cat-coord-sets",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29177-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10668-AI.jpg",
+        "storage_path": "migrated/29177/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10668 Cord Set",
+        "local_url": "/images/products/dn10668-0.jpg"
+      },
+      {
+        "id": "img-migrated-29177-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10688-CS.jpeg",
+        "storage_path": "migrated/29177/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10668 Cord Set",
+        "local_url": "/images/products/dn10668-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29177-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29177-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29177-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29177-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29177,
+      "permalink": "https://bhavyafashions.com/product/10668-cord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29175",
+    "code": "DN10806",
+    "title": "10806 Kurti Pant",
+    "slug": "10806-kurti-pant",
+    "description": "Vibrant green Bandhani-print kurta, perfectly paired with classic white trousers for a refined look. This ensemble effortlessly blends traditional Indian artistry with a modern silhouette, making it a stunning choice for any festive occasion.\nITEM - Embroided bandhani printed kurti with white plazzo\nFABRIC - Rayon\nSIZES - L-3XL",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29175-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10806-AI.jpg",
+        "storage_path": "migrated/29175/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10806 Kurti Pant",
+        "local_url": "/images/products/dn10806-0.jpg"
+      },
+      {
+        "id": "img-migrated-29175-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10806-KP-.jpeg",
+        "storage_path": "migrated/29175/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10806 Kurti Pant",
+        "local_url": "/images/products/dn10806-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29175-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29175-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29175-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29175-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29175,
+      "permalink": "https://bhavyafashions.com/product/10806-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29164",
+    "code": "DN10710",
+    "title": "10710 Kurti Pant",
+    "slug": "10710-kurti-pant",
+    "description": "Embrace timeless elegance with this beautifully crafted floral kurta set, featuring intricate patterns and a modern, tailored fit. Perfect for your daily wear, it seamlessly blends traditional charm with contemporary style for an effortlessly chic look\nITEM - Kurti Pant\nFABRIC - Vatican\nSIZES - L-3XL",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29164-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/04/10710-AI.jpeg",
+        "storage_path": "migrated/29164/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10710 Kurti Pant",
+        "local_url": "/images/products/dn10710-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29164-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10710-KP.jpeg",
+        "storage_path": "migrated/29164/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10710 Kurti Pant",
+        "local_url": "/images/products/dn10710-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29164-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29164-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29164-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29164-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29164,
+      "permalink": "https://bhavyafashions.com/product/10710-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29162",
+    "code": "DN10672",
+    "title": "10672 A-line kurti",
+    "slug": "10672-a-line-kurti-2",
+    "description": "Embrace effortless elegance with this vibrant floral midi dress, featuring a sophisticated mandarin collar and delicate lace-trimmed sleeves. It is the perfect blend of timeless style and modern comfort for any daytime occasion\nITEM - A-Line kurti\nFABRIC - Handloom Cotton\nSIZES - L-3XL",
+    "category_id": "cat-single-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Single Kurti",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29162-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10672B-AI.jpeg",
+        "storage_path": "migrated/29162/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10672 A-line kurti",
+        "local_url": "/images/products/dn10672-0.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29162-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29162-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29162-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29162-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Single Kurti",
+        "slug": "cat-single-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29162,
+      "permalink": "https://bhavyafashions.com/product/10672-a-line-kurti-2/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Single kurti"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29160",
+    "code": "DN10672",
+    "title": "10672 A-Line Kurti",
+    "slug": "10672-a-line-kurti",
+    "description": "Step into effortless style with this vibrant, multi-colored floral midi dress, featuring delicate lace-trimmed sleeves and a modern button-down silhouette. Perfect for brightening any occasion, its artistic print and breezy design offer a seamless blend of contemporary flair and timeless comfort perfect for summers.\nITEM - A-line kurti\nFABRIC - Handloom\nSIZES - L-3XL",
+    "category_id": "cat-single-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Single Kurti",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29160-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10672-AI.jpeg",
+        "storage_path": "migrated/29160/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10672 A-Line Kurti",
+        "local_url": "/images/products/dn10672-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29160-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10672-KURTI--scaled.jpeg",
+        "storage_path": "migrated/29160/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10672 A-Line Kurti",
+        "local_url": "/images/products/dn10672-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29160-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29160-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29160-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29160-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Single Kurti",
+        "slug": "cat-single-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29160,
+      "permalink": "https://bhavyafashions.com/product/10672-a-line-kurti/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Single kurti"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29158",
+    "code": "DN10629",
+    "title": "10629 Kurti Pant Dupatta",
+    "slug": "10629-kurti-pant-dupatta",
+    "description": "Experience the timeless elegance of heritage-inspired prints in this sophisticated blue and white ensemble. This set blends classic artistry with a modern silhouette, making it the perfect choice for effortless grace at any occasion.\nITEM - Printed Kurti pant with Dupatta\nFABRIC - Pure Muslin\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29158-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10629-AI.jpeg",
+        "storage_path": "migrated/29158/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10629 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10629-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29158-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/106629-KPD.jpeg",
+        "storage_path": "migrated/29158/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10629 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10629-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29158-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29158-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29158-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29158-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29158,
+      "permalink": "https://bhavyafashions.com/product/10629-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29153",
+    "code": "DN10905",
+    "title": "10905 Kurti Pant Dupatta",
+    "slug": "10905-kurti-pant-dupatta",
+    "description": "Elevate your everyday style with this vibrant mustard-yellow ensemble, featuring a striking fusion of bold geometric patterns and elegant stripes. This versatile three-piece set is perfect for everyday use in the summers.\nITEM - Kurti Pant with Dupatta\nFABRIC - Cotton\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29153-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10905-AI.jpeg",
+        "storage_path": "migrated/29153/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10905 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10905-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29153-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10905-KPD.jpeg",
+        "storage_path": "migrated/29153/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10905 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10905-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29153-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29153-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29153-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29153-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29153,
+      "permalink": "https://bhavyafashions.com/product/10905-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29151",
+    "code": "DN10734",
+    "title": "10734 Kurti Pant Dupatta",
+    "slug": "10734-kurti-pant-dupatta",
+    "description": "Embrace the vibrant tradition of Bandhani with this stunning pink and orange ensemble, designed to make you shine at every celebration. Its intricate diamond patterns and matching dupatta offer a timeless elegance that perfectly blends cultural heritage with modern style.\nITEM - Bandhani Kurti Pant with printed dupatta\nFABRIC - Modal\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29151-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10734-AI.jpeg",
+        "storage_path": "migrated/29151/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10734 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10734-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29151-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10734-KPD--scaled.jpeg",
+        "storage_path": "migrated/29151/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10734 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10734-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29151-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29151-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29151-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29151-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29151,
+      "permalink": "https://bhavyafashions.com/product/10734-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29149",
+    "code": "DN10796",
+    "title": "10796 Kurti Pant Dupatta",
+    "slug": "10796-kurti-pant-dupatta",
+    "description": "Beautiful crafted salwar kameez, featuring intricate patterns and a vibrant, warm color palette. Perfect for any special occasion, it blends traditional charm with a modern silhouette for a truly sophisticated look.\nITEM - Work with Kurti Pant with Dupatta\nFABRIC - Modal\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MODAL",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29149-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10796-AI.jpeg",
+        "storage_path": "migrated/29149/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10796 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10796-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29149-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10796-KPD.jpeg",
+        "storage_path": "migrated/29149/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10796 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10796-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29149-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29149-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29149-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29149-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29149,
+      "permalink": "https://bhavyafashions.com/product/10796-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29147",
+    "code": "DN3370",
+    "title": "3370 Kurtiu Pant Dupatta",
+    "slug": "3370-kurtiu-pant-dupatta",
+    "description": "Vibrant lime-green suit, featuring exquisite floral embroidery and a shimmering gold-bordered dupatta. It is the perfect blend of traditional craftsmanship and modern style for your next special occasion.\n \nITEM - Embroided Kurti with pant and Dupatta\nFABRIC - Mul Chanderi\nSIZES - M-2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29147-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3370-AI.jpeg",
+        "storage_path": "migrated/29147/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3370 Kurtiu Pant Dupatta",
+        "local_url": "/images/products/dn3370-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29147-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3370.jpeg",
+        "storage_path": "migrated/29147/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3370 Kurtiu Pant Dupatta",
+        "local_url": "/images/products/dn3370-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29147-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29147-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29147-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29147-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29147,
+      "permalink": "https://bhavyafashions.com/product/3370-kurtiu-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29145",
+    "code": "DN3820",
+    "title": "3820 Kurti Pant Dupatta",
+    "slug": "3820-kurti-pant-dupatta",
+    "description": "Radiate timeless elegance in this vibrant mustard yellow ensemble, featuring intricate golden embroidery. Perfect for any festive occasion, this outfit seamlessly blends traditional craftsmanship with a modern, sophisticated flair.\nITEM -  Embroided kurti with a flair including pant and dupatta\nFABRIC - Mul Chanderi\nSIZES - M-2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29145-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3820-AI.jpeg",
+        "storage_path": "migrated/29145/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3820 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3820-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29145-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3820-KPD.jpeg",
+        "storage_path": "migrated/29145/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3820 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3820-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29145-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29145-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29145-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29145-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29145,
+      "permalink": "https://bhavyafashions.com/product/3820-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29143",
+    "code": "DN10645",
+    "title": "10645 Kurti Pant",
+    "slug": "10645-kurti-pant",
+    "description": "Elevate your wardrobe with the timeless charm of this vibrant pink Leheriya kurti set, perfectly blending traditional artistry with a modern silhouette. Designed for both elegance and comfort, it’s the ultimate choice for making a statement at any festive occasion or casual gathering.\nITEM - Leheriya print kurti with pant\nFABRIC -  Rayon\nSIZES - L-3XL",
+    "category_id": "cat-2p-kurtis",
+    "fabric": "RAYON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "2-Piece Kurti Pant Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29143-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10645-AI.jpeg",
+        "storage_path": "migrated/29143/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10645 Kurti Pant",
+        "local_url": "/images/products/dn10645-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29143-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10645-KP-scaled.jpeg",
+        "storage_path": "migrated/29143/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10645 Kurti Pant",
+        "local_url": "/images/products/dn10645-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29143-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29143-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29143-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29143-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "2-Piece Kurti Pant Set",
+        "slug": "cat-2p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29143,
+      "permalink": "https://bhavyafashions.com/product/10645-kurti-pant/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29141",
+    "code": "DN10701",
+    "title": "10701 Kurti Pant Dupatta",
+    "slug": "10701-kurti-pant-dupatta",
+    "description": "Effortless elegance in every drape—experience the breathable luxury of Pure Muslin.\nITEM - Kurti pant with Dupatta with a print of Ajrak\nFABRIC - Pure Muslin\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29141-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10701-AI.jpeg",
+        "storage_path": "migrated/29141/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10701 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10701-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29141-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10701-KPD-scaled.jpeg",
+        "storage_path": "migrated/29141/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10701 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10701-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29141-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29141-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29141-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29141-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29141,
+      "permalink": "https://bhavyafashions.com/product/10701-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29128",
+    "code": "DN10713",
+    "title": "10713 Kurti Pant Dupatta",
+    "slug": "10713-kurti-pant-dupatta",
+    "description": "&#8220;SOPHISTICATION MADE SIMPLE&#8221;\nITEM - Kurti's Neck Hand worked with an Elegant Style Including Pant and a Designed Dupatta\nFABRIC - Vatican\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29128-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10713-AI.jpeg",
+        "storage_path": "migrated/29128/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10713 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10713-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29128-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10713-PURPLE-KPD--scaled.jpeg",
+        "storage_path": "migrated/29128/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10713 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10713-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29128-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29128-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29128-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29128-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29128,
+      "permalink": "https://bhavyafashions.com/product/10713-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29126",
+    "code": "DN10703",
+    "title": "10703 Kurti Pant Dupatta",
+    "slug": "10703-kurti-pant-dupatta",
+    "description": "&#8220;Timeless Traditions Tailored For You&#8221;\nITEM - Digital Printed Straight cut kurti with Pant and Dupatta\nFABRIC - Pure Muslin\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29126-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10703-AI.jpeg",
+        "storage_path": "migrated/29126/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10703 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10703-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29126-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10703-KPD-scaled.jpeg",
+        "storage_path": "migrated/29126/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10703 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10703-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29126-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29126-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29126-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29126-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29126,
+      "permalink": "https://bhavyafashions.com/product/10703-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29123",
+    "code": "DN10162",
+    "title": "10162 Kurti Pant Dupatta",
+    "slug": "10162-kurti-pant-dupatta",
+    "description": "ITEM - Digtal Printed Kurti with lurex highlighted pant dupatta set\nFABRIC - Muslin\nSIZES - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "MUSLIN",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29123-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10162-AI.jpeg",
+        "storage_path": "migrated/29123/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10162 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10162-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29123-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10162-scaled.jpeg",
+        "storage_path": "migrated/29123/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10162 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10162-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29123-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29123-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29123-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29123-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29123,
+      "permalink": "https://bhavyafashions.com/product/10162-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29119",
+    "code": "DN10594",
+    "title": "10594 co-ord set",
+    "slug": "10594-co-ord-set",
+    "description": "ITEM - Regular Summer Co-ord set\nFABRIC - Cotton\nSIZE - M-3XL",
+    "category_id": "cat-coord-sets",
+    "fabric": "COTTON",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "Co-ord Set",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29119-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10594-AI.jpeg",
+        "storage_path": "migrated/29119/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10594 co-ord set",
+        "local_url": "/images/products/dn10594-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29119-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10594-CS-scaled.jpeg",
+        "storage_path": "migrated/29119/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10594 co-ord set",
+        "local_url": "/images/products/dn10594-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29119-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29119-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29119-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29119-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-2p-catalogs",
+        "name": "Co-ord Set",
+        "slug": "cat-coord-sets"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29119,
+      "permalink": "https://bhavyafashions.com/product/10594-co-ord-set/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Co-ord sets"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29114",
+    "code": "DN10718",
+    "title": "10718 Kurti Pant Dupatta",
+    "slug": "10718-kurti-pant-dupatta",
+    "description": "ITEM - Straight  Kurti Pant With Dupatta\nFABRIC - Vatican\nSIZE - L-3XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "Premium Rayon / Cotton Blend",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29114-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10718-AI.jpeg",
+        "storage_path": "migrated/29114/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "10718 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10718-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29114-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/10718-KPD-scaled.jpeg",
+        "storage_path": "migrated/29114/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "10718 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn10718-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29114-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29114-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29114-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29114-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29114,
+      "permalink": "https://bhavyafashions.com/product/10718-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  },
+  {
+    "id": "p-migrated-29048",
+    "code": "DN3821",
+    "title": "3821 Kurti Pant Dupatta",
+    "slug": "3821-kurti-pant-dupatta",
+    "description": "ITEM - Semi Anarkali Kurti pant with weaving dupatta\nFABRIC - Mul Chanderi\nSIZES - M-2XL",
+    "category_id": "cat-3p-kurtis",
+    "fabric": "CHANDERI",
+    "color": "Multicolor / Ethnic Print",
+    "style_type": "3-Piece Kurti Pant Dupatta",
+    "base_wholesale_price": 599,
+    "currency": "INR",
+    "moq": 6,
+    "stock_status": "in_stock",
+    "is_active": true,
+    "is_featured": false,
+    "images": [
+      {
+        "id": "img-migrated-29048-0",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3821-AI-.jpeg",
+        "storage_path": "migrated/29048/0.jpg",
+        "display_order": 0,
+        "is_primary": true,
+        "alt": "3821 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3821-0.jpeg"
+      },
+      {
+        "id": "img-migrated-29048-1",
+        "image_url": "https://bhavyafashions.com/wp-content/uploads/2026/03/3821.jpeg",
+        "storage_path": "migrated/29048/1.jpg",
+        "display_order": 1,
+        "is_primary": false,
+        "alt": "3821 Kurti Pant Dupatta",
+        "local_url": "/images/products/dn3821-1.jpeg"
+      }
+    ],
+    "variants": [
+      {
+        "id": "var-29048-m",
+        "size": "M",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29048-l",
+        "size": "L",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29048-xl",
+        "size": "XL",
+        "stock_quantity": 50,
+        "is_available": true
+      },
+      {
+        "id": "var-29048-xxl",
+        "size": "XXL",
+        "stock_quantity": 50,
+        "is_available": true
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-wholesale-favorites",
+        "name": "Wholesale Bestsellers",
+        "slug": "bestsellers"
+      },
+      {
+        "id": "col-3p-catalogs",
+        "name": "3-Piece Kurti Pant Dupatta",
+        "slug": "cat-3p-kurtis"
+      }
+    ],
+    "created_at": "2026-10-15T18:40:15.469Z",
+    "updated_at": "2026-10-15T18:40:15.469Z",
+    "legacy_metadata": {
+      "original_id": 29048,
+      "permalink": "https://bhavyafashions.com/product/3821-kurti-pant-dupatta/",
+      "raw_price_str": "0",
+      "raw_categories": [
+        "Kurti pant dupatta set"
+      ]
+    }
+  }
+]

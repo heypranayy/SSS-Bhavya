@@ -2,17 +2,27 @@ import React from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { ProductCard } from '@/components/ui/ProductCard';
+import { MobileQuickBar } from '@/components/layout/MobileQuickBar';
+import { HeroCarousel } from '@/components/home/HeroCarousel';
+import { CategoryShowcase } from '@/components/home/CategoryShowcase';
+import { LegacyStackingCards } from '@/components/home/LegacyStackingCards';
+import { TrendingLookbook } from '@/components/home/TrendingLookbook';
+import { WholesaleTierEstimator } from '@/components/home/WholesaleTierEstimator';
+import { LoomQualityMatrix } from '@/components/home/LoomQualityMatrix';
+import { DistributionHubs } from '@/components/home/DistributionHubs';
+import { CatalogueAccessWidget } from '@/components/catalog/CatalogueAccessWidget';
+import { WholesaleRoadmap } from '@/components/home/WholesaleRoadmap';
 import { getAllProducts, getCollections } from '@/lib/repository/products';
+import migratedBlogs from '@/lib/data/migrated-blogs.json';
 import {
   Sparkles,
-  ShieldCheck,
-  Truck,
-  Layers,
   ArrowRight,
+  ShieldCheck,
+  Calendar,
+  Layers,
   PhoneCall,
-  CheckCircle2,
-  Package,
+  ArrowUpRight,
+  BookOpen,
 } from 'lucide-react';
 
 export default async function HomePage() {
@@ -21,192 +31,73 @@ export default async function HomePage() {
     getCollections(),
   ]);
 
-  const featuredProducts = products.filter(p => p.is_featured).slice(0, 6);
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830122334';
+  const featuredCollections = collections.slice(0, 4);
+  const featuredBlogs = migratedBlogs.slice(0, 3);
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2]">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917] selection:bg-[#722F37] selection:text-white">
+      {/* 0. Header with infinite ticker & logo */}
       <Navbar />
 
       <main className="flex-1">
-        {/* Editorial Luxury Hero Section */}
-        <section className="relative overflow-hidden bg-[#FAF7F2] border-b border-[#E7E0D5] py-16 lg:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Text Content */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#722F37]/10 text-[#722F37] text-xs font-semibold uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>B2B Wholesale Catalog Platform • 2026 Collection</span>
-                </div>
+        {/* 1. Premium fashion hero */}
+        <HeroCarousel />
 
-                <h1 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1C1917] tracking-tight leading-[1.12]">
-                  Exquisite Indian Ethnic Wear for <span className="text-[#722F37] italic font-normal">Boutiques & Retailers</span>
-                </h1>
-
-                <p className="text-base sm:text-lg text-[#57534E] leading-relaxed max-w-2xl font-light">
-                  Direct manufacturer and wholesale supplier of trending single kurtis, 2-piece kurti-pant sets, and 3-piece pure muslin ensembles. Supplying premium fashion stores across India from our Barabazar (Kolkata) & Surat textile hubs.
-                </p>
-
-                {/* Wholesale Highlights */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                  <div className="bg-white border border-[#E7E0D5] p-3.5 rounded-lg shadow-2xs">
-                    <span className="text-xs text-[#78716C] block uppercase font-medium">Starting Wholesale</span>
-                    <span className="font-bold text-[#722F37] text-lg">₹380 – ₹1,299</span>
-                  </div>
-                  <div className="bg-white border border-[#E7E0D5] p-3.5 rounded-lg shadow-2xs">
-                    <span className="text-xs text-[#78716C] block uppercase font-medium">Minimum Order</span>
-                    <span className="font-bold text-[#1C1917] text-lg">6 Pcs / Design</span>
-                  </div>
-                  <div className="bg-white border border-[#E7E0D5] p-3.5 rounded-lg shadow-2xs col-span-2 sm:col-span-1">
-                    <span className="text-xs text-[#78716C] block uppercase font-medium">Dispatch Hubs</span>
-                    <span className="font-bold text-[#1C1917] text-base">Kolkata & Surat</span>
-                  </div>
-                </div>
-
-                {/* Primary CTAs */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-                  <Link
-                    href="/collections"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-[#722F37] text-white text-xs uppercase tracking-wider font-bold shadow-md hover:bg-[#5C1D24] transition-all"
-                  >
-                    <span>Browse Wholesale Catalog</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <a
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello Bhavya Fashions, I am an ethnic wear retailer. Please share current wholesale catalogs and pricing.')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#25D366] text-white text-xs uppercase tracking-wider font-bold shadow-sm hover:bg-[#20ba59] transition-all"
-                  >
-                    <PhoneCall className="w-4 h-4" />
-                    <span>WhatsApp Wholesale Desk</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Hero Image Showcase */}
-              <div className="lg:col-span-5 relative">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                  <img
-                    src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=85"
-                    alt="Bhavya Fashions Indian Ethnic Kurti Lookbook"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059]">
-                      Featured Ensemble • BF-3PC-101
-                    </span>
-                    <h3 className="font-serif-luxury text-xl font-bold">
-                      Gulmohar Embroidered Muslin 3-Piece
-                    </h3>
-                    <p className="text-xs text-white/80 mt-1">
-                      Pure Muslin Silk with scalloped organza dupatta • Wholesale ₹899
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Wholesale Positioning Bar */}
-        <section className="bg-[#FAF7F2] py-8 border-b border-[#E7E0D5]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#722F37]/10 flex items-center justify-center text-[#722F37] shrink-0">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917]">Strictly B2B Wholesale</h4>
-                  <p className="text-xs text-[#78716C]">Exclusively for retailers & resellers</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#722F37]/10 flex items-center justify-center text-[#722F37] shrink-0">
-                  <Layers className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917]">Standard Ratio Packing</h4>
-                  <p className="text-xs text-[#78716C]">Sizes M to XXL proportional set</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#722F37]/10 flex items-center justify-center text-[#722F37] shrink-0">
-                  <Truck className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917]">All-India Transport</h4>
-                  <p className="text-xs text-[#78716C]">Trusted transport booking & tracking</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#722F37]/10 flex items-center justify-center text-[#722F37] shrink-0">
-                  <Package className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917]">Custom B2B Catalogs</h4>
-                  <p className="text-xs text-[#78716C]">Curated links with your wholesale pricing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Shop By Collection Section */}
+        {/* 2. Wholesale collections */}
         <section className="py-16 bg-white border-b border-[#E7E0D5]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-[#722F37] font-semibold">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold">
                   Curated Catalog Series
                 </span>
-                <h2 className="font-serif-luxury text-3xl font-bold text-[#1C1917] mt-1">
-                  Explore by Wholesale Collection
+                <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-[#1C1917] mt-1">
+                  Wholesale Collections
                 </h2>
+                <p className="text-xs sm:text-sm text-zinc-600 font-light mt-1">
+                  Milled and curated specifically for boutique counters and fast inventory turnaround.
+                </p>
               </div>
+
               <Link
-                href="/collections"
-                className="mt-4 md:mt-0 text-xs font-bold text-[#722F37] uppercase tracking-wider flex items-center gap-1 hover:underline"
+                href="/wholesale"
+                className="mt-4 md:mt-0 text-xs font-bold text-[#722F37] uppercase tracking-wider flex items-center gap-1.5 hover:underline"
               >
-                <span>View All Collections</span>
+                <span>View All Collections in Explorer</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {collections.slice(0, 3).map((col) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredCollections.map((col) => (
                 <Link
                   key={col.id}
-                  href={`/collections/${col.slug}`}
-                  className="group relative rounded-xl overflow-hidden aspect-[4/5] bg-[#EFE9E0] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-end p-6 border border-[#E7E0D5]"
+                  href={`/wholesale?collection=${col.slug}#explorer`}
+                  className="group relative rounded-2xl overflow-hidden aspect-[4/5] bg-zinc-100 shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#E7E0D5] flex flex-col justify-end p-6"
                 >
                   {col.image_url && (
                     <img
                       src={col.image_url}
                       alt={col.name}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-106 transition-transform duration-700"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
 
                   <div className="relative z-10 text-white space-y-1.5">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059]">
-                      {col.product_count || 4}+ Wholesale Designs
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059] block">
+                      {col.product_count || 12}+ Active Designs
                     </span>
                     <h3 className="font-serif-luxury text-xl font-bold group-hover:text-[#C5A059] transition-colors">
                       {col.name}
                     </h3>
-                    <p className="text-xs text-white/80 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-white/80 line-clamp-2 leading-relaxed font-light">
                       {col.description}
                     </p>
-                    <div className="pt-2 flex items-center text-xs font-semibold text-white group-hover:translate-x-1 transition-transform">
-                      <span>View Lookbook & Pricing →</span>
+                    <div className="pt-2 flex items-center text-xs font-semibold text-white group-hover:text-[#C5A059] group-hover:translate-x-1 transition-all">
+                      <span>Explore Wholesale Lot</span>
+                      <ArrowUpRight className="w-4 h-4 ml-1" />
                     </div>
                   </div>
                 </Link>
@@ -215,115 +106,137 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Featured Wholesale Products */}
+        {/* 3. Featured categories such as 2P and 3P based on actual data */}
+        <CategoryShowcase />
+
+        {/* 4. New arrivals & 5. Featured wholesale products with working category swapper, Quick View & Quote on Request */}
+        <TrendingLookbook initialProducts={products} />
+
+        {/* 6. B2B Wholesale Margin & Profit Tier Calculator */}
+        <WholesaleTierEstimator />
+
+        {/* 7. Surat Looms Technical Quality & Fabric Specifications Matrix */}
+        <LoomQualityMatrix />
+
+        {/* 8. Browse the complete wholesale catalogue (Editorial Callout) */}
         <section className="py-16 bg-[#FAF7F2] border-b border-[#E7E0D5]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-[#722F37] font-semibold">
-                  Trending Fast-Movers
-                </span>
-                <h2 className="font-serif-luxury text-3xl font-bold text-[#1C1917] mt-1">
-                  Featured Wholesale Kurtis & Sets
-                </h2>
-                <p className="text-xs text-[#78716C] mt-1">
-                  High-demand designs recommended for boutique displays and festive counter promotions.
-                </p>
-              </div>
+            <div className="bg-[#1C1215] text-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#C5A059]/40 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#722F37]/30 rounded-full blur-3xl pointer-events-none" />
 
-              <Link
-                href="/collections"
-                className="mt-4 md:mt-0 text-xs font-bold text-[#722F37] uppercase tracking-wider flex items-center gap-1 hover:underline"
-              >
-                <span>View Full Catalog</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {featuredProducts.map((prod) => (
-                <ProductCard key={prod.id} product={prod} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Wholesale Business Requirements & Dispatch Information */}
-        <section className="py-16 bg-white border-b border-[#E7E0D5]">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#FAF7F2] border border-[#E7E0D5] rounded-2xl p-8 sm:p-12 shadow-sm">
-              <div className="text-center max-w-2xl mx-auto space-y-4">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#722F37]">
-                  Wholesale Procurement Guide
-                </span>
-                <h3 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#1C1917]">
-                  How to Partner with Bhavya Fashions
+              <div className="relative z-10 space-y-3 max-w-xl text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/30 text-[#C5A059] text-xs font-semibold uppercase tracking-widest">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>B2B Wholesale Explorer</span>
+                </div>
+                <h3 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-white tracking-tight leading-snug">
+                  Browse the Complete Wholesale Catalogue
                 </h3>
-                <p className="text-sm text-[#57534E] leading-relaxed">
-                  We work closely with retail fashion businesses, boutique proprietors, and online resellers across India. Here is how our straightforward wholesale process operates:
+                <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+                  Search by authentic DN numbers, filter by fabric, size, and style, select multiple designs, and export your curated requirements straight to our WhatsApp wholesale team.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-                <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] space-y-2.5">
-                  <span className="w-8 h-8 rounded-full bg-[#722F37] text-white flex items-center justify-center font-bold text-xs">
-                    1
-                  </span>
-                  <h4 className="font-serif-luxury text-base font-bold text-[#1C1917]">
-                    Browse & Select Designs
-                  </h4>
-                  <p className="text-xs text-[#78716C] leading-relaxed">
-                    Explore our wholesale collections online or request a custom curated catalog link tailored for your boutique's price tier.
-                  </p>
-                </div>
-
-                <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] space-y-2.5">
-                  <span className="w-8 h-8 rounded-full bg-[#722F37] text-white flex items-center justify-center font-bold text-xs">
-                    2
-                  </span>
-                  <h4 className="font-serif-luxury text-base font-bold text-[#1C1917]">
-                    Submit Ratio Requirement
-                  </h4>
-                  <p className="text-xs text-[#78716C] leading-relaxed">
-                    Specify your quantity breakdown by sizes (M, L, XL, XXL) meeting the minimum order quantity (MOQ: 6 pcs per design).
-                  </p>
-                </div>
-
-                <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] space-y-2.5">
-                  <span className="w-8 h-8 rounded-full bg-[#722F37] text-white flex items-center justify-center font-bold text-xs">
-                    3
-                  </span>
-                  <h4 className="font-serif-luxury text-base font-bold text-[#1C1917]">
-                    Dispatch & Invoice
-                  </h4>
-                  <p className="text-xs text-[#78716C] leading-relaxed">
-                    Our wholesale dispatch manager confirms live warehouse stock, prepares the GST invoice, and hands over to your preferred transport.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-10 pt-8 border-t border-[#E7E0D5] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-xs text-[#78716C] flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>GST Billing • Nationwide Transport Booking • Barabazar & Surat Hubs</span>
-                </div>
-
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello Bhavya Fashions, I want to register as a wholesale retail partner.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all"
+              <div className="relative z-10 shrink-0">
+                <Link
+                  href="/wholesale#explorer"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#C5A059] text-[#1C1215] text-xs font-bold uppercase tracking-wider hover:bg-[#d8b46e] transition-all shadow-xl hover:scale-105"
                 >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  <span>Talk with Sales Desk</span>
-                </a>
+                  <span>Launch Wholesale Explorer</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </div>
         </section>
+
+        {/* 9. Brand story and relevant Surat looms stacking cards */}
+        <LegacyStackingCards />
+
+        {/* 10. Surat Looms to Barabazar Hub & Nationwide Transit Network */}
+        <DistributionHubs />
+
+        {/* 11. Access catalogue by code */}
+        <section className="py-20 bg-white border-b border-[#E7E0D5]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CatalogueAccessWidget variant="card" />
+          </div>
+        </section>
+
+        {/* 9. Blog and editorial section */}
+        {featuredBlogs.length > 0 && (
+          <section className="py-16 bg-white border-b border-[#E7E0D5]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold">
+                    Trade Insights & Lookbook Articles
+                  </span>
+                  <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-[#1C1917] mt-1">
+                    Wholesale Fashion Blog
+                  </h2>
+                </div>
+                <Link
+                  href="/blog"
+                  className="mt-4 md:mt-0 text-xs font-bold text-[#722F37] uppercase tracking-wider flex items-center gap-1.5 hover:underline"
+                >
+                  <span>Read All Articles</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {featuredBlogs.map((post) => (
+                  <article
+                    key={post.id}
+                    className="bg-[#FAF7F2] rounded-2xl border border-[#E7E0D5] p-6 flex flex-col justify-between hover:shadow-lg transition-all"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs text-zinc-500">
+                        <Calendar className="w-3.5 h-3.5 text-[#C5A059]" />
+                        <time dateTime={post.date}>
+                          {new Date(post.date).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </time>
+                      </div>
+
+                      <h3 className="font-serif-luxury text-lg font-bold text-[#1C1917] hover:text-[#722F37] transition-colors leading-snug">
+                        <Link href={`/blog/${post.slug}`}>
+                          {post.title}
+                        </Link>
+                      </h3>
+
+                      <p className="text-xs text-zinc-600 line-clamp-3 leading-relaxed font-light">
+                        {post.content.replace(/<[^>]+>/g, '').slice(0, 140)}...
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-[#E7E0D5] mt-4">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#722F37] hover:underline"
+                      >
+                        <span>Read Full Guide</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 10. Wholesale inquiry and WhatsApp CTA */}
+        <WholesaleRoadmap />
       </main>
 
+      {/* 11. Footer with verified business information */}
       <Footer />
+      <MobileQuickBar />
     </div>
   );
 }

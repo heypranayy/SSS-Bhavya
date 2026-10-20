@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { CatalogProductView } from '@/types';
-import { formatINR } from '@/lib/utils';
-import { CheckCircle2, AlertCircle, Plus, Minus, MessageSquare } from 'lucide-react';
+import { formatINR, getProductFallbackImage } from '@/lib/utils';
+import { CheckCircle2, AlertCircle, Plus, Minus, MessageSquare, Eye, Maximize2, Sparkles } from 'lucide-react';
 
 export interface SelectedItemState {
   productId: string;
@@ -17,6 +17,7 @@ interface DesignSelectorProps {
   selectedState?: SelectedItemState;
   onChange: (productId: string, updatedState: SelectedItemState | null) => void;
   onOpenLightbox?: (product: CatalogProductView) => void;
+  onQuickView?: (product: CatalogProductView) => void;
   allowSizes?: boolean;
   allowQuantity?: boolean;
 }
@@ -26,6 +27,7 @@ export function DesignSelector({
   selectedState,
   onChange,
   onOpenLightbox,
+  onQuickView,
   allowSizes = true,
   allowQuantity = true,
 }: DesignSelectorProps) {
@@ -103,24 +105,72 @@ export function DesignSelector({
 
       <div className="p-4 sm:p-5 flex flex-col md:flex-row gap-5">
         {/* Thumbnail Image */}
-        <div
-          className="relative w-full md:w-36 aspect-[3/4] bg-[#EFE9E0] rounded-lg overflow-hidden shrink-0 cursor-pointer group"
-          onClick={() => onOpenLightbox && onOpenLightbox(product)}
-        >
-          {primaryImg?.image_url && (
-            <img
-              src={primaryImg.image_url}
-              alt={product.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          )}
-          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-semibold uppercase tracking-wider">
-            Tap to Zoom
-          </div>
-          <span className="absolute top-2 left-2 bg-black/80 text-white font-mono text-[10px] px-1.5 py-0.5 rounded">
-            {product.code}
-          </span>
-        </div>
+        {(() => {
+          const fallbackSrc = getProductFallbackImage(product.style_type);
+          const imgSrc =
+            (primaryImg as any)?.local_url ||
+            primaryImg?.image_url ||
+            fallbackSrc;
+          return (
+            <div className="shrink-0 w-full md:w-36 flex flex-col items-center">
+              <div
+                className="relative w-full aspect-[3/4] bg-[#EFE9E0] rounded-lg overflow-hidden cursor-pointer group"
+                onClick={() => onQuickView ? onQuickView(product) : (onOpenLightbox && onOpenLightbox(product))}
+              >
+                <img
+                  src={imgSrc}
+                  alt={product.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== fallbackSrc) {
+                      target.src = fallbackSrc;
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-semibold uppercase tracking-wider gap-1">
+                  <Eye className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <span>Click for Quick View</span>
+                </div>
+                <span className="absolute top-2 left-2 bg-black/80 text-white font-mono text-[10px] px-1.5 py-0.5 rounded">
+                  {product.code}
+                </span>
+              </div>
+
+              {/* Quick View & Enlarge Action Buttons */}
+              <div className="mt-2 flex items-center gap-1.5 w-full">
+                {onQuickView && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onQuickView(product);
+                    }}
+                    className="flex-1 py-1 px-1.5 bg-[#FAF7F2] hover:bg-[#722F37] hover:text-white border border-[#E7E0D5] rounded text-[10px] font-semibold text-[#1C1917] flex items-center justify-center gap-1 transition-colors"
+                    title="Quick View specifications and size breakdown"
+                  >
+                    <Eye className="w-3 h-3" />
+                    <span>Quick View</span>
+                  </button>
+                )}
+                {onOpenLightbox && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenLightbox(product);
+                    }}
+                    className="p-1 px-1.5 bg-[#FAF7F2] hover:bg-[#722F37] hover:text-white border border-[#E7E0D5] rounded text-[10px] font-semibold text-[#1C1917] flex items-center gap-0.5 transition-colors"
+                    title="Enlarge & Fullscreen View"
+                  >
+                    <Maximize2 className="w-3 h-3" />
+                    <span className="hidden sm:inline">Enlarge</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Product Details & Selection Matrix */}
         <div className="flex-1 flex flex-col justify-between">
@@ -136,12 +186,21 @@ export function DesignSelector({
               </div>
 
               {/* Quoted Price */}
-              <div className="text-right">
-                <span className="text-[10px] uppercase text-[#78716C] block">Wholesale Price</span>
-                <span className="text-lg font-extrabold text-[#722F37]">
-                  {formatINR(product.quoted_price)}
-                </span>
-                <span className="text-xs text-[#78716C] ml-1">/ pc</span>
+              <div className="text-right shrink-0">
+                <span className="text-[10px] uppercase text-[#78716C] block font-semibold">Trade Price</span>
+                {product.price_display_mode === 'show' && product.price_on_enquiry === false ? (
+                  <div>
+                    <span className="text-lg font-extrabold text-[#722F37]">
+                      {formatINR(product.quoted_price)}
+                    </span>
+                    <span className="text-xs text-[#78716C] ml-1">/ pc</span>
+                  </div>
+                ) : (
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#722F37] bg-[#722F37]/10 px-2.5 py-0.5 rounded-full border border-[#722F37]/20">
+                    <Sparkles className="w-3 h-3 text-[#C5A059]" />
+                    <span>Price on Enquiry</span>
+                  </span>
+                )}
               </div>
             </div>
 

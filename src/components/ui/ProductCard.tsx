@@ -100,16 +100,26 @@ export function ProductCard({
               <span className="text-[10px] uppercase tracking-wider text-[#78716C] block">
                 Wholesale Price
               </span>
-              <div className="text-lg font-bold text-[#722F37] tracking-tight">
-                {formatINR(price)}
-                <span className="text-xs font-normal text-[#78716C] ml-1">/ piece</span>
-              </div>
+              {product.price_on_enquiry !== false && product.price_on_request !== false ? (
+                <div className="text-sm font-bold text-[#722F37] tracking-tight">
+                  Price on Enquiry
+                </div>
+              ) : price ? (
+                <div className="text-lg font-bold text-[#722F37] tracking-tight">
+                  {formatINR(price)}
+                  <span className="text-xs font-normal text-[#78716C] ml-1">/ piece</span>
+                </div>
+              ) : (
+                <div className="text-sm font-bold text-[#722F37] tracking-tight">
+                  Price on Enquiry
+                </div>
+              )}
             </div>
 
             {showMoq && (
               <div className="text-right">
                 <span className="inline-block bg-[#F3ECE2] text-[#44403C] text-[11px] font-semibold px-2 py-0.5 rounded">
-                  MOQ: {product.moq} pcs
+                  MOQ: {product.moq ? `${product.moq} pcs` : 'On Request'}
                 </span>
               </div>
             )}

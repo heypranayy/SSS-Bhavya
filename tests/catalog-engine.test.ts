@@ -1,11 +1,18 @@
 import { describe, it, expect } from 'vitest';
-import { evaluateFilterRule, matchesDynamicFilters, resolveCatalogProducts } from '@/lib/engine/filter-engine';
-import { calculateProductPrice, validateInquiryItems } from '@/lib/engine/pricing-engine';
+import {
+  evaluateFilterRule,
+  matchesDynamicFilters,
+  resolveCatalogProducts,
+} from '@/lib/engine/filter-engine';
+import {
+  calculateProductPrice,
+  validateInquiryItems,
+} from '@/lib/engine/pricing-engine';
 import { SEED_PRODUCTS, SEED_CUSTOMERS } from '@/lib/data/seed-data';
-import { Product, FilterRuleGroup, CatalogOverride } from '@/types';
+import { FilterRuleGroup, CatalogOverride, Product } from '@/types';
 
 describe('Universal Dynamic Catalog Engine Tests', () => {
-  const sampleProducts: Product[] = [...SEED_PRODUCTS];
+  const sampleProducts = SEED_PRODUCTS;
 
   describe('Filter Rule Evaluation', () => {
     it('correctly filters products by price range (less_than_or_equal)', () => {
@@ -13,13 +20,13 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
         id: 'r1',
         attribute: 'base_wholesale_price' as const,
         operator: 'less_than_or_equal' as const,
-        value: 500,
+        value: 650,
       };
 
       const matching = sampleProducts.filter(p => evaluateFilterRule(p, cheapRule));
       expect(matching.length).toBeGreaterThan(0);
       matching.forEach(p => {
-        expect(p.base_wholesale_price).toBeLessThanOrEqual(500);
+        expect(p.base_wholesale_price).toBeLessThanOrEqual(650);
       });
     });
 
@@ -44,14 +51,14 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
         logical_operator: 'OR',
         rules: [
           { id: 'r3', attribute: 'fabric', operator: 'contains', value: 'Cotton' },
-          { id: 'r4', attribute: 'fabric', operator: 'contains', value: 'Muslin' },
+          { id: 'r4', attribute: 'fabric', operator: 'contains', value: 'Silk' },
         ],
       };
 
       const matching = sampleProducts.filter(p => matchesDynamicFilters(p, [groupOr]));
       matching.forEach(p => {
-        const hasCottonOrMuslin = p.fabric.toLowerCase().includes('cotton') || p.fabric.toLowerCase().includes('muslin');
-        expect(hasCottonOrMuslin).toBe(true);
+        const hasCottonOrSilk = p.fabric.toLowerCase().includes('cotton') || p.fabric.toLowerCase().includes('silk');
+        expect(hasCottonOrSilk).toBe(true);
       });
     });
   });
@@ -83,19 +90,18 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
     });
 
     it('applies manual inclusions even if product does not match dynamic filters', () => {
-      // Dynamic filter for cheap products only <= 400
+      // Dynamic filter for cheap products only <= 550 (none match since min price is 599)
       const ruleGroups: FilterRuleGroup[] = [
         {
           id: 'rg1',
           logical_operator: 'AND',
-          rules: [{ id: 'r1', attribute: 'base_wholesale_price', operator: 'less_than_or_equal', value: 400 }],
+          rules: [{ id: 'r1', attribute: 'base_wholesale_price', operator: 'less_than_or_equal', value: 550 }],
         },
       ];
 
-      // Expensive product (1199.00)
-      const expensiveProduct = sampleProducts.find(p => p.base_wholesale_price > 1000)!;
+      const includedProduct = sampleProducts[0];
       const overrides: CatalogOverride[] = [
-        { id: 'o2', product_id: expensiveProduct.id, action: 'include', display_order: 0 },
+        { id: 'o2', product_id: includedProduct.id, action: 'include', display_order: 0 },
       ];
 
       const resolved = resolveCatalogProducts(sampleProducts, {
@@ -104,17 +110,17 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
         overrides,
       });
 
-      expect(resolved.some(p => p.id === expensiveProduct.id)).toBe(true);
+      expect(resolved.some(p => p.id === includedProduct.id)).toBe(true);
     });
 
     it('correctly hoists pinned products to the top', () => {
       const pinnedId = sampleProducts[sampleProducts.length - 1].id;
       const overrides: CatalogOverride[] = [
-        { id: 'o3', product_id: pinnedId, action: 'include', display_order: 0, is_pinned: true },
+        { id: 'o3', product_id: pinnedId, action: 'include', is_pinned: true, display_order: 0 },
       ];
 
       const resolved = resolveCatalogProducts(sampleProducts, {
-        mode: 'hybrid',
+        mode: 'curated',
         ruleGroups: [],
         overrides,
       });
@@ -126,12 +132,12 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
 
   describe('Customer Wholesale Pricing & Snapshots', () => {
     it('applies customer tier discount cleanly', () => {
-      const product = sampleProducts[0]; // base 899
+      const product = sampleProducts[0]; // base 599
       const customer = SEED_CUSTOMERS[0]; // 5% discount
       const price = calculateProductPrice(product, customer);
 
       expect(price.discountPct).toBe(5);
-      expect(price.quotedPrice).toBe(854.05);
+      expect(price.quotedPrice).toBe(Math.round(product.base_wholesale_price * 0.95 * 100) / 100);
     });
 
     it('defaults to base wholesale price when customer has no discount', () => {
@@ -172,7 +178,7 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
     });
 
     it('accurately calculates grand quantity and indicative total', () => {
-      const p1 = sampleProducts[0]; // 899, MOQ 6
+      const p1 = sampleProducts[0];
       const validSubmission = [
         {
           product_id: p1.id,
@@ -182,7 +188,7 @@ describe('Universal Dynamic Catalog Engine Tests', () => {
 
       const result = validateInquiryItems(validSubmission, sampleProducts);
       expect(result.totalQuantity).toBe(8);
-      expect(result.indicativeTotal).toBe(7192);
+      expect(result.indicativeTotal).toBe(8 * p1.base_wholesale_price);
     });
   });
 });

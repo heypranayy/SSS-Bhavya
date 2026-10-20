@@ -1,8 +1,7 @@
 'use client';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   Layers,
@@ -17,6 +16,9 @@ import {
   ExternalLink,
   LogOut,
   FolderTree,
+  ShieldCheck,
+  FileText,
+  Loader2,
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -26,11 +28,36 @@ export default function AdminLayout({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (pathname === '/admin/login') {
+      setIsAuthenticated(true);
+      return;
+    }
+    const authStatus = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_auth') : null;
+    if (authStatus === 'authenticated') {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      router.push('/admin/login');
+    }
+  }, [pathname, router]);
 
   // If login page, render without sidebar
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
+
+  const handleSignOut = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('bhavya_admin_auth');
+      localStorage.removeItem('bhavya_admin_user');
+      document.cookie = 'bhavya_admin_auth=; path=/; max-age=0';
+    }
+    router.push('/admin/login');
+  };
 
   const navItems = [
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -40,8 +67,23 @@ export default function AdminLayout({
     { label: 'Catalog Builder', href: '/admin/catalogs/create', icon: PlusCircle, highlight: true },
     { label: 'Wholesale Inquiries', href: '/admin/inquiries', icon: MessageSquare },
     { label: 'Customers', href: '/admin/customers', icon: Users },
+    { label: 'Blog Posts', href: '/admin/blogs', icon: FileText },
+    { label: 'Staff & Roles', href: '/admin/staff', icon: ShieldCheck },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];
+
+  if (isAuthenticated === false) {
+    return (
+      <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
+        <div className="text-center space-y-3">
+          <Loader2 className="w-8 h-8 text-[#722F37] animate-spin mx-auto" />
+          <p className="text-xs uppercase tracking-widest text-[#78716C] font-semibold">
+            Verifying Super Admin Authorization...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F2EB] flex flex-col md:flex-row">
@@ -51,8 +93,8 @@ export default function AdminLayout({
           <span className="font-serif-luxury text-lg font-bold text-white tracking-tight">
             BHAVYA <span className="text-[#C5A059] italic font-normal">Admin</span>
           </span>
-          <span className="text-[10px] bg-[#722F37] text-white px-2 py-0.5 rounded uppercase font-semibold">
-            B2B
+          <span className="text-[9px] bg-[#C5A059] text-black px-1.5 py-0.5 rounded font-mono font-bold">
+            GEXART
           </span>
         </Link>
 
@@ -82,9 +124,14 @@ export default function AdminLayout({
           <div className="bg-[#1C1917] w-4/5 max-w-xs h-full text-[#E7E0D5] p-5 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-left duration-200">
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-[#2E2825]">
-                <span className="font-serif-luxury text-xl font-bold text-white">
-                  BHAVYA <span className="text-[#C5A059] italic font-normal">Fashions</span>
-                </span>
+                <div>
+                  <span className="font-serif-luxury text-xl font-bold text-white">
+                    BHAVYA <span className="text-[#C5A059] italic font-normal">Fashions</span>
+                  </span>
+                  <div className="text-[9px] font-mono text-[#C5A059] font-bold tracking-wider mt-0.5">
+                    ⚡ GEXART TECHNOLOGIES STAMP
+                  </div>
+                </div>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
@@ -123,17 +170,28 @@ export default function AdminLayout({
             </div>
 
             <div className="pt-4 border-t border-[#2E2825] space-y-3">
-              <Link
-                href="/"
-                target="_blank"
-                className="flex items-center gap-2 text-xs text-[#A8A29E] hover:text-white"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>View Public Website</span>
-              </Link>
-              <div className="text-[10px] text-[#78716C]">
-                Admin Session Active • Bhavya Fashions B2B
+              <div className="bg-[#141211] p-3 rounded-lg border border-[#2E2825] text-xs">
+                <span className="text-[10px] uppercase font-mono text-[#C5A059] font-bold block">
+                  ⚡ GEXART TECHNOLOGIES
+                </span>
+                <a
+                  href="https://www.gexart.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline text-[11px] block mt-0.5"
+                >
+                  www.gexart.com
+                </a>
               </div>
+
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-red-950/60 text-red-200 border border-red-800/50 text-xs font-bold"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
+              </button>
             </div>
           </div>
 
@@ -146,7 +204,16 @@ export default function AdminLayout({
 
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col w-64 bg-[#1C1917] text-[#E7E0D5] p-5 shrink-0 min-h-screen justify-between border-r border-[#2E2825]">
-        <div className="space-y-6">
+        <div className="space-y-5">
+          {/* Gexart Top Stamp */}
+          <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-[#2E2825] border border-[#3E3835] text-[10px] font-mono text-[#C5A059]">
+            <div className="flex items-center gap-1.5 font-bold tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>GEXART TECHNOLOGIES</span>
+            </div>
+            <span className="text-[9px] text-[#A8A29E]">v3.4</span>
+          </div>
+
           <div className="pb-4 border-b border-[#2E2825]">
             <Link href="/admin" className="block">
               <span className="font-serif-luxury text-xl font-bold text-white tracking-tight">
@@ -185,7 +252,7 @@ export default function AdminLayout({
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-[#2E2825] space-y-4">
+        <div className="pt-5 border-t border-[#2E2825] space-y-3">
           <Link
             href="/"
             target="_blank"
@@ -195,27 +262,79 @@ export default function AdminLayout({
             <span>Open Public Website</span>
           </Link>
 
+          {/* Gexart Bottom Stamp */}
+          <div className="bg-[#141211] p-3 rounded-xl border border-[#2E2825] space-y-1">
+            <div className="flex items-center justify-between text-[9px] font-mono uppercase">
+              <span className="text-[#A8A29E]">Platform Engine</span>
+              <span className="text-[#C5A059] font-bold">Verified ✓</span>
+            </div>
+            <a
+              href="https://www.gexart.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-white hover:text-[#C5A059] transition-colors block"
+            >
+              Built by Gexart Technologies
+            </a>
+            <span className="text-[10px] text-[#78716C] block font-mono">
+              www.gexart.com
+            </span>
+          </div>
+
+          {/* User Signout Row */}
           <div className="bg-[#2E2825] p-3 rounded-lg flex items-center justify-between text-xs">
             <div>
-              <span className="text-[10px] uppercase text-[#A8A29E] block">Administrator</span>
-              <span className="font-bold text-white text-xs">Wholesale Desk</span>
+              <span className="text-[10px] uppercase text-[#C5A059] font-mono font-bold block">
+                Super Admin
+              </span>
+              <span className="font-mono text-white text-[11px] truncate block max-w-[130px]">
+                sss@bhavyafashions.com
+              </span>
             </div>
-            <Link
-              href="/admin/login"
-              className="text-[#A8A29E] hover:text-white"
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="p-1.5 rounded-lg text-[#A8A29E] hover:text-red-400 hover:bg-black/30 transition-colors"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto min-h-screen">
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {children}
         </main>
+
+        {/* Global Admin Footer Watermark */}
+        <footer className="mt-auto py-4 px-6 border-t border-[#E7E0D5] bg-[#FAF7F2]/90 flex flex-col sm:flex-row items-center justify-between text-xs text-[#78716C] gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-serif-luxury font-bold text-[#1C1917]">Bhavya Fashions Wholesale B2B</span>
+            <span className="hidden sm:inline">•</span>
+            <span className="font-mono text-[11px] text-[#722F37] bg-[#722F37]/10 px-2 py-0.5 rounded font-bold">
+              Super Admin Desk
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-[#A8A29E]">
+              Watermark:
+            </span>
+            <a
+              href="https://www.gexart.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-bold text-[#1C1917] hover:text-[#722F37] transition-colors group"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
+              <span>Built &amp; Protected by <u>Gexart Technologies</u></span>
+              <span className="text-[10px] text-[#78716C] font-mono group-hover:underline">(www.gexart.com)</span>
+            </a>
+          </div>
+        </footer>
       </div>
     </div>
   );

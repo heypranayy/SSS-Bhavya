@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Palatial Deep Wine & Maroon -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#802F3A" />
+      <stop offset="50%" stop-color="#671F28" />
+      <stop offset="100%" stop-color="#4A131A" />
+    </linearGradient>
+
+    <!-- Metallic Loom Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEFD2" />
+      <stop offset="25%" stop-color="#DFB86C" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="75%" stop-color="#E5C57E" />
+      <stop offset="100%" stop-color="#A88237" />
+    </linearGradient>
+
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DFB86C" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#C5A059" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#DFB86C" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+    <filter id="innerGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Luxury Tile -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)" filter="url(#shadow)" />
+  
+  <!-- Subtle Filigree Inner Border -->
+  <rect x="36" y="36" width="440" height="440" rx="96" fill="none" stroke="url(#goldBorder)" stroke-width="4" stroke-dasharray="8 4" />
+  <rect x="48" y="48" width="416" height="416" rx="84" fill="none" stroke="url(#goldBorder)" stroke-width="1.5" />
+
+  <!-- Top Imperial Diamond Accent -->
+  <g transform="translate(256, 88)" fill="url(#goldGrad)" filter="url(#innerGlow)">
+    <polygon points="0,-16 12,0 0,16 -12,0" />
+    <circle cx="0" cy="0" r="3" fill="#671F28" />
+    <circle cx="-24" cy="0" r="2.5" />
+    <circle cx="24" cy="0" r="2.5" />
+  </g>
+
+  <!-- Central Luxury Monogram "BF" -->
+  <text x="256" y="318" 
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif" 
+        font-size="204" 
+        font-weight="700" 
+        letter-spacing="2"
+        fill="url(#goldGrad)" 
+        text-anchor="middle"
+        filter="url(#innerGlow)">
+    BF
+  </text>
+
+  <!-- Bottom Brand Subtitle "BHAVYA" -->
+  <text x="256" y="388" 
+        font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" 
+        font-size="34" 
+        font-weight="600" 
+        letter-spacing="10" 
+        fill="#F3ECE2" 
+        text-anchor="middle"
+        opacity="0.95">
+    BHAVYA
+  </text>
+
+  <!-- Bottom Royal Dots -->
+  <g transform="translate(256, 424)" fill="url(#goldGrad)">
+    <circle cx="-16" cy="0" r="3" />
+    <polygon points="0,-6 6,0 0,6 -6,0" />
+    <circle cx="16" cy="0" r="3" />
+  </g>
+</svg>

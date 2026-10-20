@@ -5,7 +5,7 @@ import { Save, Check, ShieldCheck, PhoneCall, Building2, MapPin } from 'lucide-r
 
 export default function AdminSettingsPage() {
   const [brandName, setBrandName] = useState('Bhavya Fashions');
-  const [whatsapp, setWhatsapp] = useState('919830122334');
+  const [whatsapp, setWhatsapp] = useState('919830729210');
   const [email, setEmail] = useState('wholesale@bhavyafashions.com');
   const [defaultMoq, setDefaultMoq] = useState(6);
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -61,7 +61,7 @@ export default function AdminSettingsPage() {
                 type="text"
                 value={whatsapp}
                 onChange={(e) => setWhatsapp(e.target.value)}
-                placeholder="e.g. 919830122334"
+                placeholder="e.g. 919830729210"
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-mono"
               />
             </div>
@@ -92,6 +92,23 @@ export default function AdminSettingsPage() {
               />
             </div>
           </div>
+
+          <div className="pt-2">
+            <label className="block text-xs font-semibold text-[#1C1917] mb-1">
+              Global Wholesale Price Display Policy
+            </label>
+            <select
+              defaultValue="show"
+              className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-medium"
+            >
+              <option value="show">SHOW PRICE — Display actual wholesale price (Default)</option>
+              <option value="request">PRICE ON REQUEST — Hide numerical prices & show "Price on Request" + Enquiry form</option>
+              <option value="contact">CONTACT FOR PRICE — Hide numerical prices & show "Contact for Price" CTA</option>
+            </select>
+            <p className="text-[11px] text-zinc-500 mt-1">
+              Precedence: Catalogue-specific setting &gt; Individual product setting &gt; Global setting. When prices are hidden, underlying prices are sanitized on the server before client transmission.
+            </p>
+          </div>
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-xs space-y-4">
@@ -100,8 +117,8 @@ export default function AdminSettingsPage() {
           </h2>
 
           <div className="p-3 bg-[#FAF7F2] rounded-xl text-xs space-y-1">
-            <span className="font-bold text-[#1C1917] block">Hub 1: Barabazar Wholesale Counter</span>
-            <p className="text-[#57534E]">Shiv Thakur Lane, Barabazar Market, Kolkata, West Bengal — 700007</p>
+            <span className="font-bold text-[#1C1917] block">Hub 1: Barabazar Wholesale Counter & Dispatch Showroom</span>
+            <p className="text-[#57534E]">5, Shiv Thakur Lane, Kalakar St, near R.K The Bed Cover Studio, Kolkata, West Bengal — 700007</p>
           </div>
 
           <div className="p-3 bg-[#FAF7F2] rounded-xl text-xs space-y-1">

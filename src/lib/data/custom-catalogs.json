@@ -1,0 +1,217 @@
+[
+  {
+    "id": "cat-1792522588521",
+    "title": "Exclusive Wholesale Kurti Lookbook 2026",
+    "subtitle": "Direct factory supply for boutiques & retail partners",
+    "public_token": "exclusive-wholesale-kurti-look-48yheq",
+    "mode": "curated",
+    "membership_type": "dynamic",
+    "status": "active",
+    "expires_at": "2027-01-18T18:56:27.991Z",
+    "access_code": null,
+    "custom_message": "Please review our latest curated designs below and submit your quantity breakdown. Minimum order quantity is 6 pieces per design (standard ratio pack).",
+    "presentation_settings": {
+      "priceDisplayMode": "request",
+      "showPrices": false,
+      "showMoq": true,
+      "showSizes": true,
+      "showStockStatus": true,
+      "showDescription": true,
+      "coverImageUrl": "/images/hero-kesaria-silk.jpg",
+      "vipDiscountPct": 0
+    },
+    "rule_groups": [],
+    "overrides": [
+      {
+        "id": "ov-p-migrated-29589",
+        "product_id": "p-migrated-29589",
+        "action": "include",
+        "display_order": 0,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29584",
+        "product_id": "p-migrated-29584",
+        "action": "include",
+        "display_order": 1,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29580",
+        "product_id": "p-migrated-29580",
+        "action": "include",
+        "display_order": 2,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29575",
+        "product_id": "p-migrated-29575",
+        "action": "include",
+        "display_order": 3,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29570",
+        "product_id": "p-migrated-29570",
+        "action": "include",
+        "display_order": 4,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29565",
+        "product_id": "p-migrated-29565",
+        "action": "include",
+        "display_order": 5,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29560",
+        "product_id": "p-migrated-29560",
+        "action": "include",
+        "display_order": 6,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29554",
+        "product_id": "p-migrated-29554",
+        "action": "include",
+        "display_order": 7,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29549",
+        "product_id": "p-migrated-29549",
+        "action": "include",
+        "display_order": 8,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29544",
+        "product_id": "p-migrated-29544",
+        "action": "include",
+        "display_order": 9,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29539",
+        "product_id": "p-migrated-29539",
+        "action": "include",
+        "display_order": 10,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29534",
+        "product_id": "p-migrated-29534",
+        "action": "include",
+        "display_order": 11,
+        "is_pinned": false
+      }
+    ],
+    "created_at": "2026-10-20T18:56:28.521Z",
+    "updated_at": "2026-10-20T18:56:28.521Z",
+    "views_count": 0,
+    "inquiries_count": 0
+  },
+  {
+    "id": "cat-1792492763620",
+    "title": "Exclusive Wholesale Kurti Lookbook 2026",
+    "subtitle": "Direct factory supply for boutiques & fashion retailers",
+    "public_token": "exclusive-wholesale-kurti-look-bd10wh",
+    "mode": "curated",
+    "membership_type": "dynamic",
+    "customer_id": "cust0000-0000-0000-0000-000000000001",
+    "customer": {
+      "id": "cust0000-0000-0000-0000-000000000001",
+      "business_name": "Radha Krishna Ethnic Hub",
+      "contact_person": "Rajesh Gupta",
+      "phone": "+91 98301 22334",
+      "email": "rajesh@radhakrishna.in",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "segment": "Wholesaler / Large Retailer",
+      "discount_pct": 5,
+      "custom_price_tier": "tier_gold",
+      "notes": "Key account in Barabazar, purchases 500+ pcs monthly",
+      "created_at": "2026-01-10T10:00:00Z"
+    },
+    "status": "active",
+    "expires_at": "2026-11-19T18:57:16.401Z",
+    "access_code": null,
+    "customer_greeting": "Dear Rajesh Gupta (Radha Krishna Ethnic Hub),",
+    "custom_message": "Please review our latest designs below and submit your quantity requirements. Minimum order quantity is 6 pieces per design (standard ratio pack).",
+    "presentation_settings": {
+      "priceDisplayMode": "request",
+      "showPrices": false,
+      "showMoq": true,
+      "showSizes": true,
+      "showStockStatus": true,
+      "showDescription": true,
+      "coverImageUrl": "/images/hero-kesaria-silk.jpg",
+      "vipDiscountPct": 5
+    },
+    "rule_groups": [],
+    "overrides": [
+      {
+        "id": "ov-p-migrated-29589",
+        "product_id": "p-migrated-29589",
+        "action": "include",
+        "display_order": 0,
+        "is_pinned": false
+      },
+      {
+        "id": "ov-p-migrated-29565",
+        "product_id": "p-migrated-29565",
+        "action": "include",
+        "display_order": 1,
+        "is_pinned": false
+      }
+    ],
+    "created_at": "2026-10-20T10:39:23.620Z",
+    "updated_at": "2026-10-20T18:57:16.418Z",
+    "views_count": 5,
+    "inquiries_count": 0,
+    "cover_image_url": "/images/hero-kesaria-silk.jpg",
+    "share_count": 1,
+    "share_history": [
+      {
+        "id": "share-1792522638600-7gz2",
+        "timestamp": "2026-10-20T18:57:18.600Z",
+        "channel": "copy_link"
+      }
+    ]
+  },
+  {
+    "id": "cat-1792492555524",
+    "title": "Exclusive Boutique Preview 2026",
+    "subtitle": "Curated Festive Kurtis",
+    "public_token": "boutique-preview-2026",
+    "mode": "dynamic",
+    "membership_type": "dynamic",
+    "status": "active",
+    "expires_at": null,
+    "access_code": "VIP777",
+    "presentation_settings": {
+      "layout": "grid",
+      "columnsDesktop": 3,
+      "columnsMobile": 1,
+      "showPrices": true,
+      "showMoq": true,
+      "showSizes": true,
+      "showStockStatus": true,
+      "showDescription": true,
+      "imageAspectRatio": "3/4",
+      "allowSelection": true,
+      "allowSizeSelection": true,
+      "allowQuantityBreakdown": true,
+      "allowInquiry": true,
+      "allowCustomerNotes": true,
+      "allowAlternativeRequest": true
+    },
+    "rule_groups": [],
+    "overrides": [],
+    "created_at": "2026-10-20T10:35:55.524Z",
+    "updated_at": "2026-10-20T10:35:55.524Z",
+    "views_count": 12,
+    "inquiries_count": 0
+  }
+]

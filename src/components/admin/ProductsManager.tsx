@@ -36,17 +36,23 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
   });
 
   const handleExportCSV = () => {
-    const headers = ['Code', 'Title', 'Fabric', 'Style', 'Price_INR', 'MOQ', 'Stock_Status', 'Sizes'];
-    const rows = filteredProducts.map(p => [
-      p.code,
-      `"${p.title.replace(/"/g, '""')}"`,
-      p.fabric,
-      p.style_type,
-      p.base_wholesale_price,
-      p.moq,
-      p.stock_status,
-      `"${p.variants?.map(v => v.size).join(',')}"`,
-    ]);
+    const headers = ['Code', 'Title', 'Fabric', 'Style', 'Price_INR', 'MOQ', 'Stock_Status', 'Sizes', 'Primary_Image_URL', 'All_Image_URLs'];
+    const rows = filteredProducts.map(p => {
+      const primaryImg = p.images?.find(i => i.is_primary)?.image_url || p.images?.[0]?.image_url || '';
+      const allImgs = (p.images || []).map(i => i.image_url).join(' ; ');
+      return [
+        p.code,
+        `"${p.title.replace(/"/g, '""')}"`,
+        p.fabric,
+        p.style_type,
+        p.base_wholesale_price,
+        p.moq,
+        p.stock_status,
+        `"${p.variants?.map(v => v.size).join(',')}"`,
+        `"${primaryImg}"`,
+        `"${allImgs}"`,
+      ];
+    });
 
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
@@ -58,9 +64,19 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
     document.body.removeChild(link);
   };
 
-  const handleDelete = (id: string) => {
-    if (!confirm('Are you sure you want to remove this product from the database?')) return;
-    setProducts(prev => prev.filter(p => p.id !== id));
+  const handleDelete = async (id: string, title?: string) => {
+    if (!confirm(`Are you sure you want to permanently remove design ${title ? `"${title}"` : ''} from the database? This cannot be undone.`)) return;
+    try {
+      const res = await fetch('/api/products/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) throw new Error('Failed to delete product');
+      setProducts(prev => prev.filter(p => p.id !== id));
+    } catch (err: any) {
+      alert(err.message || 'Error deleting product');
+    }
   };
 
   return (
@@ -159,12 +175,25 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     <div>{prod.fabric}</div>
                     <div className="text-[10px] text-[#78716C]">{prod.style_type}</div>
                   </td>
-                  <td className="py-3 px-4 font-bold text-[#1C1917]">
-                    {formatINR(prod.base_wholesale_price)}
+                  <td className="py-3 px-4">
+                    {prod.price_on_enquiry !== false && prod.price_on_request !== false ? (
+                      <div>
+                        <span className="text-xs font-bold text-[#722F37] block">Quote on Request</span>
+                        <span className="text-[9px] font-mono bg-amber-50 text-amber-800 border border-amber-200 px-1.5 py-0.2 rounded font-semibold inline-block mt-0.5">
+                          Enquiry Only
+                        </span>
+                      </div>
+                    ) : prod.base_wholesale_price ? (
+                      <div className="font-bold text-[#1C1917]">
+                        {formatINR(prod.base_wholesale_price)}
+                      </div>
+                    ) : (
+                      <span className="text-xs text-zinc-500 font-semibold">Quote on Request</span>
+                    )}
                   </td>
                   <td className="py-3 px-4">
-                    <span className="bg-[#FAF7F2] border px-2 py-0.5 rounded font-mono font-semibold">
-                      {prod.moq} pcs
+                    <span className="bg-[#FAF7F2] border px-2 py-0.5 rounded font-mono font-semibold text-xs">
+                      {prod.moq ? `${prod.moq} pcs` : 'On Request'}
                     </span>
                   </td>
                   <td className="py-3 px-4">
@@ -185,7 +214,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
                       <button
                         type="button"
-                        onClick={() => handleDelete(prod.id)}
+                        onClick={() => handleDelete(prod.id, prod.title)}
                         className="p-1.5 rounded hover:bg-red-50 text-[#78716C] hover:text-red-600"
                         title="Delete product"
                       >

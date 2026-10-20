@@ -1,32 +1,33 @@
 import React from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { ContactInquiryForm } from '@/components/contact/ContactInquiryForm';
 import { MapPin, Phone, Mail, Clock, MessageSquare, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Showroom & Wholesale Contact | Bhavya Fashions',
+  title: 'Showroom & Wholesale Contact | Bhavya Fashions Kolkata',
   description: 'Get in touch with Bhavya Fashions wholesale team. Visit our Barabazar (Kolkata) showroom or connect on WhatsApp for current catalogs and price lists.',
 };
 
 export default function ContactPage() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830122334';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2]">
       <Navbar />
 
-      <main className="flex-1 py-14 lg:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <main className="flex-1 py-12 lg:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {/* Header */}
           <div className="text-center space-y-3 max-w-2xl mx-auto">
             <span className="text-xs font-mono uppercase tracking-widest text-[#722F37] font-bold">
-              B2B Trade Assistance
+              B2B Trade Assistance & Showroom
             </span>
             <h1 className="font-serif-luxury text-4xl sm:text-5xl font-bold text-[#1C1917]">
-              Contact Wholesale Showroom
+              Contact Bhavya Fashions
             </h1>
             <p className="text-sm text-[#57534E] leading-relaxed">
-              We welcome fashion retailers, resellers, and boutique owners. Connect with our dedicated sales desk for bulk pricing, customized lookbooks, or sample evaluations.
+              We welcome apparel retailers, resellers, and boutique owners across India. Connect with our dedicated sales desk for bulk catalog dispatches, wholesale quotations, or sample evaluations.
             </p>
           </div>
 
@@ -37,13 +38,13 @@ export default function ContactPage() {
                 <MapPin className="w-5 h-5" />
               </div>
               <h3 className="font-serif-luxury text-base font-bold text-[#1C1917]">
-                Kolkata Showroom & Dispatch
+                Kolkata Registered Showroom
               </h3>
               <p className="text-xs text-[#78716C] leading-relaxed">
-                Shiv Thakur Lane / Cross Street area, Barabazar Market, Kolkata, West Bengal — 700007
+                5, Shiv Thakur Lane, Kalakar St, near R.K The Bed Cover Studio, Barabazar Market, Kolkata, West Bengal — 700007
               </p>
               <span className="text-[11px] text-[#722F37] font-semibold block pt-1">
-                Walk-in Sample Room Open
+                Walk-in Sample Room Open for Retailers
               </span>
             </div>
 
@@ -70,12 +71,17 @@ export default function ContactPage() {
                 Direct Wholesale Helpline
               </h3>
               <div className="space-y-1 text-xs text-[#78716C]">
-                <p>Phone: +91 98301 22334 / +91 98205 66778</p>
-                <p>WhatsApp: +91 98301 22334</p>
+                <p>Phone: <a href="tel:+919830729210" className="hover:underline font-medium text-[#1C1917]">+91 98307 29210</a></p>
+                <p>WhatsApp: <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:underline font-medium text-[#25D366]">+91 98307 29210</a></p>
                 <p>Email: wholesale@bhavyafashions.com</p>
-                <p>Hours: Mon – Sat: 10:30 AM to 7:30 PM</p>
+                <p>Hours: Mon – Sat: 10:30 AM to 7:30 PM IST</p>
               </div>
             </div>
+          </div>
+
+          {/* Interactive B2B Website Inquiry Form */}
+          <div className="max-w-2xl mx-auto">
+            <ContactInquiryForm />
           </div>
 
           {/* Quick Direct WhatsApp Card */}
@@ -96,7 +102,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-[#25D366] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md shrink-0"
             >
               <Phone className="w-4 h-4" />
-              <span>Connect on WhatsApp Now</span>
+              <span>Connect on WhatsApp (+91 98307 29210)</span>
             </a>
           </div>
 

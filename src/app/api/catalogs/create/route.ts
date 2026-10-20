@@ -4,8 +4,10 @@ import { saveCatalog } from '@/lib/repository/catalogs';
 import { Catalog } from '@/types';
 
 const CatalogCreateSchema = z.object({
+  id: z.string().optional(),
   title: z.string().min(2, 'Catalog title is required'),
   subtitle: z.string().optional(),
+  public_token: z.string().optional(),
   mode: z.enum(['dynamic', 'curated', 'hybrid']),
   membership_type: z.enum(['dynamic', 'fixed']).default('dynamic'),
   customer_id: z.string().optional(),
@@ -13,6 +15,7 @@ const CatalogCreateSchema = z.object({
   custom_message: z.string().optional(),
   expires_at: z.string().optional().nullable(),
   access_code: z.string().optional().nullable(),
+  cover_image_url: z.string().optional().nullable(),
   presentation_settings: z.record(z.string(), z.any()),
   rule_groups: z.array(z.any()).optional(),
   overrides: z.array(z.any()).optional(),
@@ -31,18 +34,24 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsed.data;
-    // Generate secure, clean slug token (e.g. bhavya-wholesale-8k2p)
-    const randomSuffix = Math.random().toString(36).substring(2, 8);
-    const slugBase = data.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)+/g, '')
-      .substring(0, 30);
-    const token = `${slugBase || 'catalog'}-${randomSuffix}`;
+    // Generate or sanitize custom slug token
+    let token = data.public_token
+      ? data.public_token.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/(^-|-$)+/g, '')
+      : '';
+    if (!token) {
+      const randomSuffix = Math.random().toString(36).substring(2, 8);
+      const slugBase = data.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)+/g, '')
+        .substring(0, 30);
+      token = `${slugBase || 'catalog'}-${randomSuffix}`;
+    }
 
     const saved = await saveCatalog({
       ...data,
       public_token: token,
+      access_code: data.access_code?.trim() || null,
       status: 'active',
       presentation_settings: data.presentation_settings as any,
     });
@@ -55,6 +64,7 @@ export async function POST(req: NextRequest) {
       catalog: saved,
       public_token: saved.public_token,
       shareableUrl,
+      access_code: saved.access_code,
     });
   } catch (error: any) {
     return NextResponse.json(

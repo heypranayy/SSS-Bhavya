@@ -60,3 +60,104 @@ body {
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom, 1rem);
 }
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 3D Perspective and Card Hover */
+.perspective-800 {
+  perspective: 800px;
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Luxury subtle gold glow */
+.glow-gold {
+  box-shadow: 0 0 25px -5px rgba(197, 160, 89, 0.35);
+}
+
+.glow-wine {
+  box-shadow: 0 0 30px -5px rgba(114, 47, 55, 0.45);
+}
+
+/* Luxury Dark Mode Palette */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #120D0E !important;
+  color: #F5EFEB !important;
+}
+
+html.dark .bg-white {
+  background-color: #1A1416 !important;
+  color: #F5EFEB;
+}
+
+/* Hide Next.js Development Indicator Badge & Dev Overlay Icons */
+nextjs-portal,
+[data-nextjs-dev-indicator],
+[data-nextjs-toast],
+div[data-nextjs-route-announcer],
+#next-devtools,
+button[data-nextjs-dev-indicator],
+[data-nextjs-dev-tools-button],
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+
