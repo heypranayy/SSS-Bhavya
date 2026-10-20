@@ -1,5 +1,15 @@
 [
   {
+    "id": "col-1792523817026",
+    "name": "Festive Test Collection 2026",
+    "slug": "festive-test-2026",
+    "description": "Handcrafted Kurti sets for festive season",
+    "image_url": "/images/cat-3piece.jpg",
+    "is_featured": true,
+    "display_order": 17,
+    "product_count": 0
+  },
+  {
     "id": "col-1792522380878",
     "name": "Festive Test Collection 2026",
     "slug": "festive-test-2026",
