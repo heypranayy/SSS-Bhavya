@@ -23,6 +23,8 @@ const InquirySchema = z.object({
   city: z.string().optional(),
   state: z.string().optional(),
   message: z.string().optional(),
+  captcha_verified: z.boolean().optional(),
+  captcha_answer: z.string().optional(),
   items: z.array(
     z.object({
       product_id: z.string().min(1),

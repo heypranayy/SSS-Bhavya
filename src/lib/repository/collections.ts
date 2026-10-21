@@ -36,23 +36,55 @@ function savePersistedCollections(collections: Collection[]): void {
   }
 }
 
+function getDeletedCollectionsFilePath(): string {
+  return path.join(process.cwd(), 'src', 'lib', 'data', 'deleted-collections.json');
+}
+
+function loadDeletedCollectionIds(): Set<string> {
+  try {
+    const filePath = getDeletedCollectionsFilePath();
+    if (fs.existsSync(filePath)) {
+      const data = fs.readFileSync(filePath, 'utf-8');
+      if (data.trim()) {
+        const arr = JSON.parse(data);
+        if (Array.isArray(arr)) return new Set(arr);
+      }
+    }
+  } catch {}
+  return new Set();
+}
+
+function saveDeletedCollectionIds(ids: Set<string>): void {
+  try {
+    const filePath = getDeletedCollectionsFilePath();
+    fs.writeFileSync(filePath, JSON.stringify(Array.from(ids), null, 2), 'utf-8');
+  } catch {}
+}
+
 function isSupabaseConfigured(): boolean {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   return Boolean(url && !url.includes('placeholder') && !url.includes('your-project-id'));
 }
 
 export async function getAllCollections(): Promise<Collection[]> {
+  const deletedIds = loadDeletedCollectionIds();
   const persisted = loadPersistedCollections();
   const mergedMap = new Map<string, Collection>();
 
   for (const c of SEED_COLLECTIONS) {
-    mergedMap.set(c.id, c);
+    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
+      mergedMap.set(c.id, c);
+    }
   }
   for (const c of inMemoryCollections) {
-    mergedMap.set(c.id, c);
+    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
+      mergedMap.set(c.id, c);
+    }
   }
   for (const c of persisted) {
-    mergedMap.set(c.id, c);
+    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
+      mergedMap.set(c.id, c);
+    }
   }
 
   if (isFirebaseConfigured()) {
@@ -177,10 +209,14 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
 }
 
 export async function deleteCollection(id: string): Promise<boolean> {
+  const deletedIds = loadDeletedCollectionIds();
+  deletedIds.add(id);
+  saveDeletedCollectionIds(deletedIds);
+
   const persisted = loadPersistedCollections();
-  const next = persisted.filter(c => c.id !== id);
+  const next = persisted.filter(c => c.id !== id && c.slug !== id);
   savePersistedCollections(next);
-  inMemoryCollections = inMemoryCollections.filter(c => c.id !== id);
+  inMemoryCollections = inMemoryCollections.filter(c => c.id !== id && c.slug !== id);
 
   if (isFirebaseConfigured()) {
     try {

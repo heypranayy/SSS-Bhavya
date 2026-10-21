@@ -23,6 +23,7 @@ import {
   PhoneCall,
   ArrowUpRight,
   BookOpen,
+  MapPin,
 } from 'lucide-react';
 
 export default async function HomePage() {
@@ -230,7 +231,44 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* 10. Wholesale inquiry and WhatsApp CTA */}
+        {/* 10. Contact Us & Showrooms Direct Callout */}
+        <section className="py-14 bg-linear-to-r from-[#1C1215] via-[#2A171D] to-[#1C1215] text-white border-t border-b border-[#C5A059]/30">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+              <div className="space-y-3 max-w-2xl">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#C5A059] font-bold">
+                  ★ All-India Boutique Supply • Central Distribution Showroom
+                </span>
+                <h2 className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold">
+                  Visit Our Barabazar Showroom or Contact Our Wholesale Desk
+                </h2>
+                <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+                  Walk-in wholesale sample viewing for boutique owners at Kalakar Street, Barabazar, Kolkata. Direct loom parcels dispatched nationwide from Surat.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3 flex-wrap">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#C5A059] text-[#1C1215] text-xs font-bold uppercase tracking-wider hover:bg-[#d6b36e] shadow-lg transition-all hover:scale-105"
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Contact Us &amp; View Showroom</span>
+                </Link>
+
+                <Link
+                  href="/wholesale"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 text-white text-xs font-bold uppercase tracking-wider hover:bg-white/20 border border-white/20 transition-all"
+                >
+                  <span>Explore Catalog</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 11. Wholesale inquiry and WhatsApp CTA */}
         <WholesaleRoadmap />
       </main>
 

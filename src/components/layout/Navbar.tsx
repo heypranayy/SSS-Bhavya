@@ -195,7 +195,7 @@ export function Navbar() {
               href="/contact"
               className="text-sm font-medium tracking-wide text-[#FAF7F2] hover:text-[#C5A059] transition-colors py-1"
             >
-              Showrooms & Dispatch
+              Contact Us & Showroom
             </Link>
 
             {/* Quick Share / Catalog Button */}
@@ -347,7 +347,7 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-base font-medium text-white hover:text-[#C5A059] transition-colors"
                 >
-                  Barabazar Showroom & Transport
+                  Contact Us &amp; Showroom
                 </Link>
                 <Link
                   href="/admin"

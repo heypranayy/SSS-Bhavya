@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, PhoneCall, CheckCircle2, PackageCheck, FileSpreadsheet, Truck } from 'lucide-react';
+import Link from 'next/link';
+import { Sparkles, PhoneCall, CheckCircle2, PackageCheck, FileSpreadsheet, Truck, MapPin } from 'lucide-react';
 
 export function WholesaleRoadmap() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
@@ -79,22 +80,32 @@ export function WholesaleRoadmap() {
             })}
           </div>
 
-          {/* Bottom Bar with Direct WhatsApp Action */}
+          {/* Bottom Bar with Direct Actions */}
           <div className="mt-12 pt-8 border-t border-[#E7E0D5] flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
             <div className="text-xs text-zinc-600 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Barabazar (Kolkata) & Surat Warehouses • Trusted by 5,000+ Stores</span>
+              <span>Barabazar (Kolkata) &amp; Surat Warehouses • Trusted by 5,000+ Stores</span>
             </div>
 
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello Bhavya Fashions, I want to register as a retail boutique partner and receive wholesale pricing.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] shadow-md transition-all hover:scale-102"
-            >
-              <PhoneCall className="w-4 h-4" />
-              <span>Connect with Sales Desk</span>
-            </a>
+            <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#E7E0D5] text-zinc-800 text-xs font-bold uppercase tracking-wider hover:bg-[#FAF7F2] shadow-xs transition-all hover:border-[#722F37]"
+              >
+                <MapPin className="w-4 h-4 text-[#722F37]" />
+                <span>Visit Showroom &amp; Contact Us</span>
+              </Link>
+
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello Bhavya Fashions, I want to register as a retail boutique partner and receive wholesale pricing.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] shadow-md transition-all hover:scale-102"
+              >
+                <PhoneCall className="w-4 h-4" />
+                <span>Connect on WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

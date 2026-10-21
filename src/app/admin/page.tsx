@@ -63,22 +63,34 @@ export default async function AdminDashboardPage() {
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4">
-          <div className="w-12 h-12 rounded-lg bg-[#722F37]/10 text-[#722F37] flex items-center justify-center shrink-0">
+        <Link
+          href="/admin/products"
+          className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4 hover:border-[#722F37] hover:shadow-md transition-all cursor-pointer group"
+          title="Manage Product Database"
+        >
+          <div className="w-12 h-12 rounded-lg bg-[#722F37]/10 text-[#722F37] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
             <Layers className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] text-[#78716C] uppercase font-semibold block">Active Products</span>
+            <span className="text-[11px] text-[#78716C] uppercase font-semibold block group-hover:text-[#722F37] transition-colors">
+              Active Products
+            </span>
             <span className="text-2xl font-extrabold text-[#1C1917]">{activeProducts}</span>
           </div>
-        </div>
+        </Link>
 
-        <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4">
-          <div className="w-12 h-12 rounded-lg bg-[#C5A059]/15 text-[#9E7D3B] flex items-center justify-center shrink-0">
+        <Link
+          href="/admin/catalogs"
+          className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4 hover:border-[#9E7D3B] hover:shadow-md transition-all cursor-pointer group"
+          title="Manage Wholesale Catalogs"
+        >
+          <div className="w-12 h-12 rounded-lg bg-[#C5A059]/15 text-[#9E7D3B] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
             <BookOpen className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] text-[#78716C] uppercase font-semibold block">Active Catalogs</span>
+            <span className="text-[11px] text-[#78716C] uppercase font-semibold block group-hover:text-[#9E7D3B] transition-colors">
+              Active Catalogs
+            </span>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-extrabold text-[#1C1917]">{activeCatalogs}</span>
               {expiredCatalogs > 0 && (
@@ -86,14 +98,20 @@ export default async function AdminDashboardPage() {
               )}
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4">
-          <div className="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+        <Link
+          href="/admin/inquiries"
+          className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4 hover:border-emerald-600 hover:shadow-md transition-all cursor-pointer group"
+          title="View All Wholesale Inquiries"
+        >
+          <div className="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
             <MessageSquare className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] text-[#78716C] uppercase font-semibold block">Total Inquiries</span>
+            <span className="text-[11px] text-[#78716C] uppercase font-semibold block group-hover:text-emerald-700 transition-colors">
+              Total Inquiries
+            </span>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-extrabold text-[#1C1917]">{inquiries.length}</span>
               {newInquiries > 0 && (
@@ -103,17 +121,23 @@ export default async function AdminDashboardPage() {
               )}
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4">
-          <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+        <Link
+          href="/admin/catalogs"
+          className="bg-white p-5 rounded-xl border border-[#E7E0D5] shadow-xs flex items-center gap-4 hover:border-blue-600 hover:shadow-md transition-all cursor-pointer group"
+          title="View Catalog Analytics"
+        >
+          <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
             <Eye className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] text-[#78716C] uppercase font-semibold block">Catalog Views</span>
+            <span className="text-[11px] text-[#78716C] uppercase font-semibold block group-hover:text-blue-700 transition-colors">
+              Catalog Views
+            </span>
             <span className="text-2xl font-extrabold text-[#1C1917]">{totalViews}</span>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Two Column Layout: Recent Inquiries & Active Catalogs */}
@@ -139,10 +163,15 @@ export default async function AdminDashboardPage() {
               const totalValue = inq.items.reduce((s, i) => s + i.indicative_subtotal, 0);
 
               return (
-                <div key={inq.id} className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <Link
+                  key={inq.id}
+                  href="/admin/inquiries"
+                  className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#FAF7F2] px-3 -mx-3 rounded-xl transition-colors cursor-pointer group"
+                  title="View inquiry details"
+                >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-[#722F37]">
+                      <span className="font-mono text-xs font-bold text-[#722F37] group-hover:underline">
                         {inq.reference_no}
                       </span>
                       <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
@@ -155,7 +184,7 @@ export default async function AdminDashboardPage() {
                       </span>
                     </div>
 
-                    <h4 className="font-semibold text-xs text-[#1C1917] mt-1">
+                    <h4 className="font-semibold text-xs text-[#1C1917] mt-1 group-hover:text-[#722F37] transition-colors">
                       {inq.business_name} ({inq.buyer_name})
                     </h4>
                     <p className="text-[11px] text-[#78716C]">
@@ -171,7 +200,7 @@ export default async function AdminDashboardPage() {
                       {formatINR(totalValue)}
                     </span>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -180,17 +209,29 @@ export default async function AdminDashboardPage() {
         {/* Quick Launch & Active Catalogs */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white rounded-2xl border border-[#E7E0D5] p-6 shadow-xs space-y-4">
-            <h2 className="font-serif-luxury text-lg font-bold text-[#1C1917] pb-3 border-b border-[#F3ECE2]">
-              Active Private Catalogs
-            </h2>
+            <div className="flex items-center justify-between pb-3 border-b border-[#F3ECE2]">
+              <h2 className="font-serif-luxury text-lg font-bold text-[#1C1917]">
+                Active Private Catalogs
+              </h2>
+              <Link
+                href="/admin/catalogs"
+                className="text-xs font-bold text-[#722F37] uppercase tracking-wider hover:underline flex items-center gap-1"
+              >
+                <span>View All</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
 
             <div className="space-y-3">
               {catalogs.slice(0, 4).map((cat) => (
-                <div key={cat.id} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#E7E0D5] space-y-1.5">
+                <div key={cat.id} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#E7E0D5] space-y-1.5 hover:border-[#C5A059] transition-all">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-[#1C1917] line-clamp-1">
+                    <Link
+                      href="/admin/catalogs"
+                      className="font-bold text-xs text-[#1C1917] line-clamp-1 hover:text-[#722F37]"
+                    >
                       {cat.title}
-                    </span>
+                    </Link>
                     <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">
                       {cat.mode}
                     </span>
@@ -203,9 +244,17 @@ export default async function AdminDashboardPage() {
                     <Link
                       href={`/catalog/${cat.public_token}`}
                       target="_blank"
-                      className="text-[11px] text-[#722F37] font-semibold hover:underline"
+                      className="text-[11px] text-[#722F37] font-semibold hover:underline inline-flex items-center gap-1"
                     >
-                      Open Lookbook →
+                      <span>Open Lookbook</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+
+                    <Link
+                      href="/admin/catalogs"
+                      className="text-[10px] text-zinc-500 hover:text-zinc-900 font-medium"
+                    >
+                      Settings →
                     </Link>
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Catalog, CatalogProductView } from '@/types';
 import { SelectedItemState } from './DesignSelector';
 import { formatINR } from '@/lib/utils';
+import { EnquiryCaptcha } from '@/components/ui/EnquiryCaptcha';
 import { X, Send, CheckCircle2, MessageCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 interface InquiryModalProps {
@@ -30,6 +31,7 @@ export function InquiryModal({
   const [city, setCity] = useState(catalog.customer?.city || '');
   const [state, setState] = useState(catalog.customer?.state || '');
   const [message, setMessage] = useState('');
+  const [captchaValid, setCaptchaValid] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
@@ -55,6 +57,11 @@ export function InquiryModal({
 
     if (!buyerName.trim() || !businessName.trim() || !phone.trim()) {
       setErrorMsg('Please fill in your name, business name, and WhatsApp phone number.');
+      return;
+    }
+
+    if (!captchaValid) {
+      setErrorMsg('Please complete the anti-spam security verification check.');
       return;
     }
 
@@ -311,11 +318,14 @@ export function InquiryModal({
                 />
               </div>
 
+              {/* Anti-Spam Security Verification */}
+              <EnquiryCaptcha onVerify={setCaptchaValid} />
+
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 px-4 rounded-lg bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                  disabled={isSubmitting || !captchaValid}
+                  className="w-full py-3 px-4 rounded-lg bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>

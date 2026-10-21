@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Loader2, PhoneCall } from 'lucide-react';
+import { EnquiryCaptcha } from '@/components/ui/EnquiryCaptcha';
 
 export function ContactInquiryForm() {
   const [buyerName, setBuyerName] = useState('');
@@ -11,6 +12,7 @@ export function ContactInquiryForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [message, setMessage] = useState('');
+  const [captchaValid, setCaptchaValid] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
@@ -21,6 +23,11 @@ export function ContactInquiryForm() {
 
     if (!buyerName.trim() || !businessName.trim() || !phone.trim()) {
       setErrorMsg('Please enter your contact name, boutique/shop name, and WhatsApp phone number.');
+      return;
+    }
+
+    if (!captchaValid) {
+      setErrorMsg('Please complete the anti-spam security verification check.');
       return;
     }
 
@@ -227,10 +234,13 @@ export function ContactInquiryForm() {
           />
         </div>
 
+        {/* Security Check */}
+        <EnquiryCaptcha onVerify={setCaptchaValid} />
+
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="w-full py-3.5 px-4 rounded-xl bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+          disabled={isSubmitting || !captchaValid}
+          className="w-full py-3.5 px-4 rounded-xl bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {isSubmitting ? (
             <>

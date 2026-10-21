@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Product } from '@/types';
 import { getProductFallbackImage } from '@/lib/utils';
+import { EnquiryCaptcha } from '@/components/ui/EnquiryCaptcha';
 import { X, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, PhoneCall } from 'lucide-react';
 
 interface ProductEnquiryModalProps {
@@ -31,6 +32,7 @@ export function ProductEnquiryModal({
   const [selectedVariant, setSelectedVariant] = useState(defaultSize || product.variants?.[0]?.size || 'Standard Set');
   const [quantity, setQuantity] = useState(product.moq || 6);
   const [message, setMessage] = useState('');
+  const [captchaValid, setCaptchaValid] = useState(false);
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -50,6 +52,11 @@ export function ProductEnquiryModal({
     const cleanPhone = phone.trim().replace(/[^0-9+]/g, '');
     if (!cleanPhone || cleanPhone.length < 8) {
       setError('Please provide a valid WhatsApp / contact number.');
+      return;
+    }
+
+    if (!captchaValid) {
+      setError('Please complete the anti-spam security verification check below.');
       return;
     }
 
@@ -317,11 +324,14 @@ export function ProductEnquiryModal({
                 />
               </div>
 
+              {/* Anti-Spam Verification */}
+              <EnquiryCaptcha onVerify={setCaptchaValid} />
+
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={submitting}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#722F37] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#58111A] transition-all shadow-md disabled:opacity-50 cursor-pointer"
+                  disabled={submitting || !captchaValid}
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#722F37] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#58111A] transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {submitting ? (
                     <>

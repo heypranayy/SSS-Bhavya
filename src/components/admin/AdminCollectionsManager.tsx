@@ -12,6 +12,7 @@ import {
   X,
   ExternalLink,
   Loader2,
+  Trash2,
 } from 'lucide-react';
 
 interface AdminCollectionsManagerProps {
@@ -101,6 +102,22 @@ export function AdminCollectionsManager({
     }
   };
 
+  const handleDeleteCollection = async (id: string, colName: string) => {
+    if (!confirm(`Are you sure you want to permanently delete collection "${colName}"? Products associated with this series will remain in inventory.`)) return;
+
+    try {
+      const res = await fetch('/api/collections/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) throw new Error('Failed to delete collection');
+      setCollections(prev => prev.filter(c => c.id !== id));
+    } catch (err: any) {
+      alert(err.message || 'Error deleting collection');
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Top Header */}
@@ -173,14 +190,26 @@ export function AdminCollectionsManager({
                     <strong className="text-[#722F37]">{count || col.product_count || 4}</strong> Designs
                   </span>
 
-                  <button
-                    type="button"
-                    onClick={() => openEditModal(col)}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#FAF7F2] border border-[#E7E0D5] text-[#1C1917] hover:bg-[#EFE9E0] font-semibold text-xs"
-                  >
-                    <Edit2 className="w-3.5 h-3.5 text-[#722F37]" />
-                    <span>Edit</span>
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openEditModal(col)}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#FAF7F2] border border-[#E7E0D5] text-[#1C1917] hover:bg-[#EFE9E0] font-semibold text-xs transition-colors"
+                      title="Edit Collection"
+                    >
+                      <Edit2 className="w-3.5 h-3.5 text-[#722F37]" />
+                      <span>Edit</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteCollection(col.id, col.name)}
+                      className="p-1.5 rounded-lg bg-red-50 border border-red-200 text-red-600 hover:bg-red-100 transition-colors"
+                      title="Delete Collection"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
