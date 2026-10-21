@@ -1,7 +1,7 @@
 import { Inquiry, InquiryStatus } from '@/types';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 let inMemoryInquiries: Inquiry[] = [
   {
@@ -97,20 +97,27 @@ function isSupabaseConfigured(): boolean {
 }
 
 export async function getAllInquiries(): Promise<Inquiry[]> {
+  const mergedMap = new Map<string, Inquiry>();
+
+  for (const inq of inMemoryInquiries) {
+    mergedMap.set(inq.id, inq);
+  }
+
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
         const snap = await getDocs(collection(db, 'inquiries'));
-        if (!snap.empty) {
-          const list: Inquiry[] = [];
-          snap.forEach((d) => list.push(d.data() as Inquiry));
-          if (list.length > 0) {
-            return list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        snap.forEach((d) => {
+          const item = d.data() as Inquiry;
+          if (item && item.id) {
+            mergedMap.set(item.id, item);
           }
-        }
+        });
       }
-    } catch {}
+    } catch (err) {
+      console.warn('Failed to load inquiries from Firestore:', err);
+    }
   }
 
   if (isSupabaseConfigured()) {
@@ -124,11 +131,15 @@ export async function getAllInquiries(): Promise<Inquiry[]> {
         `)
         .order('created_at', { ascending: false });
 
-      if (!error && data && data.length > 0) return data;
+      if (!error && data && data.length > 0) {
+        data.forEach((item: Inquiry) => mergedMap.set(item.id, item));
+      }
     } catch {}
   }
 
-  return [...inMemoryInquiries];
+  const all = Array.from(mergedMap.values());
+  all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+  return all;
 }
 
 export async function getInquiryById(id: string): Promise<Inquiry | null> {
@@ -162,7 +173,8 @@ export async function createInquiry(data: Omit<Inquiry, 'id' | 'reference_no' | 
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'inquiries', newInquiry.id), newInquiry, { merge: true });
+        const payload = sanitizeForFirestore(newInquiry);
+        await setDoc(doc(db, 'inquiries', newInquiry.id), payload, { merge: true });
       }
     } catch (err) {
       console.error('Failed to save inquiry to Firebase:', err);
@@ -194,51 +206,86 @@ export async function createInquiry(data: Omit<Inquiry, 'id' | 'reference_no' | 
 }
 
 export async function updateInquiryStatus(id: string, status: InquiryStatus, internalNotes?: string): Promise<boolean> {
+  if (!id || typeof id !== 'string' || !id.trim()) return false;
   const inquiry = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
+  const docId = inquiry?.id || id;
+
   if (inquiry) {
     inquiry.status = status;
     if (internalNotes !== undefined) {
       inquiry.internal_notes = internalNotes;
     }
     inquiry.updated_at = new Date().toISOString();
-
-    if (isFirebaseConfigured()) {
-      try {
-        const db = getFirebaseDb();
-        if (db) {
-          await setDoc(doc(db, 'inquiries', inquiry.id), {
-            status,
-            internal_notes: inquiry.internal_notes,
-            updated_at: inquiry.updated_at,
-          }, { merge: true });
-        }
-      } catch {}
-    }
-
-    return true;
   }
-  return false;
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db && docId) {
+        const updatePayload: Record<string, any> = {
+          status,
+          updated_at: new Date().toISOString(),
+        };
+        if (internalNotes !== undefined) {
+          updatePayload.internal_notes = internalNotes;
+        }
+        await setDoc(doc(db, 'inquiries', docId), sanitizeForFirestore(updatePayload), { merge: true });
+      }
+    } catch (err) {
+      console.error('Failed to update inquiry in Firebase:', err);
+    }
+  }
+
+  return true;
 }
 
 export async function assignInquiryStaff(id: string, staffName: string): Promise<boolean> {
+  if (!id || typeof id !== 'string' || !id.trim()) return false;
   const inquiry = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
+  const docId = inquiry?.id || id;
+
   if (inquiry) {
     inquiry.assigned_staff = staffName;
     inquiry.updated_at = new Date().toISOString();
-
-    if (isFirebaseConfigured()) {
-      try {
-        const db = getFirebaseDb();
-        if (db) {
-          await setDoc(doc(db, 'inquiries', inquiry.id), {
-            assigned_staff: staffName,
-            updated_at: inquiry.updated_at,
-          }, { merge: true });
-        }
-      } catch {}
-    }
-
-    return true;
   }
-  return false;
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db && docId) {
+        await setDoc(doc(db, 'inquiries', docId), sanitizeForFirestore({
+          assigned_staff: staffName,
+          updated_at: new Date().toISOString(),
+        }), { merge: true });
+      }
+    } catch (err) {
+      console.error('Failed to assign staff in Firebase:', err);
+    }
+  }
+
+  return true;
+}
+
+export async function deleteInquiry(id: string): Promise<boolean> {
+  if (!id || typeof id !== 'string' || !id.trim()) return false;
+  const target = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
+  const docId = target?.id || id;
+
+  inMemoryInquiries = inMemoryInquiries.filter(i => i.id !== id && i.reference_no !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db && docId) {
+        await deleteDoc(doc(db, 'inquiries', docId));
+        if (target && target.reference_no && target.reference_no !== docId) {
+          try { await deleteDoc(doc(db, 'inquiries', target.reference_no)); } catch {}
+        }
+      }
+    } catch (err) {
+      console.error('Failed to delete inquiry from Firebase:', err);
+    }
+  }
+
+  return true;
 }

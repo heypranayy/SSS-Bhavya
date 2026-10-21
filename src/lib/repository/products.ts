@@ -3,7 +3,7 @@ import path from 'path';
 import { Product, Category, Collection } from '@/types';
 import { SEED_CATEGORIES, SEED_COLLECTIONS, SEED_PRODUCTS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 // In-memory product cache for seamless offline / zero-setup mode
@@ -72,37 +72,38 @@ export async function getAllProducts(): Promise<Product[]> {
   const persisted = loadPersistedProducts();
   const mergedMap = new Map<string, Product>();
 
+  // 1. Seed products
   for (const p of SEED_PRODUCTS) {
     if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
       mergedMap.set(p.id, p);
     }
   }
+
+  // 2. In-memory products
   for (const p of inMemoryProducts) {
     if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
       mergedMap.set(p.id, p);
     }
   }
+
+  // 3. Persisted custom products
   for (const p of persisted) {
     if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
       mergedMap.set(p.id, p);
     }
   }
 
-  const all = Array.from(mergedMap.values());
-  inMemoryProducts = all;
-
-  // 1. Primary: Cloud Firestore
+  // 4. Primary: Cloud Firestore
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
         const snap = await getDocs(collection(db, 'products'));
         if (!snap.empty) {
-          const fbProducts: Product[] = [];
           snap.forEach((docSnap) => {
             const data = docSnap.data() as Product;
-            if (data.is_active !== false && !deletedIds.has(data.id) && !deletedIds.has(data.code)) {
-              fbProducts.push({
+            if (data && data.id && data.is_active !== false && !deletedIds.has(data.id) && !deletedIds.has(data.code)) {
+              mergedMap.set(data.id, {
                 ...data,
                 price_on_enquiry: data.price_on_enquiry ?? true,
                 price_on_request: data.price_on_enquiry ?? true,
@@ -110,9 +111,6 @@ export async function getAllProducts(): Promise<Product[]> {
               });
             }
           });
-          if (fbProducts.length > 0) {
-            return fbProducts;
-          }
         }
       }
     } catch (err) {
@@ -120,7 +118,7 @@ export async function getAllProducts(): Promise<Product[]> {
     }
   }
 
-  // 2. Secondary: Supabase fallback
+  // 5. Supabase fallback
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -136,18 +134,23 @@ export async function getAllProducts(): Promise<Product[]> {
         .order('created_at', { ascending: false });
 
       if (!error && data && data.length > 0) {
-        return data.map((p: any) => ({
-          ...p,
-          price_display_mode: p.price_display_mode || 'request',
-          images: p.images || [],
-          variants: p.variants || [],
-          collections: p.collections?.map((c: any) => c.collection) || [],
-        }));
+        data.forEach((p: any) => {
+          if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+            mergedMap.set(p.id, {
+              ...p,
+              price_display_mode: p.price_display_mode || 'request',
+              images: p.images || [],
+              variants: p.variants || [],
+              collections: p.collections?.map((c: any) => c.collection) || [],
+            });
+          }
+        });
       }
-    } catch {
-      // Fallback to in-memory on error
-    }
+    } catch {}
   }
+
+  const all = Array.from(mergedMap.values());
+  inMemoryProducts = all;
 
   return all.map((p) => ({
     ...p,
@@ -159,12 +162,12 @@ export async function getAllProducts(): Promise<Product[]> {
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   const products = await getAllProducts();
-  return products.find(p => p.slug === slug && p.is_active) || null;
+  return products.find(p => (p.slug === slug || p.id === slug || p.code === slug) && p.is_active) || null;
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
   const products = await getAllProducts();
-  return products.find(p => p.id === id) || null;
+  return products.find(p => p.id === id || p.code === id) || null;
 }
 
 export async function getCategories(): Promise<Category[]> {
@@ -218,7 +221,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     }
 
     // Update if already persisted
-    const pIdx = persisted.findIndex(p => p.id === productData.id);
+    const pIdx = persisted.findIndex(p => p.id === productData.id || p.code === productData.id);
     if (pIdx !== -1) {
       persisted[pIdx] = {
         ...persisted[pIdx],
@@ -232,7 +235,8 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'products', persisted[pIdx].id), persisted[pIdx], { merge: true });
+            const payload = sanitizeForFirestore(persisted[pIdx]);
+            await setDoc(doc(db, 'products', persisted[pIdx].id), payload, { merge: true });
           }
         } catch (err) {
           console.error('Failed to sync product update to Firebase:', err);
@@ -243,7 +247,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     }
 
     // Existing seed or in-memory product edited
-    const existing = [...SEED_PRODUCTS, ...inMemoryProducts].find(p => p.id === productData.id);
+    const existing = [...SEED_PRODUCTS, ...inMemoryProducts].find(p => p.id === productData.id || p.code === productData.id);
     const updatedProduct: Product = {
       ...(existing || {}),
       ...productData,
@@ -262,7 +266,8 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
       try {
         const db = getFirebaseDb();
         if (db) {
-          await setDoc(doc(db, 'products', updatedProduct.id), updatedProduct, { merge: true });
+          const payload = sanitizeForFirestore(updatedProduct);
+          await setDoc(doc(db, 'products', updatedProduct.id), payload, { merge: true });
         }
       } catch (err) {
         console.error('Failed to sync product update to Firebase:', err);
@@ -277,10 +282,10 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     id: productData.id || `p-${Date.now()}`,
     code: productData.code || `BF-K-${Math.floor(100 + Math.random() * 900)}`,
     title: productData.title || 'Untitled Kurti Design',
-    slug: productData.slug || (productData.title || 'untitled').toLowerCase().replace(/\s+/g, '-'),
+    slug: productData.slug || (productData.title || 'untitled').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
     description: productData.description || '',
-    category_id: productData.category_id,
-    category: inMemoryCategories.find(c => c.id === productData.category_id),
+    category_id: productData.category_id || 'cat-3p-kurtis',
+    category: inMemoryCategories.find(c => c.id === productData.category_id) || inMemoryCategories[0],
     fabric: productData.fabric || 'Pure Cotton 60-60',
     color: productData.color || 'Standard',
     style_type: productData.style_type || 'Straight Kurti',
@@ -315,7 +320,8 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'products', newProduct.id), newProduct, { merge: true });
+        const payload = sanitizeForFirestore(newProduct);
+        await setDoc(doc(db, 'products', newProduct.id), payload, { merge: true });
       }
     } catch (err) {
       console.error('Failed to sync new product to Firebase:', err);

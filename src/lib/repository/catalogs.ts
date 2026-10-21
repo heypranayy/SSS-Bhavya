@@ -3,7 +3,7 @@ import path from 'path';
 import { Catalog, Customer } from '@/types';
 import { SEED_CATALOGS, SEED_CUSTOMERS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 let inMemoryCatalogs: Catalog[] = [...SEED_CATALOGS];
@@ -88,9 +88,6 @@ export async function getAllCatalogs(): Promise<Catalog[]> {
     }
   }
 
-  const all = Array.from(mergedMap.values());
-  inMemoryCatalogs = all;
-
   // 1. Primary: Firestore
   if (isFirebaseConfigured()) {
     try {
@@ -98,16 +95,12 @@ export async function getAllCatalogs(): Promise<Catalog[]> {
       if (db) {
         const snap = await getDocs(collection(db, 'catalogs'));
         if (!snap.empty) {
-          const fbCatalogs: Catalog[] = [];
           snap.forEach((docSnap) => {
             const data = docSnap.data() as Catalog;
-            if (!deletedIds.has(data.id) && !deletedIds.has(data.public_token)) {
-              fbCatalogs.push(data);
+            if (data && data.id && !deletedIds.has(data.id) && !deletedIds.has(data.public_token)) {
+              mergedMap.set(data.id, data);
             }
           });
-          if (fbCatalogs.length > 0) {
-            return fbCatalogs;
-          }
         }
       }
     } catch (err) {
@@ -138,7 +131,9 @@ export async function getAllCatalogs(): Promise<Catalog[]> {
     } catch {}
   }
 
-  return [...all];
+  const all = Array.from(mergedMap.values());
+  inMemoryCatalogs = all;
+  return all;
 }
 
 export async function getCatalogByToken(token: string): Promise<Catalog | null> {
@@ -187,7 +182,7 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'catalogs', persisted[pIdx].id), persisted[pIdx], { merge: true });
+            await setDoc(doc(db, 'catalogs', persisted[pIdx].id), sanitizeForFirestore(persisted[pIdx]), { merge: true });
           }
         } catch (err) {
           console.error('Failed to sync catalog to Firebase:', err);
@@ -222,7 +217,7 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'catalogs', updatedCatalog.id), updatedCatalog, { merge: true });
+            await setDoc(doc(db, 'catalogs', updatedCatalog.id), sanitizeForFirestore(updatedCatalog), { merge: true });
           }
         } catch (err) {
           console.error('Failed to sync catalog to Firebase:', err);
@@ -280,7 +275,7 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'catalogs', newCatalog.id), newCatalog, { merge: true });
+        await setDoc(doc(db, 'catalogs', newCatalog.id), sanitizeForFirestore(newCatalog), { merge: true });
       }
     } catch (err) {
       console.error('Failed to create catalog in Firebase:', err);
@@ -317,20 +312,20 @@ export async function updateCatalogStatus(id: string, status: 'active' | 'expire
 }
 
 export async function recordCatalogAccess(catalogId: string): Promise<void> {
-  const persisted = loadPersistedCatalogs();
-  const cat = persisted.find(c => c.id === catalogId || c.public_token === catalogId);
+  const all = await getAllCatalogs();
+  const cat = all.find(c => c.id === catalogId || c.public_token === catalogId);
   if (cat) {
     cat.views_count = (cat.views_count || 0) + 1;
-    savePersistedCatalogs(persisted);
+    await saveCatalog(cat);
   }
 }
 
 export async function recordCatalogInquiry(catalogId: string): Promise<void> {
-  const persisted = loadPersistedCatalogs();
-  const cat = persisted.find(c => c.id === catalogId || c.public_token === catalogId);
+  const all = await getAllCatalogs();
+  const cat = all.find(c => c.id === catalogId || c.public_token === catalogId);
   if (cat) {
     cat.inquiries_count = (cat.inquiries_count || 0) + 1;
-    savePersistedCatalogs(persisted);
+    await saveCatalog(cat);
   }
 }
 
@@ -339,8 +334,7 @@ export async function recordCatalogShare(
   channel: string = 'whatsapp',
   recipient?: string
 ): Promise<Catalog | null> {
-  const persisted = loadPersistedCatalogs();
-  const all = [...persisted, ...inMemoryCatalogs, ...SEED_CATALOGS];
+  const all = await getAllCatalogs();
   const cat = all.find(c => c.id === catalogId || c.public_token === catalogId);
   if (!cat) return null;
 
@@ -361,6 +355,7 @@ export async function recordCatalogShare(
     updated_at: new Date().toISOString(),
   };
 
+  const persisted = loadPersistedCatalogs();
   const pIdx = persisted.findIndex(c => c.id === cat.id || c.public_token === cat.public_token);
   if (pIdx !== -1) {
     persisted[pIdx] = updatedCat;
@@ -374,7 +369,7 @@ export async function recordCatalogShare(
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'catalogs', updatedCat.id), updatedCat, { merge: true });
+        await setDoc(doc(db, 'catalogs', updatedCat.id), sanitizeForFirestore(updatedCat), { merge: true });
       }
     } catch {}
   }
@@ -478,7 +473,7 @@ export async function saveCustomer(customerData: Partial<Customer>): Promise<Cus
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'customers', persisted[idx].id), persisted[idx], { merge: true });
+            await setDoc(doc(db, 'customers', persisted[idx].id), sanitizeForFirestore(persisted[idx]), { merge: true });
           }
         } catch {}
       }
@@ -510,7 +505,7 @@ export async function saveCustomer(customerData: Partial<Customer>): Promise<Cus
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'customers', newCust.id), newCust, { merge: true });
+        await setDoc(doc(db, 'customers', newCust.id), sanitizeForFirestore(newCust), { merge: true });
       }
     } catch {}
   }

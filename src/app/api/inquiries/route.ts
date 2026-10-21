@@ -220,19 +220,46 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function GET() {
+  try {
+    const { getAllInquiries } = await import('@/lib/repository/inquiries');
+    const inquiries = await getAllInquiries();
+    return NextResponse.json({ success: true, inquiries });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Failed to fetch inquiries' }, { status: 500 });
+  }
+}
+
+export async function PATCH(req: NextRequest) {
+  try {
+    const json = await req.json();
+    const { id, status, internal_notes, assigned_staff } = json;
+    if (!id) {
+      return NextResponse.json({ error: 'Inquiry ID is required' }, { status: 400 });
+    }
+
+    const { updateInquiryStatus, assignInquiryStaff } = await import('@/lib/repository/inquiries');
+    if (status || internal_notes !== undefined) {
+      await updateInquiryStatus(id, status, internal_notes);
+    }
+    if (assigned_staff !== undefined) {
+      await assignInquiryStaff(id, assigned_staff);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || 'Failed to update inquiry' }, { status: 500 });
+  }
+}
+
 export async function DELETE(req: NextRequest) {
   try {
     const { id } = await req.json();
     if (!id) {
       return NextResponse.json({ error: 'Inquiry ID is required' }, { status: 400 });
     }
-    // Delete inquiry
-    const { getAllInquiries } = await import('@/lib/repository/inquiries');
-    const all = await getAllInquiries();
-    const idx = all.findIndex(i => i.id === id || i.reference_no === id);
-    if (idx !== -1) {
-      all.splice(idx, 1);
-    }
+    const { deleteInquiry } = await import('@/lib/repository/inquiries');
+    await deleteInquiry(id);
     return NextResponse.json({ success: true });
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Failed to delete inquiry' }, { status: 500 });

@@ -3,7 +3,7 @@ import path from 'path';
 import { Collection } from '@/types';
 import { SEED_COLLECTIONS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 let inMemoryCollections: Collection[] = [...SEED_COLLECTIONS];
@@ -55,20 +55,18 @@ export async function getAllCollections(): Promise<Collection[]> {
     mergedMap.set(c.id, c);
   }
 
-  const all = Array.from(mergedMap.values());
-  inMemoryCollections = all;
-
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
         const snap = await getDocs(collection(db, 'collections'));
         if (!snap.empty) {
-          const list: Collection[] = [];
-          snap.forEach((d) => list.push(d.data() as Collection));
-          if (list.length > 0) {
-            return list.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
-          }
+          snap.forEach((d) => {
+            const data = d.data() as Collection;
+            if (data && data.id) {
+              mergedMap.set(data.id, data);
+            }
+          });
         }
       }
     } catch {}
@@ -78,11 +76,16 @@ export async function getAllCollections(): Promise<Collection[]> {
     try {
       const supabase = createAdminClient();
       const { data, error } = await supabase.from('collections').select('*').order('display_order');
-      if (!error && data && data.length > 0) return data;
+      if (!error && data && data.length > 0) {
+        data.forEach((c: Collection) => mergedMap.set(c.id, c));
+      }
     } catch {}
   }
 
-  return [...all];
+  const all = Array.from(mergedMap.values());
+  all.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+  inMemoryCollections = all;
+  return all;
 }
 
 export async function getCollectionBySlug(slug: string): Promise<Collection | null> {
@@ -107,7 +110,7 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'collections', persisted[idx].id), persisted[idx], { merge: true });
+            await setDoc(doc(db, 'collections', persisted[idx].id), sanitizeForFirestore(persisted[idx]), { merge: true });
           }
         } catch {}
       }
@@ -140,7 +143,7 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'collections', newCollection.id), newCollection, { merge: true });
+        await setDoc(doc(db, 'collections', newCollection.id), sanitizeForFirestore(newCollection), { merge: true });
       }
     } catch {}
   }

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Inquiry, InquiryStatus, InquiryType } from '@/types';
 import { formatINR } from '@/lib/utils';
-import { updateInquiryStatus, assignInquiryStaff } from '@/lib/repository/inquiries';
 import {
   MessageSquare,
   Globe,
@@ -26,6 +25,7 @@ import {
   Trash2,
   X,
   Loader2,
+  RotateCw,
 } from 'lucide-react';
 
 interface InquiriesManagerProps {
@@ -62,6 +62,22 @@ export function InquiriesManager({ initialInquiries }: InquiriesManagerProps) {
   const [manualStaff, setManualStaff] = useState('Amit Verma (Kolkata Sales)');
   const [manualMessage, setManualMessage] = useState('Boutique phone order recorded manually.');
   const [isSavingManual, setIsSavingManual] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/inquiries');
+      const data = await res.json();
+      if (data.inquiries && Array.isArray(data.inquiries)) {
+        setInquiries(data.inquiries);
+      }
+    } catch (err) {
+      console.error('Failed to refresh inquiries:', err);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   const websiteInquiriesCount = inquiries.filter(i => i.inquiry_type === 'website').length;
   const catalogInquiriesCount = inquiries.filter(i => i.inquiry_type === 'catalog' && !i.reference_no.startsWith('BF-REQ')).length;
@@ -93,21 +109,50 @@ export function InquiriesManager({ initialInquiries }: InquiriesManagerProps) {
     setInquiries(prev =>
       prev.map(i => (i.id === inquiryId ? { ...i, status: newStatus } : i))
     );
-    await updateInquiryStatus(inquiryId, newStatus);
+    try {
+      await fetch('/api/inquiries', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: inquiryId, status: newStatus }),
+      });
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
   };
 
   const handleStaffChange = async (inquiryId: string, newStaff: string) => {
     setInquiries(prev =>
       prev.map(i => (i.id === inquiryId ? { ...i, assigned_staff: newStaff } : i))
     );
-    await assignInquiryStaff(inquiryId, newStaff);
+    try {
+      await fetch('/api/inquiries', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: inquiryId, assigned_staff: newStaff }),
+      });
+    } catch (err) {
+      console.error('Failed to assign staff:', err);
+    }
   };
 
   const handleNotesChange = async (inquiryId: string, notes: string) => {
     setInquiries(prev =>
       prev.map(i => (i.id === inquiryId ? { ...i, internal_notes: notes } : i))
     );
-    await updateInquiryStatus(inquiryId, inquiries.find(i => i.id === inquiryId)?.status || 'new', notes);
+    try {
+      const current = inquiries.find(i => i.id === inquiryId);
+      await fetch('/api/inquiries', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: inquiryId,
+          status: current?.status || 'new',
+          internal_notes: notes,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to update notes:', err);
+    }
   };
 
   const handleCreateManualInquiry = async (e: React.FormEvent) => {
@@ -254,6 +299,17 @@ export function InquiriesManager({ initialInquiries }: InquiriesManagerProps) {
         </div>
 
         <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+          <button
+            type="button"
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-[#E7E0D5] text-xs font-bold uppercase tracking-wider text-[#1C1917] hover:bg-[#FAF7F2] shadow-2xs disabled:opacity-50"
+            title="Reload latest inquiries from server & Firebase"
+          >
+            <RotateCw className={`w-3.5 h-3.5 text-[#722F37] ${isRefreshing ? 'animate-spin' : ''}`} />
+            <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setManualModalOpen(true)}

@@ -1,98 +1,138 @@
 [
   {
-    "id": "cat00000-0000-0000-0000-000000000001",
-    "title": "Exclusive Summer & Festive Lookbook 2026",
     "subtitle": "Curated wholesale collection for premium retail boutiques",
     "public_token": "bhavya-vip-summer-2026",
-    "mode": "hybrid",
-    "membership_type": "dynamic",
-    "customer_id": "cust0000-0000-0000-0000-000000000001",
     "customer": {
-      "id": "cust0000-0000-0000-0000-000000000001",
-      "business_name": "Radha Krishna Ethnic Hub",
-      "contact_person": "Rajesh Gupta",
-      "phone": "+91 98301 22334",
-      "email": "rajesh@radhakrishna.in",
-      "city": "Kolkata",
-      "state": "West Bengal",
-      "segment": "Wholesaler / Large Retailer",
       "discount_pct": 5,
       "custom_price_tier": "tier_gold",
+      "created_at": "2026-01-10T10:00:00Z",
+      "id": "cust0000-0000-0000-0000-000000000001",
+      "segment": "Wholesaler / Large Retailer",
+      "business_name": "Radha Krishna Ethnic Hub",
+      "phone": "+91 98301 22334",
+      "contact_person": "Rajesh Gupta",
       "notes": "Key account in Barabazar, purchases 500+ pcs monthly",
-      "created_at": "2026-01-10T10:00:00Z"
+      "city": "Kolkata",
+      "email": "rajesh@radhakrishna.in",
+      "state": "West Bengal"
     },
-    "status": "active",
-    "expires_at": "2026-12-31T23:59:59Z",
-    "access_code": "BF-2026-001",
-    "customer_greeting": "Dear Rajesh ji (Radha Krishna Ethnic Hub),",
-    "custom_message": "We are pleased to share our newest 2026 season wholesale kurti lookbook. Minimum order quantity is 6 pieces per design (ratio packing M, L, XL, XXL). Please review designs and submit your requirement directly below.",
-    "presentation_settings": {
-      "brandTitle": "Bhavya Fashions Wholesale",
-      "brandSubtitle": "Barabazar & Surat Hub Direct Supply",
-      "brandColor": "#722F37",
-      "layout": "grid",
-      "columnsDesktop": 3,
-      "columnsMobile": 1,
-      "showPrices": true,
-      "showMoq": true,
-      "showSizes": true,
-      "showStockStatus": true,
-      "showDescription": true,
-      "imageAspectRatio": "3/4",
-      "allowSelection": true,
-      "allowSizeSelection": true,
-      "allowQuantityBreakdown": true,
-      "allowInquiry": true,
-      "allowCustomerNotes": true,
-      "allowAlternativeRequest": true,
-      "contactPhone": "+91 98307 29210",
-      "contactWhatsapp": "919830729210"
-    },
+    "overrides": [
+      {
+        "presentation_note": "🌟 Top Recommended Festive Design for Wedding Season",
+        "action": "include",
+        "id": "ov-1",
+        "product_id": "p-migrated-29589",
+        "is_pinned": true,
+        "display_order": 0
+      }
+    ],
     "rule_groups": [
       {
         "id": "rg-1",
-        "logical_operator": "AND",
         "rules": [
           {
-            "id": "r-1",
+            "value": 1200,
             "attribute": "base_wholesale_price",
-            "operator": "less_than_or_equal",
-            "value": 1200
+            "id": "r-1",
+            "operator": "less_than_or_equal"
           },
           {
-            "id": "r-2",
+            "value": "in_stock",
             "attribute": "stock_status",
             "operator": "equals",
-            "value": "in_stock"
+            "id": "r-2"
           }
-        ]
+        ],
+        "logical_operator": "AND"
       }
     ],
-    "overrides": [
-      {
-        "id": "ov-1",
-        "product_id": "p-migrated-29589",
-        "action": "include",
-        "display_order": 0,
-        "is_pinned": true,
-        "presentation_note": "🌟 Top Recommended Festive Design for Wedding Season"
-      }
-    ],
-    "created_at": "2026-03-01T12:00:00Z",
-    "updated_at": "2026-10-21T09:08:37.339Z",
-    "views_count": 42,
-    "inquiries_count": 5,
-    "share_count": 1,
+    "membership_type": "dynamic",
+    "id": "cat00000-0000-0000-0000-000000000001",
+    "updated_at": "2026-10-21T09:56:37.014Z",
     "share_history": [
       {
-        "id": "share-1792573717338",
+        "id": "share-1792576597014",
         "channel": "whatsapp",
         "recipient": "+919830099999",
         "shared_to": "+919830099999",
+        "shared_at": "2026-10-21T09:56:37.014Z",
+        "timestamp": "2026-10-21T09:56:37.014Z"
+      },
+      {
+        "channel": "whatsapp",
+        "timestamp": "2026-10-21T09:55:06.612Z",
+        "recipient": "+919830099999",
+        "shared_at": "2026-10-21T09:55:06.612Z",
+        "id": "share-1792576506612",
+        "shared_to": "+919830099999"
+      },
+      {
+        "id": "share-1792576452066",
+        "timestamp": "2026-10-21T09:54:12.066Z",
+        "recipient": "+919830099999",
+        "shared_at": "2026-10-21T09:54:12.066Z",
+        "shared_to": "+919830099999",
+        "channel": "whatsapp"
+      },
+      {
+        "shared_to": "+919830099999",
+        "id": "share-1792576381778",
+        "channel": "whatsapp",
+        "shared_at": "2026-10-21T09:53:01.778Z",
+        "recipient": "+919830099999",
+        "timestamp": "2026-10-21T09:53:01.778Z"
+      },
+      {
+        "shared_to": "+919830099999",
+        "id": "share-1792576177784",
+        "timestamp": "2026-10-21T09:49:37.785Z",
+        "channel": "whatsapp",
+        "recipient": "+919830099999",
+        "shared_at": "2026-10-21T09:49:37.784Z"
+      },
+      {
+        "recipient": "+919830099999",
+        "timestamp": "2026-10-21T09:08:37.339Z",
+        "id": "share-1792573717338",
+        "channel": "whatsapp",
         "shared_at": "2026-10-21T09:08:37.338Z",
-        "timestamp": "2026-10-21T09:08:37.339Z"
+        "shared_to": "+919830099999"
       }
-    ]
+    ],
+    "status": "active",
+    "created_at": "2026-03-01T12:00:00Z",
+    "expires_at": "2026-12-31T23:59:59Z",
+    "custom_message": "We are pleased to share our newest 2026 season wholesale kurti lookbook. Minimum order quantity is 6 pieces per design (ratio packing M, L, XL, XXL). Please review designs and submit your requirement directly below.",
+    "presentation_settings": {
+      "showPrices": true,
+      "allowSizeSelection": true,
+      "brandColor": "#722F37",
+      "allowCustomerNotes": true,
+      "imageAspectRatio": "3/4",
+      "showSizes": true,
+      "allowSelection": true,
+      "contactPhone": "+91 98307 29210",
+      "showMoq": true,
+      "columnsMobile": 1,
+      "columnsDesktop": 3,
+      "allowInquiry": true,
+      "showDescription": true,
+      "allowAlternativeRequest": true,
+      "allowQuantityBreakdown": true,
+      "layout": "grid",
+      "brandSubtitle": "Barabazar & Surat Hub Direct Supply",
+      "showStockStatus": true,
+      "contactWhatsapp": "919830729210",
+      "brandTitle": "Bhavya Fashions Wholesale"
+    },
+    "mode": "hybrid",
+    "share_count": 6,
+    "customer_id": "cust0000-0000-0000-0000-000000000001",
+    "customer_greeting": "Dear Rajesh ji (Radha Krishna Ethnic Hub),",
+    "title": "Exclusive Summer & Festive Lookbook 2026",
+    "access_code": "BF-2026-001",
+    "inquiries_count": 5,
+    "views_count": 42
   },
   {
     "id": "cat-1792522588521",

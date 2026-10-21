@@ -41,6 +41,9 @@ export async function POST(req: NextRequest) {
     try {
       revalidatePath('/admin/products');
       revalidatePath('/wholesale');
+      revalidatePath('/products');
+      revalidatePath('/collections');
+      revalidatePath('/');
     } catch {}
 
     return NextResponse.json({

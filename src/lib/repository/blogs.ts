@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import migratedBlogsRaw from '@/lib/data/migrated-blogs.json';
-import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 export interface BlogPost {
@@ -60,25 +60,24 @@ export async function getAllBlogs(): Promise<BlogPost[]> {
     mergedMap.set(b.id, b);
   }
 
-  const all = Array.from(mergedMap.values());
-  all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  inMemoryBlogs = all;
-
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
         const snap = await getDocs(collection(db, 'blogs'));
-        if (!snap.empty) {
-          const list: BlogPost[] = [];
-          snap.forEach((d) => list.push(d.data() as BlogPost));
-          if (list.length > 0) {
-            return list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        snap.forEach((d) => {
+          const item = d.data() as BlogPost;
+          if (item && item.id) {
+            mergedMap.set(item.id, item);
           }
-        }
+        });
       }
     } catch {}
   }
+
+  const all = Array.from(mergedMap.values());
+  all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  inMemoryBlogs = all;
 
   return all;
 }
@@ -105,7 +104,7 @@ export async function saveBlog(blogData: Partial<BlogPost>): Promise<BlogPost> {
         try {
           const db = getFirebaseDb();
           if (db) {
-            await setDoc(doc(db, 'blogs', persisted[idx].id), persisted[idx], { merge: true });
+            await setDoc(doc(db, 'blogs', persisted[idx].id), sanitizeForFirestore(persisted[idx]), { merge: true });
           }
         } catch {}
       }
@@ -139,7 +138,7 @@ export async function saveBlog(blogData: Partial<BlogPost>): Promise<BlogPost> {
     try {
       const db = getFirebaseDb();
       if (db) {
-        await setDoc(doc(db, 'blogs', newBlog.id), newBlog, { merge: true });
+        await setDoc(doc(db, 'blogs', newBlog.id), sanitizeForFirestore(newBlog), { merge: true });
       }
     } catch {}
   }

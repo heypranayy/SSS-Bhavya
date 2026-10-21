@@ -3,6 +3,7 @@ import { getAllProducts, getCategories } from '@/lib/repository/products';
 import { ProductsManager } from '@/components/admin/ProductsManager';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Products Management | Bhavya Fashions Admin',

@@ -10,6 +10,7 @@ import { getAllProducts, getCategories, getCollections } from '@/lib/repository/
 import { Sparkles, ArrowDown, KeyRound, ShieldCheck, Layers, ArrowUpRight } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'B2B Wholesale Catalog & Collection Explorer | Bhavya Fashions',
