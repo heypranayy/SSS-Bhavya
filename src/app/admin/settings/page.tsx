@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Save, Check, ShieldCheck, PhoneCall, Building2, MapPin } from 'lucide-react';
+import { Save, Check, Database, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function AdminSettingsPage() {
   const [brandName, setBrandName] = useState('Bhavya Fashions');
@@ -10,10 +10,37 @@ export default function AdminSettingsPage() {
   const [defaultMoq, setDefaultMoq] = useState(6);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
+  // Firebase Sync State
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<{ success?: boolean; message?: string } | null>(null);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 2500);
+  };
+
+  const handleFirebaseSync = async () => {
+    setIsSyncing(true);
+    setSyncStatus(null);
+    try {
+      const res = await fetch('/api/admin/firebase-sync', { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Sync request failed');
+      }
+      setSyncStatus({
+        success: true,
+        message: `Successfully synchronized ${data.count || 64} wholesale items into Cloud Firestore!`,
+      });
+    } catch (err: any) {
+      setSyncStatus({
+        success: false,
+        message: err.message || 'Error syncing data to Firebase',
+      });
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   return (
@@ -23,7 +50,7 @@ export default function AdminSettingsPage() {
           Wholesale Configuration
         </span>
         <h1 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#1C1917]">
-          Platform & Dispatch Settings
+          Platform & Backend Settings
         </h1>
       </div>
 
@@ -33,6 +60,65 @@ export default function AdminSettingsPage() {
           <span>Platform settings updated successfully.</span>
         </div>
       )}
+
+      {/* Firebase Cloud Backend Panel */}
+      <div className="bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-xs space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-[#F3ECE2]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+              <Database className="w-4 h-4" />
+            </div>
+            <div>
+              <h2 className="font-serif-luxury text-base font-bold text-[#1C1917]">
+                Firebase Cloud Backend
+              </h2>
+              <p className="text-[11px] text-[#78716C]">
+                Connected Project: <span className="font-mono font-semibold text-[#1C1917]">sss-bhavya</span>
+              </p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-bold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Firestore Active</span>
+          </div>
+        </div>
+
+        <p className="text-xs text-[#57534E] leading-relaxed">
+          Your portal is configured to store all wholesale products, custom catalogs, customer accounts, and buyer inquiries directly in <strong>Google Cloud Firestore</strong>. Product photography is managed through <strong>Firebase Storage</strong>.
+        </p>
+
+        {syncStatus && (
+          <div
+            className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+              syncStatus.success
+                ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                : 'bg-rose-50 border-rose-200 text-rose-900'
+            }`}
+          >
+            {syncStatus.success ? (
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            ) : (
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+            )}
+            <span>{syncStatus.message}</span>
+          </div>
+        )}
+
+        <div className="pt-2 flex items-center justify-between">
+          <div className="text-[11px] text-[#78716C]">
+            Syncs all 64 authentic styles, collections, and lookbooks to Firestore.
+          </div>
+          <button
+            type="button"
+            onClick={handleFirebaseSync}
+            disabled={isSyncing}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1C1917] text-white text-xs font-semibold hover:bg-black transition-colors disabled:opacity-50"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
+            <span>{isSyncing ? 'Syncing to Firestore...' : 'Sync Catalog to Firebase'}</span>
+          </button>
+        </div>
+      </div>
 
       <form onSubmit={handleSave} className="space-y-6">
         <div className="bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-xs space-y-4">

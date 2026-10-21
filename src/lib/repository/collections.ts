@@ -3,6 +3,8 @@ import path from 'path';
 import { Collection } from '@/types';
 import { SEED_COLLECTIONS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 let inMemoryCollections: Collection[] = [...SEED_COLLECTIONS];
 
@@ -56,6 +58,22 @@ export async function getAllCollections(): Promise<Collection[]> {
   const all = Array.from(mergedMap.values());
   inMemoryCollections = all;
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'collections'));
+        if (!snap.empty) {
+          const list: Collection[] = [];
+          snap.forEach((d) => list.push(d.data() as Collection));
+          if (list.length > 0) {
+            return list.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+          }
+        }
+      }
+    } catch {}
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -84,6 +102,16 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
       } as Collection;
       savePersistedCollections(persisted);
       await getAllCollections();
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'collections', persisted[idx].id), persisted[idx], { merge: true });
+          }
+        } catch {}
+      }
+
       return persisted[idx];
     }
   }
@@ -108,6 +136,15 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
   savePersistedCollections(persisted);
   inMemoryCollections.unshift(newCollection);
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'collections', newCollection.id), newCollection, { merge: true });
+      }
+    } catch {}
+  }
+
   return newCollection;
 }
 
@@ -116,5 +153,15 @@ export async function deleteCollection(id: string): Promise<boolean> {
   const next = persisted.filter(c => c.id !== id);
   savePersistedCollections(next);
   inMemoryCollections = inMemoryCollections.filter(c => c.id !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await deleteDoc(doc(db, 'collections', id));
+      }
+    } catch {}
+  }
+
   return true;
 }

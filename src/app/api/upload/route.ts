@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { getFirebaseStorageInstance, isFirebaseConfigured } from '@/lib/firebase/config';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,8 +32,24 @@ export async function POST(req: NextRequest) {
       const uniqueFilename = `${cleanName}-${Date.now()}.${ext}`;
       const filePath = path.join(uploadsDir, uniqueFilename);
 
+      // Local disk cache
       fs.writeFileSync(filePath, buffer);
-      const url = `/uploads/${uniqueFilename}`;
+      let url = `/uploads/${uniqueFilename}`;
+
+      // Firebase Storage upload
+      if (isFirebaseConfigured()) {
+        try {
+          const storage = getFirebaseStorageInstance();
+          if (storage) {
+            const storageRef = ref(storage, `products/${uniqueFilename}`);
+            await uploadBytes(storageRef, buffer, { contentType: mimeType });
+            url = await getDownloadURL(storageRef);
+          }
+        } catch (storageErr) {
+          console.warn('Firebase storage upload fallback to local:', storageErr);
+        }
+      }
+
       const sizeKb = Math.round((buffer.length / 1024) * 10) / 10;
 
       return NextResponse.json({
@@ -59,7 +77,22 @@ export async function POST(req: NextRequest) {
       const filePath = path.join(uploadsDir, uniqueFilename);
 
       fs.writeFileSync(filePath, buffer);
-      const url = `/uploads/${uniqueFilename}`;
+      let url = `/uploads/${uniqueFilename}`;
+
+      // Firebase Storage upload
+      if (isFirebaseConfigured()) {
+        try {
+          const storage = getFirebaseStorageInstance();
+          if (storage) {
+            const storageRef = ref(storage, `products/${uniqueFilename}`);
+            await uploadBytes(storageRef, buffer, { contentType: file.type || 'image/webp' });
+            url = await getDownloadURL(storageRef);
+          }
+        } catch (storageErr) {
+          console.warn('Firebase storage upload fallback to local:', storageErr);
+        }
+      }
+
       const sizeKb = Math.round((buffer.length / 1024) * 10) / 10;
 
       return NextResponse.json({

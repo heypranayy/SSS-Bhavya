@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import migratedBlogsRaw from '@/lib/data/migrated-blogs.json';
+import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 export interface BlogPost {
   id: string;
@@ -62,6 +64,22 @@ export async function getAllBlogs(): Promise<BlogPost[]> {
   all.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   inMemoryBlogs = all;
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'blogs'));
+        if (!snap.empty) {
+          const list: BlogPost[] = [];
+          snap.forEach((d) => list.push(d.data() as BlogPost));
+          if (list.length > 0) {
+            return list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+          }
+        }
+      }
+    } catch {}
+  }
+
   return all;
 }
 
@@ -82,6 +100,16 @@ export async function saveBlog(blogData: Partial<BlogPost>): Promise<BlogPost> {
       } as BlogPost;
       savePersistedBlogs(persisted);
       await getAllBlogs();
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'blogs', persisted[idx].id), persisted[idx], { merge: true });
+          }
+        } catch {}
+      }
+
       return persisted[idx];
     }
   }
@@ -106,6 +134,16 @@ export async function saveBlog(blogData: Partial<BlogPost>): Promise<BlogPost> {
   persisted.unshift(newBlog);
   savePersistedBlogs(persisted);
   inMemoryBlogs.unshift(newBlog);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'blogs', newBlog.id), newBlog, { merge: true });
+      }
+    } catch {}
+  }
+
   return newBlog;
 }
 
@@ -114,5 +152,15 @@ export async function deleteBlog(id: string): Promise<boolean> {
   const next = persisted.filter(b => b.id !== id);
   savePersistedBlogs(next);
   inMemoryBlogs = inMemoryBlogs.filter(b => b.id !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await deleteDoc(doc(db, 'blogs', id));
+      }
+    } catch {}
+  }
+
   return true;
 }

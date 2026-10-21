@@ -1,5 +1,7 @@
 import { Inquiry, InquiryStatus } from '@/types';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 
 let inMemoryInquiries: Inquiry[] = [
   {
@@ -95,6 +97,22 @@ function isSupabaseConfigured(): boolean {
 }
 
 export async function getAllInquiries(): Promise<Inquiry[]> {
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'inquiries'));
+        if (!snap.empty) {
+          const list: Inquiry[] = [];
+          snap.forEach((d) => list.push(d.data() as Inquiry));
+          if (list.length > 0) {
+            return list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+          }
+        }
+      }
+    } catch {}
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -140,6 +158,17 @@ export async function createInquiry(data: Omit<Inquiry, 'id' | 'reference_no' | 
 
   inMemoryInquiries.unshift(newInquiry);
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'inquiries', newInquiry.id), newInquiry, { merge: true });
+      }
+    } catch (err) {
+      console.error('Failed to save inquiry to Firebase:', err);
+    }
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -172,6 +201,20 @@ export async function updateInquiryStatus(id: string, status: InquiryStatus, int
       inquiry.internal_notes = internalNotes;
     }
     inquiry.updated_at = new Date().toISOString();
+
+    if (isFirebaseConfigured()) {
+      try {
+        const db = getFirebaseDb();
+        if (db) {
+          await setDoc(doc(db, 'inquiries', inquiry.id), {
+            status,
+            internal_notes: inquiry.internal_notes,
+            updated_at: inquiry.updated_at,
+          }, { merge: true });
+        }
+      } catch {}
+    }
+
     return true;
   }
   return false;
@@ -182,6 +225,19 @@ export async function assignInquiryStaff(id: string, staffName: string): Promise
   if (inquiry) {
     inquiry.assigned_staff = staffName;
     inquiry.updated_at = new Date().toISOString();
+
+    if (isFirebaseConfigured()) {
+      try {
+        const db = getFirebaseDb();
+        if (db) {
+          await setDoc(doc(db, 'inquiries', inquiry.id), {
+            assigned_staff: staffName,
+            updated_at: inquiry.updated_at,
+          }, { merge: true });
+        }
+      } catch {}
+    }
+
     return true;
   }
   return false;

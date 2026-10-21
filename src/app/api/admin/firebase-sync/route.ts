@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import { syncSeedDataToFirestore } from '@/lib/firebase/sync';
-import { isFirebaseAdminConfigured } from '@/lib/firebase/admin';
+import { isFirebaseConfigured } from '@/lib/firebase/config';
 
 export async function POST() {
   try {
-    if (!isFirebaseAdminConfigured()) {
+    if (!isFirebaseConfigured()) {
       return NextResponse.json(
-        { error: 'Firebase is not yet configured. Please add Firebase environment variables in Vercel.' },
+        { error: 'Firebase is not yet configured. Please add Firebase environment variables in .env.local or Vercel.' },
         { status: 400 }
       );
     }

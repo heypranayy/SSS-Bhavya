@@ -3,6 +3,8 @@ import path from 'path';
 import { Product, Category, Collection } from '@/types';
 import { SEED_CATEGORIES, SEED_COLLECTIONS, SEED_PRODUCTS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 // In-memory product cache for seamless offline / zero-setup mode
 let inMemoryProducts: Product[] = [...SEED_PRODUCTS];
@@ -89,6 +91,36 @@ export async function getAllProducts(): Promise<Product[]> {
   const all = Array.from(mergedMap.values());
   inMemoryProducts = all;
 
+  // 1. Primary: Cloud Firestore
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'products'));
+        if (!snap.empty) {
+          const fbProducts: Product[] = [];
+          snap.forEach((docSnap) => {
+            const data = docSnap.data() as Product;
+            if (data.is_active !== false && !deletedIds.has(data.id) && !deletedIds.has(data.code)) {
+              fbProducts.push({
+                ...data,
+                price_on_enquiry: data.price_on_enquiry ?? true,
+                price_on_request: data.price_on_enquiry ?? true,
+                price_display_mode: (data.price_on_enquiry ?? true) ? 'request' : (data.price_display_mode || 'request'),
+              });
+            }
+          });
+          if (fbProducts.length > 0) {
+            return fbProducts;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Firebase products fetch fallback:', err);
+    }
+  }
+
+  // 2. Secondary: Supabase fallback
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -136,6 +168,24 @@ export async function getProductById(id: string): Promise<Product | null> {
 }
 
 export async function getCategories(): Promise<Category[]> {
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'categories'));
+        if (!snap.empty) {
+          const list: Category[] = [];
+          snap.forEach((d) => list.push(d.data() as Category));
+          if (list.length > 0) {
+            return list.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Firebase categories fetch fallback:', err);
+    }
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -177,6 +227,18 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
       } as Product;
       savePersistedProducts(persisted);
       inMemoryProducts = inMemoryProducts.map(p => p.id === productData.id ? persisted[pIdx] : p);
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'products', persisted[pIdx].id), persisted[pIdx], { merge: true });
+          }
+        } catch (err) {
+          console.error('Failed to sync product update to Firebase:', err);
+        }
+      }
+
       return persisted[pIdx];
     }
 
@@ -195,6 +257,18 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     if (!inMemoryProducts.some(p => p.id === productData.id)) {
       inMemoryProducts.unshift(updatedProduct);
     }
+
+    if (isFirebaseConfigured()) {
+      try {
+        const db = getFirebaseDb();
+        if (db) {
+          await setDoc(doc(db, 'products', updatedProduct.id), updatedProduct, { merge: true });
+        }
+      } catch (err) {
+        console.error('Failed to sync product update to Firebase:', err);
+      }
+    }
+
     return updatedProduct;
   }
 
@@ -236,6 +310,18 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
   persisted.unshift(newProduct);
   savePersistedProducts(persisted);
   inMemoryProducts.unshift(newProduct);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'products', newProduct.id), newProduct, { merge: true });
+      }
+    } catch (err) {
+      console.error('Failed to sync new product to Firebase:', err);
+    }
+  }
+
   return newProduct;
 }
 
@@ -255,5 +341,20 @@ export async function deleteProduct(id: string): Promise<boolean> {
   const next = persisted.filter(p => p.id !== id && p.code !== id);
   savePersistedProducts(next);
   inMemoryProducts = inMemoryProducts.filter(p => p.id !== id && p.code !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await deleteDoc(doc(db, 'products', id));
+        if (target && target.id !== id) {
+          await deleteDoc(doc(db, 'products', target.id));
+        }
+      }
+    } catch (err) {
+      console.error('Failed to delete product from Firebase:', err);
+    }
+  }
+
   return true;
 }

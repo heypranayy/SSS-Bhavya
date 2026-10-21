@@ -3,6 +3,8 @@ import path from 'path';
 import { Catalog, Customer } from '@/types';
 import { SEED_CATALOGS, SEED_CUSTOMERS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getFirebaseDb, isFirebaseConfigured } from '@/lib/firebase/config';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 let inMemoryCatalogs: Catalog[] = [...SEED_CATALOGS];
 let inMemoryCustomers: Customer[] = [...SEED_CUSTOMERS];
@@ -89,6 +91,31 @@ export async function getAllCatalogs(): Promise<Catalog[]> {
   const all = Array.from(mergedMap.values());
   inMemoryCatalogs = all;
 
+  // 1. Primary: Firestore
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'catalogs'));
+        if (!snap.empty) {
+          const fbCatalogs: Catalog[] = [];
+          snap.forEach((docSnap) => {
+            const data = docSnap.data() as Catalog;
+            if (!deletedIds.has(data.id) && !deletedIds.has(data.public_token)) {
+              fbCatalogs.push(data);
+            }
+          });
+          if (fbCatalogs.length > 0) {
+            return fbCatalogs;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Firebase catalogs fetch notice:', err);
+    }
+  }
+
+  // 2. Supabase fallback
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -155,6 +182,18 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
       } as Catalog;
       savePersistedCatalogs(persisted);
       inMemoryCatalogs = inMemoryCatalogs.map(c => c.id === catalogData.id ? persisted[pIdx] : c);
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'catalogs', persisted[pIdx].id), persisted[pIdx], { merge: true });
+          }
+        } catch (err) {
+          console.error('Failed to sync catalog to Firebase:', err);
+        }
+      }
+
       return persisted[pIdx];
     } else {
       // Existing seed or in-memory catalog edited for the first time
@@ -178,6 +217,18 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
       if (!inMemoryCatalogs.some(c => c.id === catalogData.id)) {
         inMemoryCatalogs.unshift(updatedCatalog);
       }
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'catalogs', updatedCatalog.id), updatedCatalog, { merge: true });
+          }
+        } catch (err) {
+          console.error('Failed to sync catalog to Firebase:', err);
+        }
+      }
+
       return updatedCatalog;
     }
   }
@@ -225,6 +276,17 @@ export async function saveCatalog(catalogData: Partial<Catalog>): Promise<Catalo
   savePersistedCatalogs(persisted);
   inMemoryCatalogs.unshift(newCatalog);
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'catalogs', newCatalog.id), newCatalog, { merge: true });
+      }
+    } catch (err) {
+      console.error('Failed to create catalog in Firebase:', err);
+    }
+  }
+
   return newCatalog;
 }
 
@@ -241,6 +303,16 @@ export async function updateCatalogStatus(id: string, status: 'active' | 'expire
     inMem.status = status;
     inMem.updated_at = new Date().toISOString();
   }
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'catalogs', id), { status, updated_at: new Date().toISOString() }, { merge: true });
+      }
+    } catch {}
+  }
+
   return Boolean(cat || inMem);
 }
 
@@ -251,40 +323,67 @@ export async function recordCatalogAccess(catalogId: string): Promise<void> {
     cat.views_count = (cat.views_count || 0) + 1;
     savePersistedCatalogs(persisted);
   }
-  const inMem = inMemoryCatalogs.find(c => c.id === catalogId || c.public_token === catalogId);
-  if (inMem) {
-    inMem.views_count = (inMem.views_count || 0) + 1;
+}
+
+export async function recordCatalogInquiry(catalogId: string): Promise<void> {
+  const persisted = loadPersistedCatalogs();
+  const cat = persisted.find(c => c.id === catalogId || c.public_token === catalogId);
+  if (cat) {
+    cat.inquiries_count = (cat.inquiries_count || 0) + 1;
+    savePersistedCatalogs(persisted);
   }
 }
 
 export async function recordCatalogShare(
   catalogId: string,
-  channel: 'whatsapp' | 'copy_link' | 'direct',
+  channel: string = 'whatsapp',
   recipient?: string
 ): Promise<Catalog | null> {
   const persisted = loadPersistedCatalogs();
-  const cat = persisted.find(c => c.id === catalogId || c.public_token === catalogId);
-  const now = new Date().toISOString();
-  const event = {
-    id: `share-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-    timestamp: now,
+  const all = [...persisted, ...inMemoryCatalogs, ...SEED_CATALOGS];
+  const cat = all.find(c => c.id === catalogId || c.public_token === catalogId);
+  if (!cat) return null;
+
+  const newShare = {
+    id: `share-${Date.now()}`,
     channel,
-    recipient,
+    recipient: recipient || '',
+    shared_to: recipient || '',
+    shared_at: new Date().toISOString(),
+    timestamp: new Date().toISOString(),
   };
 
-  if (cat) {
-    cat.share_count = (cat.share_count || 0) + 1;
-    cat.share_history = [event, ...(cat.share_history || [])];
-    savePersistedCatalogs(persisted);
+  const updatedHistory = [newShare, ...(cat.share_history || [])];
+  const updatedCat: Catalog = {
+    ...cat,
+    share_count: (cat.share_count || 0) + 1,
+    share_history: updatedHistory as any,
+    updated_at: new Date().toISOString(),
+  };
+
+  const pIdx = persisted.findIndex(c => c.id === cat.id || c.public_token === cat.public_token);
+  if (pIdx !== -1) {
+    persisted[pIdx] = updatedCat;
+  } else {
+    persisted.unshift(updatedCat);
+  }
+  savePersistedCatalogs(persisted);
+  inMemoryCatalogs = inMemoryCatalogs.map(c => (c.id === cat.id ? updatedCat : c));
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'catalogs', updatedCat.id), updatedCat, { merge: true });
+      }
+    } catch {}
   }
 
-  const inMem = inMemoryCatalogs.find(c => c.id === catalogId || c.public_token === catalogId);
-  if (inMem) {
-    inMem.share_count = (inMem.share_count || 0) + 1;
-    inMem.share_history = [event, ...(inMem.share_history || [])];
-  }
+  return updatedCat;
+}
 
-  return cat || inMem || null;
+export async function logCatalogShare(catalogId: string, shareData: { shared_to: string; shared_by?: string; notes?: string }): Promise<void> {
+  await recordCatalogShare(catalogId, 'whatsapp', shareData.shared_to);
 }
 
 function getCustomCustomersFilePath(): string {
@@ -296,7 +395,9 @@ function loadPersistedCustomers(): Customer[] {
     const filePath = getCustomCustomersFilePath();
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf-8');
-      if (data.trim()) return JSON.parse(data);
+      if (data.trim()) {
+        return JSON.parse(data);
+      }
     }
   } catch (err) {
     console.error('Failed to read custom customers:', err);
@@ -330,6 +431,20 @@ export async function getAllCustomers(): Promise<Customer[]> {
   const all = Array.from(mergedMap.values());
   inMemoryCustomers = all;
 
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const snap = await getDocs(collection(db, 'customers'));
+        if (!snap.empty) {
+          const list: Customer[] = [];
+          snap.forEach((d) => list.push(d.data() as Customer));
+          if (list.length > 0) return list;
+        }
+      }
+    } catch {}
+  }
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
@@ -358,6 +473,16 @@ export async function saveCustomer(customerData: Partial<Customer>): Promise<Cus
       } as Customer;
       savePersistedCustomers(persisted);
       await getAllCustomers();
+
+      if (isFirebaseConfigured()) {
+        try {
+          const db = getFirebaseDb();
+          if (db) {
+            await setDoc(doc(db, 'customers', persisted[idx].id), persisted[idx], { merge: true });
+          }
+        } catch {}
+      }
+
       return persisted[idx];
     }
   }
@@ -380,6 +505,16 @@ export async function saveCustomer(customerData: Partial<Customer>): Promise<Cus
   persisted.unshift(newCust);
   savePersistedCustomers(persisted);
   inMemoryCustomers.unshift(newCust);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await setDoc(doc(db, 'customers', newCust.id), newCust, { merge: true });
+      }
+    } catch {}
+  }
+
   return newCust;
 }
 
@@ -390,6 +525,16 @@ export async function deleteCustomer(id: string): Promise<boolean> {
     savePersistedCustomers(filtered);
   }
   inMemoryCustomers = inMemoryCustomers.filter(c => c.id !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await deleteDoc(doc(db, 'customers', id));
+      }
+    } catch {}
+  }
+
   return true;
 }
 
@@ -409,6 +554,18 @@ export async function deleteCatalog(id: string): Promise<boolean> {
   const filtered = persisted.filter(c => c.id !== id && c.public_token !== id);
   savePersistedCatalogs(filtered);
   inMemoryCatalogs = inMemoryCatalogs.filter(c => c.id !== id && c.public_token !== id);
+
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        await deleteDoc(doc(db, 'catalogs', id));
+        if (target && target.id !== id) {
+          await deleteDoc(doc(db, 'catalogs', target.id));
+        }
+      }
+    } catch {}
+  }
+
   return true;
 }
-

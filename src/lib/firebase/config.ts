@@ -23,14 +23,49 @@ let app: FirebaseApp | null = null;
 let db: Firestore | null = null;
 let storage: FirebaseStorage | null = null;
 
-if (typeof window !== 'undefined' && isFirebaseConfigured()) {
-  try {
-    app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    storage = getStorage(app);
-  } catch (err) {
-    console.error('Firebase client initialization error:', err);
+export function getFirebaseApp(): FirebaseApp | null {
+  if (!isFirebaseConfigured()) return null;
+  if (!app) {
+    try {
+      app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+    } catch (err) {
+      console.error('Firebase initialization error:', err);
+    }
   }
+  return app;
+}
+
+export function getFirebaseDb(): Firestore | null {
+  const currentApp = getFirebaseApp();
+  if (!currentApp) return null;
+  if (!db) {
+    try {
+      db = getFirestore(currentApp);
+    } catch (err) {
+      console.error('Firestore initialization error:', err);
+    }
+  }
+  return db;
+}
+
+export function getFirebaseStorageInstance(): FirebaseStorage | null {
+  const currentApp = getFirebaseApp();
+  if (!currentApp) return null;
+  if (!storage) {
+    try {
+      storage = getStorage(currentApp);
+    } catch (err) {
+      console.error('Firebase Storage initialization error:', err);
+    }
+  }
+  return storage;
+}
+
+// Initialise in browser if available
+if (typeof window !== 'undefined' && isFirebaseConfigured()) {
+  getFirebaseApp();
+  getFirebaseDb();
+  getFirebaseStorageInstance();
 }
 
 export { app, db, storage, firebaseConfig };
