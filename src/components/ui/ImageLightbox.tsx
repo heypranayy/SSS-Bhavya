@@ -86,9 +86,15 @@ export function ImageLightbox({
           onClick={() => setIsZoomed(!isZoomed)}
         >
           <img
-            src={currentImg.image_url}
+            src={(currentImg as any)?.local_url || currentImg.image_url}
             alt="Product view"
             className="max-h-[75vh] w-auto object-contain rounded shadow-2xl"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src !== '/images/cat-3piece.jpg') {
+                target.src = '/images/cat-3piece.jpg';
+              }
+            }}
           />
         </div>
 
@@ -116,7 +122,17 @@ export function ImageLightbox({
                 idx === currentIndex ? 'border-[#C5A059] scale-105' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={img.image_url} alt="" className="w-full h-full object-cover" />
+              <img
+                src={(img as any)?.local_url || img.image_url}
+                alt=""
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== '/images/cat-3piece.jpg') {
+                    target.src = '/images/cat-3piece.jpg';
+                  }
+                }}
+              />
             </button>
           ))}
         </div>

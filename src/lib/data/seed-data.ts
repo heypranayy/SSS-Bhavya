@@ -101,6 +101,24 @@ export const SEED_COLLECTIONS: Collection[] = [
     is_featured: true,
     product_count: 8,
   },
+  {
+    id: 'col-single-catalogs',
+    name: 'Single Kurtis & Tunics',
+    slug: 'single-kurtis',
+    description: 'Daily wear, office wear and designer straight-cut kurtis in 100% pure cotton',
+    image_url: '/images/cat-3piece.jpg',
+    is_featured: false,
+    product_count: 6,
+  },
+  {
+    id: 'col-western-catalogs',
+    name: 'Western Tops & Midis',
+    slug: 'western-midi',
+    description: 'Trendy Indo-Western dresses, midi tunics and casual coordinate styles',
+    image_url: '/images/cat-coord.jpg',
+    is_featured: false,
+    product_count: 6,
+  },
 ];
 
 export const SEED_CUSTOMERS: Customer[] = [
@@ -148,11 +166,50 @@ export const SEED_CUSTOMERS: Customer[] = [
   },
 ];
 
-const mappedMigratedProducts: Product[] = (migratedProductsRaw as any[]).map((p) => ({
-  ...p,
-  price_display_mode: 'request',
-  category: SEED_CATEGORIES.find((c) => c.id === p.category_id) || SEED_CATEGORIES[0],
-}));
+function getProductCollections(p: any): Collection[] {
+  const matchedCols: Collection[] = [];
+  const catId = (p.category_id || '').toLowerCase();
+  const style = (p.style_type || '').toLowerCase();
+
+  if (catId === 'cat-3p-kurtis' || style.includes('3-piece') || style.includes('three-piece')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === '3-piece-kurtis');
+    if (col) matchedCols.push(col);
+  } else if (catId === 'cat-2p-kurtis' || style.includes('2-piece') || style.includes('two-piece')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === '2-piece-kurtis');
+    if (col) matchedCols.push(col);
+  } else if (catId === 'cat-coord-sets' || style.includes('co-ord') || style.includes('coord')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === 'coord-sets');
+    if (col) matchedCols.push(col);
+  } else if (catId === 'cat-gowns' || style.includes('anarkali') || style.includes('gown')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === 'anarkalis-gowns');
+    if (col) matchedCols.push(col);
+  } else if (catId === 'cat-single-kurtis' || style.includes('single')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === 'single-kurtis');
+    if (col) matchedCols.push(col);
+  } else if (catId === 'cat-western-midi' || style.includes('western') || style.includes('midi')) {
+    const col = SEED_COLLECTIONS.find(c => c.slug === 'western-midi');
+    if (col) matchedCols.push(col);
+  }
+
+  return matchedCols;
+}
+
+const mappedMigratedProducts: Product[] = (migratedProductsRaw as any[]).map((p) => {
+  const images = (p.images || []).map((img: any) => ({
+    ...img,
+    image_url: img.local_url || img.image_url,
+  }));
+
+  return {
+    ...p,
+    images,
+    price_display_mode: 'request',
+    price_on_enquiry: true,
+    price_on_request: true,
+    category: SEED_CATEGORIES.find((c) => c.id === p.category_id) || SEED_CATEGORIES[0],
+    collections: p.collections && p.collections.length > 0 ? p.collections : getProductCollections(p),
+  };
+});
 
 export const SEED_PRODUCTS: Product[] = [
   ...mappedMigratedProducts,

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Collection } from '@/types';
-import { SEED_COLLECTIONS } from '@/lib/data/seed-data';
+import { SEED_COLLECTIONS, SEED_CATEGORIES } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
@@ -90,7 +90,32 @@ export async function getAllCollections(): Promise<Collection[]> {
 
 export async function getCollectionBySlug(slug: string): Promise<Collection | null> {
   const collections = await getAllCollections();
-  return collections.find(c => c.slug === slug) || null;
+  const found = collections.find(c => c.slug === slug || c.id === slug);
+  if (found) return found;
+
+  // Fallback to match category slug/id
+  const cat = SEED_CATEGORIES.find(c =>
+    c.slug === slug ||
+    c.id === slug ||
+    c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').includes(slug)
+  );
+
+  if (cat) {
+    const is2P = slug.includes('2');
+    const isCoord = slug.includes('coord');
+    const isAnarkali = slug.includes('anarkali') || slug.includes('gown');
+    return {
+      id: cat.id,
+      name: cat.name,
+      slug: cat.slug,
+      description: cat.description || `Wholesale ${cat.name} catalog and direct manufacturer designs.`,
+      image_url: is2P ? '/images/cat-2piece.jpg' : isCoord ? '/images/cat-coord.jpg' : isAnarkali ? '/images/cat-anarkali.jpg' : '/images/cat-3piece.jpg',
+      is_featured: true,
+      product_count: 16,
+    };
+  }
+
+  return null;
 }
 
 export async function saveCollection(collectionData: Partial<Collection>): Promise<Collection> {

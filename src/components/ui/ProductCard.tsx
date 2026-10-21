@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@/types';
-import { formatINR } from '@/lib/utils';
+import { formatINR, getProductFallbackImage } from '@/lib/utils';
 import { Eye, Layers, Sparkles } from 'lucide-react';
 
 interface ProductCardProps {
@@ -22,25 +22,27 @@ export function ProductCard({
   showSizes = true,
   onQuickView,
 }: ProductCardProps) {
-  const primaryImage = product.images.find(img => img.is_primary) || product.images[0];
+  const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
+  const primaryImage = product.images?.find(img => img.is_primary) || product.images?.[0];
+  const imgSrc = (primaryImage as any)?.local_url || primaryImage?.image_url || fallbackSrc;
   const price = displayPrice ?? product.base_wholesale_price;
 
   return (
     <div className="group relative bg-white border border-[#E7E0D5] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
       {/* Product Image Area */}
       <div className="relative aspect-[3/4] w-full bg-[#EFE9E0] overflow-hidden">
-        {primaryImage?.image_url ? (
-          <img
-            src={primaryImage.image_url}
-            alt={product.title}
-            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-[#A8A29E] text-xs">
-            No Image Available
-          </div>
-        )}
+        <img
+          src={imgSrc}
+          alt={product.title}
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (target.src !== fallbackSrc && !target.src.endsWith(fallbackSrc)) {
+              target.src = fallbackSrc;
+            }
+          }}
+        />
 
         {/* Top Badges */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10">

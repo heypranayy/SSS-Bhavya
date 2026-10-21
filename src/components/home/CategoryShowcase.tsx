@@ -83,6 +83,9 @@ export function CategoryShowcase() {
                   <img
                     src={item.image}
                     alt={item.title}
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/cat-3piece.jpg';
+                    }}
                     className="absolute top-0 left-0 w-full h-full object-cover object-top will-change-transform [transform:translateZ(0)] group-hover:scale-108 transition-transform duration-700"
                     loading="lazy"
                   />

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Product } from '@/types';
-import { formatINR } from '@/lib/utils';
+import { formatINR, getProductFallbackImage } from '@/lib/utils';
 import { ImageLightbox } from '@/components/ui/ImageLightbox';
 import { ProductCard } from '@/components/ui/ProductCard';
 import {
@@ -26,9 +26,10 @@ interface ProductDetailViewProps {
 export function ProductDetailView({ product, relatedProducts }: ProductDetailViewProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
 
   const images = product.images.length > 0 ? product.images : [
-    { id: 'default', image_url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85', display_order: 0, is_primary: true }
+    { id: 'default', image_url: fallbackSrc, local_url: fallbackSrc, display_order: 0, is_primary: true }
   ];
 
   const currentImage = images[selectedImageIndex] || images[0];
@@ -56,18 +57,31 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
           {/* Thumbnails list */}
           {images.length > 1 && (
             <div className="flex sm:flex-col gap-3 overflow-x-auto sm:overflow-visible shrink-0 pb-2 sm:pb-0">
-              {images.map((img, idx) => (
-                <button
-                  key={img.id || idx}
-                  type="button"
-                  onClick={() => setSelectedImageIndex(idx)}
-                  className={`w-16 h-20 sm:w-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
-                    selectedImageIndex === idx ? 'border-[#722F37] ring-1 ring-[#722F37]' : 'border-[#E7E0D5] opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <img src={img.image_url} alt="" className="w-full h-full object-cover object-top" />
-                </button>
-              ))}
+              {images.map((img, idx) => {
+                const thumbSrc = (img as any)?.local_url || img.image_url || fallbackSrc;
+                return (
+                  <button
+                    key={img.id || idx}
+                    type="button"
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`w-16 h-20 sm:w-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
+                      selectedImageIndex === idx ? 'border-[#722F37] ring-1 ring-[#722F37]' : 'border-[#E7E0D5] opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={thumbSrc}
+                      alt=""
+                      className="w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src !== fallbackSrc && !target.src.endsWith(fallbackSrc)) {
+                          target.src = fallbackSrc;
+                        }
+                      }}
+                    />
+                  </button>
+                );
+              })}
             </div>
           )}
 
@@ -77,9 +91,15 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
             onClick={() => setLightboxOpen(true)}
           >
             <img
-              src={currentImage.image_url}
+              src={(currentImage as any)?.local_url || currentImage.image_url || fallbackSrc}
               alt={product.title}
               className="w-full h-full object-cover object-top group-hover:scale-102 transition-transform duration-300"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src !== fallbackSrc && !target.src.endsWith(fallbackSrc)) {
+                  target.src = fallbackSrc;
+                }
+              }}
             />
             <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs text-[#1C1917] text-xs font-semibold px-2.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
               <ZoomIn className="w-3.5 h-3.5 text-[#722F37]" />

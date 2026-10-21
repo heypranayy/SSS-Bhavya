@@ -196,9 +196,15 @@ Please confirm availability and the applicable wholesale pricing.`;
                   <div key={sel.productId} className="p-2.5 flex items-center justify-between gap-3 text-xs">
                     <div className="flex items-center gap-2.5">
                       <img
-                        src={prod.images[0]?.image_url}
+                        src={(prod.images[0] as any)?.local_url || prod.images[0]?.image_url || '/images/cat-3piece.jpg'}
                         alt=""
                         className="w-10 h-12 object-cover rounded bg-[#EFE9E0] shrink-0"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src !== '/images/cat-3piece.jpg') {
+                            target.src = '/images/cat-3piece.jpg';
+                          }
+                        }}
                       />
                       <div>
                         <span className="font-mono font-bold text-[#722F37] bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E7E0D5] text-[11px]">

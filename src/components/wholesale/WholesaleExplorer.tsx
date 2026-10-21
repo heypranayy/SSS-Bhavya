@@ -69,6 +69,25 @@ export function WholesaleExplorer({
 
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
+  // Synchronize state when URL parameters change
+  useEffect(() => {
+    const qCat = searchParams.get('category');
+    const qCol = searchParams.get('collection');
+    const qSize = searchParams.get('size');
+    const qFabric = searchParams.get('fabric');
+    const qSearch = searchParams.get('search');
+    const qInStock = searchParams.get('inStock');
+    const qSort = searchParams.get('sort');
+
+    setSelectedCategory(qCat || 'all');
+    setSelectedCollection(qCol || 'all');
+    setSelectedSize(qSize || 'all');
+    setSelectedFabric(qFabric || 'all');
+    if (qSearch !== null) setSearchQuery(qSearch);
+    if (qInStock !== null) setOnlyInStock(qInStock === 'true');
+    if (qSort !== null) setSortBy(qSort);
+  }, [searchParams]);
+
   // Synchronize state with URL parameters
   const updateUrlParams = (updates: Record<string, string | null>) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -139,9 +158,70 @@ export function WholesaleExplorer({
 
       // 3. Collection Filter
       if (selectedCollection !== 'all') {
-        const hasCollection = p.collections?.some(
-          (c) => c.slug === selectedCollection || c.id === selectedCollection
+        const colSel = selectedCollection.toLowerCase();
+        let hasCollection = p.collections?.some(
+          (c) =>
+            c.slug?.toLowerCase() === colSel ||
+            c.id?.toLowerCase() === colSel ||
+            c.name?.toLowerCase()?.includes(colSel)
         );
+
+        // Resilient fallback matching if p.collections is unpopulated or uses aliases
+        if (!hasCollection) {
+          const style = (p.style_type || '').toLowerCase();
+          const catSlug = (p.category?.slug || '').toLowerCase();
+          const catName = (p.category?.name || '').toLowerCase();
+          const catId = (p.category_id || p.category?.id || '').toLowerCase();
+          const title = p.title.toLowerCase();
+
+          if (colSel.includes('3-piece') || colSel.includes('three-piece') || colSel.includes('3p')) {
+            hasCollection =
+              style.includes('3-piece') ||
+              catSlug.includes('3-piece') ||
+              catName.includes('three-piece') ||
+              style.includes('dupatta') ||
+              title.includes('3 piece') ||
+              title.includes('3-piece') ||
+              title.includes('dupatta');
+          } else if (colSel.includes('2-piece') || colSel.includes('two-piece') || colSel.includes('2p')) {
+            hasCollection =
+              style.includes('2-piece') ||
+              catSlug.includes('2-piece') ||
+              catName.includes('two-piece') ||
+              title.includes('2 piece') ||
+              title.includes('2-piece');
+          } else if (colSel.includes('coord') || colSel.includes('co-ord')) {
+            hasCollection =
+              style.includes('co-ord') ||
+              catSlug.includes('coord') ||
+              catName.includes('co-ord') ||
+              title.includes('coord') ||
+              title.includes('co-ord');
+          } else if (colSel.includes('anarkali') || colSel.includes('gown')) {
+            hasCollection =
+              style.includes('anarkali') ||
+              catSlug.includes('gowns') ||
+              catName.includes('anarkali') ||
+              title.includes('anarkali') ||
+              title.includes('gown');
+          } else if (colSel.includes('single') || colSel.includes('kurti')) {
+            hasCollection =
+              style.includes('single') ||
+              catSlug.includes('kurti') ||
+              catName.includes('single') ||
+              title.includes('single') ||
+              title.includes('kurti');
+          } else if (colSel.includes('western') || colSel.includes('midi')) {
+            hasCollection =
+              style.includes('western') ||
+              catSlug.includes('western') ||
+              catName.includes('western') ||
+              title.includes('midi');
+          } else {
+            hasCollection = catSlug.includes(colSel) || catName.includes(colSel) || catId === colSel;
+          }
+        }
+
         if (!hasCollection) return false;
       }
 
@@ -382,6 +462,46 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
           })}
         </div>
 
+        {/* Desktop Quick Collection Filter Pills */}
+        {collections && collections.length > 0 && (
+          <div className="hidden md:flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar border-t border-[#F3ECE2] pt-2.5">
+            <span className="text-[11px] font-mono uppercase text-[#722F37] font-bold mr-2 shrink-0">Collection:</span>
+            <button
+              onClick={() => {
+                setSelectedCollection('all');
+                updateUrlParams({ collection: null });
+              }}
+              className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all shrink-0 cursor-pointer ${
+                selectedCollection === 'all'
+                  ? 'bg-zinc-800 text-white shadow-xs'
+                  : 'bg-[#FAF7F2] text-zinc-600 hover:bg-zinc-200/60'
+              }`}
+            >
+              All Series
+            </button>
+            {collections.map((col) => {
+              const isActive = selectedCollection.toLowerCase() === col.slug.toLowerCase() || selectedCollection.toLowerCase() === col.id.toLowerCase();
+              return (
+                <button
+                  key={col.id}
+                  onClick={() => {
+                    const val = isActive ? 'all' : col.slug;
+                    setSelectedCollection(val);
+                    updateUrlParams({ collection: val === 'all' ? null : val });
+                  }}
+                  className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all shrink-0 cursor-pointer ${
+                    isActive
+                      ? 'bg-[#C5A059] text-white shadow-xs font-bold'
+                      : 'bg-[#FAF7F2] text-zinc-600 hover:bg-zinc-200/60'
+                  }`}
+                >
+                  {col.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {/* Secondary Filter Row (Desktop): Sizes, Fabrics, Stock */}
         <div className="hidden md:flex items-center justify-between border-t border-[#F3ECE2] pt-3 text-xs text-zinc-600 flex-wrap gap-3">
           <div className="flex items-center gap-4 flex-wrap">
@@ -422,7 +542,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
           </div>
 
           {/* Reset Filters */}
-          {(searchQuery || selectedCategory !== 'all' || selectedSize !== 'all' || selectedFabric !== 'all' || onlyInStock) && (
+          {(searchQuery || selectedCategory !== 'all' || selectedCollection !== 'all' || selectedSize !== 'all' || selectedFabric !== 'all' || onlyInStock) && (
             <button
               onClick={handleResetFilters}
               className="inline-flex items-center gap-1 text-xs text-[#722F37] hover:underline font-semibold cursor-pointer"
@@ -462,6 +582,19 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                 onClick={() => {
                   setSelectedCategory('all');
                   updateUrlParams({ category: null });
+                }}
+              />
+            </span>
+          )}
+
+          {selectedCollection !== 'all' && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C5A059]/20 text-[#722F37] border border-[#C5A059]/40 text-[11px] font-semibold">
+              Collection: {collections.find(c => c.slug === selectedCollection || c.id === selectedCollection)?.name || selectedCollection}
+              <X
+                className="w-3 h-3 cursor-pointer hover:text-black"
+                onClick={() => {
+                  setSelectedCollection('all');
+                  updateUrlParams({ collection: null });
                 }}
               />
             </span>
@@ -903,6 +1036,40 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                   ))}
                 </div>
               </div>
+
+              {/* Collections */}
+              {collections && collections.length > 0 && (
+                <div>
+                  <span className="text-xs font-bold uppercase text-zinc-700 block mb-2">Collection / Series</span>
+                  <div className="space-y-1.5">
+                    <button
+                      onClick={() => {
+                        setSelectedCollection('all');
+                        updateUrlParams({ collection: null });
+                      }}
+                      className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium ${
+                        selectedCollection === 'all' ? 'bg-[#C5A059] text-white font-bold' : 'bg-zinc-100 text-zinc-800'
+                      }`}
+                    >
+                      All Collections
+                    </button>
+                    {collections.map((col) => (
+                      <button
+                        key={col.id}
+                        onClick={() => {
+                          setSelectedCollection(col.slug);
+                          updateUrlParams({ collection: col.slug });
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium ${
+                          selectedCollection === col.slug ? 'bg-[#C5A059] text-white font-bold' : 'bg-zinc-100 text-zinc-800'
+                        }`}
+                      >
+                        {col.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Sizes */}
               <div>

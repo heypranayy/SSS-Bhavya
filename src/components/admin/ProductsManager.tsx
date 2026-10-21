@@ -158,9 +158,15 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-3">
                       <img
-                        src={prod.images[0]?.image_url}
+                        src={(prod.images[0] as any)?.local_url || prod.images[0]?.image_url || '/images/cat-3piece.jpg'}
                         alt=""
                         className="w-10 h-12 object-cover rounded bg-[#EFE9E0] shrink-0"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src !== '/images/cat-3piece.jpg') {
+                            target.src = '/images/cat-3piece.jpg';
+                          }
+                        }}
                       />
                       <div>
                         <span className="font-bold text-[#1C1917] block line-clamp-1">{prod.title}</span>

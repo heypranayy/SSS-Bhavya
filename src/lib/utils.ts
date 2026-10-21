@@ -36,8 +36,15 @@ export function getProductDisplayImage(
   } | null
 ): string {
   if (!product) return '/images/cat-3piece.jpg';
+  const fallback = getProductFallbackImage(product.style_type || product.category?.name);
   const primary = product.images?.find((img) => img.is_primary) || product.images?.[0];
-  if (primary?.local_url) return primary.local_url;
-  if (primary?.image_url) return primary.image_url;
-  return getProductFallbackImage(product.style_type || product.category?.name);
+  if (primary?.local_url && primary.local_url.trim()) return primary.local_url;
+  if (primary?.image_url && primary.image_url.trim()) {
+    // Avoid dead 403 remote WordPress endpoints
+    if (primary.image_url.includes('bhavyafashions.com/wp-content/uploads')) {
+      return fallback;
+    }
+    return primary.image_url;
+  }
+  return fallback;
 }
