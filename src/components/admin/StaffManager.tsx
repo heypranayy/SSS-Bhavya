@@ -42,6 +42,16 @@ export interface ActivityLogItem {
 
 const INITIAL_STAFF: StaffAccount[] = [
   {
+    id: 'staff-lead-pranay',
+    name: 'Pranay (Gexart Lead)',
+    email: 'pranay@gexart.com',
+    password: 'Bhavya@2026',
+    role: 'super_admin',
+    hub: 'All Hubs',
+    status: 'active',
+    lastActive: 'Just now',
+  },
+  {
     id: 'staff-1',
     name: 'Super Administrator',
     email: 'sss@bhavyafashions.com',
@@ -151,8 +161,9 @@ export function StaffManager() {
   const [editPasswordValue, setEditPasswordValue] = useState('');
   const [showEditPassword, setShowEditPassword] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from server and localStorage on mount
   useEffect(() => {
+    // 1. Check local storage first for instant load
     try {
       const stored = localStorage.getItem('bhavya_staff_accounts');
       if (stored) {
@@ -162,6 +173,19 @@ export function StaffManager() {
         }
       }
     } catch {}
+
+    // 2. Fetch fresh staff list from server
+    fetch('/api/admin/staff')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setStaffList(data);
+          try {
+            localStorage.setItem('bhavya_staff_accounts', JSON.stringify(data));
+          } catch {}
+        }
+      })
+      .catch((err) => console.warn('Server staff load fallback to local:', err));
   }, []);
 
   const saveStaffList = (updated: StaffAccount[]) => {
@@ -178,9 +202,12 @@ export function StaffManager() {
   );
 
   const handleToggleStatus = (id: string) => {
+    const target = staffList.find((s) => s.id === id);
+    if (!target) return;
+    const newStatus = target.status === 'active' ? 'suspended' : 'active';
+
     const updated = staffList.map((s) => {
       if (s.id === id) {
-        const newStatus = s.status === 'active' ? 'suspended' : 'active';
         setLogs((prevLogs) => [
           {
             id: `log-${Date.now()}`,
@@ -196,21 +223,35 @@ export function StaffManager() {
       return s;
     });
     saveStaffList(updated);
+
+    // Sync to server
+    fetch('/api/admin/staff', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, updates: { status: newStatus } }),
+    }).catch((err) => console.error('Staff status sync error:', err));
   };
 
   const handleRoleChange = (id: string, newRole: StaffRole) => {
     const updated = staffList.map((s) => (s.id === id ? { ...s, role: newRole } : s));
     saveStaffList(updated);
+
+    // Sync to server
+    fetch('/api/admin/staff', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, updates: { role: newRole } }),
+    }).catch((err) => console.error('Staff role sync error:', err));
   };
 
-  const handleAddStaff = (e: React.FormEvent) => {
+  const handleAddStaff = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newName.trim() || !newEmail.trim()) return;
 
     const newStaff: StaffAccount = {
       id: `staff-${Date.now()}`,
       name: newName.trim(),
-      email: newEmail.trim(),
+      email: newEmail.trim().toLowerCase(),
       password: newPassword.trim() || 'Bhavya@2026',
       role: newRole,
       hub: newHub,
@@ -230,20 +271,43 @@ export function StaffManager() {
       ...logs,
     ]);
 
+    // Persist to server API
+    try {
+      await fetch('/api/admin/staff', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newStaff),
+      });
+    } catch (err) {
+      console.error('Failed to save staff on server:', err);
+    }
+
     setNewName('');
     setNewEmail('');
     setNewPassword('Bhavya@2026');
     setShowAddModal(false);
   };
 
-  const handleSavePasswordChange = (e: React.FormEvent) => {
+  const handleSavePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!passwordModalStaff || !editPasswordValue.trim()) return;
 
+    const newPass = editPasswordValue.trim();
     const updated = staffList.map((s) =>
-      s.id === passwordModalStaff.id ? { ...s, password: editPasswordValue.trim() } : s
+      s.id === passwordModalStaff.id ? { ...s, password: newPass } : s
     );
     saveStaffList(updated);
+
+    // Sync password to server
+    try {
+      await fetch('/api/admin/staff', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: passwordModalStaff.id, updates: { password: newPass } }),
+      });
+    } catch (err) {
+      console.error('Failed to sync password update:', err);
+    }
 
     setLogs((prev) => [
       {

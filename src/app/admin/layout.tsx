@@ -30,6 +30,8 @@ export default function AdminLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [adminUser, setAdminUser] = useState<string>('sss@bhavyafashions.com');
+  const [adminRole, setAdminRole] = useState<string>('Super Admin');
 
   useEffect(() => {
     if (pathname === '/admin/login') {
@@ -37,8 +39,15 @@ export default function AdminLayout({
       return;
     }
     const authStatus = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_auth') : null;
+    const userEmail = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_user') : null;
+    const userRole = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_role') : null;
+
     if (authStatus === 'authenticated') {
       setIsAuthenticated(true);
+      if (userEmail) setAdminUser(userEmail);
+      if (userRole) {
+        setAdminRole(userRole === 'super_admin' ? 'Super Admin' : userRole.toUpperCase());
+      }
     } else {
       setIsAuthenticated(false);
       router.push('/admin/login');
@@ -279,10 +288,10 @@ export default function AdminLayout({
           <div className="bg-[#2E2825] p-3 rounded-lg flex items-center justify-between text-xs">
             <div>
               <span className="text-[10px] uppercase text-[#C5A059] font-mono font-bold block">
-                Super Admin
+                {adminRole}
               </span>
-              <span className="font-mono text-white text-[11px] truncate block max-w-[130px]">
-                sss@bhavyafashions.com
+              <span className="font-mono text-white text-[11px] truncate block max-w-[130px]" title={adminUser}>
+                {adminUser}
               </span>
             </div>
             <button

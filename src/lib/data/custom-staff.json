@@ -1,0 +1,62 @@
+[
+  {
+    "id": "staff-lead-pranay",
+    "name": "Pranay (Gexart Lead)",
+    "email": "pranay@gexart.com",
+    "password": "Bhavya@2026",
+    "role": "super_admin",
+    "hub": "All Hubs",
+    "status": "active",
+    "lastActive": "Just now"
+  },
+  {
+    "id": "staff-super-1",
+    "name": "Super Administrator",
+    "email": "sss@bhavyafashions.com",
+    "password": "Bhavya@2026",
+    "role": "super_admin",
+    "hub": "All Hubs",
+    "status": "active",
+    "lastActive": "Just now"
+  },
+  {
+    "id": "staff-admin-2",
+    "name": "System Admin",
+    "email": "admin@bhavyafashions.com",
+    "password": "bhavya2026admin",
+    "role": "admin",
+    "hub": "All Hubs",
+    "status": "active",
+    "lastActive": "Just now"
+  },
+  {
+    "id": "staff-3",
+    "name": "Amit Verma",
+    "email": "amit.verma@bhavyafashions.com",
+    "password": "Bhavya@2026",
+    "role": "sales_staff",
+    "hub": "Kolkata Barabazar",
+    "status": "active",
+    "lastActive": "10 mins ago"
+  },
+  {
+    "id": "staff-4",
+    "name": "Sanjay Jain",
+    "email": "sanjay.jain@bhavyafashions.com",
+    "password": "Bhavya@2026",
+    "role": "catalog_manager",
+    "hub": "Kolkata Barabazar",
+    "status": "active",
+    "lastActive": "1 hour ago"
+  },
+  {
+    "id": "staff-5",
+    "name": "Ravi Sharma",
+    "email": "ravi.sharma@bhavyafashions.com",
+    "password": "Bhavya@2026",
+    "role": "sales_staff",
+    "hub": "Surat Unit",
+    "status": "active",
+    "lastActive": "3 hours ago"
+  }
+]

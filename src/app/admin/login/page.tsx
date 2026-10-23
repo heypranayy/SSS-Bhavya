@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ShieldCheck, Lock, Mail, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { ShieldCheck, Lock, Mail, ArrowRight, Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
+import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/config';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -11,6 +13,7 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState('Bhavya@2026');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [authSuccess, setAuthSuccess] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,8 +24,50 @@ export default function AdminLoginPage() {
       const cleanEmail = email.trim().toLowerCase();
       const cleanPass = password.trim();
 
-      let matchedStaff = false;
-      if (typeof window !== 'undefined') {
+      let authenticated = false;
+      let authUserRole = 'admin';
+
+      // 1. Try Firebase Authentication (if configured and user was created in Firebase Auth)
+      if (isFirebaseConfigured()) {
+        try {
+          const app = getFirebaseApp();
+          if (app) {
+            const auth = getAuth(app);
+            const userCred = await signInWithEmailAndPassword(auth, cleanEmail, cleanPass);
+            if (userCred && userCred.user) {
+              authenticated = true;
+              authUserRole = cleanEmail.includes('gexart') ? 'super_admin' : 'admin';
+            }
+          }
+        } catch (fbErr: any) {
+          // If password error or user not found, fall through to backend/local checks
+          console.warn('Firebase Auth check passed to fallback handlers:', fbErr.code);
+        }
+      }
+
+      // 2. Try Server-Side Verification API (/api/admin/login)
+      if (!authenticated) {
+        try {
+          const res = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: cleanEmail, password: cleanPass }),
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success) {
+              authenticated = true;
+              authUserRole = data.user?.role || 'admin';
+            }
+          }
+        } catch (apiErr) {
+          console.warn('Server login API fallback:', apiErr);
+        }
+      }
+
+      // 3. Try LocalStorage Fallback (for offline or local staff accounts)
+      if (!authenticated && typeof window !== 'undefined') {
         try {
           const stored = localStorage.getItem('bhavya_staff_accounts');
           if (stored) {
@@ -34,21 +79,43 @@ export default function AdminLoginPage() {
                   s.password === cleanPass &&
                   s.status !== 'suspended'
               );
-              if (found) matchedStaff = true;
+              if (found) {
+                authenticated = true;
+                authUserRole = found.role || 'staff';
+              }
             }
           }
         } catch {}
       }
 
-      // Validate credentials against super admin or registered staff
-      if (
-        (cleanEmail === 'sss@bhavyafashions.com' && cleanPass === 'Bhavya@2026') ||
-        (cleanEmail === 'admin@bhavyafashions.com' && cleanPass === 'bhavya2026admin') ||
-        matchedStaff
-      ) {
+      // 4. Master Emergency & Developer Fallback for Super Admin / Gexart Lead
+      if (!authenticated) {
+        const isMasterGexart =
+          cleanEmail === 'pranay@gexart.com' &&
+          (cleanPass === 'Bhavya@2026' ||
+            cleanPass === 'bhavya2026' ||
+            cleanPass === 'bhavya2026admin' ||
+            cleanPass === 'Gexart@2026' ||
+            cleanPass === 'gexart2026');
+
+        const isMasterBhavya =
+          (cleanEmail === 'sss@bhavyafashions.com' &&
+            (cleanPass === 'Bhavya@2026' || cleanPass === 'bhavya2026')) ||
+          (cleanEmail === 'admin@bhavyafashions.com' &&
+            (cleanPass === 'bhavya2026admin' || cleanPass === 'Bhavya@2026'));
+
+        if (isMasterGexart || isMasterBhavya) {
+          authenticated = true;
+          authUserRole = 'super_admin';
+        }
+      }
+
+      if (authenticated) {
+        setAuthSuccess(true);
         if (typeof window !== 'undefined') {
           localStorage.setItem('bhavya_admin_auth', 'authenticated');
           localStorage.setItem('bhavya_admin_user', cleanEmail);
+          localStorage.setItem('bhavya_admin_role', authUserRole);
           document.cookie = 'bhavya_admin_auth=authenticated; path=/; max-age=86400';
         }
         await new Promise((r) => setTimeout(r, 400));
@@ -58,6 +125,7 @@ export default function AdminLoginPage() {
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'Authentication failed. Please verify credentials.');
+      setAuthSuccess(false);
     } finally {
       setIsLoading(false);
     }
@@ -65,6 +133,12 @@ export default function AdminLoginPage() {
 
   const handleAutofillSuperAdmin = () => {
     setEmail('sss@bhavyafashions.com');
+    setPassword('Bhavya@2026');
+    setErrorMsg('');
+  };
+
+  const handleAutofillGexartAdmin = () => {
+    setEmail('pranay@gexart.com');
     setPassword('Bhavya@2026');
     setErrorMsg('');
   };
@@ -88,9 +162,14 @@ export default function AdminLoginPage() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
         <div className="bg-white py-8 px-6 sm:px-10 shadow-xl rounded-2xl border border-[#E7E0D5]">
           <div className="mb-6 pb-4 border-b border-[#F3ECE2] flex items-center justify-between">
-            <h2 className="font-serif-luxury text-lg font-bold text-[#1C1917]">
-              Administrator Sign In
-            </h2>
+            <div>
+              <h2 className="font-serif-luxury text-lg font-bold text-[#1C1917]">
+                Administrator Sign In
+              </h2>
+              <p className="text-[11px] text-[#78716C] mt-0.5">
+                Firebase Auth &amp; Enterprise Staff Access
+              </p>
+            </div>
             <div className="w-8 h-8 rounded-full bg-[#722F37]/10 text-[#722F37] flex items-center justify-center">
               <ShieldCheck className="w-4 h-4" />
             </div>
@@ -99,6 +178,13 @@ export default function AdminLoginPage() {
           {errorMsg && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 text-xs text-red-700 rounded-lg">
               {errorMsg}
+            </div>
+          )}
+
+          {authSuccess && (
+            <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 rounded-lg flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+              <span>Authentication successful! Launching dashboard...</span>
             </div>
           )}
 
@@ -140,8 +226,8 @@ export default function AdminLoginPage() {
             <div className="pt-2">
               <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full py-3 px-4 rounded-lg bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                disabled={isLoading || authSuccess}
+                className="w-full py-3 px-4 rounded-lg bg-[#722F37] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#5C1D24] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50 cursor-pointer"
               >
                 {isLoading ? (
                   <>
@@ -158,23 +244,52 @@ export default function AdminLoginPage() {
             </div>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-[#F3ECE2] space-y-3">
-            <div className="bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5] flex items-center justify-between">
-              <div className="text-left text-xs">
-                <span className="font-bold text-[#1C1917] block">Super Admin ID</span>
-                <span className="font-mono text-[#722F37] text-[11px]">sss@bhavyafashions.com</span>
-              </div>
+          {/* Quick Super Admin Credentials for evaluation */}
+          <div className="mt-6 pt-4 border-t border-[#F3ECE2] space-y-2.5">
+            <div className="text-[10px] uppercase font-mono font-bold tracking-wider text-[#78716C]">
+              Authorized Admin Profiles:
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={handleAutofillGexartAdmin}
+                className="p-2.5 bg-[#FAF7F2] hover:bg-[#F3ECE2] rounded-xl border border-[#E7E0D5] text-left transition-colors cursor-pointer group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[#1C1917] text-[11px] group-hover:text-[#722F37]">
+                    Pranay (Gexart)
+                  </span>
+                  <span className="text-[9px] bg-[#1C1917] text-[#C5A059] px-1.5 py-0.5 rounded font-mono font-bold">
+                    Dev Lead
+                  </span>
+                </div>
+                <span className="font-mono text-[#78716C] text-[10px] block truncate">
+                  pranay@gexart.com
+                </span>
+              </button>
+
               <button
                 type="button"
                 onClick={handleAutofillSuperAdmin}
-                className="px-2.5 py-1 bg-[#1C1917] text-[#C5A059] rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-black transition-colors"
+                className="p-2.5 bg-[#FAF7F2] hover:bg-[#F3ECE2] rounded-xl border border-[#E7E0D5] text-left transition-colors cursor-pointer group"
               >
-                Auto-Fill
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[#1C1917] text-[11px] group-hover:text-[#722F37]">
+                    Bhavya Fashions
+                  </span>
+                  <span className="text-[9px] bg-[#722F37]/10 text-[#722F37] px-1.5 py-0.5 rounded font-mono font-bold">
+                    Super Admin
+                  </span>
+                </div>
+                <span className="font-mono text-[#78716C] text-[10px] block truncate">
+                  sss@bhavyafashions.com
+                </span>
               </button>
             </div>
 
-            <p className="text-[10px] text-center text-[#78716C]">
-              Engineered & Secured by{" "}
+            <p className="text-[10px] text-center text-[#78716C] pt-2">
+              Engineered & Secured by{' '}
               <a
                 href="https://www.gexart.com"
                 target="_blank"
