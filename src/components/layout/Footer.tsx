@@ -190,7 +190,6 @@ export function Footer() {
               className="text-[#C5A059] hover:text-white font-semibold transition-colors inline-flex items-center gap-1 group"
             >
               <span>Gexart Technologies</span>
-              <span className="text-[10px] text-zinc-500 group-hover:text-zinc-300 font-mono">(www.gexart.com)</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A059] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>

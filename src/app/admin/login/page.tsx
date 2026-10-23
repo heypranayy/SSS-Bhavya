@@ -174,7 +174,15 @@ export default function AdminLoginPage() {
             </div>
 
             <p className="text-[10px] text-center text-[#78716C]">
-              Engineered & Secured by <strong className="text-[#1C1917]">Gexart Technologies</strong> (www.gexart.com)
+              Engineered & Secured by{" "}
+              <a
+                href="https://www.gexart.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#1C1917] hover:underline"
+              >
+                Gexart Technologies
+              </a>
             </p>
           </div>
         </div>

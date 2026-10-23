@@ -171,16 +171,13 @@ export default function AdminLayout({
 
             <div className="pt-4 border-t border-[#2E2825] space-y-3">
               <div className="bg-[#141211] p-3 rounded-lg border border-[#2E2825] text-xs">
-                <span className="text-[10px] uppercase font-mono text-[#C5A059] font-bold block">
-                  ⚡ GEXART TECHNOLOGIES
-                </span>
                 <a
                   href="https://www.gexart.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:underline text-[11px] block mt-0.5"
+                  className="text-[#C5A059] font-bold text-[11px] block tracking-wide hover:underline"
                 >
-                  www.gexart.com
+                  ⚡ GEXART TECHNOLOGIES
                 </a>
               </div>
 
@@ -276,9 +273,6 @@ export default function AdminLayout({
             >
               Built by Gexart Technologies
             </a>
-            <span className="text-[10px] text-[#78716C] block font-mono">
-              www.gexart.com
-            </span>
           </div>
 
           {/* User Signout Row */}
@@ -331,7 +325,6 @@ export default function AdminLayout({
             >
               <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse" />
               <span>Built &amp; Protected by <u>Gexart Technologies</u></span>
-              <span className="text-[10px] text-[#78716C] font-mono group-hover:underline">(www.gexart.com)</span>
             </a>
           </div>
         </footer>
