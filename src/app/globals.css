@@ -28,16 +28,32 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", var(--font-inter), var(--font-jakarta), "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "rlig" 1, "calt" 1;
+  letter-spacing: -0.012em;
 }
 
-/* Custom editorial typography utility classes */
-.font-serif-luxury {
-  font-family: var(--font-playfair), Georgia, Cambria, serif;
+/* Premium Apple & Salesforce Modern Display & Headline Typography */
+.font-serif-luxury,
+.font-display-premium,
+.apple-display {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", var(--font-jakarta), var(--font-inter), "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: -0.028em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-.font-sans-clean {
-  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* Clean, crisp body and UI copy matching Salesforce and Apple standards */
+.font-sans-clean,
+.salesforce-sans {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", var(--font-inter), var(--font-jakarta), "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Smooth custom scrollbars */

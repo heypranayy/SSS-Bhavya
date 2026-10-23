@@ -15,8 +15,19 @@ import {
   Filter,
   ShieldCheck,
   Send,
+  Check,
+  Edit3,
+  Sparkles,
+  ArrowRight,
+  UserCheck,
 } from 'lucide-react';
-import { SupportTicket, TicketStatus, buildTicketMailtoUrl } from '@/types/tickets';
+import {
+  SupportTicket,
+  TicketStatus,
+  buildTicketMailtoUrl,
+  buildReplyToSubmitterMailtoUrl,
+  buildReplyToSubmitterWhatsAppUrl,
+} from '@/types/tickets';
 import { RaiseTicketModal } from '@/components/admin/RaiseTicketModal';
 
 export default function AdminTicketsPage() {
@@ -25,6 +36,22 @@ export default function AdminTicketsPage() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [showRaiseModal, setShowRaiseModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState<string>('');
+
+  // Editing resolution notes state per ticket
+  const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
+  const [activeNotesDraft, setActiveNotesDraft] = useState<{ [id: string]: string }>({});
+  const [savingNoteId, setSavingNoteId] = useState<string | null>(null);
+
+  const isPranay = currentUser.toLowerCase().includes('pranay');
+  const isSuperAdmin = currentUser.toLowerCase().includes('sss') || isPranay;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('bhavya_admin_user') || '';
+      setCurrentUser(user);
+    }
+  }, []);
 
   const fetchTickets = async () => {
     setIsLoading(true);
@@ -34,6 +61,11 @@ export default function AdminTicketsPage() {
         const data = await res.json();
         if (Array.isArray(data)) {
           setTickets(data);
+          const drafts: { [id: string]: string } = {};
+          data.forEach((t) => {
+            if (t.resolution_notes) drafts[t.id] = t.resolution_notes;
+          });
+          setActiveNotesDraft(drafts);
         }
       }
     } catch (err) {
@@ -47,22 +79,63 @@ export default function AdminTicketsPage() {
     fetchTickets();
   }, []);
 
-  const handleStatusChange = async (id: string, newStatus: TicketStatus) => {
+  const handleStatusChange = async (id: string, newStatus: TicketStatus, notes?: string) => {
     try {
       const res = await fetch('/api/admin/tickets', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, status: newStatus }),
+        body: JSON.stringify({
+          id,
+          status: newStatus,
+          resolution_notes: notes !== undefined ? notes : activeNotesDraft[id],
+        }),
       });
 
       if (res.ok) {
+        const updated = await res.json();
         setTickets((prev) =>
-          prev.map((t) => (t.id === id ? { ...t, status: newStatus, updated_at: new Date().toISOString() } : t))
+          prev.map((t) => (t.id === id ? { ...t, ...updated } : t))
         );
       }
     } catch (err) {
       console.error('Failed to update ticket status:', err);
     }
+  };
+
+  const handleSaveNotes = async (id: string) => {
+    setSavingNoteId(id);
+    try {
+      const currentTicket = tickets.find((t) => t.id === id);
+      const res = await fetch('/api/admin/tickets', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id,
+          status: currentTicket?.status || 'in_progress',
+          resolution_notes: activeNotesDraft[id] || '',
+        }),
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        setTickets((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, ...updated } : t))
+        );
+        setEditingNotesId(null);
+      }
+    } catch (err) {
+      console.error('Failed to save resolution notes:', err);
+    } finally {
+      setSavingNoteId(null);
+    }
+  };
+
+  const handleQuickResolveAndReply = async (ticket: SupportTicket) => {
+    const notes = activeNotesDraft[ticket.id] || 'Your issue has been resolved by Gexart Technical Support.';
+    await handleStatusChange(ticket.id, 'resolved', notes);
+    // Open email reply to submitter
+    const replyUrl = buildReplyToSubmitterMailtoUrl(ticket, notes);
+    window.location.href = replyUrl;
   };
 
   const filteredTickets = tickets.filter((ticket) => {
@@ -82,25 +155,27 @@ export default function AdminTicketsPage() {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-sm">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-xs">
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-2.5 flex-wrap">
             <span className="p-2 rounded-xl bg-[#722F37]/10 text-[#722F37]">
               <LifeBuoy className="w-5 h-5" />
             </span>
             <h1 className="font-serif-luxury text-2xl font-bold text-[#1C1917]">
-              Tech Support &amp; Issue Tickets
+              {isPranay
+                ? 'Gexart Engineering Support Desk'
+                : 'Gexart Technical Support Helpdesk'}
             </h1>
+            {isPranay && (
+              <span className="text-[10px] font-mono font-bold bg-[#C5A059] text-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Tech Lead Controller (pranay@gexart.com)
+              </span>
+            )}
           </div>
-          <p className="text-xs text-[#78716C]">
-            Direct engineering helpdesk. Every ticket automatically routes to{' '}
-            <a
-              href="mailto:pranay@gexart.com"
-              className="text-[#722F37] font-semibold underline hover:text-[#C5A059]"
-            >
-              pranay@gexart.com
-            </a>{' '}
-            (Gexart Technologies Lead Developer).
+          <p className="text-xs text-[#78716C] max-w-2xl">
+            {isPranay
+              ? 'Incoming Bhavya Fashions tickets are routed directly to your desk. Update status, log technical resolution notes, and reply back to the submitters.'
+              : 'Direct engineering support channel. Have an issue, bug, or feature requirement? Submit a ticket to Gexart Support for rapid technical resolution.'}
           </p>
         </div>
 
@@ -114,21 +189,13 @@ export default function AdminTicketsPage() {
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           </button>
 
-          <a
-            href="mailto:pranay@gexart.com?subject=Bhavya%20Fashions%20Direct%20Tech%20Inquiry"
-            className="px-3.5 py-2.5 rounded-xl border border-[#E7E0D5] bg-white text-[#1C1917] hover:bg-[#FAF7F2] text-xs font-semibold flex items-center gap-1.5 transition-colors"
-          >
-            <Mail className="w-4 h-4 text-[#722F37]" />
-            <span>Email Pranay Directly</span>
-          </a>
-
           <button
             type="button"
             onClick={() => setShowRaiseModal(true)}
-            className="px-4 py-2.5 rounded-xl bg-[#722F37] hover:bg-[#5C1D24] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md transition-all cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-[#722F37] hover:bg-[#5C1D24] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all cursor-pointer"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Raise New Ticket</span>
+            <span>Contact Gexart Support</span>
           </button>
         </div>
       </div>
@@ -185,7 +252,7 @@ export default function AdminTicketsPage() {
       </div>
 
       {/* Tickets List */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {isLoading ? (
           <div className="bg-white p-12 text-center rounded-2xl border border-[#E7E0D5] text-[#78716C] text-xs">
             Loading support tickets...
@@ -204,12 +271,19 @@ export default function AdminTicketsPage() {
               onClick={() => setShowRaiseModal(true)}
               className="px-4 py-2 bg-[#722F37] text-white rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#5C1D24] cursor-pointer"
             >
-              Raise a New Ticket
+              Contact Gexart Support
             </button>
           </div>
         ) : (
           filteredTickets.map((ticket) => {
-            const mailtoUrl = buildTicketMailtoUrl(ticket);
+            const replyMailtoUrl = buildReplyToSubmitterMailtoUrl(
+              ticket,
+              activeNotesDraft[ticket.id]
+            );
+            const replyWhatsAppUrl = buildReplyToSubmitterWhatsAppUrl(
+              ticket,
+              activeNotesDraft[ticket.id]
+            );
 
             const priorityBadgeClasses =
               ticket.priority === 'critical'
@@ -227,11 +301,14 @@ export default function AdminTicketsPage() {
                 ? 'bg-blue-100 text-blue-800'
                 : 'bg-red-100 text-red-800 font-bold';
 
+            const isEditingNotes = editingNotesId === ticket.id;
+
             return (
               <div
                 key={ticket.id}
-                className="bg-white p-5 rounded-2xl border border-[#E7E0D5] shadow-sm hover:border-[#C5A059] transition-all space-y-3"
+                className="bg-white p-5 rounded-2xl border border-[#E7E0D5] shadow-xs hover:border-[#C5A059] transition-all space-y-3"
               >
+                {/* Header Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F3ECE2] pb-3">
                   <div className="flex items-center gap-2.5 flex-wrap">
                     <span className="font-mono text-xs font-bold bg-[#1C1917] text-[#C5A059] px-2.5 py-1 rounded-md">
@@ -253,6 +330,7 @@ export default function AdminTicketsPage() {
                   </div>
                 </div>
 
+                {/* Ticket Title & Description */}
                 <div>
                   <h3 className="font-serif-luxury text-base font-bold text-[#1C1917]">
                     {ticket.title}
@@ -262,48 +340,162 @@ export default function AdminTicketsPage() {
                   </p>
                 </div>
 
-                {ticket.resolution_notes && (
-                  <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs text-emerald-900 space-y-1">
-                    <span className="font-bold block">Resolution / Notes:</span>
-                    <p>{ticket.resolution_notes}</p>
-                  </div>
-                )}
-
-                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5]">
-                  <div className="space-y-0.5">
-                    <div className="text-[11px] text-[#78716C]">
+                {/* Submitter & Location Info */}
+                <div className="text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <span className="text-[11px] text-[#78716C]">
                       Submitted by:{' '}
                       <strong className="text-[#1C1917]">{ticket.submitter_name}</strong> ({ticket.submitter_email})
+                    </span>
+                    {ticket.submitter_phone && (
+                      <span className="text-[11px] text-[#78716C] ml-2">
+                        • Tel: <strong className="text-[#1C1917] font-mono">{ticket.submitter_phone}</strong>
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-[11px] text-[#78716C]">
+                    Screen / Route: <span className="font-mono font-semibold text-[#722F37]">{ticket.screen_url || '/admin'}</span>
+                  </div>
+                </div>
+
+                {/* Resolution Notes Display or Editor */}
+                {isPranay || isSuperAdmin ? (
+                  <div className="bg-emerald-50/70 border border-emerald-200 p-3.5 rounded-xl text-xs space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-emerald-950 flex items-center gap-1.5">
+                        <Edit3 className="w-3.5 h-3.5 text-emerald-700" />
+                        <span>Resolution / Engineering Notes (Pranay):</span>
+                      </span>
+                      {!isEditingNotes && (
+                        <button
+                          type="button"
+                          onClick={() => setEditingNotesId(ticket.id)}
+                          className="text-[11px] text-emerald-800 underline font-semibold hover:text-emerald-950 cursor-pointer"
+                        >
+                          {ticket.resolution_notes ? 'Edit Notes' : '+ Add Resolution Notes'}
+                        </button>
+                      )}
                     </div>
-                    <div className="text-[11px] text-[#78716C]">
-                      Screen: <span className="font-mono">{ticket.screen_url || '/admin'}</span> • Target:{' '}
-                      <strong className="text-[#722F37] font-mono">{ticket.target_email}</strong>
-                    </div>
+
+                    {isEditingNotes ? (
+                      <div className="space-y-2 pt-1">
+                        <textarea
+                          rows={3}
+                          value={activeNotesDraft[ticket.id] ?? (ticket.resolution_notes || '')}
+                          onChange={(e) =>
+                            setActiveNotesDraft((prev) => ({
+                              ...prev,
+                              [ticket.id]: e.target.value,
+                            }))
+                          }
+                          placeholder="Type what was resolved or instructions for the submitter..."
+                          className="w-full text-xs p-2.5 rounded-lg border border-emerald-300 bg-white focus:outline-none focus:ring-1 focus:ring-emerald-600"
+                        />
+                        <div className="flex items-center gap-2 justify-end">
+                          <button
+                            type="button"
+                            onClick={() => setEditingNotesId(null)}
+                            className="px-3 py-1 rounded-lg border border-emerald-300 text-emerald-900 text-xs font-semibold hover:bg-white cursor-pointer"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleSaveNotes(ticket.id)}
+                            disabled={savingNoteId === ticket.id}
+                            className="px-3.5 py-1 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs cursor-pointer"
+                          >
+                            {savingNoteId === ticket.id ? 'Saving...' : 'Save Notes'}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-emerald-900 italic">
+                        {ticket.resolution_notes || 'No resolution notes logged yet.'}
+                      </p>
+                    )}
+                  </div>
+                ) : ticket.resolution_notes ? (
+                  <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs text-emerald-900 space-y-1">
+                    <span className="font-bold flex items-center gap-1.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>Resolution from Gexart Technical Support:</span>
+                    </span>
+                    <p className="leading-relaxed">{ticket.resolution_notes}</p>
+                  </div>
+                ) : null}
+
+                {/* Bottom Controls / Action Bar */}
+                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs bg-white border-t border-[#F3ECE2] pt-3">
+                  <div className="text-[11px] text-[#78716C] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span>Desk: Gexart Technical Support</span>
                   </div>
 
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {/* Status dropdown */}
-                    <select
-                      value={ticket.status}
-                      onChange={(e) => handleStatusChange(ticket.id, e.target.value as TicketStatus)}
-                      className="text-xs py-1.5 px-2.5 rounded-lg border border-[#E7E0D5] bg-white text-[#1C1917] font-semibold focus:outline-none"
-                    >
-                      <option value="open">Mark: Open</option>
-                      <option value="in_progress">Mark: In Progress</option>
-                      <option value="resolved">Mark: Resolved</option>
-                      <option value="closed">Mark: Closed</option>
-                    </select>
+                  {/* Actions for Pranay / Tech Lead */}
+                  {isPranay || isSuperAdmin ? (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {/* Status Dropdown */}
+                      <select
+                        value={ticket.status}
+                        onChange={(e) => handleStatusChange(ticket.id, e.target.value as TicketStatus)}
+                        className="text-xs py-1.5 px-2.5 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] text-[#1C1917] font-semibold focus:outline-none"
+                      >
+                        <option value="open">Status: Open</option>
+                        <option value="in_progress">Status: In Progress</option>
+                        <option value="resolved">Status: Resolved</option>
+                        <option value="closed">Status: Closed</option>
+                      </select>
 
-                    {/* Email Pranay Button */}
-                    <a
-                      href={mailtoUrl}
-                      className="px-3 py-1.5 rounded-lg bg-[#722F37] text-white hover:bg-[#5C1D24] text-xs font-semibold flex items-center gap-1.5 transition-colors"
-                      title="Send ticket via email to pranay@gexart.com"
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                      <span>Email Pranay</span>
-                    </a>
-                  </div>
+                      {/* Reply to Submitter via Email */}
+                      <a
+                        href={replyMailtoUrl}
+                        className="px-3 py-1.5 rounded-lg bg-[#1C1917] hover:bg-[#2E2825] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                        title={`Reply to ${ticket.submitter_email}`}
+                      >
+                        <Mail className="w-3.5 h-3.5 text-[#C5A059]" />
+                        <span>Reply to {ticket.submitter_name.split(' ')[0]}</span>
+                      </a>
+
+                      {/* WhatsApp Reply (if phone provided) */}
+                      {ticket.submitter_phone && (
+                        <a
+                          href={replyWhatsAppUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                          title="Quick reply on WhatsApp"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp</span>
+                        </a>
+                      )}
+
+                      {/* Quick Resolve & Reply */}
+                      {ticket.status !== 'resolved' && (
+                        <button
+                          type="button"
+                          onClick={() => handleQuickResolveAndReply(ticket)}
+                          className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#722F37] to-[#8C3A44] hover:from-[#5C1D24] hover:to-[#722F37] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                          title="Mark resolved and open email reply"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#C5A059]" />
+                          <span>Resolve &amp; Reply</span>
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    /* Regular Staff View Actions */
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`mailto:pranay@gexart.com?subject=Follow-up%20on%20Support%20Ticket%20%23${ticket.ticket_number}`}
+                        className="px-3 py-1.5 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] hover:bg-white text-[#1C1917] text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-[#722F37]" />
+                        <span>Send Follow-up to Support</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             );

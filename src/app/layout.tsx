@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -48,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${jakarta.variable} font-sans-clean antialiased min-h-screen selection:bg-[#722F37] selection:text-white`}
+      className={`${inter.variable} ${jakarta.variable} font-sans-clean antialiased min-h-screen selection:bg-[#722F37] selection:text-white`}
     >
       <body className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917]">
         {children}

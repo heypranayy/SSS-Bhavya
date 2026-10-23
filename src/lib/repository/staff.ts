@@ -30,16 +30,6 @@ export const INITIAL_STAFF_ACCOUNTS: StaffAccount[] = [
     lastActive: 'Just now',
   },
   {
-    id: 'staff-lead-pranay',
-    name: 'Pranay (Gexart Lead)',
-    email: 'pranay@gexart.com',
-    password: 'Bhavya@2026',
-    role: 'super_admin',
-    hub: 'All Hubs',
-    status: 'active',
-    lastActive: 'Just now',
-  },
-  {
     id: 'staff-admin-2',
     name: 'System Admin',
     email: 'admin@bhavyafashions.com',
@@ -93,20 +83,22 @@ export function loadPersistedStaff(): StaffAccount[] {
       if (data.trim()) {
         const parsed = JSON.parse(data);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.filter((s) => s.email?.toLowerCase() !== 'pranay@gexart.com');
         }
       }
     }
   } catch (err) {
     console.error('Failed to read custom staff file:', err);
   }
-  return INITIAL_STAFF_ACCOUNTS;
+  return INITIAL_STAFF_ACCOUNTS.filter((s) => s.email?.toLowerCase() !== 'pranay@gexart.com');
 }
 
 export function savePersistedStaff(staff: StaffAccount[]): void {
   try {
     const filePath = getCustomStaffFilePath();
-    fs.writeFileSync(filePath, JSON.stringify(staff, null, 2), 'utf-8');
+    // Exclude Pranay from persisted staff list
+    const filtered = staff.filter((s) => s.email?.toLowerCase() !== 'pranay@gexart.com');
+    fs.writeFileSync(filePath, JSON.stringify(filtered, null, 2), 'utf-8');
   } catch (err) {
     console.error('Failed to write custom staff file:', err);
   }
@@ -124,7 +116,7 @@ export async function getStaffAccounts(): Promise<StaffAccount[]> {
           snap.forEach((docSnap) => {
             list.push({ id: docSnap.id, ...(docSnap.data() as any) });
           });
-          return list;
+          return list.filter((s) => s.email?.toLowerCase() !== 'pranay@gexart.com');
         }
       }
     } catch (err) {
@@ -133,7 +125,7 @@ export async function getStaffAccounts(): Promise<StaffAccount[]> {
   }
 
   // 2. Local persisted fallback
-  return loadPersistedStaff();
+  return loadPersistedStaff().filter((s) => s.email?.toLowerCase() !== 'pranay@gexart.com');
 }
 
 export async function saveStaffAccount(account: StaffAccount): Promise<StaffAccount> {

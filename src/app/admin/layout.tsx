@@ -81,7 +81,12 @@ export default function AdminLayout({
     { label: 'Customers', href: '/admin/customers', icon: Users },
     { label: 'Blog Posts', href: '/admin/blogs', icon: FileText },
     { label: 'Staff & Roles', href: '/admin/staff', icon: ShieldCheck },
-    { label: 'Tech Support & Tickets', href: '/admin/tickets', icon: LifeBuoy, highlight: true },
+    {
+      label: adminUser?.toLowerCase().includes('pranay') ? 'Gexart Support Desk' : 'Contact Gexart Support',
+      href: '/admin/tickets',
+      icon: LifeBuoy,
+      highlight: true,
+    },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
@@ -280,7 +285,7 @@ export default function AdminLayout({
             className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#722F37] to-[#8C3A44] hover:from-[#5C1D24] hover:to-[#722F37] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
           >
             <LifeBuoy className="w-4 h-4 text-[#C5A059]" />
-            <span>Raise Support Ticket</span>
+            <span>Contact Gexart Support</span>
           </button>
 
           <Link

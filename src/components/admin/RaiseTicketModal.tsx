@@ -50,7 +50,7 @@ export function RaiseTicketModal({
       if (user) {
         setSubmitterEmail(user);
         if (user.includes('sss')) setSubmitterName('Bhavya Super Admin');
-        else if (user.includes('pranay')) setSubmitterName('Pranay (Gexart Lead)');
+        else if (user.includes('pranay')) setSubmitterName('Gexart Support');
         else setSubmitterName(user.split('@')[0]);
       }
     }
@@ -112,7 +112,7 @@ export function RaiseTicketModal({
 
   const whatsappAlertUrl = createdTicket
     ? `https://wa.me/919830729210?text=${encodeURIComponent(
-        `🚨 *New Bhavya Support Ticket #${createdTicket.ticket_number}*\n*Priority:* ${createdTicket.priority.toUpperCase()}\n*Title:* ${createdTicket.title}\n*Raised by:* ${createdTicket.submitter_name} (${createdTicket.submitter_email})\n*Routed to:* pranay@gexart.com`
+        `🚨 *New Bhavya Support Ticket #${createdTicket.ticket_number}*\n*Priority:* ${createdTicket.priority.toUpperCase()}\n*Title:* ${createdTicket.title}\n*Raised by:* ${createdTicket.submitter_name} (${createdTicket.submitter_email})\n*Desk:* Gexart Technical Support`
       )}`
     : '';
 
@@ -127,11 +127,10 @@ export function RaiseTicketModal({
             </div>
             <div>
               <h3 className="font-serif-luxury text-base font-bold text-white">
-                Raise Technical Ticket
+                Contact Gexart Support
               </h3>
               <p className="text-[11px] text-[#A8A29E]">
-                Direct Priority Routing to{' '}
-                <span className="text-[#C5A059] font-mono font-semibold">pranay@gexart.com</span>
+                Direct Technical Engineering Helpdesk
               </p>
             </div>
           </div>
@@ -166,12 +165,12 @@ export function RaiseTicketModal({
 
               <div className="bg-white p-4 rounded-xl border border-[#E7E0D5] text-left text-xs space-y-2">
                 <div className="flex justify-between border-b border-[#F3ECE2] pb-1.5">
-                  <span className="text-[#78716C]">Assigned Tech Lead:</span>
-                  <span className="font-semibold text-[#1C1917]">Pranay (Gexart Technologies)</span>
+                  <span className="text-[#78716C]">Assigned Desk:</span>
+                  <span className="font-semibold text-[#1C1917]">Gexart Technical Support</span>
                 </div>
                 <div className="flex justify-between border-b border-[#F3ECE2] pb-1.5">
-                  <span className="text-[#78716C]">Notification Email:</span>
-                  <span className="font-mono font-semibold text-[#C5A059]">pranay@gexart.com</span>
+                  <span className="text-[#78716C]">Escalation Level:</span>
+                  <span className="font-mono font-semibold text-[#C5A059]">Direct Priority Escalation</span>
                 </div>
                 <div className="flex justify-between border-b border-[#F3ECE2] pb-1.5">
                   <span className="text-[#78716C]">Priority:</span>
@@ -191,7 +190,7 @@ export function RaiseTicketModal({
                     className="w-full py-2.5 px-4 rounded-xl bg-[#722F37] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#5C1D24] transition-colors shadow-sm"
                   >
                     <Mail className="w-4 h-4" />
-                    <span>Open in Email App to Send Copy to pranay@gexart.com</span>
+                    <span>Open in Email App to Send Copy to Gexart Support</span>
                   </a>
                 )}
 
@@ -230,8 +229,8 @@ export function RaiseTicketModal({
               <div className="bg-[#1C1917]/5 border border-[#1C1917]/10 p-3 rounded-xl text-xs flex items-start gap-2.5">
                 <ShieldAlert className="w-4 h-4 text-[#722F37] flex-shrink-0 mt-0.5" />
                 <p className="text-[#78716C]">
-                  This ticket is directly routed to <strong className="text-[#1C1917]">pranay@gexart.com</strong>.
-                  Please describe the bug or task clearly with steps to reproduce.
+                  This ticket is directly routed to <strong className="text-[#1C1917]">Gexart Technical Support</strong>.
+                  Please describe the bug or request clearly with steps to reproduce.
                 </p>
               </div>
 
@@ -373,12 +372,12 @@ export function RaiseTicketModal({
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Dispatching to Pranay...</span>
+                      <span>Dispatching to Gexart Support...</span>
                     </>
                   ) : (
                     <>
                       <Send className="w-3.5 h-3.5" />
-                      <span>Submit Ticket to pranay@gexart.com</span>
+                      <span>Submit Ticket to Gexart Support</span>
                     </>
                   )}
                 </button>

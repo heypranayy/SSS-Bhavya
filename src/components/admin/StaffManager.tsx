@@ -42,16 +42,6 @@ export interface ActivityLogItem {
 
 const INITIAL_STAFF: StaffAccount[] = [
   {
-    id: 'staff-lead-pranay',
-    name: 'Pranay (Gexart Lead)',
-    email: 'pranay@gexart.com',
-    password: 'Bhavya@2026',
-    role: 'super_admin',
-    hub: 'All Hubs',
-    status: 'active',
-    lastActive: 'Just now',
-  },
-  {
     id: 'staff-1',
     name: 'Super Administrator',
     email: 'sss@bhavyafashions.com',

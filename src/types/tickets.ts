@@ -57,8 +57,41 @@ ${ticket.description}
 
 --------------------------------------------------
 Notification automatically addressed to: ${target}
-Bhavya Fashions Wholesale B2B Support Desk`
+Gexart Technical Support Helpdesk`
   );
 
   return `mailto:${target}?subject=${subject}&body=${body}`;
 }
+
+export function buildReplyToSubmitterMailtoUrl(ticket: SupportTicket, customNotes?: string): string {
+  const subject = encodeURIComponent(
+    `Re: [Gexart Support Ticket #${ticket.ticket_number}] ${ticket.title}`
+  );
+
+  const notes = customNotes?.trim() || ticket.resolution_notes?.trim() || 'Your issue has been reviewed and resolved.';
+  const body = encodeURIComponent(
+`Hi ${ticket.submitter_name},
+
+Regarding your Gexart Support ticket #${ticket.ticket_number} ("${ticket.title}"):
+
+${notes}
+
+If you have any further questions, please feel free to reply directly to this email.
+
+---
+Best regards,
+Pranay
+Gexart Technical Support Desk
+pranay@gexart.com`
+  );
+
+  return `mailto:${ticket.submitter_email}?subject=${subject}&body=${body}`;
+}
+
+export function buildReplyToSubmitterWhatsAppUrl(ticket: SupportTicket, customNotes?: string): string {
+  const cleanPhone = (ticket.submitter_phone || '').replace(/[^0-9]/g, '');
+  const notes = customNotes?.trim() || ticket.resolution_notes?.trim() || 'Your ticket has been reviewed and updated.';
+  const text = `Hi ${ticket.submitter_name}, this is Pranay from Gexart Technical Support regarding ticket #${ticket.ticket_number} (${ticket.title}).\n\n${notes}`;
+  return `https://wa.me/${cleanPhone || '919830729210'}?text=${encodeURIComponent(text)}`;
+}
+
