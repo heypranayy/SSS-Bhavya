@@ -19,7 +19,9 @@ import {
   ShieldCheck,
   FileText,
   Loader2,
+  LifeBuoy,
 } from 'lucide-react';
+import { RaiseTicketModal } from '@/components/admin/RaiseTicketModal';
 
 export default function AdminLayout({
   children,
@@ -32,6 +34,7 @@ export default function AdminLayout({
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [adminUser, setAdminUser] = useState<string>('sss@bhavyafashions.com');
   const [adminRole, setAdminRole] = useState<string>('Super Admin');
+  const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
   useEffect(() => {
     if (pathname === '/admin/login') {
@@ -78,6 +81,7 @@ export default function AdminLayout({
     { label: 'Customers', href: '/admin/customers', icon: Users },
     { label: 'Blog Posts', href: '/admin/blogs', icon: FileText },
     { label: 'Staff & Roles', href: '/admin/staff', icon: ShieldCheck },
+    { label: 'Tech Support & Tickets', href: '/admin/tickets', icon: LifeBuoy, highlight: true },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
@@ -108,6 +112,16 @@ export default function AdminLayout({
         </Link>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setIsTicketModalOpen(true)}
+            className="p-1.5 rounded-lg bg-[#722F37] text-[#C5A059] hover:text-white flex items-center gap-1 text-xs font-semibold cursor-pointer"
+            title="Raise Support Ticket"
+          >
+            <LifeBuoy className="w-4 h-4" />
+            <span className="text-[10px] uppercase font-bold">Ticket</span>
+          </button>
+
           <Link
             href="/admin/catalogs/create"
             className="p-1.5 rounded bg-[#722F37] text-white text-xs font-semibold flex items-center gap-1"
@@ -259,6 +273,16 @@ export default function AdminLayout({
         </div>
 
         <div className="pt-5 border-t border-[#2E2825] space-y-3">
+          {/* Quick Raise Ticket Button */}
+          <button
+            type="button"
+            onClick={() => setIsTicketModalOpen(true)}
+            className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#722F37] to-[#8C3A44] hover:from-[#5C1D24] hover:to-[#722F37] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+          >
+            <LifeBuoy className="w-4 h-4 text-[#C5A059]" />
+            <span>Raise Support Ticket</span>
+          </button>
+
           <Link
             href="/"
             target="_blank"
@@ -335,6 +359,12 @@ export default function AdminLayout({
           </div>
         </footer>
       </div>
+
+      {/* Global Support Ticket Modal */}
+      <RaiseTicketModal
+        isOpen={isTicketModalOpen}
+        onClose={() => setIsTicketModalOpen(false)}
+      />
     </div>
   );
 }
