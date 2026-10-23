@@ -392,7 +392,7 @@ export function Navbar() {
 
         {/* Slide-over Container */}
         <div
-          className={`absolute inset-y-0 right-0 w-4/5 max-w-sm bg-white text-[#1C1917] p-6 shadow-2xl border-l border-[#E7E0D5] transition-transform duration-300 ease-out flex flex-col justify-between ${
+          className={`absolute inset-y-0 right-0 w-4/5 max-w-sm bg-white text-[#1C1917] p-6 shadow-2xl border-l border-[#E7E0D5] transition-transform duration-300 ease-out flex flex-col justify-between overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))] ${
             shareDrawerOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >

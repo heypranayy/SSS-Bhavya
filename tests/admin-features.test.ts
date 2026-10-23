@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getAllCatalogs, recordCatalogShare, saveCustomer } from '../src/lib/repository/catalogs';
-import { getAllCollections, saveCollection } from '../src/lib/repository/collections';
+import { getAllCollections, saveCollection, deleteCollection } from '../src/lib/repository/collections';
 import { getAllBlogs, getBlogBySlug, saveBlog } from '../src/lib/repository/blogs';
 
 describe('Admin Collections & Catalog Links & Blogs Management', () => {
@@ -19,6 +19,9 @@ describe('Admin Collections & Catalog Links & Blogs Management', () => {
 
     const all = await getAllCollections();
     expect(all.some(c => c.slug === 'festive-test-2026')).toBe(true);
+
+    // Clean up to prevent polluting live site
+    await deleteCollection(newCol.id);
   });
 
   it('should track catalog share links and maintain share count & history', async () => {

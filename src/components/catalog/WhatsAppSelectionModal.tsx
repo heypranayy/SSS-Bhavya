@@ -40,10 +40,17 @@ export function WhatsAppSelectionModal({
 
   // Recipient WhatsApp phone number validation
   // Default to verified Bhavya Fashions WhatsApp number: +91 98307 29210
-  const rawRecipient = catalog.presentation_settings?.contactWhatsapp ||
+  const rawRecipient =
+    catalog.presentation_settings?.contactWhatsapp ||
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
     '919830729210';
-  const cleanRecipient = rawRecipient.replace(/[^0-9]/g, '');
+  let cleanRecipient = rawRecipient.replace(/[^0-9]/g, '');
+  if (cleanRecipient.length === 10) {
+    cleanRecipient = '91' + cleanRecipient;
+  }
+  if (!cleanRecipient) {
+    cleanRecipient = '919830729210';
+  }
 
   // Build formatted list of items
   // Format:
@@ -132,20 +139,20 @@ Please confirm availability and the applicable wholesale pricing.`;
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl border border-[#E7E0D5] my-6">
-        {/* Header */}
-        <div className="bg-[#FAF7F2] border-b border-[#E7E0D5] px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-white rounded-t-3xl sm:rounded-2xl max-w-xl w-full max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden shadow-2xl border border-[#E7E0D5]">
+        {/* Header - Fixed at Top */}
+        <div className="shrink-0 bg-[#FAF7F2] border-b border-[#E7E0D5] px-5 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0">
               <MessageCircle className="w-5 h-5" />
             </div>
             <div>
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold block">
-                Review & Share
+                Wholesale Inquiry
               </span>
-              <h3 className="font-serif-luxury text-base sm:text-lg font-bold text-[#1C1917]">
-                Send Product Selection on WhatsApp
+              <h3 className="font-serif-luxury text-base sm:text-lg font-bold text-[#1C1917] leading-tight">
+                Send Selection on WhatsApp
               </h3>
             </div>
           </div>
@@ -160,41 +167,41 @@ Please confirm availability and the applicable wholesale pricing.`;
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+        {/* Modal Body - Scrollable */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           {/* Summary Pills */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5]">
+          <div className="grid grid-cols-3 gap-2 text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5]">
             <div>
-              <span className="text-[#78716C] block">Selected Designs:</span>
+              <span className="text-[#78716C] text-[11px] block">Selected:</span>
               <span className="font-bold text-[#1C1917]">{selectedItems.length} Designs</span>
             </div>
             <div>
-              <span className="text-[#78716C] block">Total Pieces:</span>
+              <span className="text-[#78716C] text-[11px] block">Total Pieces:</span>
               <span className="font-bold text-[#1C1917]">
                 {selectedItems.reduce((acc, it) => acc + it.totalQuantity, 0)} pcs
               </span>
             </div>
-            <div className="col-span-2 sm:col-span-1">
-              <span className="text-[#78716C] block">Recipient Desk:</span>
-              <span className="font-mono font-bold text-[#722F37]">+{cleanRecipient}</span>
+            <div>
+              <span className="text-[#78716C] text-[11px] block">WhatsApp Desk:</span>
+              <span className="font-mono font-bold text-[#722F37] truncate block">+{cleanRecipient}</span>
             </div>
           </div>
 
           {/* Selected Designs Checklist */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917] mb-2 flex items-center justify-between">
-              <span>Designs to be sent ({selectedItems.length}):</span>
-              <span className="text-[11px] text-[#78716C] normal-case">Preserving verified DN codes</span>
+              <span>Designs Included ({selectedItems.length}):</span>
+              <span className="text-[11px] text-[#78716C] font-normal">Authentic DN Codes</span>
             </h4>
 
-            <div className="divide-y divide-[#F3ECE2] border border-[#E7E0D5] rounded-xl overflow-hidden bg-white max-h-48 overflow-y-auto">
+            <div className="divide-y divide-[#F3ECE2] border border-[#E7E0D5] rounded-xl overflow-hidden bg-white max-h-40 overflow-y-auto">
               {selectedItems.map((sel) => {
                 const prod = productMap.get(sel.productId);
                 if (!prod) return null;
 
                 return (
                   <div key={sel.productId} className="p-2.5 flex items-center justify-between gap-3 text-xs">
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       <img
                         src={(prod.images[0] as any)?.local_url || prod.images[0]?.image_url || '/images/cat-3piece.jpg'}
                         alt=""
@@ -206,14 +213,14 @@ Please confirm availability and the applicable wholesale pricing.`;
                           }
                         }}
                       />
-                      <div>
+                      <div className="min-w-0">
                         <span className="font-mono font-bold text-[#722F37] bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E7E0D5] text-[11px]">
                           {prod.code}
                         </span>
-                        <p className="text-[#1C1917] font-medium text-xs mt-0.5 line-clamp-1">
+                        <p className="text-[#1C1917] font-medium text-xs mt-0.5 truncate">
                           {prod.title}
                         </p>
-                        <div className="flex items-center gap-1 mt-0.5 text-[11px] text-[#78716C]">
+                        <div className="flex items-center gap-1 mt-0.5 text-[11px] text-[#78716C] flex-wrap">
                           {Object.entries(sel.sizeBreakdown)
                             .filter(([_, q]) => q > 0)
                             .map(([sz, q]) => (
@@ -239,7 +246,7 @@ Please confirm availability and the applicable wholesale pricing.`;
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-xs font-bold text-[#1C1917] flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5 text-[#722F37]" />
-                <span>WhatsApp Message Preview</span>
+                <span>Message Preview</span>
               </label>
               <button
                 type="button"
@@ -251,7 +258,7 @@ Please confirm availability and the applicable wholesale pricing.`;
               </button>
             </div>
 
-            <div className="p-3.5 bg-[#F9F7F3] rounded-xl border border-[#E7E0D5] font-mono text-[11px] text-[#292524] whitespace-pre-line leading-relaxed selection:bg-[#722F37] selection:text-white max-h-48 overflow-y-auto">
+            <div className="p-3 bg-[#F9F7F3] rounded-xl border border-[#E7E0D5] font-mono text-[11px] text-[#292524] whitespace-pre-line leading-relaxed selection:bg-[#722F37] selection:text-white max-h-32 overflow-y-auto">
               {formattedMessage}
             </div>
           </div>
@@ -263,43 +270,42 @@ Please confirm availability and the applicable wholesale pricing.`;
             </div>
           )}
 
-          {/* Critical Policy Notice */}
-          <p className="text-[11px] text-[#78716C] leading-relaxed">
-            * Tapping the button below opens WhatsApp directly with your pre-filled inquiry. You can review and edit before sending. No purchase order or payment is processed online.
+          <p className="text-[11px] text-[#78716C] leading-normal">
+            * Direct B2B Wholesale inquiry. Tapping the button below opens WhatsApp directly with your pre-filled selection.
           </p>
+        </div>
 
-          {/* Action CTAs */}
-          <div className="space-y-2 pt-1">
-            <a
-              href={encodedUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-[#25D366] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md active:scale-[0.99]"
+        {/* Modal Sticky Bottom Actions - ALWAYS VISIBLE, NEVER SCROLLED OFF */}
+        <div className="shrink-0 bg-white border-t border-[#E7E0D5] p-3.5 sm:p-4 space-y-2 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-lg">
+          <a
+            href={encodedUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-[#25D366] text-white font-bold text-sm uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md active:scale-[0.98]"
+          >
+            <MessageCircle className="w-5 h-5 fill-current" />
+            <span>Send Selection on WhatsApp</span>
+            <ExternalLink className="w-4 h-4 opacity-80" />
+          </a>
+
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] text-xs font-semibold text-[#1C1917] hover:bg-white transition-colors"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Send Selection on WhatsApp</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-            </a>
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#78716C]" />}
+              <span>{copied ? 'Copied' : 'Copy Message'}</span>
+            </button>
 
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[#E7E0D5] bg-white text-xs font-semibold text-[#1C1917] hover:bg-[#FAF7F2] transition-colors"
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#78716C]" />}
-                <span>{copied ? 'Copied to Clipboard' : 'Copy Message'}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleShare}
-                className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-[#E7E0D5] bg-white text-xs font-semibold text-[#1C1917] hover:bg-[#FAF7F2] transition-colors"
-              >
-                <Share2 className="w-3.5 h-3.5 text-[#78716C]" />
-                <span>Share Alternatives</span>
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleShare}
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] text-xs font-semibold text-[#1C1917] hover:bg-white transition-colors"
+            >
+              <Share2 className="w-3.5 h-3.5 text-[#78716C]" />
+              <span>Share Alternatives</span>
+            </button>
           </div>
         </div>
       </div>

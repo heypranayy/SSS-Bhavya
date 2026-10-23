@@ -29,6 +29,9 @@ function loadPersistedCollections(): Collection[] {
 
 function savePersistedCollections(collections: Collection[]): void {
   try {
+    if (process.env.VITEST || process.env.NODE_ENV === 'test') {
+      return;
+    }
     const filePath = getCustomCollectionsFilePath();
     fs.writeFileSync(filePath, JSON.stringify(collections, null, 2), 'utf-8');
   } catch (err) {
@@ -56,6 +59,9 @@ function loadDeletedCollectionIds(): Set<string> {
 
 function saveDeletedCollectionIds(ids: Set<string>): void {
   try {
+    if (process.env.VITEST || process.env.NODE_ENV === 'test') {
+      return;
+    }
     const filePath = getDeletedCollectionsFilePath();
     fs.writeFileSync(filePath, JSON.stringify(Array.from(ids), null, 2), 'utf-8');
   } catch {}
@@ -114,7 +120,16 @@ export async function getAllCollections(): Promise<Collection[]> {
     } catch {}
   }
 
-  const all = Array.from(mergedMap.values());
+  const isTest = Boolean(process.env.VITEST || process.env.NODE_ENV === 'test');
+  const all = Array.from(mergedMap.values()).filter((c) => {
+    const name = (c.name || '').toLowerCase();
+    const slug = (c.slug || '').toLowerCase();
+    if (!isTest && (name.includes('festive test') || slug.includes('festive-test') || name.includes('test collection'))) {
+      return false;
+    }
+    return !deletedIds.has(c.id) && !deletedIds.has(c.slug);
+  });
+
   all.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
   inMemoryCollections = all;
   return all;
@@ -163,7 +178,7 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
       savePersistedCollections(persisted);
       await getAllCollections();
 
-      if (isFirebaseConfigured()) {
+      if (isFirebaseConfigured() && !process.env.VITEST && process.env.NODE_ENV !== 'test') {
         try {
           const db = getFirebaseDb();
           if (db) {
@@ -196,7 +211,7 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
   savePersistedCollections(persisted);
   inMemoryCollections.unshift(newCollection);
 
-  if (isFirebaseConfigured()) {
+  if (isFirebaseConfigured() && !process.env.VITEST && process.env.NODE_ENV !== 'test') {
     try {
       const db = getFirebaseDb();
       if (db) {

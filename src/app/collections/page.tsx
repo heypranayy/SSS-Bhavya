@@ -40,14 +40,17 @@ export default async function CollectionsPage() {
             <span className="text-xs font-semibold text-[#78716C] uppercase tracking-wider mr-2">
               Browse Categories:
             </span>
-            {categories.map((cat) => (
-              <span
-                key={cat.id}
-                className="text-xs bg-white border border-[#E7E0D5] px-3.5 py-1.5 rounded-full text-[#44403C] font-medium shadow-2xs"
-              >
-                {cat.name}
-              </span>
-            ))}
+            {categories
+              .filter((cat) => !cat.name.includes('(Legacy)'))
+              .map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/collections/${cat.slug}`}
+                  className="text-xs bg-white border border-[#E7E0D5] hover:border-[#722F37] hover:bg-[#722F37] hover:text-white px-4 py-2 rounded-full text-[#44403C] font-semibold shadow-2xs hover:shadow-md transition-all duration-200 cursor-pointer active:scale-95 flex items-center gap-1.5"
+                >
+                  <span>{cat.name}</span>
+                </Link>
+              ))}
           </div>
 
           {/* Collections Grid */}

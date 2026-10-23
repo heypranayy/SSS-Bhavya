@@ -47,7 +47,7 @@ export function SelectedDesignsDrawer({
   });
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E7E0D5] shadow-2xl transition-all">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-[#E7E0D5] shadow-2xl transition-all pb-[max(0.5rem,env(safe-area-inset-bottom))]">
       {/* Expanded Breakdown Drawer */}
       {isExpanded && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 max-h-[50vh] overflow-y-auto border-b border-[#E7E0D5]">

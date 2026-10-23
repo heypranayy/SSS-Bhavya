@@ -826,7 +826,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
 
       {/* Floating Selected Products Bar (Sticky on Desktop and Mobile) */}
       {selectedCount > 0 && (
-        <aside aria-label="Selected products actions" className="fixed bottom-0 left-0 right-0 z-40 bg-[#1C1215]/95 backdrop-blur-md border-t border-[#C5A059]/40 py-3 px-4 shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
+        <aside aria-label="Selected products actions" className="fixed bottom-0 left-0 right-0 z-50 bg-[#1C1215]/95 backdrop-blur-md border-t border-[#C5A059]/40 py-3 px-4 shadow-2xl animate-in slide-in-from-bottom-4 duration-300 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <span className="w-7 h-7 rounded-full bg-[#C5A059] text-[#1C1215] font-bold text-xs flex items-center justify-center font-mono">
@@ -871,106 +871,106 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setSelectionDrawerOpen(false)}
           />
-          <div className="relative w-full max-w-md bg-white h-full shadow-2xl z-10 flex flex-col justify-between p-6 overflow-y-auto">
-            <div>
-              <div className="flex items-center justify-between pb-4 border-b border-[#E7E0D5]">
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold">
-                    Wholesale Selection Summary
-                  </span>
-                  <h3 className="font-serif-luxury text-xl font-bold text-[#1C1917]">
-                    Selected Designs ({selectedCount})
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setSelectionDrawerOpen(false)}
-                  className="p-1.5 text-zinc-400 hover:text-zinc-900 rounded-lg hover:bg-zinc-100"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+          <div className="relative w-full max-w-md bg-white h-full shadow-2xl z-10 flex flex-col justify-between overflow-hidden">
+            {/* Drawer Header - Fixed */}
+            <div className="flex items-center justify-between p-5 border-b border-[#E7E0D5] bg-[#FAF7F2] shrink-0">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold">
+                  Wholesale Selection Summary
+                </span>
+                <h3 className="font-serif-luxury text-xl font-bold text-[#1C1917]">
+                  Selected Designs ({selectedCount})
+                </h3>
               </div>
-
-              {/* Items List */}
-              <div className="mt-4 space-y-4">
-                {Array.from(selectedItems.values()).map(({ product, sizeBreakdown, totalQuantity }) => {
-                  const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
-                  const firstImg = product.images?.[0];
-                  const img =
-                    (firstImg as any)?.local_url ||
-                    firstImg?.image_url ||
-                    fallbackSrc;
-                  return (
-                    <div
-                      key={product.id}
-                      className="p-3.5 rounded-xl border border-[#E7E0D5] bg-[#FAF7F2] space-y-2.5"
-                    >
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={img}
-                          alt={product.title}
-                          className="w-12 h-16 object-cover object-top rounded-lg bg-white border border-[#E7E0D5] shrink-0"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (target.src !== fallbackSrc) {
-                              target.src = fallbackSrc;
-                            }
-                          }}
-                        />
-                        <div className="flex-1 min-w-0">
-                          <span className="text-[10px] font-mono font-bold text-[#C5A059] bg-black/80 px-2 py-0.5 rounded">
-                            {product.code}
-                          </span>
-                          <h4 className="font-serif-luxury text-sm font-semibold text-zinc-900 truncate mt-1">
-                            {product.title}
-                          </h4>
-                          <span className="text-[10px] text-zinc-500 block">
-                            MOQ: {product.moq} pcs • {product.fabric}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => removeSelectedItem(product.id)}
-                          className="text-zinc-400 hover:text-red-600 p-1"
-                          title="Remove item"
-                        >
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                      {/* Size Breakdown Inputs */}
-                      {product.variants?.length > 0 && (
-                        <div className="pt-2 border-t border-zinc-200/60">
-                          <span className="text-[10px] font-semibold text-zinc-700 block mb-1">
-                            Size Breakdown (Pieces):
-                          </span>
-                          <div className="grid grid-cols-4 gap-1.5">
-                            {product.variants.map((v) => (
-                              <div key={v.size} className="text-center">
-                                <span className="text-[10px] font-mono text-zinc-500 block">{v.size}</span>
-                                <input
-                                  type="number"
-                                  min={0}
-                                  value={sizeBreakdown[v.size] ?? 0}
-                                  onChange={(e) => updateItemQuantity(product.id, v.size, Number(e.target.value))}
-                                  className="w-full text-xs font-mono font-bold text-center p-1 rounded border border-[#E7E0D5] bg-white"
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+              <button
+                onClick={() => setSelectionDrawerOpen(false)}
+                className="p-1.5 text-zinc-400 hover:text-zinc-900 rounded-lg hover:bg-zinc-200/60 transition-colors"
+                aria-label="Close selection review"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Drawer Bottom Actions */}
-            <div className="pt-6 border-t border-[#E7E0D5] space-y-3">
+            {/* Items List - Scrollable */}
+            <div className="flex-1 overflow-y-auto p-5 space-y-4">
+              {Array.from(selectedItems.values()).map(({ product, sizeBreakdown, totalQuantity }) => {
+                const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
+                const firstImg = product.images?.[0];
+                const img =
+                  (firstImg as any)?.local_url ||
+                  firstImg?.image_url ||
+                  fallbackSrc;
+                return (
+                  <div
+                    key={product.id}
+                    className="p-3.5 rounded-xl border border-[#E7E0D5] bg-[#FAF7F2] space-y-2.5"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={img}
+                        alt={product.title}
+                        className="w-12 h-16 object-cover object-top rounded-lg bg-white border border-[#E7E0D5] shrink-0"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src !== fallbackSrc) {
+                            target.src = fallbackSrc;
+                          }
+                        }}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] font-mono font-bold text-[#C5A059] bg-black/80 px-2 py-0.5 rounded">
+                          {product.code}
+                        </span>
+                        <h4 className="font-serif-luxury text-sm font-semibold text-zinc-900 truncate mt-1">
+                          {product.title}
+                        </h4>
+                        <span className="text-[10px] text-zinc-500 block">
+                          MOQ: {product.moq} pcs • {product.fabric}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => removeSelectedItem(product.id)}
+                        className="text-zinc-400 hover:text-red-600 p-1"
+                        title="Remove item"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Size Breakdown Inputs */}
+                    {product.variants?.length > 0 && (
+                      <div className="pt-2 border-t border-zinc-200/60">
+                        <span className="text-[10px] font-semibold text-zinc-700 block mb-1">
+                          Size Breakdown (Pieces):
+                        </span>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {product.variants.map((v) => (
+                            <div key={v.size} className="text-center">
+                              <span className="text-[10px] font-mono text-zinc-500 block">{v.size}</span>
+                              <input
+                                type="number"
+                                min={0}
+                                value={sizeBreakdown[v.size] ?? 0}
+                                onChange={(e) => updateItemQuantity(product.id, v.size, Number(e.target.value))}
+                                className="w-full text-xs font-mono font-bold text-center p-1 rounded border border-[#E7E0D5] bg-white"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Drawer Bottom Actions - Pinned, always visible on mobile */}
+            <div className="p-4 border-t border-[#E7E0D5] space-y-2.5 shrink-0 bg-white shadow-lg pb-[max(1rem,env(safe-area-inset-bottom))]">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] shadow-lg"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] shadow-lg active:scale-[0.98] transition-all"
               >
                 <PhoneCall className="w-4 h-4" />
                 <span>Send {selectedCount} Designs on WhatsApp</span>
@@ -978,7 +978,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
 
               <button
                 onClick={() => setSelectedItems(new Map())}
-                className="w-full text-center text-xs text-zinc-500 hover:text-red-600 underline"
+                className="w-full text-center text-xs text-zinc-500 hover:text-red-600 underline py-1"
               >
                 Clear All Selections
               </button>

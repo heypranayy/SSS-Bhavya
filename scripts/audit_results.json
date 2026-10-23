@@ -1,0 +1,2186 @@
+{
+  "desktop": [
+    {
+      "path": "/",
+      "mode": "desktop",
+      "title": "Bhavya Fashions | Premium B2B Wholesale Kurtis & Ethnic Wear",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/wholesale",
+      "mode": "desktop",
+      "title": "B2B Wholesale Catalog & Collection Explorer | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10668-0.jpg",
+          "alt": "10668 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10806-0.jpg",
+          "alt": "10806 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10710-0.jpeg",
+          "alt": "10710 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-line kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-Line Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10629-0.jpeg",
+          "alt": "10629 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10905-0.jpeg",
+          "alt": "10905 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2574-0.png",
+          "alt": "2574 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2496-0.png",
+          "alt": "2496 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections",
+      "mode": "desktop",
+      "title": "Wholesale Kurti Collections | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 29,
+      "category_tabs_clickable": 18,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/3-piece-kurtis",
+      "mode": "desktop",
+      "title": "Three-Piece Ensembles (3P) \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/2-piece-kurtis",
+      "mode": "desktop",
+      "title": "Two-Piece Sets (2P) \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2574-0.png",
+          "alt": "2574 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2496-0.png",
+          "alt": "2496 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/coord-sets",
+      "mode": "desktop",
+      "title": "Contemporary Co-ords \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/anarkalis-gowns",
+      "mode": "desktop",
+      "title": "Flared Anarkalis & Gowns \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/single-kurtis",
+      "mode": "desktop",
+      "title": "Single Kurtis & Tunics \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/western-midi",
+      "mode": "desktop",
+      "title": "Western Tops & Midis \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/products",
+      "mode": "desktop",
+      "title": "All Wholesale Indian Kurtis & Ensembles | Bhavya Fashions Catalog | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/catalog/bhavya-vip-summer-2026",
+      "mode": "desktop",
+      "title": "Exclusive Summer & Festive Lookbook 2026 | Bhavya Fashions Wholesale | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/about",
+      "mode": "desktop",
+      "title": "About Our Wholesale Manufacturing & Heritage | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/blog",
+      "mode": "desktop",
+      "title": "Wholesale Ethnic Fashion Insights & Blog | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/contact",
+      "mode": "desktop",
+      "title": "Showroom & Wholesale Contact | Bhavya Fashions Kolkata | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    }
+  ],
+  "mobile": [
+    {
+      "path": "/",
+      "mode": "mobile",
+      "title": "Bhavya Fashions | Premium B2B Wholesale Kurtis & Ethnic Wear",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/wholesale",
+      "mode": "mobile",
+      "title": "B2B Wholesale Catalog & Collection Explorer | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10844-0.jpeg",
+          "alt": "10844 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10674-0.jpg",
+          "alt": "10674 Co-ord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3373-0.jpeg",
+          "alt": "3373 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3380-0.jpeg",
+          "alt": "3380 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10668-0.jpg",
+          "alt": "10668 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10806-0.jpg",
+          "alt": "10806 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10710-0.jpeg",
+          "alt": "10710 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-line kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-Line Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10629-0.jpeg",
+          "alt": "10629 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10905-0.jpeg",
+          "alt": "10905 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2574-0.png",
+          "alt": "2574 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2496-0.png",
+          "alt": "2496 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections",
+      "mode": "mobile",
+      "title": "Wholesale Kurti Collections | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 29,
+      "category_tabs_clickable": 18,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/3-piece-kurtis",
+      "mode": "mobile",
+      "title": "Three-Piece Ensembles (3P) \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn3380-0.jpeg",
+          "alt": "3380 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10629-0.jpeg",
+          "alt": "10629 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10905-0.jpeg",
+          "alt": "10905 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/2-piece-kurtis",
+      "mode": "mobile",
+      "title": "Two-Piece Sets (2P) \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10806-0.jpg",
+          "alt": "10806 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10710-0.jpeg",
+          "alt": "10710 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-line kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-Line Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2574-0.png",
+          "alt": "2574 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2496-0.png",
+          "alt": "2496 Midi"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/coord-sets",
+      "mode": "mobile",
+      "title": "Contemporary Co-ords \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/anarkalis-gowns",
+      "mode": "mobile",
+      "title": "Flared Anarkalis & Gowns \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/single-kurtis",
+      "mode": "mobile",
+      "title": "Single Kurtis & Tunics \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn3380-0.jpeg",
+          "alt": "3380 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10806-0.jpg",
+          "alt": "10806 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10710-0.jpeg",
+          "alt": "10710 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-line kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-Line Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10629-0.jpeg",
+          "alt": "10629 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10905-0.jpeg",
+          "alt": "10905 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/collections/western-midi",
+      "mode": "mobile",
+      "title": "Western Tops & Midis \u2014 Wholesale Indian Kurti Collection | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/products",
+      "mode": "mobile",
+      "title": "All Wholesale Indian Kurtis & Ensembles | Bhavya Fashions Catalog | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [
+        {
+          "src": "http://localhost:3000/images/products/dn3380-0.jpeg",
+          "alt": "3380 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10668-0.jpg",
+          "alt": "10668 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10806-0.jpg",
+          "alt": "10806 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10710-0.jpeg",
+          "alt": "10710 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-line kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10672-0.jpeg",
+          "alt": "10672 A-Line Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10629-0.jpeg",
+          "alt": "10629 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10905-0.jpeg",
+          "alt": "10905 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10734-0.jpeg",
+          "alt": "10734 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10796-0.jpeg",
+          "alt": "10796 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3370-0.jpeg",
+          "alt": "3370 Kurtiu Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3820-0.jpeg",
+          "alt": "3820 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10645-0.jpeg",
+          "alt": "10645 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10701-0.jpeg",
+          "alt": "10701 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10713-0.jpeg",
+          "alt": "10713 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10703-0.jpeg",
+          "alt": "10703 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10162-0.jpeg",
+          "alt": "10162 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10594-0.jpeg",
+          "alt": "10594 co-ord set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10718-0.jpeg",
+          "alt": "10718 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3821-0.jpeg",
+          "alt": "3821 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11104-0.png",
+          "alt": "11104 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11058-0.png",
+          "alt": "11058 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11108-0.png",
+          "alt": "11108 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11068-0.png",
+          "alt": "11068 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11015-0.png",
+          "alt": "11015 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11081-0.png",
+          "alt": "11081 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11096-0.png",
+          "alt": "11096 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11027-0.png",
+          "alt": "11027 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11029-0.png",
+          "alt": "11029 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11060-0.png",
+          "alt": "11060 Aline Kurti"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11016-0.png",
+          "alt": "11016 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11080-0.png",
+          "alt": "11080 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11097-0.png",
+          "alt": "11097 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10968-0.png",
+          "alt": "10968 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3787-0.png",
+          "alt": "3787 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10432-0.png",
+          "alt": "10432 Gown"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11248-0.png",
+          "alt": "11248 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11012-0.png",
+          "alt": "11012 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10937-0.png",
+          "alt": "10937 Cord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11088-0.png",
+          "alt": "11088 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11089-0.png",
+          "alt": "11089 Aline Kurti Plazzo"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11231-0.png",
+          "alt": "11231 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11215-0.png",
+          "alt": "11215 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11230-0.png",
+          "alt": "11230 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11073-0.png",
+          "alt": "11073 Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11052-0.png",
+          "alt": "11052 Afghani Kurti Pant"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11093-0.png",
+          "alt": "11093 Kurti Sharara"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11083-0.png",
+          "alt": "11083 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10992-0.png",
+          "alt": "10992 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11506-0.png",
+          "alt": "11506 Kurti pant Dupatta Modal"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn2556-0.png",
+          "alt": "2556 MIDI Rayon"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn3816-0.jpg",
+          "alt": "3816 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10604-0.jpeg",
+          "alt": "10604 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10781-0.jpeg",
+          "alt": "10781 Co-ord Set"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11109-0.png",
+          "alt": "11109 kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10996-0.png",
+          "alt": "10996 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn10977-0.png",
+          "alt": "10977 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11057-0.png",
+          "alt": "11057 Kurti Pant Dupatta"
+        },
+        {
+          "src": "http://localhost:3000/images/products/dn11059-0.png",
+          "alt": "11059 Kurti Pant Dupatta"
+        }
+      ],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/catalog/bhavya-vip-summer-2026",
+      "mode": "mobile",
+      "title": "Exclusive Summer & Festive Lookbook 2026 | Bhavya Fashions Wholesale | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/about",
+      "mode": "mobile",
+      "title": "About Our Wholesale Manufacturing & Heritage | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/blog",
+      "mode": "mobile",
+      "title": "Wholesale Ethnic Fashion Insights & Blog | Bhavya Fashions | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    },
+    {
+      "path": "/contact",
+      "mode": "mobile",
+      "title": "Showroom & Wholesale Contact | Bhavya Fashions Kolkata | Bhavya Fashions Wholesale",
+      "console_errors": [],
+      "broken_images": [],
+      "horizontal_overflow": false,
+      "category_tabs_found": 0,
+      "category_tabs_clickable": 0,
+      "found_test_text": false
+    }
+  ],
+  "catalog_mobile_flow": {
+    "url": "http://localhost:3000/catalog/bhavya-vip-summer-2026",
+    "selected_item": false,
+    "sticky_bar_visible": false,
+    "sticky_bar_rect": null,
+    "modal_opened": false,
+    "whatsapp_button_in_viewport": false,
+    "whatsapp_link": null,
+    "viewport_height": 692
+  }
+}
