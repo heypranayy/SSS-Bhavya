@@ -323,9 +323,6 @@ export default function AdminLayout({
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[#A8A29E]">
-              Watermark:
-            </span>
             <a
               href="https://www.gexart.com"
               target="_blank"

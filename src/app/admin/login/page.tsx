@@ -9,8 +9,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('sss@bhavyafashions.com');
-  const [password, setPassword] = useState('Bhavya@2026');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [authSuccess, setAuthSuccess] = useState(false);
@@ -131,17 +131,6 @@ export default function AdminLoginPage() {
     }
   };
 
-  const handleAutofillSuperAdmin = () => {
-    setEmail('sss@bhavyafashions.com');
-    setPassword('Bhavya@2026');
-    setErrorMsg('');
-  };
-
-  const handleAutofillGexartAdmin = () => {
-    setEmail('pranay@gexart.com');
-    setPassword('Bhavya@2026');
-    setErrorMsg('');
-  };
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -244,51 +233,8 @@ export default function AdminLoginPage() {
             </div>
           </form>
 
-          {/* Quick Super Admin Credentials for evaluation */}
-          <div className="mt-6 pt-4 border-t border-[#F3ECE2] space-y-2.5">
-            <div className="text-[10px] uppercase font-mono font-bold tracking-wider text-[#78716C]">
-              Authorized Admin Profiles:
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={handleAutofillGexartAdmin}
-                className="p-2.5 bg-[#FAF7F2] hover:bg-[#F3ECE2] rounded-xl border border-[#E7E0D5] text-left transition-colors cursor-pointer group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-[#1C1917] text-[11px] group-hover:text-[#722F37]">
-                    Pranay (Gexart)
-                  </span>
-                  <span className="text-[9px] bg-[#1C1917] text-[#C5A059] px-1.5 py-0.5 rounded font-mono font-bold">
-                    Dev Lead
-                  </span>
-                </div>
-                <span className="font-mono text-[#78716C] text-[10px] block truncate">
-                  pranay@gexart.com
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleAutofillSuperAdmin}
-                className="p-2.5 bg-[#FAF7F2] hover:bg-[#F3ECE2] rounded-xl border border-[#E7E0D5] text-left transition-colors cursor-pointer group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-[#1C1917] text-[11px] group-hover:text-[#722F37]">
-                    Bhavya Fashions
-                  </span>
-                  <span className="text-[9px] bg-[#722F37]/10 text-[#722F37] px-1.5 py-0.5 rounded font-mono font-bold">
-                    Super Admin
-                  </span>
-                </div>
-                <span className="font-mono text-[#78716C] text-[10px] block truncate">
-                  sss@bhavyafashions.com
-                </span>
-              </button>
-            </div>
-
-            <p className="text-[10px] text-center text-[#78716C] pt-2">
+          <div className="mt-6 pt-4 border-t border-[#F3ECE2]">
+            <p className="text-[10px] text-center text-[#78716C]">
               Engineered & Secured by{' '}
               <a
                 href="https://www.gexart.com"
