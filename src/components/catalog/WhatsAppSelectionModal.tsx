@@ -52,10 +52,7 @@ export function WhatsAppSelectionModal({
     cleanRecipient = '919830729210';
   }
 
-  // Build formatted list of items
-  // Format:
-  // 1. DN: DN123 — Size: M — Quantity: 4
-  // 2. DN: DN245 — Size: L — Quantity: 6
+  // Build formatted list of items for WhatsApp wholesale desk
   const lines: string[] = [];
   let itemCounter = 1;
 
@@ -63,28 +60,22 @@ export function WhatsAppSelectionModal({
     const prod = productMap.get(sel.productId);
     if (!prod) return;
 
-    // DN code: authentic product code
     const dnCode = prod.code;
-    const sizeEntries = Object.entries(sel.sizeBreakdown).filter(([_, qty]) => qty > 0);
+    const sets = sel.sets || Math.max(1, Math.round(sel.totalQuantity / (prod.moq || 6)));
+    const catName = prod.category?.name || prod.style_type;
+    const priceText = prod.quoted_price ? `₹${prod.quoted_price}/pc` : 'Price on Enquiry';
 
-    if (sizeEntries.length > 0) {
-      sizeEntries.forEach(([size, qty]) => {
-        let line = `${itemCounter}. DN: ${dnCode} — Size: ${size} — Quantity: ${qty}`;
-        if (sel.notes) {
-          line += ` (Note: ${sel.notes})`;
-        }
-        lines.push(line);
-        itemCounter++;
-      });
-    } else {
-      // Fallback if no specific size breakdown entered
-      let line = `${itemCounter}. DN: ${dnCode} — Quantity: ${sel.totalQuantity}`;
-      if (sel.notes) {
-        line += ` (Note: ${sel.notes})`;
-      }
-      lines.push(line);
-      itemCounter++;
+    let line = `${itemCounter}. Design: ${dnCode} — ${prod.title}\n` +
+      `   • Category: ${catName}\n` +
+      `   • Cloth Type / Fabric: ${prod.fabric}\n` +
+      `   • Quantity: ${sets} Set (${sel.totalQuantity} pcs full ratio pack)\n` +
+      `   • Quoted Trade Price: ${priceText}`;
+
+    if (sel.notes) {
+      line += `\n   • Note: ${sel.notes}`;
     }
+    lines.push(line);
+    itemCounter++;
   });
 
   const catalogRef = catalog.title || catalog.public_token;
@@ -221,13 +212,13 @@ Please confirm availability and the applicable wholesale pricing.`;
                           {prod.title}
                         </p>
                         <div className="flex items-center gap-1 mt-0.5 text-[11px] text-[#78716C] flex-wrap">
-                          {Object.entries(sel.sizeBreakdown)
-                            .filter(([_, q]) => q > 0)
-                            .map(([sz, q]) => (
-                              <span key={sz} className="font-mono bg-[#FAF7F2] px-1 rounded border text-[10px]">
-                                {sz}:{q}
-                              </span>
-                            ))}
+                          <span className="font-semibold text-[#722F37]">{prod.category?.name || prod.style_type}</span>
+                          <span>•</span>
+                          <span>{prod.fabric}</span>
+                          <span>•</span>
+                          <span className="text-zinc-600 font-mono text-[10px]">
+                            {sel.sets || Math.max(1, Math.round(sel.totalQuantity / (prod.moq || 6)))} Set ({sel.totalQuantity} pcs)
+                          </span>
                         </div>
                       </div>
                     </div>

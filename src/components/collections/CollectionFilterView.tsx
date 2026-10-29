@@ -5,7 +5,22 @@ import Link from 'next/link';
 import { Collection, Product } from '@/types';
 import { ProductCard } from '@/components/ui/ProductCard';
 import { ImageLightbox } from '@/components/ui/ImageLightbox';
-import { Search, Filter, SlidersHorizontal, RotateCcw, ArrowUpDown } from 'lucide-react';
+import { formatINR } from '@/lib/utils';
+import {
+  Search,
+  Filter,
+  SlidersHorizontal,
+  RotateCcw,
+  ArrowUpDown,
+  ShoppingBag,
+  Send,
+  PhoneCall,
+  Trash2,
+  X,
+  Plus,
+  Minus,
+  CheckCircle2,
+} from 'lucide-react';
 
 interface CollectionFilterViewProps {
   collection: Collection;
@@ -19,6 +34,67 @@ export function CollectionFilterView({ collection, products }: CollectionFilterV
   const [selectedStyle, setSelectedStyle] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'newest' | 'price_asc' | 'price_desc' | 'code'>('newest');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  // WhatsApp Cart State
+  const [cart, setCart] = useState<Map<string, { product: Product; sets: number; totalQuantity: number }>>(new Map());
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
+
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
+
+  const toggleAddToCart = (product: Product) => {
+    setCart((prev) => {
+      const next = new Map(prev);
+      if (next.has(product.id)) {
+        next.delete(product.id);
+      } else {
+        const moq = product.moq || 6;
+        next.set(product.id, { product, sets: 1, totalQuantity: moq });
+      }
+      return next;
+    });
+  };
+
+  const updateCartSets = (productId: string, delta: number) => {
+    setCart((prev) => {
+      const next = new Map(prev);
+      const existing = next.get(productId);
+      if (!existing) return prev;
+      const newSets = existing.sets + delta;
+      if (newSets <= 0) {
+        next.delete(productId);
+      } else {
+        const moq = existing.product.moq || 6;
+        next.set(productId, {
+          ...existing,
+          sets: newSets,
+          totalQuantity: newSets * moq,
+        });
+      }
+      return next;
+    });
+  };
+
+  const cartItems = Array.from(cart.values());
+  const totalPiecesInCart = cartItems.reduce((acc, item) => acc + item.totalQuantity, 0);
+  const totalAmountInCart = cartItems.reduce((acc, item) => acc + (item.product.base_wholesale_price * item.totalQuantity), 0);
+
+  const generateWhatsAppMessage = () => {
+    const lines = cartItems.map((item, idx) => {
+      const p = item.product;
+      const priceText = p.base_wholesale_price ? `₹${p.base_wholesale_price}/pc` : 'Price on Enquiry';
+      return `${idx + 1}. Design: ${p.code} (${p.title})\n` +
+        `   • Category: ${p.category?.name || p.style_type}\n` +
+        `   • Cloth Type / Fabric: ${p.fabric}\n` +
+        `   • Quantity: ${item.sets} Set (${item.totalQuantity} pcs ratio pack)\n` +
+        `   • Quoted Trade Price: ${priceText}`;
+    }).join('\n\n');
+
+    return encodeURIComponent(
+      `Hello Bhavya Fashions,\n\nI am interested in ordering the following wholesale designs from your collection "${collection.name}":\n\n${lines}\n\nTotal Designs: ${cartItems.length}\nTotal Pieces: ${totalPiecesInCart} pcs\nIndicative Subtotal: ₹${totalAmountInCart.toLocaleString('en-IN')}\n\nPlease confirm stock availability and dispatch schedule.`
+    );
+  };
+
+  const whatsappInquiryUrl = `https://wa.me/${whatsappNumber}?text=${generateWhatsAppMessage()}`;
 
   // Lightbox state
   const [activeLightboxProduct, setActiveLightboxProduct] = useState<Product | null>(null);
@@ -304,7 +380,7 @@ export function CollectionFilterView({ collection, products }: CollectionFilterV
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pb-16">
           {filteredProducts.map((prod) => (
             <ProductCard
               key={prod.id}
@@ -313,8 +389,170 @@ export function CollectionFilterView({ collection, products }: CollectionFilterV
                 setActiveLightboxProduct(p);
                 setLightboxIndex(0);
               }}
+              onAddToCart={toggleAddToCart}
+              isInCart={cart.has(prod.id)}
             />
           ))}
+        </div>
+      )}
+
+      {/* Floating Selected Products Bar for WhatsApp Cart */}
+      {cartItems.length > 0 && (
+        <aside
+          aria-label="Collection WhatsApp Cart"
+          className="fixed bottom-0 left-0 right-0 z-50 bg-[#1C1215]/95 backdrop-blur-md border-t border-[#C5A059]/40 py-3 px-4 shadow-2xl animate-in slide-in-from-bottom-4 duration-300 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+        >
+          <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <span className="w-7 h-7 rounded-full bg-[#C5A059] text-[#1C1215] font-bold text-xs flex items-center justify-center font-mono">
+                {cartItems.length}
+              </span>
+              <div>
+                <span className="text-xs sm:text-sm font-bold text-white block">
+                  {cartItems.length} {cartItems.length === 1 ? 'Design' : 'Designs'} in WhatsApp Cart ({totalPiecesInCart} pcs)
+                </span>
+                <span className="text-[10px] text-zinc-400 hidden sm:inline">
+                  Subtotal: {formatINR(totalAmountInCart)} • Ready to send to Bhavya Fashions WhatsApp
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCartDrawerOpen(true)}
+                className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors cursor-pointer"
+              >
+                Review Items
+              </button>
+
+              <a
+                href={whatsappInquiryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] transition-all shadow-md"
+              >
+                <PhoneCall className="w-4 h-4" />
+                <span>Send on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Cart Review Sheet Drawer */}
+      {cartDrawerOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setCartDrawerOpen(false)}
+          />
+          <div className="relative w-full max-w-md bg-white h-full shadow-2xl z-10 flex flex-col justify-between overflow-hidden">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-5 border-b border-[#E7E0D5] bg-[#FAF7F2] shrink-0">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#722F37] font-bold">
+                  {collection.name}
+                </span>
+                <h3 className="font-serif-luxury text-base font-bold text-[#1C1917]">
+                  WhatsApp Cart ({cartItems.length} Designs)
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setCartDrawerOpen(false)}
+                className="p-1 rounded-lg text-zinc-400 hover:text-zinc-800 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Selected Products List */}
+            <div className="p-4 overflow-y-auto divide-y divide-[#F3ECE2] flex-1">
+              {cartItems.map((item) => {
+                const prod = item.product;
+                const subtotal = prod.base_wholesale_price * item.totalQuantity;
+                return (
+                  <div key={prod.id} className="py-3 flex items-center justify-between gap-3 text-xs">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={(prod.images[0] as any)?.local_url || prod.images[0]?.image_url || '/images/cat-3piece.jpg'}
+                        alt=""
+                        className="w-12 h-14 object-cover rounded bg-[#EFE9E0] shrink-0"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/cat-3piece.jpg';
+                        }}
+                      />
+                      <div className="min-w-0">
+                        <span className="font-mono font-bold text-[#722F37] bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E7E0D5] text-[10px]">
+                          {prod.code}
+                        </span>
+                        <p className="text-[#1C1917] font-semibold truncate mt-0.5">{prod.title}</p>
+                        <div className="text-[11px] text-[#78716C] mt-0.5 flex items-center gap-1.5">
+                          <span>{prod.fabric}</span>
+                          <span>•</span>
+                          <span className="font-mono text-zinc-800">{item.sets} Set ({item.totalQuantity} pcs)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex items-center border border-[#E7E0D5] rounded-lg bg-white overflow-hidden shadow-2xs">
+                        <button
+                          type="button"
+                          onClick={() => updateCartSets(prod.id, -1)}
+                          className="w-6 h-6 flex items-center justify-center text-zinc-700 hover:bg-zinc-100"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="px-2 text-xs font-mono font-bold">{item.sets}</span>
+                        <button
+                          type="button"
+                          onClick={() => updateCartSets(prod.id, 1)}
+                          className="w-6 h-6 flex items-center justify-center bg-[#722F37] text-white hover:bg-[#58111A]"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => toggleAddToCart(prod)}
+                        className="p-1.5 text-zinc-400 hover:text-red-600 transition-colors"
+                        title="Remove design"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Drawer Footer */}
+            <div className="p-4 bg-[#FAF7F2] border-t border-[#E7E0D5] space-y-3 shrink-0">
+              <div className="flex items-baseline justify-between text-xs">
+                <span className="text-[#78716C]">Total Quantity:</span>
+                <span className="font-bold text-[#1C1917]">{totalPiecesInCart} pcs</span>
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="text-xs text-[#78716C]">Indicative Subtotal:</span>
+                <span className="font-serif-luxury text-base font-bold text-[#722F37]">
+                  {formatINR(totalAmountInCart)}
+                </span>
+              </div>
+
+              <a
+                href={whatsappInquiryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#20ba59] shadow-md transition-all"
+              >
+                <PhoneCall className="w-4 h-4" />
+                <span>Send {cartItems.length} Designs on WhatsApp</span>
+              </a>
+            </div>
+          </div>
         </div>
       )}
 

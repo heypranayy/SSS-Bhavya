@@ -93,13 +93,14 @@ export function SelectedDesignsDrawer({
                       <p className="text-xs font-medium text-[#1C1917] line-clamp-1">
                         {prod.title}
                       </p>
-                      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-[#78716C]">
-                        <span>Breakdown:</span>
-                        {Object.entries(sel.sizeBreakdown).map(([size, qty]) => (
-                          <span key={size} className="bg-[#FAF7F2] border px-1 rounded font-mono text-[10px]">
-                            {size}:{qty}
-                          </span>
-                        ))}
+                      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-[#78716C] flex-wrap">
+                        <span className="font-semibold text-[#722F37]">{prod.category?.name || prod.style_type}</span>
+                        <span>•</span>
+                        <span>{prod.fabric}</span>
+                        <span>•</span>
+                        <span className="bg-[#FAF7F2] border border-[#E7E0D5] px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-700">
+                          {sel.sets || Math.max(1, Math.round(sel.totalQuantity / (prod.moq || 6)))} Set ({sel.totalQuantity} pcs)
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -117,7 +118,7 @@ export function SelectedDesignsDrawer({
                     <button
                       type="button"
                       onClick={() => onRemoveItem(sel.productId)}
-                      className="p-1.5 text-[#A8A29E] hover:text-red-600 transition-colors"
+                      className="p-1.5 text-[#A8A29E] hover:text-red-600 transition-colors cursor-pointer"
                       aria-label="Remove item"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -137,9 +138,9 @@ export function SelectedDesignsDrawer({
             <button
               type="button"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-1 text-xs font-semibold text-[#722F37] hover:underline"
+              className="flex items-center gap-1 text-xs font-semibold text-[#722F37] hover:underline cursor-pointer"
             >
-              <span>{isExpanded ? 'Hide Breakdown' : 'View Breakdown'}</span>
+              <span>{isExpanded ? 'Hide Cart Details' : 'View Cart Details'}</span>
               {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
             </button>
 

@@ -711,12 +711,12 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                     {isSelected ? (
                       <>
                         <Check className="w-3.5 h-3.5" />
-                        <span>Selected</span>
+                        <span>In WhatsApp Cart</span>
                       </>
                     ) : (
                       <>
                         <Plus className="w-3.5 h-3.5 text-[#722F37]" />
-                        <span>Select</span>
+                        <span>+ WhatsApp Cart</span>
                       </>
                     )}
                   </button>
@@ -834,10 +834,10 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
               </span>
               <div>
                 <span className="text-xs sm:text-sm font-bold text-white block">
-                  {selectedCount} {selectedCount === 1 ? 'Design' : 'Designs'} Selected
+                  {selectedCount} {selectedCount === 1 ? 'Design' : 'Designs'} in WhatsApp Cart
                 </span>
                 <span className="text-[10px] text-zinc-400 hidden sm:inline">
-                  Ready to send DN numbers directly to WhatsApp wholesale desk
+                  Ready to send directly to Bhavya Fashions WhatsApp wholesale desk
                 </span>
               </div>
             </div>
