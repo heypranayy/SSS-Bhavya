@@ -68,7 +68,6 @@ export function WhatsAppSelectionModal({
     let line = `${itemCounter}. Design: ${dnCode} — ${prod.title}\n` +
       `   • Category: ${catName}\n` +
       `   • Cloth Type / Fabric: ${prod.fabric}\n` +
-      `   • Quantity: ${sets} Set (${sel.totalQuantity} pcs full ratio pack)\n` +
       `   • Quoted Trade Price: ${priceText}`;
 
     if (sel.notes) {
@@ -82,13 +81,11 @@ export function WhatsAppSelectionModal({
 
   const formattedMessage = `Hello Bhavya Fashions,
 
-I am interested in the following designs from your catalog:
+I am inquiring about the following wholesale designs from catalog "${catalogRef}":
 
-${lines.join('\n')}
+${lines.join('\n\n')}
 
-Catalog reference: ${catalogRef}
-
-Please confirm availability and the applicable wholesale pricing.`;
+Please confirm stock availability, lots, and ratio packing on call. Thank you!`;
 
   const encodedUrl = `https://wa.me/${cleanRecipient}?text=${encodeURIComponent(formattedMessage)}`;
 
@@ -161,16 +158,10 @@ Please confirm availability and the applicable wholesale pricing.`;
         {/* Modal Body - Scrollable */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           {/* Summary Pills */}
-          <div className="grid grid-cols-3 gap-2 text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5]">
+          <div className="grid grid-cols-2 gap-2 text-xs bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5]">
             <div>
-              <span className="text-[#78716C] text-[11px] block">Selected:</span>
-              <span className="font-bold text-[#1C1917]">{selectedItems.length} Designs</span>
-            </div>
-            <div>
-              <span className="text-[#78716C] text-[11px] block">Total Pieces:</span>
-              <span className="font-bold text-[#1C1917]">
-                {selectedItems.reduce((acc, it) => acc + it.totalQuantity, 0)} pcs
-              </span>
+              <span className="text-[#78716C] text-[11px] block">Designs Shortlisted:</span>
+              <span className="font-bold text-[#1C1917]">{selectedItems.length} Selected</span>
             </div>
             <div>
               <span className="text-[#78716C] text-[11px] block">WhatsApp Desk:</span>
@@ -181,11 +172,11 @@ Please confirm availability and the applicable wholesale pricing.`;
           {/* Selected Designs Checklist */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917] mb-2 flex items-center justify-between">
-              <span>Designs Included ({selectedItems.length}):</span>
+              <span>Shortlisted Designs ({selectedItems.length}):</span>
               <span className="text-[11px] text-[#78716C] font-normal">Authentic DN Codes</span>
             </h4>
 
-            <div className="divide-y divide-[#F3ECE2] border border-[#E7E0D5] rounded-xl overflow-hidden bg-white max-h-40 overflow-y-auto">
+            <div className="divide-y divide-[#F3ECE2] border border-[#E7E0D5] rounded-xl overflow-hidden bg-white max-h-48 overflow-y-auto">
               {selectedItems.map((sel) => {
                 const prod = productMap.get(sel.productId);
                 if (!prod) return null;
@@ -196,7 +187,7 @@ Please confirm availability and the applicable wholesale pricing.`;
                       <img
                         src={(prod.images[0] as any)?.local_url || prod.images[0]?.image_url || '/images/cat-3piece.jpg'}
                         alt=""
-                        className="w-10 h-12 object-cover rounded bg-[#EFE9E0] shrink-0"
+                        className="w-10 h-12 object-cover rounded-lg bg-[#EFE9E0] shrink-0 border border-[#E7E0D5]"
                         onError={(e) => {
                           const target = e.currentTarget;
                           if (target.src !== '/images/cat-3piece.jpg') {
@@ -208,23 +199,21 @@ Please confirm availability and the applicable wholesale pricing.`;
                         <span className="font-mono font-bold text-[#722F37] bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E7E0D5] text-[11px]">
                           {prod.code}
                         </span>
-                        <p className="text-[#1C1917] font-medium text-xs mt-0.5 truncate">
+                        <p className="text-[#1C1917] font-semibold text-xs mt-0.5 truncate">
                           {prod.title}
                         </p>
                         <div className="flex items-center gap-1 mt-0.5 text-[11px] text-[#78716C] flex-wrap">
                           <span className="font-semibold text-[#722F37]">{prod.category?.name || prod.style_type}</span>
                           <span>•</span>
                           <span>{prod.fabric}</span>
-                          <span>•</span>
-                          <span className="text-zinc-600 font-mono text-[10px]">
-                            {sel.sets || Math.max(1, Math.round(sel.totalQuantity / (prod.moq || 6)))} Set ({sel.totalQuantity} pcs)
-                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div className="text-right shrink-0">
-                      <span className="font-bold text-[#1C1917]">{sel.totalQuantity} pcs</span>
+                      <span className="font-bold text-[#722F37]">
+                        {prod.price_display_mode === 'show' ? `₹${prod.quoted_price}/pc` : 'Enquiry'}
+                      </span>
                     </div>
                   </div>
                 );

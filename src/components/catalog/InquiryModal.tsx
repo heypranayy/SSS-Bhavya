@@ -160,23 +160,19 @@ export function InquiryModal({
                   <span className="font-mono font-bold text-[#722F37] text-sm">{submittedRef}</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-[#78716C]">Designs Selected:</span>
+                  <span className="text-[#78716C]">Designs Shortlisted:</span>
                   <span className="font-semibold text-[#1C1917]">{selectedArray.length} designs</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-[#78716C]">Total Quantity:</span>
-                  <span className="font-semibold text-[#1C1917]">{totalQty} pcs</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-[#78716C]">Indicative Quote:</span>
-                  <span className="font-bold text-[#722F37]">{formatINR(indicativeTotal)}</span>
+                  <span className="text-[#78716C]">Order Details:</span>
+                  <span className="font-semibold text-emerald-700">Quantities &amp; ratio packs discussed on call</span>
                 </div>
               </div>
 
               <div className="pt-2 space-y-2.5">
                 <a
                   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                    `Hello Bhavya Fashions, I submitted wholesale inquiry ${submittedRef} for ${businessName} (${totalQty} pcs). Please confirm stock availability and dispatch schedule.`
+                    `Hello Bhavya Fashions, I submitted wholesale inquiry ${submittedRef} for ${businessName} (${selectedArray.length} designs shortlisted). Please share stock availability and discuss order quantities on call.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -208,12 +204,13 @@ export function InquiryModal({
               {/* Requirement Summary Pill */}
               <div className="bg-[#FAF7F2] border border-[#E7E0D5] p-3 rounded-lg flex items-center justify-between text-xs">
                 <div>
-                  <span className="text-[#78716C] block">Selected:</span>
-                  <span className="font-bold text-[#1C1917]">{selectedArray.length} Designs ({totalQty} pcs)</span>
+                  <span className="text-[#78716C] block">Shortlisted for Wholesale:</span>
+                  <span className="font-bold text-[#1C1917]">{selectedArray.length} Designs Selected</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[#78716C] block">Est. Subtotal:</span>
-                  <span className="font-extrabold text-[#722F37] text-sm">{formatINR(indicativeTotal)}</span>
+                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 inline-block">
+                    Quantities Confirmed on Call
+                  </span>
                 </div>
               </div>
 

@@ -173,7 +173,7 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
           </h2>
 
           <div className="text-xs text-[#78716C] hidden sm:block">
-            * Tap image to zoom • Enter quantity per size to meet MOQ
+            * Tap image to zoom • Add designs to WhatsApp Inquiry to discuss quantities &amp; dispatch on call
           </div>
         </div>
 

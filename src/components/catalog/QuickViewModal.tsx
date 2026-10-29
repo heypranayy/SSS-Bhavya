@@ -40,40 +40,39 @@ export function QuickViewModal({
 }: QuickViewModalProps) {
   if (!isOpen || !product) return null;
 
+  const isSelected = Boolean(selectedState && (selectedState.totalQuantity > 0 || (selectedState as any).selected));
   const moq = product.moq || 6;
-  const initialTotal = selectedState?.totalQuantity || 0;
-  const initialSets = selectedState?.sets || (initialTotal > 0 ? Math.max(1, Math.round(initialTotal / moq)) : 0);
-
-  const [sets, setSets] = useState<number>(initialSets);
+  const [inCart, setInCart] = useState<boolean>(isSelected);
   const [notes, setNotes] = useState(selectedState?.notes || '');
-
-  const totalQuantity = sets * moq;
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
-  const handleSetDelta = (delta: number) => {
-    setSets((prev) => Math.max(0, prev + delta));
-  };
-
-  const handleConfirm = () => {
-    if (sets === 0) {
+  const handleToggleSelect = () => {
+    if (inCart) {
+      setInCart(false);
       onSaveSelection(product.id, null);
     } else {
-      const sizes = product.variants?.length ? product.variants.map((v) => v.size) : ['M', 'L', 'XL', 'XXL'];
-      const perSize = Math.max(1, Math.ceil(moq / sizes.length)) * sets;
-      const breakdown: Record<string, number> = {};
-      sizes.forEach((s) => {
-        breakdown[s] = perSize;
-      });
-
+      setInCart(true);
       onSaveSelection(product.id, {
         productId: product.id,
-        sets,
-        sizeBreakdown: breakdown,
-        totalQuantity,
+        sets: 1,
+        sizeBreakdown: {},
+        totalQuantity: 1,
         notes,
       });
     }
-    onClose();
+  };
+
+  const handleNotesChange = (val: string) => {
+    setNotes(val);
+    if (inCart) {
+      onSaveSelection(product.id, {
+        productId: product.id,
+        sets: 1,
+        sizeBreakdown: {},
+        totalQuantity: 1,
+        notes: val,
+      });
+    }
   };
 
   const primaryImg = product.images.find((img) => img.is_primary) || product.images[0];
@@ -230,68 +229,47 @@ export function QuickViewModal({
               </div>
             )}
 
-            {/* Set Selection for WhatsApp Cart */}
-            <div className="pt-2 border-t border-[#E7E0D5] space-y-2.5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-bold text-[#1C1917] block">
-                    Add to WhatsApp Inquiry Cart:
-                  </span>
-                  <span className="text-[11px] text-[#78716C]">
-                    Each set contains {moq} pieces across standard ratio sizes.
-                  </span>
-                </div>
-
-                {/* Sets Stepper */}
-                <div className="flex items-center border border-[#722F37]/30 rounded-xl bg-white overflow-hidden shadow-xs">
-                  <button
-                    type="button"
-                    onClick={() => handleSetDelta(-1)}
-                    className="w-9 h-9 flex items-center justify-center text-zinc-700 hover:bg-zinc-100 transition-colors"
-                    aria-label="Decrease sets"
-                  >
-                    <Minus className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="px-4 text-xs font-bold font-mono text-zinc-900 min-w-16 text-center">
-                    {sets} {sets === 1 ? 'Set' : 'Sets'}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleSetDelta(1)}
-                    className="w-9 h-9 flex items-center justify-center bg-[#722F37] text-white hover:bg-[#58111A] transition-colors"
-                    aria-label="Increase sets"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                  </button>
+            {/* WhatsApp Inquiry Selection */}
+            {!inCart ? (
+              <div className="pt-3 border-t border-[#E7E0D5] flex items-center justify-between gap-3">
+                <div className="text-xs text-[#78716C]">
+                  <span className="font-semibold text-[#1C1917]">Wholesale Inquiry:</span> Add to enquiry cart to request pricing, delivery and lots directly on call.
                 </div>
               </div>
+            ) : (
+              <div className="pt-3 border-t border-emerald-200 bg-emerald-50/60 p-3 rounded-xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-xs font-bold shadow-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Added to WhatsApp Inquiry</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleToggleSelect}
+                    className="text-xs text-red-600 hover:text-red-700 hover:underline px-2 py-0.5 font-semibold rounded border border-red-200 bg-white"
+                  >
+                    Remove
+                  </button>
+                </div>
 
-              {/* Design Notes */}
-              {sets > 0 && (
                 <div className="flex items-center gap-2 pt-1">
                   <MessageSquare className="w-3.5 h-3.5 text-[#78716C] shrink-0" />
                   <input
                     type="text"
                     placeholder="Custom notes (e.g. tag preference, urgent shipping date)..."
                     value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                    className="w-full text-xs py-1.5 px-2.5 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#722F37]"
+                    onChange={(e) => handleNotesChange(e.target.value)}
+                    className="w-full text-xs py-1.5 px-2.5 rounded-lg border border-emerald-200 bg-white focus:outline-none focus:ring-1 focus:ring-[#722F37]"
                   />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           {/* Action Footer */}
           <div className="pt-4 border-t border-[#E7E0D5] flex items-center justify-between gap-3">
-            <div>
-              <span className="text-[10px] uppercase text-[#78716C] block">Indicative Subtotal</span>
-              <span className="text-base font-extrabold text-[#722F37]">
-                {formatINR(totalQuantity * product.quoted_price)}
-                <span className="text-[11px] font-normal text-zinc-500 ml-1">
-                  ({totalQuantity} pcs)
-                </span>
-              </span>
+            <div className="text-xs text-zinc-500">
+              Bulk trade inquiry via WhatsApp
             </div>
 
             <div className="flex items-center gap-2">
@@ -307,11 +285,23 @@ export function QuickViewModal({
 
               <button
                 type="button"
-                onClick={handleConfirm}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#722F37] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#5C1D24] shadow-sm cursor-pointer"
+                onClick={handleToggleSelect}
+                className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm cursor-pointer transition-all ${
+                  inCart
+                    ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                    : 'bg-[#722F37] text-white hover:bg-[#5C1D24]'
+                }`}
               >
                 <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
-                <span>{sets > 0 ? 'Update WhatsApp Cart' : 'Done'}</span>
+                <span>{inCart ? '✓ In Inquiry List' : 'Add to WhatsApp Inquiry'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2.5 rounded-xl border border-zinc-200 text-zinc-700 text-xs font-semibold hover:bg-zinc-100"
+              >
+                Done
               </button>
             </div>
           </div>
