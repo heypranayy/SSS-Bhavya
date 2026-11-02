@@ -254,8 +254,9 @@ export function WholesaleExplorer({
     }).sort((a, b) => {
       if (sortBy === 'price-asc') return a.base_wholesale_price - b.base_wholesale_price;
       if (sortBy === 'price-desc') return b.base_wholesale_price - a.base_wholesale_price;
-      if (sortBy === 'code') return a.code.localeCompare(b.code);
-      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+      const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+      return (isNaN(timeB) ? 0 : timeB) - (isNaN(timeA) ? 0 : timeA);
     });
   }, [
     products,

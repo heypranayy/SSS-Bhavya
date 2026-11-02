@@ -1,5 +1,18 @@
 [
   {
+    "id": "cust-1793603940871",
+    "business_name": "Jaipur Heritage Boutique",
+    "contact_person": "Amit Sharma",
+    "phone": "+91 98290 11223",
+    "city": "Jaipur",
+    "state": "West Bengal",
+    "segment": "Boutique",
+    "custom_price_tier": "standard",
+    "discount_pct": 10,
+    "created_at": "2026-11-02T07:19:00.871Z",
+    "updated_at": "2026-11-02T07:19:00.871Z"
+  },
+  {
     "id": "cust-1792771530603",
     "business_name": "Jaipur Heritage Boutique",
     "contact_person": "Amit Sharma",

@@ -4,12 +4,13 @@ import { Product, Category, Collection } from '@/types';
 import { SEED_CATEGORIES, SEED_COLLECTIONS, SEED_PRODUCTS } from '@/lib/data/seed-data';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
-import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, setDoc, deleteDoc, query, where } from 'firebase/firestore';
 
 // In-memory product cache for seamless offline / zero-setup mode
 let inMemoryProducts: Product[] = [...SEED_PRODUCTS];
 let inMemoryCollections: Collection[] = [...SEED_COLLECTIONS];
 let inMemoryCategories: Category[] = [...SEED_CATEGORIES];
+const inMemoryDeletedProductIds: Set<string> = new Set();
 
 function getCustomProductsFilePath(): string {
   return path.join(process.cwd(), 'src', 'lib', 'data', 'custom-products.json');
@@ -42,17 +43,24 @@ function getDeletedProductsFilePath(): string {
 }
 
 function loadDeletedProductIds(): Set<string> {
+  const result = new Set<string>(inMemoryDeletedProductIds);
   try {
     const filePath = getDeletedProductsFilePath();
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf-8');
       if (data.trim()) {
         const arr = JSON.parse(data);
-        if (Array.isArray(arr)) return new Set(arr);
+        if (Array.isArray(arr)) {
+          arr.forEach((id) => {
+            if (id && typeof id === 'string' && id.trim()) {
+              result.add(id.trim());
+            }
+          });
+        }
       }
     }
   } catch {}
-  return new Set();
+  return result;
 }
 
 function saveDeletedProductIds(ids: Set<string>): void {
@@ -69,26 +77,61 @@ function isSupabaseConfigured(): boolean {
 
 export async function getAllProducts(): Promise<Product[]> {
   const deletedIds = loadDeletedProductIds();
+
+  // If Cloud Firestore is configured, also fetch permanently deleted IDs from Firestore system metadata
+  if (isFirebaseConfigured()) {
+    try {
+      const db = getFirebaseDb();
+      if (db) {
+        const metaSnap = await getDoc(doc(db, 'system_metadata', 'deleted_products'));
+        if (metaSnap.exists()) {
+          const remoteIds = metaSnap.data()?.ids;
+          if (Array.isArray(remoteIds)) {
+            remoteIds.forEach((id: string) => {
+              if (id && typeof id === 'string' && id.trim()) {
+                const cleanId = id.trim();
+                deletedIds.add(cleanId);
+                inMemoryDeletedProductIds.add(cleanId);
+              }
+            });
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Firebase deleted IDs metadata fetch fallback:', err);
+    }
+  }
+
+  const isDeleted = (p: { id?: string; code?: string; slug?: string; is_deleted?: boolean; is_active?: boolean }) => {
+    if (!p) return true;
+    if (p.is_deleted === true) return true;
+    if (p.is_active === false) return true;
+    if (p.id && deletedIds.has(p.id)) return true;
+    if (p.code && deletedIds.has(p.code)) return true;
+    if (p.slug && deletedIds.has(p.slug)) return true;
+    return false;
+  };
+
   const persisted = loadPersistedProducts();
   const mergedMap = new Map<string, Product>();
 
   // 1. Seed products
   for (const p of SEED_PRODUCTS) {
-    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+    if (!isDeleted(p)) {
       mergedMap.set(p.id, p);
     }
   }
 
   // 2. In-memory products
   for (const p of inMemoryProducts) {
-    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+    if (!isDeleted(p)) {
       mergedMap.set(p.id, p);
     }
   }
 
   // 3. Persisted custom products
   for (const p of persisted) {
-    if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+    if (!isDeleted(p)) {
       mergedMap.set(p.id, p);
     }
   }
@@ -101,15 +144,20 @@ export async function getAllProducts(): Promise<Product[]> {
         const snap = await getDocs(collection(db, 'products'));
         if (!snap.empty) {
           snap.forEach((docSnap) => {
+            const docId = docSnap.id;
             const data = docSnap.data() as Product;
-            if (data && data.id && data.is_active !== false && !deletedIds.has(data.id) && !deletedIds.has(data.code)) {
-              mergedMap.set(data.id, {
-                ...data,
-                price_on_enquiry: data.price_on_enquiry ?? true,
-                price_on_request: data.price_on_enquiry ?? true,
-                price_display_mode: (data.price_on_enquiry ?? true) ? 'request' : (data.price_display_mode || 'request'),
-              });
+            const pId = data.id || docId;
+            const pCode = data.code;
+            if (deletedIds.has(docId) || isDeleted(data) || (pId && deletedIds.has(pId)) || (pCode && deletedIds.has(pCode))) {
+              return;
             }
+            mergedMap.set(pId, {
+              ...data,
+              id: pId,
+              price_on_enquiry: data.price_on_enquiry ?? true,
+              price_on_request: data.price_on_enquiry ?? true,
+              price_display_mode: (data.price_on_enquiry ?? true) ? 'request' : (data.price_display_mode || 'request'),
+            });
           });
         }
       }
@@ -135,7 +183,7 @@ export async function getAllProducts(): Promise<Product[]> {
 
       if (!error && data && data.length > 0) {
         data.forEach((p: any) => {
-          if (!deletedIds.has(p.id) && !deletedIds.has(p.code)) {
+          if (!isDeleted(p)) {
             mergedMap.set(p.id, {
               ...p,
               price_display_mode: p.price_display_mode || 'request',
@@ -149,7 +197,15 @@ export async function getAllProducts(): Promise<Product[]> {
     } catch {}
   }
 
-  const all = Array.from(mergedMap.values());
+  const all = Array.from(mergedMap.values()).filter((p) => !isDeleted(p));
+
+  // Sort newest first so recently added products are always at the top
+  all.sort((a, b) => {
+    const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+    const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+    return timeB - timeA;
+  });
+
   inMemoryProducts = all;
 
   return all.map((p) => ({
@@ -331,36 +387,105 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
   return newProduct;
 }
 
-export async function deleteProduct(id: string): Promise<boolean> {
-  const deletedIds = loadDeletedProductIds();
-  deletedIds.add(id);
-
-  const all = [...loadPersistedProducts(), ...inMemoryProducts, ...SEED_PRODUCTS];
-  const target = all.find(p => p.id === id || p.code === id);
-  if (target) {
-    deletedIds.add(target.id);
-    if (target.code) deletedIds.add(target.code);
+export async function deleteProducts(ids: string[]): Promise<{ success: boolean; deletedCount: number }> {
+  const validIds = ids.map((s) => String(s || '').trim()).filter(Boolean);
+  if (validIds.length === 0) {
+    return { success: true, deletedCount: 0 };
   }
+
+  const deletedIds = loadDeletedProductIds();
+  const allCurrent = [...loadPersistedProducts(), ...inMemoryProducts, ...SEED_PRODUCTS];
+
+  for (const id of validIds) {
+    deletedIds.add(id);
+    inMemoryDeletedProductIds.add(id);
+
+    // Also register id, code, and slug for any matching products
+    const matches = allCurrent.filter((p) => p.id === id || p.code === id || (p.slug && p.slug === id));
+    for (const m of matches) {
+      if (m.id) {
+        deletedIds.add(m.id);
+        inMemoryDeletedProductIds.add(m.id);
+      }
+      if (m.code) {
+        deletedIds.add(m.code);
+        inMemoryDeletedProductIds.add(m.code);
+      }
+      if (m.slug) {
+        deletedIds.add(m.slug);
+        inMemoryDeletedProductIds.add(m.slug);
+      }
+    }
+  }
+
   saveDeletedProductIds(deletedIds);
 
+  // Update persisted custom products
   const persisted = loadPersistedProducts();
-  const next = persisted.filter(p => p.id !== id && p.code !== id);
-  savePersistedProducts(next);
-  inMemoryProducts = inMemoryProducts.filter(p => p.id !== id && p.code !== id);
+  const nextPersisted = persisted.filter(
+    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code) && !(p.slug && deletedIds.has(p.slug))
+  );
+  savePersistedProducts(nextPersisted);
 
+  // Update in-memory products
+  inMemoryProducts = inMemoryProducts.filter(
+    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code) && !(p.slug && deletedIds.has(p.slug))
+  );
+
+  // Sync deletion to Firestore
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
-        await deleteDoc(doc(db, 'products', id));
-        if (target && target.id !== id) {
-          await deleteDoc(doc(db, 'products', target.id));
+        // 1. Save all deleted IDs to Firestore system metadata so no serverless instance resurrects them
+        try {
+          const metaRef = doc(db, 'system_metadata', 'deleted_products');
+          await setDoc(
+            metaRef,
+            {
+              ids: Array.from(deletedIds),
+              updated_at: new Date().toISOString(),
+            },
+            { merge: true }
+          );
+        } catch (err) {
+          console.error('Failed to update system_metadata/deleted_products in Firestore:', err);
+        }
+
+        // 2. Delete matching documents from 'products' collection
+        for (const id of validIds) {
+          try {
+            await deleteDoc(doc(db, 'products', id));
+          } catch {}
+
+          // Also delete by id and code queries
+          try {
+            const qId = query(collection(db, 'products'), where('id', '==', id));
+            const snapId = await getDocs(qId);
+            for (const d of snapId.docs) {
+              await deleteDoc(d.ref);
+            }
+          } catch {}
+
+          try {
+            const qCode = query(collection(db, 'products'), where('code', '==', id));
+            const snapCode = await getDocs(qCode);
+            for (const d of snapCode.docs) {
+              await deleteDoc(d.ref);
+            }
+          } catch {}
         }
       }
     } catch (err) {
-      console.error('Failed to delete product from Firebase:', err);
+      console.error('Failed to sync product deletion to Firebase:', err);
     }
   }
 
-  return true;
+  return { success: true, deletedCount: validIds.length };
 }
+
+export async function deleteProduct(id: string): Promise<boolean> {
+  const res = await deleteProducts([id]);
+  return res.success;
+}
+
