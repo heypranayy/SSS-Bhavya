@@ -420,28 +420,14 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
                   }`}
                   aria-label={`Jump to slide ${slide.stepNumber}: ${slide.stepLabel}`}
                 >
-                  {/* Step Header */}
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <div className="flex items-center gap-1.5">
-                      <span
-                        className={`text-xs font-mono font-bold transition-colors ${
-                          isActive ? 'text-[#722F37]' : 'text-zinc-500 group-hover:text-zinc-800'
-                        }`}
-                      >
-                        {slide.stepNumber}
-                      </span>
-                      <span className="text-[10px] text-zinc-400">/</span>
-                      <span
-                        className={`text-xs font-bold truncate transition-colors ${
-                          isActive ? 'text-[#1C1917]' : 'text-zinc-600 group-hover:text-zinc-900'
-                        }`}
-                      >
-                        {slide.stepLabel}
-                      </span>
-                    </div>
-
-                    <span className="hidden xl:inline-block text-[10px] font-mono text-[#8C6D23] uppercase font-semibold">
-                      {slide.stepTag}
+                  {/* Step Number Only */}
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span
+                      className={`text-xs font-mono font-bold transition-colors ${
+                        isActive ? 'text-[#722F37]' : 'text-zinc-500 group-hover:text-zinc-800'
+                      }`}
+                    >
+                      {slide.stepNumber}
                     </span>
                   </div>
 

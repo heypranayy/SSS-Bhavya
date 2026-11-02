@@ -5,6 +5,7 @@ import { SEED_CATEGORIES, SEED_COLLECTIONS, SEED_PRODUCTS } from '@/lib/data/see
 import { createAdminClient } from '@/lib/supabase/admin';
 import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
 import { collection, getDocs, getDoc, doc, setDoc, deleteDoc, query, where } from 'firebase/firestore';
+import { getSiteSettings } from './settings';
 
 // In-memory product cache for seamless offline / zero-setup mode
 let inMemoryProducts: Product[] = [...SEED_PRODUCTS];
@@ -102,13 +103,12 @@ export async function getAllProducts(): Promise<Product[]> {
     }
   }
 
-  const isDeleted = (p: { id?: string; code?: string; slug?: string; is_deleted?: boolean; is_active?: boolean }) => {
+  const isDeleted = (p: { id?: string; code?: string; is_deleted?: boolean; is_active?: boolean }) => {
     if (!p) return true;
     if (p.is_deleted === true) return true;
     if (p.is_active === false) return true;
     if (p.id && deletedIds.has(p.id)) return true;
     if (p.code && deletedIds.has(p.code)) return true;
-    if (p.slug && deletedIds.has(p.slug)) return true;
     return false;
   };
 
@@ -208,12 +208,22 @@ export async function getAllProducts(): Promise<Product[]> {
 
   inMemoryProducts = all;
 
-  return all.map((p) => ({
-    ...p,
-    price_on_enquiry: p.price_on_enquiry ?? true,
-    price_on_request: p.price_on_enquiry ?? true,
-    price_display_mode: (p.price_on_enquiry ?? true) ? 'request' : (p.price_display_mode || 'request'),
-  }));
+  // Check global site settings: by default, prices on main website are ALWAYS BLOCKED
+  let mainWebsiteShowPrices = false;
+  try {
+    const siteSettings = await getSiteSettings();
+    mainWebsiteShowPrices = siteSettings.mainWebsiteShowPrices === true;
+  } catch {}
+
+  return all.map((p) => {
+    const isPriceBlocked = !mainWebsiteShowPrices;
+    return {
+      ...p,
+      price_on_enquiry: isPriceBlocked ? true : (p.price_on_enquiry ?? false),
+      price_on_request: isPriceBlocked ? true : (p.price_on_request ?? false),
+      price_display_mode: isPriceBlocked ? 'request' : (p.price_display_mode || 'show'),
+    };
+  });
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
@@ -227,17 +237,15 @@ export async function getProductById(id: string): Promise<Product | null> {
 }
 
 export async function getCategories(): Promise<Category[]> {
+  let list: Category[] = [];
+
   if (isFirebaseConfigured()) {
     try {
       const db = getFirebaseDb();
       if (db) {
         const snap = await getDocs(collection(db, 'categories'));
         if (!snap.empty) {
-          const list: Category[] = [];
           snap.forEach((d) => list.push(d.data() as Category));
-          if (list.length > 0) {
-            return list.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
-          }
         }
       }
     } catch (err) {
@@ -245,14 +253,39 @@ export async function getCategories(): Promise<Category[]> {
     }
   }
 
-  if (isSupabaseConfigured()) {
+  if (list.length === 0 && isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
       const { data, error } = await supabase.from('categories').select('*').order('display_order');
-      if (!error && data && data.length > 0) return data;
+      if (!error && data && data.length > 0) list = data;
     } catch {}
   }
-  return [...inMemoryCategories];
+
+  if (list.length === 0) {
+    list = [...SEED_CATEGORIES];
+  }
+
+  // Strictly filter out any legacy categories
+  const filtered = list.filter(
+    (c) =>
+      c &&
+      !c.id?.startsWith('c1000000') &&
+      !c.slug?.includes('legacy') &&
+      !c.name?.toLowerCase().includes('legacy')
+  );
+
+  // Guarantee One-Piece Kurti exists
+  if (!filtered.some((c) => c.id === 'cat-1p-kurtis' || c.slug === 'one-piece-kurtis')) {
+    filtered.splice(2, 0, {
+      id: 'cat-1p-kurtis',
+      name: 'One-Piece Kurtis (1P)',
+      slug: 'one-piece-kurtis',
+      description: 'Designer straight, A-line and flared one-piece kurtis and daily tunics',
+      display_order: 3,
+    });
+  }
+
+  return filtered.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
 }
 
 import { getAllCollections, getCollectionBySlug as getColBySlug } from './collections';
@@ -268,13 +301,24 @@ export async function getCollectionBySlug(slug: string): Promise<Collection | nu
 export async function saveProduct(productData: Partial<Product>): Promise<Product> {
   const persisted = loadPersistedProducts();
 
+  const deletedIds = loadDeletedProductIds();
+  let deletedModified = false;
+
+  if (productData.id && deletedIds.has(productData.id)) {
+    deletedIds.delete(productData.id);
+    inMemoryDeletedProductIds.delete(productData.id);
+    deletedModified = true;
+  }
+  if (productData.code && deletedIds.has(productData.code)) {
+    deletedIds.delete(productData.code);
+    inMemoryDeletedProductIds.delete(productData.code);
+    deletedModified = true;
+  }
+  if (deletedModified) {
+    saveDeletedProductIds(deletedIds);
+  }
+
   if (productData.id) {
-    const deletedIds = loadDeletedProductIds();
-    if (deletedIds.has(productData.id)) {
-      deletedIds.delete(productData.id);
-      if (productData.code) deletedIds.delete(productData.code);
-      saveDeletedProductIds(deletedIds);
-    }
 
     // Update if already persisted
     const pIdx = persisted.findIndex(p => p.id === productData.id || p.code === productData.id);
@@ -342,9 +386,9 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     description: productData.description || '',
     category_id: productData.category_id || 'cat-3p-kurtis',
     category: inMemoryCategories.find(c => c.id === productData.category_id) || inMemoryCategories[0],
-    fabric: productData.fabric || 'Pure Cotton 60-60',
-    color: productData.color || 'Standard',
-    style_type: productData.style_type || 'Straight Kurti',
+    fabric: productData.fabric || '',
+    color: productData.color || '',
+    style_type: productData.style_type || '',
     base_wholesale_price: productData.base_wholesale_price !== undefined && productData.base_wholesale_price !== null && !isNaN(Number(productData.base_wholesale_price)) ? Number(productData.base_wholesale_price) : 0,
     currency: 'INR',
     moq: productData.moq !== undefined && productData.moq !== null && !isNaN(Number(productData.moq)) ? Number(productData.moq) : 0,
@@ -354,9 +398,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     stock_status: productData.stock_status || 'in_stock',
     is_active: productData.is_active ?? true,
     is_featured: productData.is_featured ?? false,
-    images: productData.images?.length ? productData.images : [
-      { id: `img-${Date.now()}`, image_url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85', display_order: 0, is_primary: true }
-    ],
+    images: Array.isArray(productData.images) ? productData.images : [],
     variants: productData.variants?.length ? productData.variants : [
       { id: `v-m-${Date.now()}`, size: 'M', stock_quantity: 50, is_available: true },
       { id: `v-l-${Date.now()}`, size: 'L', stock_quantity: 50, is_available: true },
@@ -367,6 +409,17 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   };
+
+  if (deletedIds.has(newProduct.id)) {
+    deletedIds.delete(newProduct.id);
+    inMemoryDeletedProductIds.delete(newProduct.id);
+    saveDeletedProductIds(deletedIds);
+  }
+  if (newProduct.code && deletedIds.has(newProduct.code)) {
+    deletedIds.delete(newProduct.code);
+    inMemoryDeletedProductIds.delete(newProduct.code);
+    saveDeletedProductIds(deletedIds);
+  }
 
   persisted.unshift(newProduct);
   savePersistedProducts(persisted);
@@ -400,8 +453,8 @@ export async function deleteProducts(ids: string[]): Promise<{ success: boolean;
     deletedIds.add(id);
     inMemoryDeletedProductIds.add(id);
 
-    // Also register id, code, and slug for any matching products
-    const matches = allCurrent.filter((p) => p.id === id || p.code === id || (p.slug && p.slug === id));
+    // Also register id and code for any matching products
+    const matches = allCurrent.filter((p) => p.id === id || p.code === id);
     for (const m of matches) {
       if (m.id) {
         deletedIds.add(m.id);
@@ -411,10 +464,6 @@ export async function deleteProducts(ids: string[]): Promise<{ success: boolean;
         deletedIds.add(m.code);
         inMemoryDeletedProductIds.add(m.code);
       }
-      if (m.slug) {
-        deletedIds.add(m.slug);
-        inMemoryDeletedProductIds.add(m.slug);
-      }
     }
   }
 
@@ -423,13 +472,13 @@ export async function deleteProducts(ids: string[]): Promise<{ success: boolean;
   // Update persisted custom products
   const persisted = loadPersistedProducts();
   const nextPersisted = persisted.filter(
-    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code) && !(p.slug && deletedIds.has(p.slug))
+    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code)
   );
   savePersistedProducts(nextPersisted);
 
   // Update in-memory products
   inMemoryProducts = inMemoryProducts.filter(
-    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code) && !(p.slug && deletedIds.has(p.slug))
+    (p) => !deletedIds.has(p.id) && !deletedIds.has(p.code)
   );
 
   // Sync deletion to Firestore

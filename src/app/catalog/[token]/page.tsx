@@ -149,7 +149,9 @@ export default async function CatalogPage({ params, searchParams }: CatalogPageP
     ruleGroups: catalog.rule_groups,
     overrides: catalog.overrides,
     customerDiscountPct: catalog.customer?.discount_pct,
-    priceDisplayMode: (catalog.presentation_settings as any)?.priceDisplayMode || 'request',
+    priceDisplayMode:
+      (catalog.presentation_settings as any)?.priceDisplayMode ||
+      (catalog.presentation_settings?.showPrices === false ? 'request' : 'show'),
   });
 
   return (

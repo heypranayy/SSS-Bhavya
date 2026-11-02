@@ -1,274 +1,290 @@
 [
   {
-    "overrides": [
-      {
-        "is_pinned": true,
-        "action": "include",
-        "product_id": "p-migrated-29589",
-        "presentation_note": "🌟 Top Recommended Festive Design for Wedding Season",
-        "display_order": 0,
-        "id": "ov-1"
-      }
-    ],
-    "access_code": "BF-2026-001",
-    "rule_groups": [
-      {
-        "id": "rg-1",
-        "logical_operator": "AND",
-        "rules": [
-          {
-            "attribute": "base_wholesale_price",
-            "id": "r-1",
-            "operator": "less_than_or_equal",
-            "value": 1200
-          },
-          {
-            "operator": "equals",
-            "id": "r-2",
-            "attribute": "stock_status",
-            "value": "in_stock"
-          }
-        ]
-      }
-    ],
     "customer": {
       "business_name": "Radha Krishna Ethnic Hub",
-      "city": "Kolkata",
-      "custom_price_tier": "tier_gold",
-      "email": "rajesh@radhakrishna.in",
-      "notes": "Key account in Barabazar, purchases 500+ pcs monthly",
-      "contact_person": "Rajesh Gupta",
       "state": "West Bengal",
+      "custom_price_tier": "tier_gold",
+      "city": "Kolkata",
       "phone": "+91 98301 22334",
-      "segment": "Wholesaler / Large Retailer",
       "discount_pct": 5,
       "id": "cust0000-0000-0000-0000-000000000001",
-      "created_at": "2026-01-10T10:00:00Z"
+      "contact_person": "Rajesh Gupta",
+      "email": "rajesh@radhakrishna.in",
+      "segment": "Wholesaler / Large Retailer",
+      "created_at": "2026-01-10T10:00:00Z",
+      "notes": "Key account in Barabazar, purchases 500+ pcs monthly"
     },
-    "membership_type": "dynamic",
+    "share_count": 25,
+    "custom_message": "We are pleased to share our newest 2026 season wholesale kurti lookbook. Minimum order quantity is 6 pieces per design (ratio packing M, L, XL, XXL). Please review designs and submit your requirement directly below.",
+    "subtitle": "Curated wholesale collection for premium retail boutiques",
+    "mode": "hybrid",
     "presentation_settings": {
-      "allowSelection": true,
-      "columnsMobile": 1,
-      "allowInquiry": true,
-      "imageAspectRatio": "3/4",
-      "layout": "grid",
-      "allowCustomerNotes": true,
-      "contactPhone": "+91 98307 29210",
-      "columnsDesktop": 3,
-      "allowQuantityBreakdown": true,
-      "contactWhatsapp": "919830729210",
-      "showDescription": true,
-      "showMoq": true,
-      "brandColor": "#722F37",
-      "brandSubtitle": "Barabazar & Surat Hub Direct Supply",
-      "allowAlternativeRequest": true,
-      "allowSizeSelection": true,
-      "brandTitle": "Bhavya Fashions Wholesale",
       "showPrices": true,
+      "brandSubtitle": "Barabazar & Surat Hub Direct Supply",
+      "imageAspectRatio": "3/4",
+      "columnsMobile": 1,
+      "showDescription": true,
+      "allowQuantityBreakdown": true,
+      "brandTitle": "Bhavya Fashions Wholesale",
+      "allowSelection": true,
+      "contactWhatsapp": "919830729210",
+      "showMoq": true,
+      "layout": "grid",
+      "contactPhone": "+91 98307 29210",
+      "allowCustomerNotes": true,
+      "brandColor": "#722F37",
+      "allowSizeSelection": true,
+      "allowAlternativeRequest": true,
+      "allowInquiry": true,
+      "columnsDesktop": 3,
       "showStockStatus": true,
       "showSizes": true
     },
+    "expires_at": "2026-12-31T23:59:59Z",
+    "overrides": [
+      {
+        "product_id": "p-migrated-29589",
+        "presentation_note": "🌟 Top Recommended Festive Design for Wedding Season",
+        "display_order": 0,
+        "id": "ov-1",
+        "is_pinned": true,
+        "action": "include"
+      }
+    ],
+    "public_token": "bhavya-vip-summer-2026",
+    "created_at": "2026-03-01T12:00:00Z",
+    "updated_at": "2026-11-02T08:33:19.383Z",
+    "views_count": 51,
     "share_history": [
       {
-        "id": "share-1793603940568",
+        "id": "share-1793608399382",
         "channel": "whatsapp",
         "recipient": "+919830099999",
         "shared_to": "+919830099999",
+        "shared_at": "2026-11-02T08:33:19.382Z",
+        "timestamp": "2026-11-02T08:33:19.383Z"
+      },
+      {
+        "recipient": "+919830099999",
+        "shared_to": "+919830099999",
+        "timestamp": "2026-11-02T08:29:46.611Z",
+        "id": "share-1793608186611",
+        "channel": "whatsapp",
+        "shared_at": "2026-11-02T08:29:46.611Z"
+      },
+      {
+        "channel": "whatsapp",
+        "id": "share-1793603940568",
         "shared_at": "2026-11-02T07:19:00.568Z",
+        "recipient": "+919830099999",
+        "shared_to": "+919830099999",
         "timestamp": "2026-11-02T07:19:00.568Z"
       },
       {
-        "id": "share-1792771530498",
-        "channel": "whatsapp",
         "recipient": "+919830099999",
         "shared_to": "+919830099999",
-        "shared_at": "2026-10-23T16:05:30.498Z",
-        "timestamp": "2026-10-23T16:05:30.498Z"
+        "timestamp": "2026-10-23T16:05:30.498Z",
+        "channel": "whatsapp",
+        "id": "share-1792771530498",
+        "shared_at": "2026-10-23T16:05:30.498Z"
       },
       {
-        "shared_at": "2026-10-23T15:58:41.356Z",
         "shared_to": "+919830099999",
         "timestamp": "2026-10-23T15:58:41.356Z",
-        "recipient": "+919830099999",
         "id": "share-1792771121356",
-        "channel": "whatsapp"
-      },
-      {
-        "id": "share-1792763433877",
-        "shared_at": "2026-10-23T13:50:33.877Z",
         "recipient": "+919830099999",
-        "shared_to": "+919830099999",
-        "timestamp": "2026-10-23T13:50:33.877Z",
+        "shared_at": "2026-10-23T15:58:41.356Z",
         "channel": "whatsapp"
       },
       {
         "channel": "whatsapp",
-        "id": "share-1792763254489",
-        "shared_at": "2026-10-23T13:47:34.489Z",
+        "shared_at": "2026-10-23T13:50:33.877Z",
         "recipient": "+919830099999",
+        "id": "share-1792763433877",
         "shared_to": "+919830099999",
-        "timestamp": "2026-10-23T13:47:34.489Z"
+        "timestamp": "2026-10-23T13:50:33.877Z"
+      },
+      {
+        "shared_at": "2026-10-23T13:47:34.489Z",
+        "id": "share-1792763254489",
+        "shared_to": "+919830099999",
+        "timestamp": "2026-10-23T13:47:34.489Z",
+        "recipient": "+919830099999",
+        "channel": "whatsapp"
       },
       {
         "shared_at": "2026-10-23T13:29:30.753Z",
-        "recipient": "+919830099999",
+        "shared_to": "+919830099999",
         "timestamp": "2026-10-23T13:29:30.753Z",
-        "shared_to": "+919830099999",
-        "channel": "whatsapp",
-        "id": "share-1792762170753"
-      },
-      {
+        "id": "share-1792762170753",
         "recipient": "+919830099999",
-        "shared_to": "+919830099999",
-        "timestamp": "2026-10-23T12:44:25.243Z",
-        "channel": "whatsapp",
-        "id": "share-1792759465243",
-        "shared_at": "2026-10-23T12:44:25.243Z"
-      },
-      {
-        "channel": "whatsapp",
-        "shared_at": "2026-10-23T12:43:49.321Z",
-        "recipient": "+919830099999",
-        "timestamp": "2026-10-23T12:43:49.321Z",
-        "shared_to": "+919830099999",
-        "id": "share-1792759429321"
-      },
-      {
-        "shared_at": "2026-10-23T12:27:12.868Z",
-        "recipient": "+919830099999",
-        "shared_to": "+919830099999",
-        "id": "share-1792758432868",
-        "timestamp": "2026-10-23T12:27:12.868Z",
         "channel": "whatsapp"
       },
       {
-        "channel": "whatsapp",
-        "id": "share-1792758394342",
+        "id": "share-1792759465243",
         "recipient": "+919830099999",
+        "channel": "whatsapp",
+        "shared_to": "+919830099999",
+        "timestamp": "2026-10-23T12:44:25.243Z",
+        "shared_at": "2026-10-23T12:44:25.243Z"
+      },
+      {
+        "recipient": "+919830099999",
+        "channel": "whatsapp",
+        "timestamp": "2026-10-23T12:43:49.321Z",
+        "shared_to": "+919830099999",
+        "id": "share-1792759429321",
+        "shared_at": "2026-10-23T12:43:49.321Z"
+      },
+      {
+        "timestamp": "2026-10-23T12:27:12.868Z",
+        "shared_to": "+919830099999",
+        "recipient": "+919830099999",
+        "id": "share-1792758432868",
+        "channel": "whatsapp",
+        "shared_at": "2026-10-23T12:27:12.868Z"
+      },
+      {
         "timestamp": "2026-10-23T12:26:34.342Z",
         "shared_to": "+919830099999",
+        "recipient": "+919830099999",
+        "channel": "whatsapp",
+        "id": "share-1792758394342",
         "shared_at": "2026-10-23T12:26:34.342Z"
       },
       {
-        "id": "share-1792750646267",
-        "shared_at": "2026-10-23T10:17:26.267Z",
-        "channel": "whatsapp",
-        "timestamp": "2026-10-23T10:17:26.267Z",
+        "recipient": "+919830099999",
         "shared_to": "+919830099999",
-        "recipient": "+919830099999"
+        "timestamp": "2026-10-23T10:17:26.267Z",
+        "id": "share-1792750646267",
+        "channel": "whatsapp",
+        "shared_at": "2026-10-23T10:17:26.267Z"
       },
       {
-        "recipient": "+919830099999",
-        "timestamp": "2026-10-23T10:10:57.573Z",
         "shared_to": "+919830099999",
+        "timestamp": "2026-10-23T10:10:57.573Z",
+        "recipient": "+919830099999",
         "shared_at": "2026-10-23T10:10:57.573Z",
         "id": "share-1792750257573",
         "channel": "whatsapp"
       },
       {
-        "channel": "whatsapp",
-        "recipient": "+919830099999",
+        "shared_at": "2026-10-23T10:08:56.487Z",
         "timestamp": "2026-10-23T10:08:56.487Z",
         "shared_to": "+919830099999",
         "id": "share-1792750136487",
-        "shared_at": "2026-10-23T10:08:56.487Z"
+        "recipient": "+919830099999",
+        "channel": "whatsapp"
       },
       {
-        "shared_at": "2026-10-23T10:08:28.957Z",
-        "channel": "whatsapp",
-        "shared_to": "+919830099999",
         "timestamp": "2026-10-23T10:08:28.957Z",
+        "shared_to": "+919830099999",
         "recipient": "+919830099999",
-        "id": "share-1792750108957"
+        "id": "share-1792750108957",
+        "channel": "whatsapp",
+        "shared_at": "2026-10-23T10:08:28.957Z"
       },
       {
-        "recipient": "+919830099999",
-        "shared_to": "+919830099999",
-        "timestamp": "2026-10-21T10:45:31.462Z",
         "shared_at": "2026-10-21T10:45:31.462Z",
         "channel": "whatsapp",
-        "id": "share-1792579531462"
+        "id": "share-1792579531462",
+        "recipient": "+919830099999",
+        "shared_to": "+919830099999",
+        "timestamp": "2026-10-21T10:45:31.462Z"
       },
       {
         "recipient": "+919830099999",
+        "shared_to": "+919830099999",
         "timestamp": "2026-10-21T10:45:08.535Z",
-        "shared_to": "+919830099999",
         "channel": "whatsapp",
-        "shared_at": "2026-10-21T10:45:08.535Z",
-        "id": "share-1792579508535"
+        "id": "share-1792579508535",
+        "shared_at": "2026-10-21T10:45:08.535Z"
       },
       {
         "channel": "whatsapp",
-        "recipient": "+919830099999",
-        "timestamp": "2026-10-21T10:26:13.723Z",
-        "shared_to": "+919830099999",
         "shared_at": "2026-10-21T10:26:13.723Z",
-        "id": "share-1792578373723"
+        "recipient": "+919830099999",
+        "id": "share-1792578373723",
+        "timestamp": "2026-10-21T10:26:13.723Z",
+        "shared_to": "+919830099999"
       },
       {
-        "shared_at": "2026-10-21T09:56:37.014Z",
-        "timestamp": "2026-10-21T09:56:37.014Z",
         "shared_to": "+919830099999",
+        "timestamp": "2026-10-21T09:56:37.014Z",
+        "recipient": "+919830099999",
         "channel": "whatsapp",
         "id": "share-1792576597014",
-        "recipient": "+919830099999"
+        "shared_at": "2026-10-21T09:56:37.014Z"
       },
       {
-        "id": "share-1792576506612",
-        "channel": "whatsapp",
-        "shared_at": "2026-10-21T09:55:06.612Z",
-        "recipient": "+919830099999",
+        "timestamp": "2026-10-21T09:55:06.612Z",
         "shared_to": "+919830099999",
-        "timestamp": "2026-10-21T09:55:06.612Z"
+        "channel": "whatsapp",
+        "recipient": "+919830099999",
+        "id": "share-1792576506612",
+        "shared_at": "2026-10-21T09:55:06.612Z"
       },
       {
-        "id": "share-1792576452066",
-        "shared_at": "2026-10-21T09:54:12.066Z",
-        "channel": "whatsapp",
+        "recipient": "+919830099999",
         "timestamp": "2026-10-21T09:54:12.066Z",
         "shared_to": "+919830099999",
-        "recipient": "+919830099999"
+        "channel": "whatsapp",
+        "id": "share-1792576452066",
+        "shared_at": "2026-10-21T09:54:12.066Z"
       },
       {
-        "shared_at": "2026-10-21T09:53:01.778Z",
-        "recipient": "+919830099999",
         "shared_to": "+919830099999",
-        "id": "share-1792576381778",
         "timestamp": "2026-10-21T09:53:01.778Z",
+        "id": "share-1792576381778",
+        "recipient": "+919830099999",
+        "shared_at": "2026-10-21T09:53:01.778Z",
         "channel": "whatsapp"
       },
       {
+        "channel": "whatsapp",
         "shared_at": "2026-10-21T09:49:37.784Z",
+        "recipient": "+919830099999",
         "timestamp": "2026-10-21T09:49:37.785Z",
         "shared_to": "+919830099999",
-        "id": "share-1792576177784",
-        "recipient": "+919830099999",
-        "channel": "whatsapp"
+        "id": "share-1792576177784"
       },
       {
         "shared_at": "2026-10-21T09:08:37.338Z",
+        "channel": "whatsapp",
         "id": "share-1792573717338",
         "timestamp": "2026-10-21T09:08:37.339Z",
         "shared_to": "+919830099999",
-        "channel": "whatsapp",
         "recipient": "+919830099999"
       }
     ],
-    "customer_greeting": "Dear Rajesh ji (Radha Krishna Ethnic Hub),",
-    "subtitle": "Curated wholesale collection for premium retail boutiques",
     "customer_id": "cust0000-0000-0000-0000-000000000001",
-    "id": "cat00000-0000-0000-0000-000000000001",
-    "updated_at": "2026-11-02T07:19:00.568Z",
-    "created_at": "2026-03-01T12:00:00Z",
-    "public_token": "bhavya-vip-summer-2026",
-    "share_count": 23,
-    "status": "active",
-    "views_count": 51,
-    "expires_at": "2026-12-31T23:59:59Z",
-    "mode": "hybrid",
     "title": "Exclusive Summer & Festive Lookbook 2026",
+    "rule_groups": [
+      {
+        "rules": [
+          {
+            "id": "r-1",
+            "value": 1200,
+            "attribute": "base_wholesale_price",
+            "operator": "less_than_or_equal"
+          },
+          {
+            "attribute": "stock_status",
+            "value": "in_stock",
+            "operator": "equals",
+            "id": "r-2"
+          }
+        ],
+        "logical_operator": "AND",
+        "id": "rg-1"
+      }
+    ],
+    "id": "cat00000-0000-0000-0000-000000000001",
     "inquiries_count": 5,
-    "custom_message": "We are pleased to share our newest 2026 season wholesale kurti lookbook. Minimum order quantity is 6 pieces per design (ratio packing M, L, XL, XXL). Please review designs and submit your requirement directly below."
+    "status": "active",
+    "access_code": "BF-2026-001",
+    "membership_type": "dynamic",
+    "customer_greeting": "Dear Rajesh ji (Radha Krishna Ethnic Hub),"
   },
   {
     "id": "cat-1792522588521",

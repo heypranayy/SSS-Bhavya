@@ -86,10 +86,10 @@ export function UniversalCatalogBuilder({
     initialCatalog?.mode === 'dynamic' ? 'automated' : 'manual'
   );
 
-  // Price Mode: 'request' (Default for B2B) vs 'show'
+  // Price Mode: 'show' (Default for Custom Catalogues) vs 'request'
   const initialPriceMode =
     (initialCatalog?.presentation_settings as any)?.priceDisplayMode ||
-    (initialCatalog?.presentation_settings?.showPrices === false ? 'request' : 'request');
+    (initialCatalog?.presentation_settings?.showPrices === false ? 'request' : 'show');
   const [priceDisplayMode, setPriceDisplayMode] = useState<'request' | 'show'>(initialPriceMode);
 
   // Expiry in days: DEFAULT TO 90 DAYS (as per user directive)

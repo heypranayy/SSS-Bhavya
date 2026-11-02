@@ -12,11 +12,11 @@ export async function POST(req: NextRequest) {
     const saved = await saveProduct({
       id: json.id,
       title: json.title.trim(),
-      code: json.code?.trim() || `BF-K-${Math.floor(100 + Math.random() * 900)}`,
-      fabric: json.fabric?.trim() || 'Pure Cotton 60-60',
-      color: json.color?.trim() || 'Multicolor',
+      code: json.code?.trim() || '',
+      fabric: json.fabric?.trim() || '',
+      color: json.color?.trim() || '',
       category_id: json.category_id,
-      style_type: json.style_type?.trim() || 'Straight Kurti',
+      style_type: json.style_type?.trim() || '',
       base_wholesale_price: json.base_wholesale_price !== undefined && json.base_wholesale_price !== null && json.base_wholesale_price !== '' && !isNaN(Number(json.base_wholesale_price)) ? Number(json.base_wholesale_price) : 0,
       moq: json.moq !== undefined && json.moq !== null && json.moq !== '' && !isNaN(Number(json.moq)) ? Number(json.moq) : 0,
       price_on_enquiry: json.price_on_enquiry ?? true,
@@ -25,16 +25,7 @@ export async function POST(req: NextRequest) {
       stock_status: json.stock_status || 'in_stock',
       is_featured: Boolean(json.is_featured),
       description: json.description?.trim() || '',
-      images: json.images?.length
-        ? json.images
-        : [
-            {
-              id: `img-${Date.now()}`,
-              image_url: json.image_url || '/images/cat-3piece.jpg',
-              display_order: 0,
-              is_primary: true,
-            },
-          ],
+      images: Array.isArray(json.images) ? json.images : [],
       is_active: true,
     });
 

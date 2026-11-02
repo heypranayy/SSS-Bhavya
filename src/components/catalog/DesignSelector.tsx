@@ -182,10 +182,10 @@ export function DesignSelector({
               {/* Quoted Price */}
               <div className="text-right shrink-0">
                 <span className="text-[10px] uppercase text-[#78716C] block font-semibold">Trade Price</span>
-                {product.price_display_mode === 'show' && product.price_on_enquiry === false ? (
+                {product.price_display_mode === 'show' ? (
                   <div>
                     <span className="text-xl font-extrabold text-[#722F37]">
-                      {formatINR(product.quoted_price)}
+                      {formatINR(product.quoted_price || product.base_wholesale_price)}
                     </span>
                     <span className="text-xs text-[#78716C] ml-1">/ pc (+GST)</span>
                   </div>

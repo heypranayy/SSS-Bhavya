@@ -1,23 +1,63 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Save, Check, Database, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Save, Check, Database, RefreshCw, CheckCircle2, AlertCircle, ShieldAlert, Eye, EyeOff } from 'lucide-react';
 
 export default function AdminSettingsPage() {
   const [brandName, setBrandName] = useState('Bhavya Fashions');
   const [whatsapp, setWhatsapp] = useState('919830729210');
   const [email, setEmail] = useState('wholesale@bhavyafashions.com');
   const [defaultMoq, setDefaultMoq] = useState(6);
+  const [mainWebsiteShowPrices, setMainWebsiteShowPrices] = useState(false);
+  const [customCatalogueShowPrices, setCustomCatalogueShowPrices] = useState(true);
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [isSavingSettings, setIsSavingSettings] = useState(false);
 
   // Firebase Sync State
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<{ success?: boolean; message?: string } | null>(null);
 
-  const handleSave = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetch('/api/admin/settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          if (typeof data.mainWebsiteShowPrices === 'boolean') setMainWebsiteShowPrices(data.mainWebsiteShowPrices);
+          if (typeof data.customCatalogueShowPrices === 'boolean') setCustomCatalogueShowPrices(data.customCatalogueShowPrices);
+          if (data.brandName) setBrandName(data.brandName);
+          if (data.whatsapp) setWhatsapp(data.whatsapp);
+          if (data.email) setEmail(data.email);
+          if (data.defaultMoq) setDefaultMoq(data.defaultMoq);
+        }
+      })
+      .catch((err) => console.error('Failed to load settings:', err));
+  }, []);
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 2500);
+    setIsSavingSettings(true);
+    try {
+      const res = await fetch('/api/admin/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          brandName,
+          whatsapp,
+          email,
+          defaultMoq,
+          mainWebsiteShowPrices,
+          customCatalogueShowPrices,
+        }),
+      });
+      if (res.ok) {
+        setSavedSuccess(true);
+        setTimeout(() => setSavedSuccess(false), 3000);
+      }
+    } catch (err) {
+      console.error('Failed to update settings:', err);
+    } finally {
+      setIsSavingSettings(false);
+    }
   };
 
   const handleFirebaseSync = async () => {
@@ -178,21 +218,88 @@ export default function AdminSettingsPage() {
               />
             </div>
           </div>
+        </div>
 
-          <div className="pt-2">
-            <label className="block text-xs font-semibold text-[#1C1917] mb-1">
-              Global Wholesale Price Display Policy
-            </label>
-            <select
-              defaultValue="show"
-              className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-medium"
+        {/* Wholesale Price Display & Shielding Policy */}
+        <div className="bg-white p-6 rounded-2xl border border-[#E7E0D5] shadow-xs space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#F3ECE2]">
+            <div>
+              <h2 className="font-serif-luxury text-base font-bold text-[#1C1917] flex items-center gap-2">
+                <span>Wholesale Pricing Visibility & Shielding</span>
+              </h2>
+              <p className="text-[11px] text-[#78716C]">
+                Configure price shielding between public storefront and private custom buyer catalogues.
+              </p>
+            </div>
+            <span
+              className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${
+                mainWebsiteShowPrices
+                  ? 'bg-amber-50 text-amber-900 border-amber-300'
+                  : 'bg-emerald-50 text-emerald-900 border-emerald-300'
+              }`}
             >
-              <option value="show">SHOW PRICE — Display actual wholesale price (Default)</option>
-              <option value="request">PRICE ON REQUEST — Hide numerical prices & show "Price on Request" + Enquiry form</option>
-              <option value="contact">CONTACT FOR PRICE — Hide numerical prices & show "Contact for Price" CTA</option>
-            </select>
-            <p className="text-[11px] text-zinc-500 mt-1">
-              Precedence: Catalogue-specific setting &gt; Individual product setting &gt; Global setting. When prices are hidden, underlying prices are sanitized on the server before client transmission.
+              {mainWebsiteShowPrices ? 'Website Prices: UNBLOCKED' : 'Website Prices: BLOCKED (Default)'}
+            </span>
+          </div>
+
+          {/* Setting 1: Main Website Price Blocking */}
+          <div className="p-4 rounded-xl border border-[#E7E0D5] bg-[#FAF7F2] space-y-3">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-[#1C1917]">Main Website Price Display</span>
+                  <span className="text-[10px] font-mono bg-[#722F37]/10 text-[#722F37] px-2 py-0.5 rounded font-bold">
+                    Always Blocked by Default
+                  </span>
+                </div>
+                <p className="text-xs text-[#57534E] leading-relaxed">
+                  By default, wholesale prices are strictly hidden across all public pages (Home, Wholesale Explorer, Collections). Visitors see &ldquo;Price on Enquiry&rdquo; / &ldquo;Quote on Request&rdquo;. You can unblock prices for public viewing using the switch below.
+                </p>
+              </div>
+
+              <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+                <input
+                  type="checkbox"
+                  checked={mainWebsiteShowPrices}
+                  onChange={(e) => setMainWebsiteShowPrices(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-zinc-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#722F37]"></div>
+              </label>
+            </div>
+
+            <div className="pt-2 border-t border-[#E7E0D5]/60 flex items-center gap-2 text-[11px]">
+              {mainWebsiteShowPrices ? (
+                <>
+                  <Eye className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                  <span className="text-amber-800 font-semibold">
+                    Unblocked: Numerical wholesale prices will be visible to all visitors on the main website.
+                  </span>
+                </>
+              ) : (
+                <>
+                  <EyeOff className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                  <span className="text-emerald-800 font-semibold">
+                    Blocked (Active): Numerical prices are hidden on the main website; buyers must click &ldquo;Price on Enquiry&rdquo;.
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Setting 2: Custom Catalogue Price Policy */}
+          <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Custom Catalogue Pricing</span>
+              </span>
+              <span className="text-[10px] font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">
+                ✓ Contained by Default
+              </span>
+            </div>
+            <p className="text-xs text-emerald-900 leading-relaxed">
+              In private custom buyer catalogues generated via the Universal Catalog Builder (`/catalog/[token]`), wholesale rates and buyer discount margins are <strong>contained and displayed by default</strong>. If needed, you can toggle presentation visibility per catalog in the builder.
             </p>
           </div>
         </div>
@@ -216,10 +323,11 @@ export default function AdminSettingsPage() {
         <div className="pt-2 flex justify-end">
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#722F37] text-white text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#5C1D24]"
+            disabled={isSavingSettings}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#722F37] text-white text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#5C1D24] disabled:opacity-50 cursor-pointer"
           >
-            <Save className="w-4 h-4" />
-            <span>Save Settings</span>
+            <Save className={`w-4 h-4 ${isSavingSettings ? 'animate-spin' : ''}`} />
+            <span>{isSavingSettings ? 'Saving Settings...' : 'Save Settings'}</span>
           </button>
         </div>
       </form>

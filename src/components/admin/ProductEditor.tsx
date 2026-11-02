@@ -21,13 +21,26 @@ export function ProductEditor({
   const router = useRouter();
   const isEditing = Boolean(initialProduct);
 
-  const [code, setCode] = useState(initialProduct?.code || `BF-K-${Math.floor(100 + Math.random() * 900)}`);
+  const cleanCategories = React.useMemo(
+    () =>
+      categories.filter(
+        (c) =>
+          c &&
+          !c.id?.startsWith('c1000000') &&
+          !c.slug?.includes('legacy') &&
+          !c.name?.toLowerCase().includes('legacy')
+      ),
+    [categories]
+  );
+
+  const [code, setCode] = useState(initialProduct?.code || '');
   const [title, setTitle] = useState(initialProduct?.title || '');
   const [description, setDescription] = useState(initialProduct?.description || '');
-  const [categoryId, setCategoryId] = useState(initialProduct?.category_id || categories[0]?.id || '');
-  const [fabric, setFabric] = useState(initialProduct?.fabric || 'Pure Cotton 60-60');
-  const [color, setColor] = useState(initialProduct?.color || 'Pastel Wine');
-  const [styleType, setStyleType] = useState(initialProduct?.style_type || '3-Piece Kurti Pant Dupatta');
+  const [categoryId, setCategoryId] = useState(
+    initialProduct?.category_id || cleanCategories[0]?.id || ''
+  );
+  const [fabric, setFabric] = useState(initialProduct?.fabric || '');
+  const [color, setColor] = useState(initialProduct?.color || '');
   const [priceOnEnquiry, setPriceOnEnquiry] = useState<boolean>(
     initialProduct?.price_on_enquiry !== undefined
       ? Boolean(initialProduct.price_on_enquiry)
@@ -46,9 +59,7 @@ export function ProductEditor({
   const [stockStatus, setStockStatus] = useState(initialProduct?.stock_status || 'in_stock');
   const [isFeatured, setIsFeatured] = useState(initialProduct?.is_featured || false);
   const [images, setImages] = useState<ProductImage[]>(
-    initialProduct?.images?.length ? initialProduct.images : [
-      { id: 'img-1', image_url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85', display_order: 0, is_primary: true }
-    ]
+    initialProduct?.images?.length ? initialProduct.images : []
   );
   const [newImageUrl, setNewImageUrl] = useState('');
   const [isSaving, setIsSaving] = useState(false);
@@ -97,7 +108,7 @@ export function ProductEditor({
           category_id: categoryId,
           fabric: fabric.trim(),
           color: color.trim(),
-          style_type: styleType.trim(),
+          style_type: initialProduct?.style_type || cleanCategories.find((c) => c.id === categoryId)?.name || '',
           base_wholesale_price: price.trim() && !isNaN(Number(price)) ? Number(price) : 0,
           moq: moq.trim() && !isNaN(Number(moq)) ? Number(moq) : 0,
           price_on_enquiry: priceOnEnquiry,
@@ -240,7 +251,7 @@ export function ProductEditor({
                 onChange={(e) => setCategoryId(e.target.value)}
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"
               >
-                {categories.map(c => (
+                {cleanCategories.map(c => (
                   <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
@@ -273,7 +284,7 @@ export function ProductEditor({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-[#1C1917] mb-1">
                 Fabric Material
@@ -296,19 +307,6 @@ export function ProductEditor({
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
                 placeholder="e.g. Indigo Blue"
-                className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-[#1C1917] mb-1">
-                Style / Cut Type
-              </label>
-              <input
-                type="text"
-                value={styleType}
-                onChange={(e) => setStyleType(e.target.value)}
-                placeholder="e.g. 2-Piece Kurti Pant"
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"
               />
             </div>

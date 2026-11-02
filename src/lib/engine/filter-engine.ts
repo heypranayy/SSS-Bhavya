@@ -183,9 +183,12 @@ export function resolveCatalogProducts(
       ? Math.round((prod.base_wholesale_price * (1 - discount / 100)) * 100) / 100
       : prod.base_wholesale_price;
 
+    const effectiveMode = priceDisplayMode || 'show';
     return {
       ...prod,
-      price_display_mode: priceDisplayMode || prod.price_display_mode || 'request',
+      price_display_mode: effectiveMode,
+      price_on_enquiry: effectiveMode === 'request',
+      price_on_request: effectiveMode === 'request',
       quoted_price: quotedPrice,
       is_pinned: override?.is_pinned || false,
       presentation_note: override?.presentation_note,
