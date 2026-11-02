@@ -21,6 +21,7 @@ import {
   TrendingUp,
   Link2,
   Trash2,
+  FileDown,
 } from 'lucide-react';
 
 interface CatalogsListViewProps {
@@ -321,6 +322,17 @@ export function CatalogsListView({ initialCatalogs }: CatalogsListViewProps) {
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Preview</span>
+              </Link>
+
+              {/* PDF Download Button */}
+              <Link
+                href={`/catalog/${cat.public_token}${cat.access_code ? `?code=${encodeURIComponent(cat.access_code)}&export=pdf` : '?export=pdf'}`}
+                target="_blank"
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-lg bg-white border border-[#722F37] text-[#722F37] hover:bg-[#FAF7F2] text-xs font-bold uppercase tracking-wider transition-colors"
+                title="Download / Export as PDF"
+              >
+                <FileDown className="w-3.5 h-3.5" />
+                <span>PDF</span>
               </Link>
 
               {cat.status === 'active' && (

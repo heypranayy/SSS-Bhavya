@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Catalog, CatalogProductView } from '@/types';
 import { DesignSelector, SelectedItemState } from './DesignSelector';
@@ -9,6 +9,8 @@ import { InquiryModal } from './InquiryModal';
 import { WhatsAppSelectionModal } from './WhatsAppSelectionModal';
 import { QuickViewModal } from './QuickViewModal';
 import { ImageLightbox } from '@/components/ui/ImageLightbox';
+import { CatalogPrintLayout } from './CatalogPrintLayout';
+import { CatalogPdfModal } from './CatalogPdfModal';
 import {
   Sparkles,
   ShieldCheck,
@@ -16,6 +18,9 @@ import {
   Clock,
   Layers,
   HelpCircle,
+  FileDown,
+  Printer,
+  Download,
 } from 'lucide-react';
 
 interface PublicCatalogViewProps {
@@ -31,6 +36,34 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
   const [submittedRefNo, setSubmittedRefNo] = useState<string | null>(null);
+
+  // PDF Export State & Options
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+  const [pdfOptions, setPdfOptions] = useState({
+    showPrices: true, // Default to true in custom catalogues!
+    showDescriptions: true,
+    showCover: true,
+  });
+
+  // Automatically trigger PDF modal if URL contains ?export=pdf or ?download=pdf
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('export') === 'pdf' || params.get('download') === 'pdf') {
+        setIsPdfModalOpen(true);
+      }
+    }
+  }, []);
+
+  const handleQuickDownloadPdf = () => {
+    const originalTitle = document.title;
+    const cleanFileName = `${catalog.title.replace(/[^a-zA-Z0-9_-]/g, '_')}_Bhavya_Fashions_Lookbook`;
+    document.title = cleanFileName;
+    setTimeout(() => {
+      window.print();
+      document.title = originalTitle;
+    }, 150);
+  };
 
   const settings = catalog.presentation_settings || {
     layout: 'grid',
@@ -71,8 +104,8 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] pb-32">
-      {/* Top Header */}
-      <header className="sticky top-0 z-30 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E7E0D5]">
+      {/* Top Header (Hidden on print) */}
+      <header className="sticky top-0 z-30 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E7E0D5] no-print print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           <div>
             <Link href="/" className="inline-block">
@@ -85,7 +118,17 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            {/* Download PDF Button */}
+            <button
+              onClick={() => setIsPdfModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md bg-[#722F37] text-white hover:bg-[#5C1D24] shadow-xs transition-colors cursor-pointer"
+              title="Download Catalogue in PDF format"
+            >
+              <FileDown className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>Download PDF</span>
+            </button>
+
             <a
               href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Bhavya Fashions, I am reviewing catalog "${catalog.title}".`)}`}
               target="_blank"
@@ -99,8 +142,8 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
         </div>
       </header>
 
-      {/* Catalog Hero Banner */}
-      <div className="bg-white border-b border-[#E7E0D5] py-8 sm:py-12">
+      {/* Catalog Hero Banner (Hidden on print) */}
+      <div className="bg-white border-b border-[#E7E0D5] py-8 sm:py-12 no-print print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {(catalog.cover_image_url || catalog.presentation_settings?.coverImageUrl) && (
             <div className="w-full h-48 sm:h-72 rounded-2xl overflow-hidden mb-6 border border-[#E7E0D5] shadow-xs relative">
@@ -142,39 +185,60 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
               </div>
             )}
 
-            {/* Catalog Info Badges */}
-            <div className="flex items-center gap-4 text-xs text-[#78716C] pt-2 flex-wrap">
-              <span className="flex items-center gap-1">
-                <Layers className="w-3.5 h-3.5 text-[#722F37]" />
-                <span className="font-bold text-[#1C1917]">{products.length}</span> Designs Curated
-              </span>
-
-              {catalog.expires_at && (
+            {/* Catalog Info Badges & Action Toolbar */}
+            <div className="flex items-center justify-between gap-4 pt-2 flex-wrap">
+              <div className="flex items-center gap-4 text-xs text-[#78716C] flex-wrap">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-amber-700" />
-                  <span>Valid until {new Date(catalog.expires_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  <Layers className="w-3.5 h-3.5 text-[#722F37]" />
+                  <span className="font-bold text-[#1C1917]">{products.length}</span> Designs Curated
                 </span>
-              )}
 
-              <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Trade Price Quote Locked</span>
-              </span>
+                {catalog.expires_at && (
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-amber-700" />
+                    <span>Valid until {new Date(catalog.expires_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  </span>
+                )}
+
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>Trade Price Quote Locked</span>
+                </span>
+              </div>
+
+              {/* Download PDF Button in Banner */}
+              <button
+                onClick={() => setIsPdfModalOpen(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-xl bg-white hover:bg-[#FAF7F2] border border-[#722F37] text-[#722F37] shadow-2xs hover:shadow-sm transition-all cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export / Download PDF</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Product Selection List */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-serif-luxury text-xl font-bold text-[#1C1917]">
-            Select Designs for Bulk Procurement
-          </h2>
-
-          <div className="text-xs text-[#78716C] hidden sm:block">
-            * Tap image to zoom • Add designs to WhatsApp Inquiry to discuss quantities &amp; dispatch on call
+      {/* Main Product Selection List (Hidden on print) */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 no-print print:hidden">
+        <div className="mb-6 flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <h2 className="font-serif-luxury text-xl font-bold text-[#1C1917]">
+              Select Designs for Bulk Procurement
+            </h2>
+            <div className="text-xs text-[#78716C] mt-0.5">
+              Tap image to zoom • Add designs to WhatsApp Inquiry or download complete lookbook as PDF
+            </div>
           </div>
+
+          <button
+            onClick={handleQuickDownloadPdf}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-[#E7E0D5] text-[#1C1917] hover:bg-[#FAF7F2] transition-colors shadow-2xs cursor-pointer"
+            title="Instant Print / Save as PDF"
+          >
+            <Printer className="w-3.5 h-3.5 text-[#722F37]" />
+            <span>Print / Save as PDF</span>
+          </button>
         </div>
 
         {/* Product Cards Stack */}
@@ -197,15 +261,34 @@ export function PublicCatalogView({ catalog, products }: PublicCatalogViewProps)
         </div>
       </main>
 
-      {/* Floating Selected Designs Drawer */}
-      <SelectedDesignsDrawer
+      {/* Printable Lookbook Layout for PDF Download (Visible ONLY when printing/saving to PDF) */}
+      <CatalogPrintLayout
+        catalog={catalog}
         products={products}
-        selections={selections}
-        onClearAll={handleClearAll}
-        onRemoveItem={handleRemoveItem}
-        onSubmitInquiry={() => setInquiryModalOpen(true)}
-        onOpenWhatsApp={() => setWhatsappModalOpen(true)}
+        options={pdfOptions}
       />
+
+      {/* PDF Export Modal */}
+      <CatalogPdfModal
+        catalog={catalog}
+        products={products}
+        isOpen={isPdfModalOpen}
+        onClose={() => setIsPdfModalOpen(false)}
+        options={pdfOptions}
+        setOptions={setPdfOptions}
+      />
+
+      {/* Floating Selected Designs Drawer (Hidden on print) */}
+      <div className="no-print print:hidden">
+        <SelectedDesignsDrawer
+          products={products}
+          selections={selections}
+          onClearAll={handleClearAll}
+          onRemoveItem={handleRemoveItem}
+          onSubmitInquiry={() => setInquiryModalOpen(true)}
+          onOpenWhatsApp={() => setWhatsappModalOpen(true)}
+        />
+      </div>
 
       {/* WhatsApp Selection Review Modal */}
       <WhatsAppSelectionModal
