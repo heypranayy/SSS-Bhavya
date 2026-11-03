@@ -132,7 +132,16 @@ blog copies, and several "Exclusive Wholesale Kurti Lookbook 2026" catalogs. The
 imported unchanged so the counts can be checked. Tests now run against an in-memory D1
 (`tests/helpers/cloudflare-workers.ts`) and can no longer touch real data.
 
+## Deploys
+
+GitHub `heypranayy/SSS-Bhavya` is connected to the Worker through Cloudflare Workers Builds:
+every push to `main` runs `npm run build` and then `npm run deploy`. The Vercel project's Git
+connection was removed on 2026-11-03, so pushes no longer build on Vercel.
+
 ## After cut-over
 
-- Point `bhavyafashions.com` at the Worker (Workers & Pages → bhavya-fashions → Settings → Domains & Routes) and remove it from Vercel.
-- **Lock down or delete the Firebase project `sss-bhavya`.** Its Firestore rules allow anyone with the public web key to read, and very likely write, every collection, including customer phone numbers.
+In this order, so the site never goes offline and no inquiry is lost:
+
+1. Add `bhavyafashions.com` to the tech.gexart Cloudflare account and switch its nameservers at Hostinger (`dns-parking.com`) to Cloudflare's. Then attach `bhavyafashions.com` and `www` to the Worker (Workers & Pages → bhavya-fashions → Settings → Domains & Routes).
+2. Once the domain serves the Worker, re-run the export and `--target remote` import. That picks up inquiries buyers sent through the old Vercel site, which kept writing to Firestore until the switch.
+3. Delete the Vercel project `bhavya-fashions`, then delete the Firebase project `sss-bhavya`. Until then, remember that its Firestore rules allow anyone with the public web key to read, and very likely write, every collection, including customer phone numbers.
