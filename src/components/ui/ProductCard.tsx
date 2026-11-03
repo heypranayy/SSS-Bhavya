@@ -67,12 +67,7 @@ export function ProductCard({
           )}
         </div>
 
-        {/* Stock / Set Status Badge */}
-        <div className="absolute top-2.5 right-2.5 z-10">
-          <span className="bg-[#FAF7F2]/95 backdrop-blur-sm text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded shadow-xs">
-            {product.style_type}
-          </span>
-        </div>
+
 
         {/* Quick View Overlay Button */}
         {onQuickView && (
@@ -121,6 +116,20 @@ export function ProductCard({
         </div>
 
         <div className="mt-3 pt-3 border-t border-[#F3ECE2]">
+          {/* Style Tag (moved from image to near quote) */}
+          <div className="flex items-center justify-between gap-1 mb-2">
+            {product.style_type && (
+              <span className="inline-flex items-center bg-[#FAF6EE] text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-2xs truncate max-w-[170px]">
+                {product.style_type}
+              </span>
+            )}
+            {showMoq && (
+              <span className="inline-block bg-[#F3ECE2] text-[#44403C] text-[10px] font-semibold px-2 py-0.5 rounded shrink-0">
+                MOQ: {product.moq ? `${product.moq} pcs set` : '4 pcs set'}
+              </span>
+            )}
+          </div>
+
           <div className="flex items-baseline justify-between mb-3">
             <div>
               <span className="text-[9px] uppercase tracking-wider text-[#78716C] block font-medium">
@@ -141,14 +150,6 @@ export function ProductCard({
                 </div>
               )}
             </div>
-
-            {showMoq && (
-              <div className="text-right">
-                <span className="inline-block bg-[#F3ECE2] text-[#44403C] text-[10px] font-semibold px-2 py-0.5 rounded">
-                  MOQ: {product.moq ? `${product.moq} pcs set` : '4 pcs set'}
-                </span>
-              </div>
-            )}
           </div>
 
           {/* Actions: Add to WhatsApp Cart & View Specs */}

@@ -689,12 +689,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                     )}
                   </div>
 
-                  {/* Style Tag */}
-                  <div className="absolute top-2.5 right-2.5 z-10">
-                    <span className="bg-white/95 backdrop-blur-md text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">
-                      {product.style_type}
-                    </span>
-                  </div>
+
 
                   {/* Select Checkbox Top Overlay */}
                   <button
@@ -756,6 +751,18 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                   </div>
 
                   <div className="mt-3 pt-3 border-t border-[#F3ECE2]">
+                    {/* Style Tag (moved from image to near quote) */}
+                    <div className="flex items-center justify-between gap-1 mb-2">
+                      {product.style_type && (
+                        <span className="inline-flex items-center bg-[#FAF6EE] text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-2xs truncate max-w-[170px]">
+                          {product.style_type}
+                        </span>
+                      )}
+                      <span className="bg-[#FAF7F2] border border-[#E7E0D5] text-zinc-700 text-[10px] font-semibold px-2 py-0.5 rounded shrink-0">
+                        MOQ: {product.moq ? `${product.moq} pcs` : '4 pcs'}
+                      </span>
+                    </div>
+
                     <div className="flex items-baseline justify-between mb-3">
                       <div>
                         <span className="text-[9px] uppercase tracking-wider text-zinc-400 block font-medium">
@@ -776,10 +783,6 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                           </span>
                         )}
                       </div>
-
-                      <span className="bg-[#FAF7F2] border border-[#E7E0D5] text-zinc-700 text-[10px] font-semibold px-2 py-0.5 rounded">
-                        MOQ: {product.moq ? `${product.moq} pcs` : '4 pcs'}
-                      </span>
                     </div>
 
                     {/* Action buttons (Specs & Official Quote Enquiry) */}

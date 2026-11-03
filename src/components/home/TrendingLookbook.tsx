@@ -227,12 +227,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
                     )}
                   </div>
 
-                  {/* Style Tag */}
-                  <div className="absolute top-2.5 right-2.5 z-10">
-                    <span className="bg-white/95 backdrop-blur-md text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">
-                      {product.style_type}
-                    </span>
-                  </div>
+
 
                   {/* Quick View Button (Visible on hover and accessible) */}
                   <button
@@ -263,6 +258,18 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
 
                   {/* Pricing on Request Section (Mandated: All on Quote) */}
                   <div className="mt-3 pt-3 border-t border-[#F3ECE2]">
+                    {/* Style Tag (moved from image to near quote) */}
+                    <div className="flex items-center justify-between gap-1 mb-2">
+                      {product.style_type && (
+                        <span className="inline-flex items-center bg-[#FAF6EE] text-[#722F37] border border-[#722F37]/20 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-2xs truncate max-w-[170px]">
+                          {product.style_type}
+                        </span>
+                      )}
+                      <span className="bg-[#FAF7F2] border border-[#E7E0D5] text-zinc-700 text-[10px] font-semibold px-2 py-0.5 rounded shrink-0">
+                        MOQ: {product.moq || 4} pcs
+                      </span>
+                    </div>
+
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <span className="text-[9px] uppercase tracking-wider text-[#8C6D23] block font-bold">
@@ -273,10 +280,6 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
                           <span>Quote on Request</span>
                         </div>
                       </div>
-
-                      <span className="bg-[#FAF7F2] border border-[#E7E0D5] text-zinc-700 text-[10px] font-semibold px-2 py-0.5 rounded">
-                        MOQ: {product.moq || 6} pcs
-                      </span>
                     </div>
 
                     {/* Working Action Buttons (Specs, Get Quote, WhatsApp) */}
