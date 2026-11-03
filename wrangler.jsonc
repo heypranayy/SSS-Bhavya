@@ -1,6 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bhavya-fashions",
+  // tech.gexart@gmail.com Cloudflare account
+  "account_id": "8af4b0b1475268d847835db412045fde",
   "compatibility_date": "2026-11-03",
   "compatibility_flags": [
     "nodejs_compat"
@@ -25,7 +27,7 @@
     {
       "binding": "DB",
       "database_name": "bhavya-fashions-db",
-      "database_id": "aadbc51f-b28a-4185-9cb7-8f2eb5da9462",
+      "database_id": "b04e8c76-79c4-4f0f-abec-38466e76a10b",
       "migrations_dir": "migrations"
     }
   ],

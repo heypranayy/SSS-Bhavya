@@ -6,7 +6,6 @@ import { CollectionFilterView } from '@/components/collections/CollectionFilterV
 import { getCollectionBySlug, getAllProducts } from '@/lib/repository/products';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 interface CollectionPageProps {
   params: Promise<{ slug: string }>;

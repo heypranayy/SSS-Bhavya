@@ -6,7 +6,6 @@ import { ProductDetailView } from '@/components/products/ProductDetailView';
 import { getProductBySlug, getAllProducts } from '@/lib/repository/products';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;

@@ -5,7 +5,6 @@ import { CollectionFilterView } from '@/components/collections/CollectionFilterV
 import { getAllProducts } from '@/lib/repository/products';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 export const metadata = {
   title: 'All Wholesale Indian Kurtis & Ensembles | Bhavya Fashions Catalog',

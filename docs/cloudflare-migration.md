@@ -26,13 +26,25 @@ npm run db:migrate:local
 npm run db:migrate:remote
 ```
 
+## Cloudflare account
+
+Everything lives on the **tech.gexart@gmail.com** Cloudflare account
+(`8af4b0b1475268d847835db412045fde`), which is pinned as `account_id` in `wrangler.jsonc`.
+On the Gexart dev machine, Wrangler's login for this account is kept apart from the
+default login, which another project uses, in `C:\Users\USER\.wrangler-profiles\tech-gexart`.
+Prefix remote commands with it:
+
+```bash
+XDG_CONFIG_HOME="C:\\Users\\USER\\.wrangler-profiles\\tech-gexart" npx wrangler whoami
+```
+
 ## Bindings, env and secrets
 
 All in `wrangler.jsonc`:
 
 | Binding | Resource |
 | --- | --- |
-| `DB` | D1 `bhavya-fashions-db` (id `aadbc51f-b28a-4185-9cb7-8f2eb5da9462`) |
+| `DB` | D1 `bhavya-fashions-db` (id `b04e8c76-79c4-4f0f-abec-38466e76a10b`) |
 | `BUCKET` | R2 `bhavya-fashions-media` |
 | `ASSETS` | static files from `public/` |
 
