@@ -13,6 +13,8 @@ import {
   ArrowDown,
   Layers,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 export interface HeroSlide {
@@ -106,7 +108,6 @@ interface HeroCarouselProps {
 
 export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -126,45 +127,24 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
 
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
-    setProgress(0);
   }, []);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    setProgress(0);
   }, []);
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-    setProgress(0);
   }, []);
 
-  // Timeline Progress Loop (60fps requestAnimationFrame)
+    // Auto-play slideshow timer with pause on hover
   useEffect(() => {
     if (isPaused) return;
-
-    let animId: number;
-    let lastTime = performance.now();
-
-    const tick = (now: number) => {
-      const delta = now - lastTime;
-      lastTime = now;
-
-      setProgress((prev) => {
-        const next = prev + (delta / SLIDE_DURATION) * 100;
-        if (next >= 100) {
-          setCurrentIndex((curr) => (curr + 1) % HERO_SLIDES.length);
-          return 0;
-        }
-        return next;
-      });
-
-      animId = requestAnimationFrame(tick);
-    };
-
-    animId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animId);
-  }, [isPaused, currentIndex]);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   // Keyboard Navigation (ArrowLeft, ArrowRight, Space for pause)
   useEffect(() => {
@@ -390,94 +370,70 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* TIMELINE NAVIGATION BAR ("Banners Moving in Timeline" - Light Warm Styling) */}
-      <div className="relative z-30 w-full bg-[#FAF6EE]/95 backdrop-blur-xl border-t border-[#E7E0D5] px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-          {/* Timeline Nodes Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 flex-1">
+      {/* Navigation Arrows (Prev / Next Chevrons) */}
+        <button
+          type="button"
+          onClick={prevSlide}
+          className="absolute left-2.5 sm:left-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/85 hover:bg-white text-[#722F37] border border-[#E7E0D5] backdrop-blur-md shadow-md flex items-center justify-center transition-all duration-200 hover:scale-108 active:scale-95 cursor-pointer group"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-0.5 transition-transform" />
+        </button>
+
+        <button
+          type="button"
+          onClick={nextSlide}
+          className="absolute right-2.5 sm:right-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/85 hover:bg-white text-[#722F37] border border-[#E7E0D5] backdrop-blur-md shadow-md flex items-center justify-center transition-all duration-200 hover:scale-108 active:scale-95 cursor-pointer group"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-0.5 transition-transform" />
+        </button>
+
+        {/* Floating Pagination & Play/Pause Controls */}
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 sm:gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/55 backdrop-blur-md border border-white/20 shadow-xl">
+          {/* Pagination Indicator Dots */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {HERO_SLIDES.map((slide, idx) => {
               const isActive = idx === currentIndex;
-              const isPast = idx < currentIndex;
-
-              // Timeline Progress Fill Calculation
-              let progressPercent = 0;
-              if (isPast) {
-                progressPercent = 100;
-              } else if (isActive) {
-                progressPercent = progress;
-              }
-
               return (
                 <button
                   key={slide.id}
+                  type="button"
                   onClick={() => goToSlide(idx)}
-                  className={`relative text-left p-2.5 sm:p-3 rounded-xl transition-all duration-300 group cursor-pointer ${
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
                     isActive
-                      ? 'bg-white border-2 border-[#722F37] shadow-sm ring-2 ring-[#722F37]/10'
-                      : 'bg-white/60 hover:bg-white border border-[#E7E0D5]'
+                      ? 'w-7 sm:w-9 h-2 sm:h-2.5 bg-gradient-to-r from-[#C5A059] to-[#E8C581] shadow-xs'
+                      : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/50 hover:bg-white/80'
                   }`}
-                  aria-label={`Jump to slide ${slide.stepNumber}: ${slide.stepLabel}`}
-                >
-                  {/* Slide Step Header & Info */}
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className={`text-xs font-mono font-bold transition-colors ${
-                        isActive ? 'text-[#722F37]' : 'text-zinc-500 group-hover:text-zinc-800'
-                      }`}
-                    >
-                      {slide.stepNumber}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C6D23] font-semibold truncate max-w-[90px] sm:max-w-[130px]">
-                      {slide.stepTag}
-                    </span>
-                  </div>
-
-                  {/* Meaningful Collection Title */}
-                  <div className="mb-2">
-                    <h4 className="text-xs sm:text-sm font-semibold text-zinc-900 line-clamp-1 group-hover:text-[#722F37] transition-colors">
-                      {slide.stepLabel}
-                    </h4>
-                  </div>
-
-                  {/* Animated Progress Bar Track */}
-                  <div className="w-full h-1.5 bg-[#EAE4D9] rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[#722F37] to-[#C5A059] transition-[width] ease-linear"
-                      style={{
-                        width: `${progressPercent}%`,
-                        transitionDuration: isActive && !isPaused ? '100ms' : '0ms',
-                      }}
-                    />
-                  </div>
-                </button>
+                  aria-label={`Go to slide ${idx + 1}: ${slide.stepLabel}`}
+                  aria-current={isActive ? 'true' : undefined}
+                />
               );
             })}
           </div>
 
-          {/* Timeline Playback Controls & Status */}
-          <div className="flex items-center justify-between md:justify-end gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-[#E7E0D5]">
-            {/* Play / Pause Toggle Button */}
-            <button
-              onClick={() => setIsPaused((p) => !p)}
-              className="p-2 rounded-lg bg-white hover:bg-[#FAF6EE] text-[#1C1917] border border-[#E7E0D5] transition-colors flex items-center gap-1.5 text-xs font-mono shadow-2xs"
-              aria-label={isPaused ? 'Resume Timeline Auto-play' : 'Pause Timeline Auto-play'}
-              title={isPaused ? 'Resume' : 'Pause'}
-            >
-              {isPaused ? (
-                <>
-                  <Play className="w-3.5 h-3.5 text-[#722F37]" />
-                  <span className="hidden sm:inline text-zinc-600 font-semibold">Play</span>
-                </>
-              ) : (
-                <>
-                  <Pause className="w-3.5 h-3.5 text-[#722F37]" />
-                  <span className="hidden sm:inline text-zinc-600 font-semibold">Pause</span>
-                </>
-              )}
-            </button>
-          </div>
+          {/* Slide Numbers */}
+          <span className="text-[10px] sm:text-xs font-mono text-white/80 font-bold px-1">
+            0{currentIndex + 1} / 0{HERO_SLIDES.length}
+          </span>
+
+          <div className="w-px h-3 bg-white/25" />
+
+          {/* Play/Pause Button */}
+          <button
+            type="button"
+            onClick={() => setIsPaused((p) => !p)}
+            className="text-white/80 hover:text-white transition-colors cursor-pointer p-0.5"
+            aria-label={isPaused ? 'Resume auto-play' : 'Pause auto-play'}
+            title={isPaused ? 'Play' : 'Pause'}
+          >
+            {isPaused ? (
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#C5A059]" />
+            ) : (
+              <Pause className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            )}
+          </button>
         </div>
       </div>
     </section>
