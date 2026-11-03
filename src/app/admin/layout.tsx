@@ -41,20 +41,28 @@ export default function AdminLayout({
       setIsAuthenticated(true);
       return;
     }
-    const authStatus = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_auth') : null;
-    const userEmail = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_user') : null;
-    const userRole = typeof window !== 'undefined' ? localStorage.getItem('bhavya_admin_role') : null;
-
-    if (authStatus === 'authenticated') {
-      setIsAuthenticated(true);
-      if (userEmail) setAdminUser(userEmail);
-      if (userRole) {
-        setAdminRole(userRole === 'super_admin' ? 'Super Admin' : userRole.toUpperCase());
-      }
-    } else {
-      setIsAuthenticated(false);
-      router.push('/admin/login');
-    }
+    let cancelled = false;
+    fetch('/api/admin/me')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled) return;
+        if (data?.user) {
+          setIsAuthenticated(true);
+          setAdminUser(data.user.email);
+          setAdminRole(data.user.role === 'super_admin' ? 'Super Admin' : String(data.user.role).toUpperCase());
+          localStorage.setItem('bhavya_admin_user', data.user.email);
+          localStorage.setItem('bhavya_admin_role', data.user.role);
+        } else {
+          setIsAuthenticated(false);
+          router.push(`/admin/login?next=${encodeURIComponent(pathname)}`);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setIsAuthenticated(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [pathname, router]);
 
   // If login page, render without sidebar
@@ -62,12 +70,12 @@ export default function AdminLayout({
     return <>{children}</>;
   }
 
-  const handleSignOut = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('bhavya_admin_auth');
-      localStorage.removeItem('bhavya_admin_user');
-      document.cookie = 'bhavya_admin_auth=; path=/; max-age=0';
-    }
+  const handleSignOut = async () => {
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+    } catch {}
+    localStorage.removeItem('bhavya_admin_user');
+    localStorage.removeItem('bhavya_admin_role');
     router.push('/admin/login');
   };
 
@@ -90,7 +98,7 @@ export default function AdminLayout({
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
-  if (isAuthenticated === false) {
+  if (isAuthenticated !== true) {
     return (
       <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
         <div className="text-center space-y-3">

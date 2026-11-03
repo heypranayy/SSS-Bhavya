@@ -42,7 +42,8 @@ A complete, production-oriented B2B wholesale fashion catalog and lookbook engin
 - **Framework**: Next.js 16 (App Router) + React 19 + TypeScript
 - **Styling**: Tailwind CSS v4 with custom luxury Indian ethnic theme tokens (`Warm Ivory`, `Muted Wine Burgundy`, `Gold`, `Deep Charcoal`)
 - **Icons**: Lucide Icons
-- **Database & Storage**: Supabase PostgreSQL + Supabase Storage + Row Level Security (RLS)
+- **Hosting**: Cloudflare Workers via [vinext](https://github.com/cloudflare/vinext)
+- **Database & Storage**: Cloudflare D1 (SQL) + Cloudflare R2 (product images)
 - **Validation**: Zod + React Hook Form
 - **Testing**: Vitest automated test suite
 
@@ -57,30 +58,18 @@ cd "BHAVYA FASHIONS"
 npm install
 ```
 
-### 2. Environment Variables
-Copy `.env.example` to `.env.local`:
+### 2. Local Database
 ```bash
-cp .env.example .env.local
+npm run db:migrate:local
+node scripts/import-to-cloudflare.ts --target local   # needs a Firestore dump; see docs/cloudflare-migration.md
 ```
-Fill in your Supabase credentials:
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_BRAND_NAME="Bhavya Fashions"
-NEXT_PUBLIC_WHATSAPP_NUMBER="919830122334"
-NEXT_PUBLIC_SALES_EMAIL="wholesale@bhavyafashions.com"
-```
-
-> **Zero-Config Fallback Mode**: The platform includes a fallback repository layer. Even before you connect your live Supabase database, all pages, the catalog builder, customer lookbooks, and inquiry flows work out-of-the-box with authentic Indian wholesale kurti seed data.
+Data lives in Cloudflare D1 and images in R2. Locally, Wrangler keeps both in `.wrangler/state`. No database credentials or `.env` secrets are needed.
 
 ### 3. Run Automated Tests
 ```bash
 npm test
 ```
-Runs the 11 unit tests for filter rules, numeric boundaries, hybrid catalog precedence, customer pricing tiers, and inquiry MOQ validation.
+Each test file runs against its own in-memory D1 database loaded with the seed data. Tests never touch real data.
 
 ### 4. Run Development Server
 ```bash
@@ -90,36 +79,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 🗄️ Database Setup (Supabase)
+## 🚢 Deployment (Cloudflare Workers)
 
-1. Open your [Supabase Dashboard](https://supabase.com).
-2. Go to the **SQL Editor**.
-3. Run the complete schema migration:
-   - File: `supabase/migrations/20261015000000_init_bhavya_fashions.sql`
-   - Sets up all normalized tables: `profiles`, `categories`, `collections`, `products`, `product_images`, `product_variants`, `customers`, `catalogs`, `catalog_rule_groups`, `catalog_rules`, `catalog_overrides`, `inquiries`, `inquiry_items`, and Row Level Security policies.
-4. Run the seed data script:
-   - File: `supabase/seed.sql`
-   - Populates initial categories (Single Kurtis, 2-Piece Kurti Pant, 3-Piece Muslin Sets, Co-ords, Gowns), 5 curated collections, 8 wholesale products, customers, and active lookbook catalogs.
-
----
-
-## 🚢 Deployment to Vercel
-
-1. Push your repository to GitHub:
-   ```bash
-   git add .
-   git commit -m "feat: complete Bhavya Fashions wholesale platform"
-   git push origin main
-   ```
-2. Go to [Vercel Dashboard](https://vercel.com) and click **"Add New Project"** ➔ Import repository.
-3. Add your Environment Variables in the Vercel project settings:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `NEXT_PUBLIC_APP_URL` (e.g. `https://bhavyafashions.com`)
-   - `NEXT_PUBLIC_WHATSAPP_NUMBER`
-4. Click **Deploy**.
-5. Connect your domain **`BhavyaFashions.com`** in Vercel **Settings ➔ Domains**.
+Every push to `main` is built and deployed by Cloudflare Workers Builds (build command `npm run build`, deploy command `npm run deploy`). To deploy by hand:
+```bash
+npm run db:migrate:remote
+npm run build
+npm run deploy
+```
+See [docs/cloudflare-migration.md](docs/cloudflare-migration.md) for the D1/R2 setup and the Firebase import.
 
 ---
 
@@ -129,9 +97,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Dashboard**: `/admin`
 - **Catalog Builder**: `/admin/catalogs/create`
 - **Inquiry Processing Desk**: `/admin/inquiries`
-- **Default Credentials** (Development/Demo):
-  - Email: `admin@bhavyafashions.com`
-  - Password: `bhavya2026admin`
+- **Accounts**: staff sign in with their email and a password stored as a PBKDF2 hash in D1, and stay signed in through an HttpOnly session cookie. Admins manage accounts under **Staff & Roles**.
 
 ---
 

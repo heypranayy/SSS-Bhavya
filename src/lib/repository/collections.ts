@@ -1,138 +1,16 @@
-import fs from 'fs';
-import path from 'path';
 import { Collection } from '@/types';
-import { SEED_COLLECTIONS, SEED_CATEGORIES } from '@/lib/data/seed-data';
-import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
-import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
-
-let inMemoryCollections: Collection[] = [...SEED_COLLECTIONS];
-
-function getCustomCollectionsFilePath(): string {
-  return path.join(process.cwd(), 'src', 'lib', 'data', 'custom-collections.json');
-}
-
-function loadPersistedCollections(): Collection[] {
-  try {
-    const filePath = getCustomCollectionsFilePath();
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, 'utf-8');
-      if (data.trim()) {
-        return JSON.parse(data);
-      }
-    }
-  } catch (err) {
-    console.error('Failed to read custom collections:', err);
-  }
-  return [];
-}
-
-function savePersistedCollections(collections: Collection[]): void {
-  try {
-    if (process.env.VITEST || process.env.NODE_ENV === 'test') {
-      return;
-    }
-    const filePath = getCustomCollectionsFilePath();
-    fs.writeFileSync(filePath, JSON.stringify(collections, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('Failed to write custom collections:', err);
-  }
-}
-
-function getDeletedCollectionsFilePath(): string {
-  return path.join(process.cwd(), 'src', 'lib', 'data', 'deleted-collections.json');
-}
-
-function loadDeletedCollectionIds(): Set<string> {
-  try {
-    const filePath = getDeletedCollectionsFilePath();
-    if (fs.existsSync(filePath)) {
-      const data = fs.readFileSync(filePath, 'utf-8');
-      if (data.trim()) {
-        const arr = JSON.parse(data);
-        if (Array.isArray(arr)) return new Set(arr);
-      }
-    }
-  } catch {}
-  return new Set();
-}
-
-function saveDeletedCollectionIds(ids: Set<string>): void {
-  try {
-    if (process.env.VITEST || process.env.NODE_ENV === 'test') {
-      return;
-    }
-    const filePath = getDeletedCollectionsFilePath();
-    fs.writeFileSync(filePath, JSON.stringify(Array.from(ids), null, 2), 'utf-8');
-  } catch {}
-}
-
-function isSupabaseConfigured(): boolean {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return Boolean(url && !url.includes('placeholder') && !url.includes('your-project-id'));
-}
+import { SEED_CATEGORIES } from '@/lib/data/seed-data';
+import { deleteDocs, getDb, getDoc, listDocs, putDoc } from '@/lib/db';
+import { collectionColumns } from '@/lib/db/rows';
 
 export async function getAllCollections(): Promise<Collection[]> {
-  const deletedIds = loadDeletedCollectionIds();
-  const persisted = loadPersistedCollections();
-  const mergedMap = new Map<string, Collection>();
-
-  for (const c of SEED_COLLECTIONS) {
-    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
-      mergedMap.set(c.id, c);
-    }
-  }
-  for (const c of inMemoryCollections) {
-    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
-      mergedMap.set(c.id, c);
-    }
-  }
-  for (const c of persisted) {
-    if (!deletedIds.has(c.id) && !deletedIds.has(c.slug)) {
-      mergedMap.set(c.id, c);
-    }
-  }
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db) {
-        const snap = await getDocs(collection(db, 'collections'));
-        if (!snap.empty) {
-          snap.forEach((d) => {
-            const data = d.data() as Collection;
-            if (data && data.id) {
-              mergedMap.set(data.id, data);
-            }
-          });
-        }
-      }
-    } catch {}
-  }
-
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = createAdminClient();
-      const { data, error } = await supabase.from('collections').select('*').order('display_order');
-      if (!error && data && data.length > 0) {
-        data.forEach((c: Collection) => mergedMap.set(c.id, c));
-      }
-    } catch {}
-  }
-
+  const all = await listDocs<Collection>('collections', 'display_order ASC');
   const isTest = Boolean(process.env.VITEST || process.env.NODE_ENV === 'test');
-  const all = Array.from(mergedMap.values()).filter((c) => {
+  return all.filter((c) => {
     const name = (c.name || '').toLowerCase();
     const slug = (c.slug || '').toLowerCase();
-    if (!isTest && (name.includes('festive test') || slug.includes('festive-test') || name.includes('test collection'))) {
-      return false;
-    }
-    return !deletedIds.has(c.id) && !deletedIds.has(c.slug);
+    return isTest || !(name.includes('festive test') || slug.includes('festive-test') || name.includes('test collection'));
   });
-
-  all.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
-  inMemoryCollections = all;
-  return all;
 }
 
 export async function getCollectionBySlug(slug: string): Promise<Collection | null> {
@@ -166,28 +44,12 @@ export async function getCollectionBySlug(slug: string): Promise<Collection | nu
 }
 
 export async function saveCollection(collectionData: Partial<Collection>): Promise<Collection> {
-  const persisted = loadPersistedCollections();
-
   if (collectionData.id) {
-    const idx = persisted.findIndex(c => c.id === collectionData.id);
-    if (idx !== -1) {
-      persisted[idx] = {
-        ...persisted[idx],
-        ...collectionData,
-      } as Collection;
-      savePersistedCollections(persisted);
-      await getAllCollections();
-
-      if (isFirebaseConfigured() && !process.env.VITEST && process.env.NODE_ENV !== 'test') {
-        try {
-          const db = getFirebaseDb();
-          if (db) {
-            await setDoc(doc(db, 'collections', persisted[idx].id), sanitizeForFirestore(persisted[idx]), { merge: true });
-          }
-        } catch {}
-      }
-
-      return persisted[idx];
+    const existing = await getDoc<Collection>('collections', collectionData.id);
+    if (existing) {
+      const updated = { ...existing, ...collectionData } as Collection;
+      await putDoc('collections', updated.id, collectionColumns(updated), updated);
+      return updated;
     }
   }
 
@@ -196,6 +58,8 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)+/g, '');
 
+  const count = await getDb().prepare('SELECT COUNT(*) AS n FROM collections').first<{ n: number }>();
+
   const newCollection: Collection = {
     id: collectionData.id || `col-${Date.now()}`,
     name: collectionData.name || 'New Wholesale Collection',
@@ -203,44 +67,15 @@ export async function saveCollection(collectionData: Partial<Collection>): Promi
     description: collectionData.description || '',
     image_url: collectionData.image_url || '/images/cat-3piece.jpg',
     is_featured: collectionData.is_featured ?? true,
-    display_order: collectionData.display_order ?? (persisted.length + 1),
+    display_order: collectionData.display_order ?? ((count?.n ?? 0) + 1),
     product_count: collectionData.product_count ?? 0,
   };
 
-  persisted.unshift(newCollection);
-  savePersistedCollections(persisted);
-  inMemoryCollections.unshift(newCollection);
-
-  if (isFirebaseConfigured() && !process.env.VITEST && process.env.NODE_ENV !== 'test') {
-    try {
-      const db = getFirebaseDb();
-      if (db) {
-        await setDoc(doc(db, 'collections', newCollection.id), sanitizeForFirestore(newCollection), { merge: true });
-      }
-    } catch {}
-  }
-
+  await putDoc('collections', newCollection.id, collectionColumns(newCollection), newCollection);
   return newCollection;
 }
 
 export async function deleteCollection(id: string): Promise<boolean> {
-  const deletedIds = loadDeletedCollectionIds();
-  deletedIds.add(id);
-  saveDeletedCollectionIds(deletedIds);
-
-  const persisted = loadPersistedCollections();
-  const next = persisted.filter(c => c.id !== id && c.slug !== id);
-  savePersistedCollections(next);
-  inMemoryCollections = inMemoryCollections.filter(c => c.id !== id && c.slug !== id);
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db) {
-        await deleteDoc(doc(db, 'collections', id));
-      }
-    } catch {}
-  }
-
+  await deleteDocs('collections', [id], ['slug']);
   return true;
 }

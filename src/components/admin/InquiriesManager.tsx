@@ -304,7 +304,7 @@ export function InquiriesManager({ initialInquiries }: InquiriesManagerProps) {
             onClick={handleRefresh}
             disabled={isRefreshing}
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-[#E7E0D5] text-xs font-bold uppercase tracking-wider text-[#1C1917] hover:bg-[#FAF7F2] shadow-2xs disabled:opacity-50"
-            title="Reload latest inquiries from server & Firebase"
+            title="Reload latest inquiries from the server"
           >
             <RotateCw className={`w-3.5 h-3.5 text-[#722F37] ${isRefreshing ? 'animate-spin' : ''}`} />
             <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>

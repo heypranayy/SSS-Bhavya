@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bhavya-fashions",
+  "compatibility_date": "2026-11-03",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "main": "vinext/server/fetch-handler",
+  "assets": {
+    "directory": "dist/client",
+    "html_handling": "none",
+    "not_found_handling": "none",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/*",
+      "!/_next/static/*",
+      "!/*/_next/static/*"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  },
+  // All app data (former Firestore collections, staff logins, sessions). Schema: migrations/
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bhavya-fashions-db",
+      "database_id": "aadbc51f-b28a-4185-9cb7-8f2eb5da9462",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Uploaded and migrated product images, served by the Worker at /media/<key>
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "bhavya-fashions-media"
+    }
+  ]
+}

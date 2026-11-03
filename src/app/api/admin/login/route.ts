@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { verifyStaffCredentials } from '@/lib/repository/staff';
+import { createSession, SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from '@/lib/auth/session';
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const result = await verifyStaffCredentials(email, password);
+    const result = await verifyStaffCredentials(String(email), String(password));
 
     if (!result.valid || !result.user) {
       return NextResponse.json(
@@ -33,21 +34,19 @@ export async function POST(req: Request) {
       },
     });
 
-    // Set HTTP cookie for authentication session
     response.cookies.set({
-      name: 'bhavya_admin_auth',
-      value: 'authenticated',
+      name: SESSION_COOKIE,
+      value: await createSession(result.user.id),
       path: '/',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      httpOnly: true,
+      secure: new URL(req.url).protocol === 'https:',
       sameSite: 'lax',
+      maxAge: SESSION_MAX_AGE_SECONDS,
     });
 
     return response;
   } catch (err: any) {
     console.error('Admin login API error:', err);
-    return NextResponse.json(
-      { error: err.message || 'Authentication failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Authentication failed' }, { status: 500 });
   }
 }

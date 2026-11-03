@@ -25,7 +25,7 @@ export interface StaffAccount {
   id: string;
   name: string;
   email: string;
-  password?: string;
+  password?: string; // only sent to the server, never returned
   role: StaffRole;
   hub: 'Kolkata Barabazar' | 'Surat Unit' | 'All Hubs';
   status: 'active' | 'suspended';
@@ -39,58 +39,6 @@ export interface ActivityLogItem {
   action: string;
   category: 'catalog' | 'inquiry' | 'product' | 'security' | 'staff';
 }
-
-const INITIAL_STAFF: StaffAccount[] = [
-  {
-    id: 'staff-1',
-    name: 'Super Administrator',
-    email: 'sss@bhavyafashions.com',
-    password: 'Bhavya@2026',
-    role: 'super_admin',
-    hub: 'All Hubs',
-    status: 'active',
-    lastActive: 'Just now',
-  },
-  {
-    id: 'staff-2',
-    name: 'Amit Verma',
-    email: 'amit.verma@bhavyafashions.com',
-    password: 'Bhavya@2026',
-    role: 'sales_staff',
-    hub: 'Kolkata Barabazar',
-    status: 'active',
-    lastActive: '10 mins ago',
-  },
-  {
-    id: 'staff-3',
-    name: 'Sanjay Jain',
-    email: 'sanjay.jain@bhavyafashions.com',
-    password: 'Bhavya@2026',
-    role: 'catalog_manager',
-    hub: 'Kolkata Barabazar',
-    status: 'active',
-    lastActive: '1 hour ago',
-  },
-  {
-    id: 'staff-4',
-    name: 'Ravi Sharma',
-    email: 'ravi.sharma@bhavyafashions.com',
-    password: 'Bhavya@2026',
-    role: 'sales_staff',
-    hub: 'Surat Unit',
-    status: 'active',
-    lastActive: '3 hours ago',
-  },
-  {
-    id: 'staff-5',
-    name: 'Priya Mukherjee',
-    email: 'priya.m@bhavyafashions.com',
-    role: 'read_only',
-    hub: 'Kolkata Barabazar',
-    status: 'suspended',
-    lastActive: '3 days ago',
-  },
-];
 
 const INITIAL_LOGS: ActivityLogItem[] = [
   {
@@ -132,7 +80,7 @@ const ROLE_DESCRIPTIONS: Record<StaffRole, string> = {
 };
 
 export function StaffManager() {
-  const [staffList, setStaffList] = useState<StaffAccount[]>(INITIAL_STAFF);
+  const [staffList, setStaffList] = useState<StaffAccount[]>([]);
   const [logs, setLogs] = useState<ActivityLogItem[]>(INITIAL_LOGS);
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<'staff' | 'permissions' | 'logs'>('staff');
@@ -141,48 +89,45 @@ export function StaffManager() {
   // New staff form state
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [newPassword, setNewPassword] = useState('Bhavya@2026');
+  const [newPassword, setNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [newRole, setNewRole] = useState<StaffRole>('sales_staff');
   const [newHub, setNewHub] = useState<'Kolkata Barabazar' | 'Surat Unit' | 'All Hubs'>('Kolkata Barabazar');
+
+  const [staffError, setStaffError] = useState('');
 
   // Edit password modal state
   const [passwordModalStaff, setPasswordModalStaff] = useState<StaffAccount | null>(null);
   const [editPasswordValue, setEditPasswordValue] = useState('');
   const [showEditPassword, setShowEditPassword] = useState(false);
 
-  // Load from server and localStorage on mount
-  useEffect(() => {
-    // 1. Check local storage first for instant load
-    try {
-      const stored = localStorage.getItem('bhavya_staff_accounts');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setStaffList(parsed);
-        }
-      }
-    } catch {}
-
-    // 2. Fetch fresh staff list from server
+  const loadStaff = () =>
     fetch('/api/admin/staff')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setStaffList(data);
-          try {
-            localStorage.setItem('bhavya_staff_accounts', JSON.stringify(data));
-          } catch {}
-        }
+        if (Array.isArray(data)) setStaffList(data);
       })
-      .catch((err) => console.warn('Server staff load fallback to local:', err));
+      .catch((err) => console.warn('Staff load failed:', err));
+
+  // Load from server on mount
+  useEffect(() => {
+    loadStaff();
   }, []);
 
   const saveStaffList = (updated: StaffAccount[]) => {
     setStaffList(updated);
-    try {
-      localStorage.setItem('bhavya_staff_accounts', JSON.stringify(updated));
-    } catch {}
+  };
+
+  /** Shows the server's error message, if any, and reloads the authoritative list. */
+  const handleServerResult = async (res: Response) => {
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setStaffError(data.error || 'The server rejected this change.');
+      loadStaff();
+      return false;
+    }
+    setStaffError('');
+    return true;
   };
 
   const filteredStaff = staffList.filter((s) =>
@@ -219,7 +164,7 @@ export function StaffManager() {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, updates: { status: newStatus } }),
-    }).catch((err) => console.error('Staff status sync error:', err));
+    }).then(handleServerResult).catch((err) => console.error('Staff status sync error:', err));
   };
 
   const handleRoleChange = (id: string, newRole: StaffRole) => {
@@ -231,7 +176,7 @@ export function StaffManager() {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, updates: { role: newRole } }),
-    }).catch((err) => console.error('Staff role sync error:', err));
+    }).then(handleServerResult).catch((err) => console.error('Staff role sync error:', err));
   };
 
   const handleAddStaff = async (e: React.FormEvent) => {
@@ -242,7 +187,7 @@ export function StaffManager() {
       id: `staff-${Date.now()}`,
       name: newName.trim(),
       email: newEmail.trim().toLowerCase(),
-      password: newPassword.trim() || 'Bhavya@2026',
+      password: newPassword.trim(),
       role: newRole,
       hub: newHub,
       status: 'active',
@@ -263,18 +208,20 @@ export function StaffManager() {
 
     // Persist to server API
     try {
-      await fetch('/api/admin/staff', {
+      const res = await fetch('/api/admin/staff', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newStaff),
       });
+      if (!(await handleServerResult(res))) return;
+      loadStaff();
     } catch (err) {
       console.error('Failed to save staff on server:', err);
     }
 
     setNewName('');
     setNewEmail('');
-    setNewPassword('Bhavya@2026');
+    setNewPassword('');
     setShowAddModal(false);
   };
 
@@ -283,18 +230,15 @@ export function StaffManager() {
     if (!passwordModalStaff || !editPasswordValue.trim()) return;
 
     const newPass = editPasswordValue.trim();
-    const updated = staffList.map((s) =>
-      s.id === passwordModalStaff.id ? { ...s, password: newPass } : s
-    );
-    saveStaffList(updated);
 
     // Sync password to server
     try {
-      await fetch('/api/admin/staff', {
+      const res = await fetch('/api/admin/staff', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: passwordModalStaff.id, updates: { password: newPass } }),
       });
+      if (!(await handleServerResult(res))) return;
     } catch (err) {
       console.error('Failed to sync password update:', err);
     }
@@ -316,6 +260,10 @@ export function StaffManager() {
 
   return (
     <div className="space-y-6">
+      {staffError && (
+        <div className="p-3 bg-red-50 border border-red-200 text-xs text-red-700 rounded-lg">{staffError}</div>
+      )}
+
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -443,7 +391,7 @@ export function StaffManager() {
                     type="button"
                     onClick={() => {
                       setPasswordModalStaff(staff);
-                      setEditPasswordValue(staff.password || 'Bhavya@2026');
+                      setEditPasswordValue('');
                     }}
                     className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] text-xs font-semibold text-[#1C1917] hover:bg-[#EFE9E0] transition-colors"
                     title="Change Account Password"
@@ -589,7 +537,8 @@ export function StaffManager() {
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required
-                    placeholder="Set user password (e.g. Bhavya@2026)"
+                    placeholder="At least 8 characters"
+                    minLength={8}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     className="w-full py-2 pl-3 pr-10 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-mono text-xs"
@@ -689,7 +638,8 @@ export function StaffManager() {
                   <input
                     type={showEditPassword ? 'text' : 'password'}
                     required
-                    placeholder="Enter new password"
+                    placeholder="At least 8 characters"
+                    minLength={8}
                     value={editPasswordValue}
                     onChange={(e) => setEditPasswordValue(e.target.value)}
                     className="w-full py-2 pl-3 pr-10 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-mono text-xs"

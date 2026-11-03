@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
-import { sanitizeForFirestore, isFirebaseConfigured, getFirebaseDb } from '@/lib/firebase/config';
+import { describe, it, expect } from 'vitest';
 import {
   getAllInquiries,
   createInquiry,
@@ -16,60 +15,11 @@ import {
   deleteProduct,
 } from '@/lib/repository/products';
 
-describe('E2E Live Verification: Enquiries, Products, and Firestore Sanitization', () => {
-  beforeAll(() => {
-    // Ensure env variables are present
-    if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
-      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = 'sss-bhavya';
-      process.env.NEXT_PUBLIC_FIREBASE_API_KEY = 'AIzaSyBEB5pdqKkkqpp9EZUvrgRiwH7Hk32R2PQ';
-      process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = 'sss-bhavya.firebaseapp.com';
-      process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = 'sss-bhavya.firebasestorage.app';
-      process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = '992742433154';
-      process.env.NEXT_PUBLIC_FIREBASE_APP_ID = '1:992742433154:web:db338b3f268d444a966f9b';
-    }
-  });
-
-  describe('Firestore Sanitizer Engine', () => {
-    it('removes undefined values from simple and deeply nested objects', () => {
-      const rawPayload = {
-        id: 'test-123',
-        title: 'Kurti Set',
-        description: undefined,
-        optionalField: undefined,
-        price: 850,
-        metadata: {
-          tag: 'summer',
-          secondaryTag: undefined,
-          deep: {
-            valid: true,
-            invalid: undefined,
-          },
-        },
-        items: [
-          { name: 'Item 1', note: undefined, qty: 10 },
-          { name: 'Item 2', note: 'urgent', qty: 5 },
-        ],
-      };
-
-      const sanitized = sanitizeForFirestore(rawPayload);
-
-      expect(sanitized).toHaveProperty('id', 'test-123');
-      expect(sanitized).toHaveProperty('title', 'Kurti Set');
-      expect(sanitized).not.toHaveProperty('description');
-      expect(sanitized).not.toHaveProperty('optionalField');
-      expect(sanitized.metadata).not.toHaveProperty('secondaryTag');
-      expect(sanitized.metadata.deep).not.toHaveProperty('invalid');
-      expect(sanitized.metadata.deep.valid).toBe(true);
-      expect(sanitized.items[0]).not.toHaveProperty('note');
-      expect(sanitized.items[0].qty).toBe(10);
-      expect(sanitized.items[1].note).toBe('urgent');
-    });
-  });
-
+describe('E2E Verification: Enquiries and Products on D1', () => {
   describe('Wholesale Enquiries Workflow', () => {
     let testInquiryId = '';
 
-    it('creates an inquiry with undefined and optional fields without Firestore errors', async () => {
+    it('creates an inquiry with undefined optional fields', async () => {
       const created = await createInquiry({
         inquiry_type: 'website',
         buyer_name: 'Priya Sharma (Test Buyer)',

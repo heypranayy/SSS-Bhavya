@@ -354,7 +354,7 @@ export function ProductEditor({
           <div className="flex gap-2 pt-2">
             <input
               type="url"
-              placeholder="Paste high-res image URL (e.g. Unsplash or Supabase storage)..."
+              placeholder="Paste high-res image URL (e.g. Unsplash)..."
               value={newImageUrl}
               onChange={(e) => setNewImageUrl(e.target.value)}
               className="flex-1 text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"

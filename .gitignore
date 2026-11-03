@@ -43,3 +43,13 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+/dist/
+.vinext/
+.wrangler/
+
+# Firestore export dumps (contain customer data) and Firebase keys
+/migration-data/
+*service-account*.json
+*firebase-adminsdk*.json
+.dev.vars*
+!.dev.vars.example

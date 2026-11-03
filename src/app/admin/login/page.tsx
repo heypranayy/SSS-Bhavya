@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ShieldCheck, Lock, Mail, ArrowRight, Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
-import { getFirebaseApp, isFirebaseConfigured } from '@/lib/firebase/config';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -21,108 +19,22 @@ export default function AdminLoginPage() {
     setErrorMsg('');
 
     try {
-      const cleanEmail = email.trim().toLowerCase();
-      const cleanPass = password.trim();
-
-      let authenticated = false;
-      let authUserRole = 'admin';
-
-      // 1. Try Firebase Authentication (if configured and user was created in Firebase Auth)
-      if (isFirebaseConfigured()) {
-        try {
-          const app = getFirebaseApp();
-          if (app) {
-            const auth = getAuth(app);
-            const userCred = await signInWithEmailAndPassword(auth, cleanEmail, cleanPass);
-            if (userCred && userCred.user) {
-              authenticated = true;
-              authUserRole = cleanEmail.includes('gexart') ? 'super_admin' : 'admin';
-            }
-          }
-        } catch (fbErr: any) {
-          // If password error or user not found, fall through to backend/local checks
-          console.warn('Firebase Auth check passed to fallback handlers:', fbErr.code);
-        }
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password: password.trim() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Invalid credentials. Please check your email and password.');
       }
 
-      // 2. Try Server-Side Verification API (/api/admin/login)
-      if (!authenticated) {
-        try {
-          const res = await fetch('/api/admin/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: cleanEmail, password: cleanPass }),
-          });
-
-          if (res.ok) {
-            const data = await res.json();
-            if (data.success) {
-              authenticated = true;
-              authUserRole = data.user?.role || 'admin';
-            }
-          }
-        } catch (apiErr) {
-          console.warn('Server login API fallback:', apiErr);
-        }
-      }
-
-      // 3. Try LocalStorage Fallback (for offline or local staff accounts)
-      if (!authenticated && typeof window !== 'undefined') {
-        try {
-          const stored = localStorage.getItem('bhavya_staff_accounts');
-          if (stored) {
-            const list = JSON.parse(stored);
-            if (Array.isArray(list)) {
-              const found = list.find(
-                (s: any) =>
-                  s.email?.toLowerCase() === cleanEmail &&
-                  s.password === cleanPass &&
-                  s.status !== 'suspended'
-              );
-              if (found) {
-                authenticated = true;
-                authUserRole = found.role || 'staff';
-              }
-            }
-          }
-        } catch {}
-      }
-
-      // 4. Master Emergency & Developer Fallback for Super Admin / Gexart Lead
-      if (!authenticated) {
-        const isMasterGexart =
-          cleanEmail === 'pranay@gexart.com' &&
-          (cleanPass === 'Bhavya@2026' ||
-            cleanPass === 'bhavya2026' ||
-            cleanPass === 'bhavya2026admin' ||
-            cleanPass === 'Gexart@2026' ||
-            cleanPass === 'gexart2026');
-
-        const isMasterBhavya =
-          (cleanEmail === 'sss@bhavyafashions.com' &&
-            (cleanPass === 'Bhavya@2026' || cleanPass === 'bhavya2026')) ||
-          (cleanEmail === 'admin@bhavyafashions.com' &&
-            (cleanPass === 'bhavya2026admin' || cleanPass === 'Bhavya@2026'));
-
-        if (isMasterGexart || isMasterBhavya) {
-          authenticated = true;
-          authUserRole = 'super_admin';
-        }
-      }
-
-      if (authenticated) {
-        setAuthSuccess(true);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('bhavya_admin_auth', 'authenticated');
-          localStorage.setItem('bhavya_admin_user', cleanEmail);
-          localStorage.setItem('bhavya_admin_role', authUserRole);
-          document.cookie = 'bhavya_admin_auth=authenticated; path=/; max-age=86400';
-        }
-        await new Promise((r) => setTimeout(r, 400));
-        router.push('/admin');
-      } else {
-        throw new Error('Invalid credentials. Please check your email and password.');
-      }
+      setAuthSuccess(true);
+      // Display-only hints for the admin chrome; the session itself is the HttpOnly cookie.
+      localStorage.setItem('bhavya_admin_user', data.user?.email || '');
+      localStorage.setItem('bhavya_admin_role', data.user?.role || '');
+      const next = new URLSearchParams(window.location.search).get('next');
+      router.push(next && next.startsWith('/admin') ? next : '/admin');
     } catch (err: any) {
       setErrorMsg(err.message || 'Authentication failed. Please verify credentials.');
       setAuthSuccess(false);
@@ -130,7 +42,6 @@ export default function AdminLoginPage() {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -156,7 +67,7 @@ export default function AdminLoginPage() {
                 Administrator Sign In
               </h2>
               <p className="text-[11px] text-[#78716C] mt-0.5">
-                Firebase Auth &amp; Enterprise Staff Access
+                Secure Staff Access
               </p>
             </div>
             <div className="w-8 h-8 rounded-full bg-[#722F37]/10 text-[#722F37] flex items-center justify-center">

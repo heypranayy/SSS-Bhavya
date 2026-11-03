@@ -1,12 +1,5 @@
-import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vitest/config';
-
-if (fs.existsSync('.env.local')) {
-  try {
-    process.loadEnvFile('.env.local');
-  } catch {}
-}
 
 export default defineConfig({
   test: {
@@ -17,6 +10,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(import.meta.dirname, './src'),
+      // Each test file gets its own in-memory D1 + R2 (see tests/helpers/cloudflare-workers.ts).
+      'cloudflare:workers': path.resolve(import.meta.dirname, './tests/helpers/cloudflare-workers.ts'),
     },
   },
 });

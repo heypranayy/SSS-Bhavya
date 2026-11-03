@@ -1,150 +1,25 @@
 import { Inquiry, InquiryStatus } from '@/types';
-import { createAdminClient } from '@/lib/supabase/admin';
-import { getFirebaseDb, isFirebaseConfigured, sanitizeForFirestore } from '@/lib/firebase/config';
-import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { getDb, listDocs, putDoc } from '@/lib/db';
+import { inquiryColumns } from '@/lib/db/rows';
 
-let inMemoryInquiries: Inquiry[] = [
-  {
-    id: 'inq-1001',
-    reference_no: 'BF-CAT-78214',
-    inquiry_type: 'catalog',
-    catalog_id: 'cat00000-0000-0000-0000-000000000001',
-    catalog_title: 'Exclusive Summer & Festive Lookbook 2026',
-    customer_id: 'cust0000-0000-0000-0000-000000000001',
-    buyer_name: 'Rajesh Gupta',
-    business_name: 'Radha Krishna Ethnic Hub',
-    phone: '+91 98301 22334',
-    email: 'rajesh@radhakrishna.in',
-    city: 'Kolkata',
-    state: 'West Bengal',
-    source_page: '/catalog/bhavya-vip-summer-2026',
-    assigned_staff: 'Amit Verma (Kolkata Sales)',
-    message: 'Please share freight estimates and dispatch timeline for Barabazar delivery.',
-    status: 'new',
-    internal_notes: 'Spoke briefly on phone, needs delivery by Monday.',
-    created_at: '2026-03-02T14:20:00Z',
-    updated_at: '2026-03-02T14:20:00Z',
-    items: [
-      {
-        id: 'inq-item-1',
-        product_id: 'p-migrated-29589',
-        product_code: 'DN11059',
-        product_title: '11059 Kurti Pant Dupatta',
-        product_image_url: 'https://bhavyafashions.com/wp-content/uploads/2026/07/Gemini_Generated_Image_m8id4fm8id4fm8id-Photoroom.png',
-        quoted_price: 569.05,
-        size_breakdown: { L: 4, XL: 4, XXL: 4, '3XL': 2 },
-        total_quantity: 14,
-        indicative_subtotal: 7966.70,
-        notes: 'Kesaria silk ratio packing in standard poly bags',
-      },
-      {
-        id: 'inq-item-2',
-        product_id: 'p-migrated-29579',
-        product_code: 'DN11068',
-        product_title: '11068 Kurti Pant',
-        product_image_url: 'https://bhavyafashions.com/wp-content/uploads/2026/07/WhatsApp-Image-2026-07-25-at-11.57.12-AM-1.jpeg',
-        quoted_price: 569.05,
-        size_breakdown: { M: 2, L: 4, XL: 2 },
-        total_quantity: 8,
-        indicative_subtotal: 4552.40,
-        notes: 'Top seller for summer festive counter display',
-      },
-    ],
-  },
-  {
-    id: 'inq-1002',
-    reference_no: 'BF-WEB-49120',
-    inquiry_type: 'website',
-    buyer_name: 'Pooja Agarwal',
-    business_name: 'Agarwal Sarees & Kurtis',
-    phone: '+91 98205 99182',
-    email: 'pooja@agarwalsarees.com',
-    city: 'Patna',
-    state: 'Bihar',
-    source_page: '/contact',
-    assigned_staff: 'Sanjay Jain (B2B Dispatch)',
-    message: 'We are expanding our ethnic wear showroom in Patna. Need your wholesale price list for 3-Piece Muslin & Kesaria Silk sets with dispatch to Patna via transport.',
-    status: 'contacted',
-    internal_notes: 'Sent initial PDF catalog on WhatsApp, waiting for retailer selection.',
-    created_at: '2026-03-03T11:45:00Z',
-    updated_at: '2026-03-03T12:00:00Z',
-    items: [],
-  },
-  {
-    id: 'inq-1003',
-    reference_no: 'BF-WEB-51203',
-    inquiry_type: 'website',
-    buyer_name: 'Vikram Mehta',
-    business_name: 'Mehta Fashion World',
-    phone: '+91 98791 44321',
-    email: 'vikram@mehtafashions.in',
-    city: 'Ahmedabad',
-    state: 'Gujarat',
-    source_page: '/about',
-    assigned_staff: 'Ravi Sharma (Surat Desk)',
-    message: 'Interested in visiting your Surat production facility or receiving 500+ pcs lot sample swatches for western co-ords and 2-piece kurtis.',
-    status: 'follow_up',
-    internal_notes: 'Scheduled factory visit for next Tuesday.',
-    created_at: '2026-03-04T09:10:00Z',
-    updated_at: '2026-03-04T10:15:00Z',
-    items: [],
-  },
-];
+async function findInquiry(idOrRef: string): Promise<Inquiry | null> {
+  const row = await getDb()
+    .prepare('SELECT data FROM inquiries WHERE id = ? OR reference_no = ? LIMIT 1')
+    .bind(idOrRef, idOrRef)
+    .first<{ data: string }>();
+  return row ? (JSON.parse(row.data) as Inquiry) : null;
+}
 
-function isSupabaseConfigured(): boolean {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return Boolean(url && !url.includes('placeholder') && !url.includes('your-project-id'));
+async function writeInquiry(inquiry: Inquiry): Promise<void> {
+  await putDoc('inquiries', inquiry.id, inquiryColumns(inquiry), inquiry);
 }
 
 export async function getAllInquiries(): Promise<Inquiry[]> {
-  const mergedMap = new Map<string, Inquiry>();
-
-  for (const inq of inMemoryInquiries) {
-    mergedMap.set(inq.id, inq);
-  }
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db) {
-        const snap = await getDocs(collection(db, 'inquiries'));
-        snap.forEach((d) => {
-          const item = d.data() as Inquiry;
-          if (item && item.id) {
-            mergedMap.set(item.id, item);
-          }
-        });
-      }
-    } catch (err) {
-      console.warn('Failed to load inquiries from Firestore:', err);
-    }
-  }
-
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = createAdminClient();
-      const { data, error } = await supabase
-        .from('inquiries')
-        .select(`
-          *,
-          items:inquiry_items(*)
-        `)
-        .order('created_at', { ascending: false });
-
-      if (!error && data && data.length > 0) {
-        data.forEach((item: Inquiry) => mergedMap.set(item.id, item));
-      }
-    } catch {}
-  }
-
-  const all = Array.from(mergedMap.values());
-  all.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-  return all;
+  return listDocs<Inquiry>('inquiries', 'created_at DESC');
 }
 
 export async function getInquiryById(id: string): Promise<Inquiry | null> {
-  const inquiries = await getAllInquiries();
-  return inquiries.find(i => i.id === id || i.reference_no === id) || null;
+  return findInquiry(id);
 }
 
 export async function createInquiry(data: Omit<Inquiry, 'id' | 'reference_no' | 'created_at' | 'updated_at' | 'status'>): Promise<Inquiry> {
@@ -167,125 +42,35 @@ export async function createInquiry(data: Omit<Inquiry, 'id' | 'reference_no' | 
     updated_at: new Date().toISOString(),
   };
 
-  inMemoryInquiries.unshift(newInquiry);
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db) {
-        const payload = sanitizeForFirestore(newInquiry);
-        await setDoc(doc(db, 'inquiries', newInquiry.id), payload, { merge: true });
-      }
-    } catch (err) {
-      console.error('Failed to save inquiry to Firebase:', err);
-    }
-  }
-
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = createAdminClient();
-      await supabase.from('inquiries').insert({
-        reference_no: referenceNo,
-        inquiry_type: newInquiry.inquiry_type,
-        source_page: data.source_page,
-        catalog_id: data.catalog_id,
-        customer_id: data.customer_id,
-        buyer_name: data.buyer_name,
-        business_name: data.business_name,
-        phone: data.phone,
-        email: data.email,
-        city: data.city,
-        state: data.state,
-        message: data.message,
-        status: 'new',
-      });
-    } catch {}
-  }
-
+  await writeInquiry(newInquiry);
   return newInquiry;
 }
 
 export async function updateInquiryStatus(id: string, status: InquiryStatus, internalNotes?: string): Promise<boolean> {
   if (!id || typeof id !== 'string' || !id.trim()) return false;
-  const inquiry = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
-  const docId = inquiry?.id || id;
+  const inquiry = await findInquiry(id);
+  if (!inquiry) return true;
 
-  if (inquiry) {
-    inquiry.status = status;
-    if (internalNotes !== undefined) {
-      inquiry.internal_notes = internalNotes;
-    }
-    inquiry.updated_at = new Date().toISOString();
-  }
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db && docId) {
-        const updatePayload: Record<string, any> = {
-          status,
-          updated_at: new Date().toISOString(),
-        };
-        if (internalNotes !== undefined) {
-          updatePayload.internal_notes = internalNotes;
-        }
-        await setDoc(doc(db, 'inquiries', docId), sanitizeForFirestore(updatePayload), { merge: true });
-      }
-    } catch (err) {
-      console.error('Failed to update inquiry in Firebase:', err);
-    }
-  }
-
+  await writeInquiry({
+    ...inquiry,
+    status,
+    ...(internalNotes !== undefined ? { internal_notes: internalNotes } : {}),
+    updated_at: new Date().toISOString(),
+  });
   return true;
 }
 
 export async function assignInquiryStaff(id: string, staffName: string): Promise<boolean> {
   if (!id || typeof id !== 'string' || !id.trim()) return false;
-  const inquiry = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
-  const docId = inquiry?.id || id;
+  const inquiry = await findInquiry(id);
+  if (!inquiry) return true;
 
-  if (inquiry) {
-    inquiry.assigned_staff = staffName;
-    inquiry.updated_at = new Date().toISOString();
-  }
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db && docId) {
-        await setDoc(doc(db, 'inquiries', docId), sanitizeForFirestore({
-          assigned_staff: staffName,
-          updated_at: new Date().toISOString(),
-        }), { merge: true });
-      }
-    } catch (err) {
-      console.error('Failed to assign staff in Firebase:', err);
-    }
-  }
-
+  await writeInquiry({ ...inquiry, assigned_staff: staffName, updated_at: new Date().toISOString() });
   return true;
 }
 
 export async function deleteInquiry(id: string): Promise<boolean> {
   if (!id || typeof id !== 'string' || !id.trim()) return false;
-  const target = inMemoryInquiries.find(i => i.id === id || i.reference_no === id);
-  const docId = target?.id || id;
-
-  inMemoryInquiries = inMemoryInquiries.filter(i => i.id !== id && i.reference_no !== id);
-
-  if (isFirebaseConfigured()) {
-    try {
-      const db = getFirebaseDb();
-      if (db && docId) {
-        await deleteDoc(doc(db, 'inquiries', docId));
-        if (target && target.reference_no && target.reference_no !== docId) {
-          try { await deleteDoc(doc(db, 'inquiries', target.reference_no)); } catch {}
-        }
-      }
-    } catch (err) {
-      console.error('Failed to delete inquiry from Firebase:', err);
-    }
-  }
-
+  await getDb().prepare('DELETE FROM inquiries WHERE id = ? OR reference_no = ?').bind(id, id).run();
   return true;
 }
