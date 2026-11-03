@@ -81,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## 🚢 Deployment (Cloudflare Workers)
 
-Live at https://bhavya-fashions.tech-gexart.workers.dev (Cloudflare account tech.gexart@gmail.com). Every push to `main` is built and deployed by Cloudflare Workers Builds (build command `npm run build`, deploy command `npm run deploy`). To deploy by hand:
+Live at https://bhavyafashions.com (Cloudflare account tech.gexart@gmail.com; backup URL https://bhavya-fashions.tech-gexart.workers.dev). Every push to `main` is built and deployed by Cloudflare Workers Builds (build command `npm run build`, deploy command `npm run deploy`). To deploy by hand:
 ```bash
 npm run db:migrate:remote
 npm run build
