@@ -32,7 +32,7 @@ export function ProductCard({
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
 
   const directWhatsAppUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hello Bhavya Fashions, I am inquiring about wholesale design: ${product.code} - ${product.title}\n• Category: ${product.category?.name || product.style_type}\n• Cloth Type: ${product.fabric}\n• MOQ: ${product.moq || 6} pcs set (Ratio pack)\nPlease share live stock and quotation.`
+    `Hello Bhavya Fashions, I am inquiring about wholesale design: ${product.code} - ${product.title}\n• Category: ${product.category?.name || product.style_type}\n• Cloth Type: ${product.fabric}\n• MOQ: ${product.moq || 4} pcs set (Ratio pack)\nPlease share live stock and quotation.`
   )}`;
 
   return (
@@ -115,7 +115,7 @@ export function ProductCard({
 
           {/* Packing Details */}
           <div className="mt-2 text-[11px] text-[#78716C] flex items-center justify-between">
-            <span>Ratio Pack: <strong className="text-zinc-800 font-mono">M, L, XL, XXL</strong></span>
+            <span>Ratio Pack: <strong className="text-zinc-800 font-mono">M to 3XL</strong></span>
             <span className="text-emerald-700 font-semibold text-[10px]">Ready Dispatch</span>
           </div>
         </div>
@@ -145,7 +145,7 @@ export function ProductCard({
             {showMoq && (
               <div className="text-right">
                 <span className="inline-block bg-[#F3ECE2] text-[#44403C] text-[10px] font-semibold px-2 py-0.5 rounded">
-                  MOQ: {product.moq ? `${product.moq} pcs set` : 'On Request'}
+                  MOQ: {product.moq ? `${product.moq} pcs set` : '4 pcs set'}
                 </span>
               </div>
             )}

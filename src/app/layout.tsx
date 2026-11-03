@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Bhavya Fashions Wholesale",
   },
   description: "Bhavya Fashions is a premier Indian ethnic wear wholesale manufacturer and supplier. Supplying single kurtis, 2-piece and 3-piece sets, gowns and co-ords to boutiques, retailers and resellers across India.",
-  keywords: ["wholesale kurtis", "kurti manufacturer", "Indian ethnic wear wholesale", "Bhavya Fashions", "kurti pant dupatta set wholesale", "Surat kurti wholesale", "Barabazar wholesale kurtis"],
+  keywords: ["wholesale kurtis", "kurti manufacturer", "Indian ethnic wear wholesale", "Bhavya Fashions", "kurti pant dupatta set wholesale", "direct factory kurtis", "Barabazar wholesale kurtis"],
   openGraph: {
     title: "Bhavya Fashions | B2B Wholesale Catalog",
     description: "Wholesale supplier of premium Indian ethnic wear and kurtis for boutiques and retailers.",
@@ -52,7 +52,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jakarta.variable} font-sans-clean antialiased min-h-screen selection:bg-[#722F37] selection:text-white`}
     >
-      <body className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917]">
+      <body className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917] overflow-x-hidden">
         {children}
       </body>
     </html>

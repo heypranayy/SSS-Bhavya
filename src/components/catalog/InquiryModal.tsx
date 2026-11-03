@@ -283,7 +283,7 @@ export function InquiryModal({
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="e.g. Kolkata, Surat, Mumbai"
+                    placeholder="e.g. Kolkata, Delhi, Mumbai, Bengaluru"
                     className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#722F37]"
                   />
                 </div>

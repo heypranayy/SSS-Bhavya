@@ -9,7 +9,7 @@ export interface StaffAccount {
   name: string;
   email: string;
   role: StaffRole;
-  hub: 'Kolkata Barabazar' | 'Surat Unit' | 'All Hubs';
+  hub: 'Kolkata Barabazar' | 'Central Factory Depot' | 'All Hubs';
   status: 'active' | 'suspended';
   lastActive?: string;
   created_at?: string;

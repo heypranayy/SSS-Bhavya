@@ -68,7 +68,7 @@ const TIERS: TierOption[] = [
     multiplier: '2.3x – 2.5x',
     perPieceAvgEstimate: 'Estimated Counter ROI: ₹4,50,000+',
     highlights: [
-      'Direct Surat Mill Pricing (Zero Intermediary Cut)',
+      'Direct Factory Pricing (Zero Intermediary Cut)',
       'Door-to-Door Insured Freight Freight Subsidy',
       'Custom Brand Tagging & Individual Box Packing',
       'Exclusive Regional Design Lock (Pincode protection)',
@@ -237,7 +237,7 @@ export function WholesaleTierEstimator() {
               <div className="space-y-2 text-xs text-zinc-300">
                 <div className="flex items-center justify-between py-1 border-b border-white/5">
                   <span>Standard Dispatch Hub:</span>
-                  <strong className="text-white">Barabazar (Kolkata) / Surat</strong>
+                  <strong className="text-white">Barabazar (Kolkata) Central Dispatch</strong>
                 </div>
                 <div className="flex items-center justify-between py-1 border-b border-white/5">
                   <span>Transit Timeline:</span>

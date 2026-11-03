@@ -139,7 +139,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
             </h2>
 
             <p className="text-xs sm:text-base text-[#57534E] font-light max-w-xl leading-relaxed">
-              Real inventory direct from Surat looms and Barabazar wholesale depot. All designs available on trade quotation with standard ratio packing.
+              Real inventory direct from our master manufacturing looms and Barabazar central wholesale depot. All designs available on trade quotation with standard ratio packing.
             </p>
           </div>
 
@@ -183,7 +183,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 min-h-[480px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 min-h-[480px] w-full min-w-0">
           {filteredProducts.map((product) => {
             const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
             const primaryImage = product.images?.find((img) => img.is_primary) || product.images?.[0];
@@ -195,7 +195,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#E7E0D5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group relative bg-white border border-[#E7E0D5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between w-full min-w-0"
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-[3/4] w-full bg-[#FAF7F2] overflow-hidden">
@@ -248,7 +248,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
                 </div>
 
                 {/* Content Area */}
-                <div className="p-3.5 sm:p-5 flex flex-col flex-1 justify-between bg-white">
+                <div className="p-2.5 sm:p-5 flex flex-col flex-1 justify-between bg-white min-w-0">
                   <div>
                     <div className="text-[10px] uppercase tracking-wider text-zinc-500 font-medium flex items-center gap-1 line-clamp-1">
                       <span>{product.fabric}</span>
@@ -309,7 +309,7 @@ export function TrendingLookbook({ initialProducts }: TrendingLookbookProps) {
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 w-full inline-flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold rounded-xl bg-[#25D366]/10 text-emerald-800 border border-emerald-300 hover:bg-[#25D366] hover:text-white transition-all shadow-2xs"
+                      className="mt-1.5 sm:mt-2 w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 py-1.5 text-[10px] sm:text-[11px] font-bold rounded-xl bg-[#25D366]/10 text-emerald-800 border border-emerald-300 hover:bg-[#25D366] hover:text-white transition-all shadow-2xs min-w-0"
                     >
                       <PhoneCall className="w-3 h-3" />
                       <span>WhatsApp Quote</span>

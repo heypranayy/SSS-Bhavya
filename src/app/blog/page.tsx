@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Wholesale Ethnic Fashion Insights & Blog | Bhavya Fashions',
-  description: 'Articles, trend analysis, and retail merchandising tips from Bhavya Fashions wholesale team in Barabazar Kolkata & Surat.',
+  description: 'Articles, trend analysis, and retail merchandising tips from Bhavya Fashions central wholesale team in Barabazar, Kolkata.',
 };
 
 export default async function BlogIndexPage() {

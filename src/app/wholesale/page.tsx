@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'B2B Wholesale Catalog & Collection Explorer | Bhavya Fashions',
-  description: 'Explore Bhavya Fashions wholesale catalog of 3-piece muslin sets, 2-piece kurti sets, co-ords, and festive anarkalis directly from our Surat & Barabazar hubs.',
+  description: 'Explore Bhavya Fashions wholesale catalog of 3-piece muslin sets, 2-piece kurti sets, co-ords, and festive anarkalis directly from our central manufacturing & Barabazar wholesale hub.',
 };
 
 export default async function WholesalePage() {
@@ -85,7 +85,7 @@ export default async function WholesalePage() {
                 Wholesale Categories &amp; Design Lots
               </h1>
               <p className="text-xs sm:text-sm text-[#78716C] leading-relaxed">
-                Direct manufacturer looms from Surat &amp; Barabazar (Kolkata) central dispatch. Tap any wholesale category to view ready designs, MOQ ratios, and request quotes instantly.
+                Direct manufacturer master looms with Barabazar (Kolkata) central dispatch. Tap any wholesale category to view ready designs, MOQ ratios, and request quotes instantly.
               </p>
             </div>
 

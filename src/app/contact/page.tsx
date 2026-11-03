@@ -53,10 +53,10 @@ export default function ContactPage() {
                 <MapPin className="w-5 h-5" />
               </div>
               <h3 className="font-serif-luxury text-base font-bold text-[#1C1917]">
-                Surat Manufacturing Unit
+                Central Production & Dispatch Unit
               </h3>
               <p className="text-xs text-[#78716C] leading-relaxed">
-                Ring Road Textile Hub / Sumel Industrial Park, Surat, Gujarat — 395002
+                Bhavya Fashions Central Loom Depot & Dispatch Hub, Kolkata — 700007
               </p>
               <span className="text-[11px] text-[#722F37] font-semibold block pt-1">
                 Bulk Production & All-India Parcel Dispatch
@@ -116,7 +116,7 @@ export default function ContactPage() {
               <div className="space-y-1.5">
                 <h4 className="font-bold text-[#1C1917]">What is the Minimum Order Quantity (MOQ)?</h4>
                 <p className="leading-relaxed">
-                  Our minimum order quantity is 6 pieces per design (standard ratio packing M, L, XL, XXL). For select 3-piece sets, MOQ is 6 pieces.
+                  Our minimum order quantity is 4 pieces per design with flexible size ratios from M to 3XL.
                 </p>
               </div>
 

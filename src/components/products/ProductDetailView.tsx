@@ -157,7 +157,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
 
               <div className="text-right">
                 <span className="inline-block bg-[#F3ECE2] text-[#1C1917] font-bold text-xs px-3 py-1 rounded-full border border-[#E7E0D5]">
-                  MOQ: {product.moq ? `${product.moq} Pieces (Set)` : 'On Request'}
+                  MOQ: {product.moq ? `${product.moq} Pieces (Set)` : '4 Pieces (Set)'}
                 </span>
               </div>
             </div>

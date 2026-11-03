@@ -27,7 +27,7 @@ export interface StaffAccount {
   email: string;
   password?: string; // only sent to the server, never returned
   role: StaffRole;
-  hub: 'Kolkata Barabazar' | 'Surat Unit' | 'All Hubs';
+  hub: 'Kolkata Barabazar' | 'Central Factory Depot' | 'All Hubs';
   status: 'active' | 'suspended';
   lastActive: string;
 }
@@ -66,7 +66,7 @@ const INITIAL_LOGS: ActivityLogItem[] = [
     id: 'log-4',
     timestamp: 'Yesterday at 3:30 PM',
     staffName: 'Ravi Sharma',
-    action: 'Updated inventory status for DN11059 (Kesaria Silk) in Surat warehouse',
+    action: 'Updated inventory status for DN11059 (Kesaria Silk) in central warehouse',
     category: 'product',
   },
 ];
@@ -92,7 +92,7 @@ export function StaffManager() {
   const [newPassword, setNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [newRole, setNewRole] = useState<StaffRole>('sales_staff');
-  const [newHub, setNewHub] = useState<'Kolkata Barabazar' | 'Surat Unit' | 'All Hubs'>('Kolkata Barabazar');
+  const [newHub, setNewHub] = useState<'Kolkata Barabazar' | 'Central Factory Depot' | 'All Hubs'>('Kolkata Barabazar');
 
   const [staffError, setStaffError] = useState('');
 
@@ -274,7 +274,7 @@ export function StaffManager() {
             Staff Accounts & Role-Based Permissions
           </h1>
           <p className="text-xs text-[#78716C] mt-1">
-            Super Administrator controls staff access across Kolkata Barabazar and Surat textile hubs.
+            Super Administrator controls staff access across Kolkata Barabazar and central factory hubs.
           </p>
         </div>
 
@@ -581,7 +581,7 @@ export function StaffManager() {
                   className="w-full py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"
                 >
                   <option value="Kolkata Barabazar">Kolkata Barabazar Showroom</option>
-                  <option value="Surat Unit">Surat Manufacturing Hub</option>
+                  <option value="Central Factory Depot">Central Manufacturing Depot</option>
                   <option value="All Hubs">All Hubs</option>
                 </select>
               </div>

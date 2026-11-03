@@ -65,8 +65,8 @@ export function Navbar() {
               BHAVYA FASHIONS — PREMIER ETHNIC WEAR WHOLESALE
             </span>
             <span className="mx-8 text-white/70">★ DIRECT MANUFACTURER PRICING (STARTING ₹380/PC)</span>
-            <span className="mx-8 text-white/70">★ STRICTLY B2B • MOQ 6 PCS PER DESIGN</span>
-            <span className="mx-8 text-white/70">★ BARABAZAR (KOLKATA) & SURAT DISPATCH HUBS</span>
+            <span className="mx-8 text-white/70">★ STRICTLY B2B • MOQ 4 PCS PER DESIGN</span>
+            <span className="mx-8 text-white/70">★ BARABAZAR (KOLKATA) CENTRAL DISPATCH HUB</span>
             <span className="mx-8 text-[#C5A059]">★ TRUSTED BY 5,000+ BOUTIQUES & RETAILERS ACROSS INDIA</span>
             <span className="mx-8 text-white/70">★ EXPRESS DISPATCH IN 24-48 HOURS</span>
             {/* Duplicated for seamless infinite loop */}
@@ -75,8 +75,8 @@ export function Navbar() {
               BHAVYA FASHIONS — PREMIER ETHNIC WEAR WHOLESALE
             </span>
             <span className="mx-8 text-white/70">★ DIRECT MANUFACTURER PRICING (STARTING ₹380/PC)</span>
-            <span className="mx-8 text-white/70">★ STRICTLY B2B • MOQ 6 PCS PER DESIGN</span>
-            <span className="mx-8 text-white/70">★ BARABAZAR (KOLKATA) & SURAT DISPATCH HUBS</span>
+            <span className="mx-8 text-white/70">★ STRICTLY B2B • MOQ 4 PCS PER DESIGN</span>
+            <span className="mx-8 text-white/70">★ BARABAZAR (KOLKATA) CENTRAL DISPATCH HUB</span>
             <span className="mx-8 text-[#C5A059]">★ TRUSTED BY 5,000+ BOUTIQUES & RETAILERS ACROSS INDIA</span>
             <span className="mx-8 text-white/70">★ EXPRESS DISPATCH IN 24-48 HOURS</span>
           </div>
@@ -333,7 +333,7 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-base font-medium text-white hover:text-[#C5A059] transition-colors"
                 >
-                  Our Heritage & Surat Mill
+                  Our Heritage & Master Looms
                 </Link>
                 <Link
                   href="/blog"
@@ -463,7 +463,7 @@ export function Navbar() {
           <div className="pt-6 border-t border-[#E7E0D5] text-center space-y-1">
             <span className="text-[11px] font-semibold text-[#1C1917]">Bhavya Fashions Wholesale</span>
             <p className="text-[10px] text-zinc-500">
-              Barabazar, Kolkata • Surat Loom Mills • All-India Transport
+              Barabazar, Kolkata • Direct Factory Dispatch • All-India Transport
             </p>
           </div>
         </div>

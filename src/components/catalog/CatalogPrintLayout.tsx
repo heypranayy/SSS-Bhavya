@@ -79,7 +79,7 @@ export function CatalogPrintLayout({
                 Wholesale Kurti Manufacturer & Loom Exporter
               </div>
               <div className="text-[10px] text-zinc-600 mt-1 space-y-0.5">
-                <div>5, Shiv Thakur Lane, Barabazar, Kolkata — 700007 | Surat Loom Hub</div>
+                <div>5, Shiv Thakur Lane, Barabazar, Kolkata — 700007 | Direct Factory Dispatch</div>
                 <div>WhatsApp / Desk: +91 98307 29210 | Email: wholesale@bhavyafashions.com</div>
               </div>
             </div>

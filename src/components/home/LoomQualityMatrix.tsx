@@ -41,7 +41,7 @@ const FABRICS: FabricSpec[] = [
     colorfastnessScore: 'Grade 4.8 / 5.0 (Azo-Free Reactive)',
     finishing: 'Lustre Calendared & Soft Washed',
     description:
-      'Milled exclusively in Surat with a rich, luminous hand-feel that emulates pure raw silk while retaining heavy embroidery structural stability. Does not crease easily on boutique display hangers.',
+      'Milled on master looms with a rich, luminous hand-feel that emulates pure raw silk while retaining heavy embroidery structural stability. Does not crease easily on boutique display hangers.',
     keyFeatures: [
       'Engineered for intricate neck zardozi and gota patti thread work',
       'Non-sheer opaque base requiring minimal lining',
@@ -120,7 +120,7 @@ export function LoomQualityMatrix() {
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#722F37]/10 text-[#722F37] text-xs font-semibold uppercase tracking-widest border border-[#722F37]/15">
             <Microscope className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>Surat Looms & Dyeing Technical Standards</span>
+            <span>Master Looms & Dyeing Technical Standards</span>
           </div>
 
           <h2 className="font-serif-luxury text-4xl sm:text-5xl md:text-6xl font-bold text-[#1C1917] tracking-tight">
@@ -176,7 +176,7 @@ export function LoomQualityMatrix() {
             <div className="lg:col-span-7 space-y-6">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-[#722F37] font-bold block mb-1">
-                  Surat Loom Certified Quality
+                  Master Loom Certified Quality
                 </span>
                 <h3 className="font-serif-luxury text-3xl font-bold text-[#1C1917]">
                   {fabric.name}

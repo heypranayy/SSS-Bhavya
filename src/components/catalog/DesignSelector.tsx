@@ -243,7 +243,7 @@ export function DesignSelector({
                   <span>Dispatch Hub</span>
                 </span>
                 <span className="font-bold text-[#1C1917] block mt-0.5">
-                  Surat &amp; Barabazar
+                  Central Factory &amp; Barabazar
                 </span>
               </div>
             </div>

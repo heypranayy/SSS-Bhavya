@@ -77,7 +77,7 @@ export function FabricCraftsmanship() {
           </h2>
 
           <p className="text-xs sm:text-base text-zinc-600 font-light leading-relaxed">
-            We mill and test every batch directly in Surat and Kolkata. No synthetic compromises, no color bleeding, and standard proportional sizing that protects your boutique's reputation.
+            We mill and test every batch in-house under strict quality controls. No synthetic compromises, no color bleeding, and standard proportional sizing that protects your boutique's reputation.
           </p>
         </div>
 

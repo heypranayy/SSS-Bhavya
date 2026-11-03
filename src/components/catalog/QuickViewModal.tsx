@@ -202,7 +202,7 @@ export function QuickViewModal({
                   <span>Ratio Sizes Included</span>
                 </span>
                 <span className="font-bold text-[#1C1917] block mt-0.5">
-                  M, L, XL, XXL (Equal Ratio)
+                  M, L, XL, 2XL, 3XL (Flexible Ratio)
                 </span>
               </div>
 

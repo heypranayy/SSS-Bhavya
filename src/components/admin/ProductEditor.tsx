@@ -54,8 +54,37 @@ export function ProductEditor({
   const [moq, setMoq] = useState<string>(
     initialProduct?.moq !== undefined && initialProduct?.moq !== null
       ? String(initialProduct.moq)
-      : ''
+      : '4'
   );
+
+  const STANDARD_SIZES = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'];
+  const [selectedSizes, setSelectedSizes] = useState<string[]>(() => {
+    if (initialProduct?.variants?.length) {
+      return initialProduct.variants.map((v) => v.size);
+    }
+    return ['M', 'L', 'XL', '2XL', '3XL']; // Default variable ratio: M to 3XL
+  });
+  const [customSizeInput, setCustomSizeInput] = useState('');
+
+  const toggleSize = (size: string) => {
+    setSelectedSizes((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
+  };
+
+  const handleAddCustomSize = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const trimmed = customSizeInput.trim();
+    if (!trimmed) return;
+    if (!selectedSizes.includes(trimmed)) {
+      setSelectedSizes((prev) => [...prev, trimmed]);
+    }
+    setCustomSizeInput('');
+  };
+
+  const handleRemoveSize = (sizeToRemove: string) => {
+    setSelectedSizes((prev) => prev.filter((s) => s !== sizeToRemove));
+  };
   const [stockStatus, setStockStatus] = useState(initialProduct?.stock_status || 'in_stock');
   const [isFeatured, setIsFeatured] = useState(initialProduct?.is_featured || false);
   const [images, setImages] = useState<ProductImage[]>(
@@ -110,12 +139,22 @@ export function ProductEditor({
           color: color.trim(),
           style_type: initialProduct?.style_type || cleanCategories.find((c) => c.id === categoryId)?.name || '',
           base_wholesale_price: price.trim() && !isNaN(Number(price)) ? Number(price) : 0,
-          moq: moq.trim() && !isNaN(Number(moq)) ? Number(moq) : 0,
+          moq: moq.trim() && !isNaN(Number(moq)) ? Number(moq) : 4,
           price_on_enquiry: priceOnEnquiry,
           price_on_request: priceOnEnquiry,
           stock_status: stockStatus,
           is_featured: isFeatured,
           images,
+          variants: selectedSizes.map((size, idx) => {
+            const existing = initialProduct?.variants?.find((v) => v.size.toLowerCase() === size.toLowerCase());
+            return {
+              id: existing?.id || `v-${size.toLowerCase().replace(/[^a-z0-9]/g, '')}-${Date.now()}-${idx}`,
+              product_id: initialProduct?.id,
+              size,
+              stock_quantity: existing?.stock_quantity ?? 50,
+              is_available: true,
+            };
+          }),
         }),
       });
 
@@ -276,7 +315,7 @@ export function ProductEditor({
               </label>
               <input
                 type="number"
-                placeholder="Optional (e.g. 6)"
+                placeholder="Standard: 4 pcs"
                 value={moq}
                 onChange={(e) => setMoq(e.target.value)}
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] font-bold"
@@ -309,6 +348,138 @@ export function ProductEditor({
                 placeholder="e.g. Indigo Blue"
                 className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2]"
               />
+            </div>
+          </div>
+
+          {/* Flexible Variable Size Ratio & Available Sizes (M to 3XL Default) */}
+          <div className="bg-[#FAF7F2] p-4 sm:p-5 rounded-xl border border-[#E7E0D5] space-y-3.5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#E7E0D5]">
+              <div>
+                <label className="block text-xs font-bold text-[#1C1917]">
+                  Variable Size Ratio & Available Sizes (M to 3XL)
+                </label>
+                <p className="text-[11px] text-[#78716C]">
+                  Configure available sizes. Default wholesale ratio is M to 3XL. Flexible for any ratio or custom tags.
+                </p>
+              </div>
+
+              {/* Quick Presets */}
+              <div className="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setSelectedSizes(['M', 'L', 'XL', '2XL', '3XL'])}
+                  className="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-white border border-[#C5A059] text-[#722F37] hover:bg-[#722F37] hover:text-white transition-colors cursor-pointer"
+                >
+                  M to 3XL (Standard)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSizes(['M', 'L', 'XL', '2XL'])}
+                  className="px-2 py-1 text-[10px] font-medium rounded-lg bg-white border border-[#E7E0D5] text-zinc-700 hover:border-zinc-400 cursor-pointer"
+                >
+                  M to 2XL
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSizes(['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'])}
+                  className="px-2 py-1 text-[10px] font-medium rounded-lg bg-white border border-[#E7E0D5] text-zinc-700 hover:border-zinc-400 cursor-pointer"
+                >
+                  XS to 5XL
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSizes(['Free Size'])}
+                  className="px-2 py-1 text-[10px] font-medium rounded-lg bg-white border border-[#E7E0D5] text-zinc-700 hover:border-zinc-400 cursor-pointer"
+                >
+                  Free Size
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Size Toggle Chips */}
+            <div>
+              <span className="block text-[11px] font-semibold text-zinc-600 mb-1.5">
+                Quick Toggle Standard Sizes:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {STANDARD_SIZES.map((size) => {
+                  const isSelected = selectedSizes.includes(size);
+                  return (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => toggleSize(size)}
+                      className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#722F37] text-white shadow-xs scale-102'
+                          : 'bg-white text-zinc-600 border border-[#E7E0D5] hover:border-zinc-400'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Custom Size Addition Input */}
+            <div>
+              <span className="block text-[11px] font-semibold text-zinc-600 mb-1.5">
+                Add Custom Size or Special Ratio:
+              </span>
+              <div className="flex gap-2 max-w-md">
+                <input
+                  type="text"
+                  value={customSizeInput}
+                  onChange={(e) => setCustomSizeInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddCustomSize();
+                    }
+                  }}
+                  placeholder="e.g. 42, Plus Size, Unstitched, M-3XL Set"
+                  className="flex-1 text-xs py-1.5 px-3 rounded-lg border border-[#E7E0D5] bg-white"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleAddCustomSize()}
+                  className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#C5A059] text-white hover:bg-[#b08b43] transition-colors cursor-pointer"
+                >
+                  + Add Size
+                </button>
+              </div>
+            </div>
+
+            {/* Active Selected Sizes List */}
+            <div className="pt-2">
+              <span className="block text-[10px] uppercase font-mono tracking-wider text-zinc-500 font-bold mb-1.5">
+                Selected Active Sizes ({selectedSizes.length}):
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {selectedSizes.length === 0 ? (
+                  <span className="text-xs text-amber-600 italic">
+                    No sizes selected. Tap preset buttons or toggle sizes above.
+                  </span>
+                ) : (
+                  selectedSizes.map((size) => (
+                    <span
+                      key={size}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-[#722F37]/30 text-[#722F37] text-xs font-bold shadow-2xs"
+                    >
+                      <span>{size}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveSize(size)}
+                        className="text-zinc-400 hover:text-red-600 ml-0.5 text-xs cursor-pointer"
+                        title="Remove size"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))
+                )}
+              </div>
             </div>
           </div>
 

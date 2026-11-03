@@ -25,14 +25,14 @@ const REGIONS = [
     name: 'Northern India Hub',
     states: 'Delhi NCR, Uttar Pradesh, Rajasthan, Punjab, Haryana',
     transit: '36 – 48 Hours',
-    dispatchPoint: 'Surat Looms & Barabazar Rail',
+    dispatchPoint: 'Central Factory & Barabazar Rail',
     status: 'Verified Transit Insured',
   },
   {
     name: 'Western India Hub',
-    states: 'Maharashtra (Mumbai/Pune), Gujarat (Surat/Ahmedabad), MP',
+    states: 'Maharashtra (Mumbai/Pune), Gujarat (Ahmedabad), MP',
     transit: '24 – 36 Hours',
-    dispatchPoint: 'Surat Ring Road Loom Depot',
+    dispatchPoint: 'Western Express Freight Depot',
     status: 'Same-Day Dispatch',
   },
   {
@@ -58,17 +58,17 @@ export function DistributionHubs() {
           </div>
 
           <h2 className="font-serif-luxury text-4xl sm:text-5xl md:text-6xl font-bold text-[#1C1917] tracking-tight">
-            Surat Looms to <span className="italic text-[#722F37] font-normal">Barabazar Hub Direct Dispatch</span>
+            Direct Master Looms to <span className="italic text-[#722F37] font-normal">Barabazar Hub Direct Dispatch</span>
           </h2>
 
           <p className="text-xs sm:text-base text-[#57534E] font-light leading-relaxed">
-            Eliminating multi-layer transit delays. Direct freight lines connected from our Surat production mills to our Barabazar wholesale depot, delivering door-to-door across 5,000+ Indian pincodes.
+            Eliminating multi-layer transit delays. Direct freight lines connected from our master manufacturing units to our Barabazar wholesale depot, delivering door-to-door across 5,000+ Indian pincodes.
           </p>
         </div>
 
         {/* 2 Primary Infrastructure Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {/* Pillar 1: Surat Loom Manufacturing */}
+          {/* Pillar 1: Master Loom Manufacturing */}
           <div className="bg-white rounded-3xl border border-[#E7E0D5] p-8 shadow-sm flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-[#722F37]/10 flex items-center justify-center text-[#722F37]">
@@ -80,7 +80,7 @@ export function DistributionHubs() {
                   Production & Weaving Epicentre
                 </span>
                 <h3 className="font-serif-luxury text-2xl font-bold text-[#1C1917] mt-0.5">
-                  Surat Looms & Dyeing Depot (Gujarat)
+                  Master Loom Production & Dyeing Depot
                 </h3>
               </div>
 

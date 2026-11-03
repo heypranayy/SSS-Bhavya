@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ProductPageProps) {
 
   return {
     title: `${product.code} — ${product.title} | Wholesale Kurtis`,
-    description: `${product.title} (${product.code}). ${product.fabric} ${product.style_type}. Wholesale price ₹${product.base_wholesale_price}/pc, MOQ ${product.moq} pcs. Direct wholesale supplier Bhavya Fashions.`,
+    description: `${product.title} (${product.code}). ${product.fabric} ${product.style_type}. Wholesale price on request, MOQ ${product.moq || 4} pcs. Direct wholesale supplier Bhavya Fashions.`,
   };
 }
 

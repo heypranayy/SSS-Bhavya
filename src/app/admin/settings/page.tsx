@@ -7,7 +7,7 @@ export default function AdminSettingsPage() {
   const [brandName, setBrandName] = useState('Bhavya Fashions');
   const [whatsapp, setWhatsapp] = useState('919830729210');
   const [email, setEmail] = useState('wholesale@bhavyafashions.com');
-  const [defaultMoq, setDefaultMoq] = useState(6);
+  const [defaultMoq, setDefaultMoq] = useState(4);
   const [mainWebsiteShowPrices, setMainWebsiteShowPrices] = useState(false);
   const [customCatalogueShowPrices, setCustomCatalogueShowPrices] = useState(true);
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -242,8 +242,8 @@ export default function AdminSettingsPage() {
           </div>
 
           <div className="p-3 bg-[#FAF7F2] rounded-xl text-xs space-y-1">
-            <span className="font-bold text-[#1C1917] block">Hub 2: Surat Manufacturing & Warehousing</span>
-            <p className="text-[#57534E]">Sumel Industrial Textile Hub / Ring Road, Surat, Gujarat — 395002</p>
+            <span className="font-bold text-[#1C1917] block">Hub 2: Central Factory & Production Depot</span>
+            <p className="text-[#57534E]">Bhavya Fashions Central Manufacturing & Dispatch Unit, Kolkata — 700007</p>
           </div>
         </div>
 

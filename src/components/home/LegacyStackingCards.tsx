@@ -47,7 +47,7 @@ export function LegacyStackingCards() {
           <div className="flex flex-col justify-center space-y-6 lg:sticky lg:top-[24vh] h-fit">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A059]/15 border border-[#C5A059]/30 text-[#C5A059] text-xs font-semibold uppercase tracking-widest max-w-fit">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Surat Looms • Kolkata Barabazar Wholesale Hub</span>
+              <span>Direct Master Looms • Kolkata Barabazar Wholesale Hub</span>
             </div>
 
             <h2 className="font-serif-luxury text-4xl sm:text-6xl md:text-[76px] font-bold text-white tracking-tight leading-[1.05]">
@@ -58,7 +58,7 @@ export function LegacyStackingCards() {
             </h2>
 
             <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-light max-w-xl">
-              For over two decades, Bhavya Fashions has bridged the raw loom manufacturing strength of Surat with the historic trading heartbeat of Barabazar, Kolkata. We manufacture and supply high-turnaround Indian ethnic wear directly to retail counters, eliminating wholesale brokers and ensuring guaranteed fabric purity, precise ratio packing, and dependable same-day transport booking.
+              For over two decades, Bhavya Fashions has bridged the raw loom manufacturing strength of our dedicated production units with the historic trading heartbeat of Barabazar, Kolkata. We manufacture and supply high-turnaround Indian ethnic wear directly to retail counters, eliminating wholesale brokers and ensuring guaranteed fabric purity, precise ratio packing, and dependable same-day transport booking.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-zinc-400">

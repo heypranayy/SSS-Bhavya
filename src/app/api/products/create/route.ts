@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       category_id: json.category_id,
       style_type: json.style_type?.trim() || '',
       base_wholesale_price: json.base_wholesale_price !== undefined && json.base_wholesale_price !== null && json.base_wholesale_price !== '' && !isNaN(Number(json.base_wholesale_price)) ? Number(json.base_wholesale_price) : 0,
-      moq: json.moq !== undefined && json.moq !== null && json.moq !== '' && !isNaN(Number(json.moq)) ? Number(json.moq) : 0,
+      moq: json.moq !== undefined && json.moq !== null && json.moq !== '' && !isNaN(Number(json.moq)) ? Number(json.moq) : 4,
       price_on_enquiry: json.price_on_enquiry ?? true,
       price_on_request: json.price_on_enquiry ?? true,
       price_display_mode: (json.price_on_enquiry ?? true) ? 'request' : (json.price_display_mode || 'request'),
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
       is_featured: Boolean(json.is_featured),
       description: json.description?.trim() || '',
       images: Array.isArray(json.images) ? json.images : [],
+      variants: Array.isArray(json.variants) ? json.variants : undefined,
       is_active: true,
     });
 

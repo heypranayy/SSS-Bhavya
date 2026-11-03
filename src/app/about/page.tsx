@@ -6,7 +6,7 @@ import { ShieldCheck, Layers, Award, Sparkles, Truck, CheckCircle2 } from 'lucid
 
 export const metadata = {
   title: 'About Our Wholesale Manufacturing & Heritage | Bhavya Fashions',
-  description: 'Bhavya Fashions is a dedicated B2B wholesale supplier of Indian ethnic wear, operating from major textile hubs in Barabazar (Kolkata) and Surat.',
+  description: 'Bhavya Fashions is a dedicated B2B wholesale supplier of Indian ethnic wear, operating from the historic wholesale hub of Barabazar (Kolkata) with nationwide factory dispatch.',
 };
 
 export default function AboutPage() {
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 Dual-Hub Manufacturing & Dispatch
               </h2>
               <p>
-                Our operations bridge two of India's most celebrated textile epicenters: <strong>Surat</strong>, renowned for its master weaving and high-speed processing, and <strong>Barabazar (Kolkata)</strong>, one of Asia's largest wholesale trading networks.
+                Our operations bridge direct-loom master manufacturing with the historic trading heartbeat of <strong>Barabazar (Kolkata)</strong>, one of Asia's largest wholesale trading networks.
               </p>
               <p>
                 This strategic footprint enables us to source premium 60-60 cambric cottons, pure viscose georgettes, and pure muslin silks at competitive costs, passing substantial margin advantages directly to our wholesale partners.

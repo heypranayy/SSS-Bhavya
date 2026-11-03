@@ -157,7 +157,7 @@ export function CatalogPdfModal({
                 <span>Include Brand Cover &amp; Dispatch Hub Info</span>
               </span>
               <p className="text-[11px] text-[#78716C]">
-                Displays Bhavya Fashions letterhead, order terms, and Kolkata/Surat hub address.
+                Displays Bhavya Fashions letterhead, order terms, and Barabazar central hub address.
               </p>
             </div>
             <input

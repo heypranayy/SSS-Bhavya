@@ -116,7 +116,7 @@ export default async function HomePage() {
         {/* 6. B2B Wholesale Margin & Profit Tier Calculator */}
         <WholesaleTierEstimator />
 
-        {/* 7. Surat Looms Technical Quality & Fabric Specifications Matrix */}
+        {/* 7. Master Looms Technical Quality & Fabric Specifications Matrix */}
         <LoomQualityMatrix />
 
         {/* 8. Browse the complete wholesale catalogue (Editorial Callout) */}
@@ -151,10 +151,10 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 9. Brand story and relevant Surat looms stacking cards */}
+        {/* 9. Brand story and master manufacturing stacking cards */}
         <LegacyStackingCards />
 
-        {/* 10. Surat Looms to Barabazar Hub & Nationwide Transit Network */}
+        {/* 10. Central Manufacturing to Barabazar Hub & Nationwide Transit Network */}
         <DistributionHubs />
 
         {/* 11. Access catalogue by code */}
@@ -243,7 +243,7 @@ export default async function HomePage() {
                   Visit Our Barabazar Showroom or Contact Our Wholesale Desk
                 </h2>
                 <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                  Walk-in wholesale sample viewing for boutique owners at Kalakar Street, Barabazar, Kolkata. Direct loom parcels dispatched nationwide from Surat.
+                  Walk-in wholesale sample viewing for boutique owners at Kalakar Street, Barabazar, Kolkata. Direct factory parcels dispatched nationwide from our central manufacturing depot.
                 </p>
               </div>
 

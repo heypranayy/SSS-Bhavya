@@ -121,7 +121,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     style_type: productData.style_type || '',
     base_wholesale_price: productData.base_wholesale_price !== undefined && productData.base_wholesale_price !== null && !isNaN(Number(productData.base_wholesale_price)) ? Number(productData.base_wholesale_price) : 0,
     currency: 'INR',
-    moq: productData.moq !== undefined && productData.moq !== null && !isNaN(Number(productData.moq)) ? Number(productData.moq) : 0,
+    moq: productData.moq !== undefined && productData.moq !== null && !isNaN(Number(productData.moq)) ? Number(productData.moq) : 4,
     price_on_enquiry: productData.price_on_enquiry ?? true,
     price_on_request: productData.price_on_enquiry ?? true,
     price_display_mode: (productData.price_on_enquiry ?? true) ? 'request' : (productData.price_display_mode || 'request'),

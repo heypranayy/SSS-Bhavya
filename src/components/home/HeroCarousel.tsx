@@ -34,19 +34,19 @@ export interface HeroSlide {
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'heritage-trio',
-    badge: 'DIRECT FACTORY LOOMS • SURAT & BARABAZAR HUB',
+    badge: 'DIRECT FACTORY PRODUCTION • BARABAZAR CENTRAL HUB',
     titlePrefix: 'India\'s Epicentre of Luxury',
     titleHighlight: 'Ethnic Kurti Wholesale',
     titleSuffix: 'for Modern Boutiques',
     subtitle:
-      'Direct loom manufacturing supplying 5,000+ premium retail boutiques nationwide. Handcrafted 3-Piece Muslin & Kesaria Silk ensembles engineered for 80% to 140% counter profit margins.',
-    priceNote: 'Quote on Request • MOQ 6 Pcs Ratio',
+      'Direct factory manufacturing supplying 5,000+ premium retail boutiques nationwide. Handcrafted 3-Piece Muslin & Kesaria Silk ensembles engineered for 80% to 140% counter profit margins.',
+    priceNote: 'Quote on Request • MOQ 4 Pcs Ratio',
     image: '/images/hero-kesaria-silk.jpg',
     mobileImage: '/images/hero-kesaria-silk-mobile.jpg',
     stepNumber: '01',
     stepLabel: 'Royal Kesaria 3P',
     stepTag: 'Kesaria Silk & Muslin',
-    metrics: ['MOQ: 6 Pcs Ratio Pack', 'Direct Loom Trade Rates', 'Barabazar Express Dispatch'],
+    metrics: ['MOQ: 4 Pcs Ratio Pack', 'Direct Factory Trade Rates', 'Barabazar Express Dispatch'],
   },
   {
     id: 'festive-bridal-trio',
@@ -56,7 +56,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     titleSuffix: '& Festive Seasons',
     subtitle:
       'Intricate hand zardozi yokes, heavy gota patti borders, and scalloped organza cutwork dupattas in high-demand festive pastels that sell out within 48 hours of counter display.',
-    priceNote: 'Quote on Request • MOQ 6 Pcs Ratio',
+    priceNote: 'Quote on Request • MOQ 4 Pcs Ratio',
     image: '/images/hero-festive-zari.jpg',
     mobileImage: '/images/hero-festive-zari-mobile.jpg',
     stepNumber: '02',
@@ -72,7 +72,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     titleSuffix: '& Zero Shrinkage',
     subtitle:
       'Authentic Jaipuri hand-block look prints, contemporary notched-collar co-ord sets, and office-wear 2-piece tunics with zero fabric shrinkage and repeat boutique counter orders.',
-    priceNote: 'Quote on Request • MOQ 8 Pcs Ratio',
+    priceNote: 'Quote on Request • MOQ 4 Pcs Ratio',
     image: '/images/hero-pure-cotton.jpg',
     mobileImage: '/images/hero-pure-cotton-mobile.jpg',
     stepNumber: '03',
@@ -87,12 +87,12 @@ export const HERO_SLIDES: HeroSlide[] = [
     titleHighlight: 'Zero Intermediary Margins',
     titleSuffix: 'Guaranteed',
     subtitle:
-      'Cut out broker commissions. Procure directly from Surat looms with locked GST invoicing, dedicated B2B account managers, and verified door-to-door freight dispatch across India.',
+      'Cut out broker commissions. Procure directly from master factory looms with locked GST invoicing, dedicated B2B account managers, and verified door-to-door freight dispatch across India.',
     priceNote: 'Trade Tier Quote • GST Compliant',
     image: '/images/hero-royal-chanderi.jpg',
     mobileImage: '/images/hero-royal-chanderi-mobile.jpg',
     stepNumber: '04',
-    stepLabel: 'Direct Loom Trade',
+    stepLabel: 'Direct Factory Trade',
     stepTag: 'Zero Broker Margin',
     metrics: ['Verified GST Invoicing', 'Barabazar Showroom Inspection', 'Dedicated Account Desk'],
   },
@@ -114,15 +114,15 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919830729210';
   const currentSlide = HERO_SLIDES[currentIndex];
 
-  // Preload all banner images immediately to prevent layout shifts
+    // Preload upcoming slide only to prevent initial network congestion
   useEffect(() => {
-    HERO_SLIDES.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.image;
-      const mImg = new Image();
-      mImg.src = slide.mobileImage;
-    });
-  }, []);
+    const nextIdx = (currentIndex + 1) % HERO_SLIDES.length;
+    const nextSlide = HERO_SLIDES[nextIdx];
+    const img = new Image();
+    img.src = nextSlide.image;
+    const mImg = new Image();
+    mImg.src = nextSlide.mobileImage;
+  }, [currentIndex]);
 
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -420,8 +420,8 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
                   }`}
                   aria-label={`Jump to slide ${slide.stepNumber}: ${slide.stepLabel}`}
                 >
-                  {/* Step Number Only */}
-                  <div className="flex items-center justify-between mb-1.5">
+                  {/* Slide Step Header & Info */}
+                  <div className="flex items-center justify-between mb-1">
                     <span
                       className={`text-xs font-mono font-bold transition-colors ${
                         isActive ? 'text-[#722F37]' : 'text-zinc-500 group-hover:text-zinc-800'
@@ -429,6 +429,16 @@ export function HeroCarousel({ variant = 'homepage' }: HeroCarouselProps) {
                     >
                       {slide.stepNumber}
                     </span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#8C6D23] font-semibold truncate max-w-[90px] sm:max-w-[130px]">
+                      {slide.stepTag}
+                    </span>
+                  </div>
+
+                  {/* Meaningful Collection Title */}
+                  <div className="mb-2">
+                    <h4 className="text-xs sm:text-sm font-semibold text-zinc-900 line-clamp-1 group-hover:text-[#722F37] transition-colors">
+                      {slide.stepLabel}
+                    </h4>
                   </div>
 
                   {/* Animated Progress Bar Track */}

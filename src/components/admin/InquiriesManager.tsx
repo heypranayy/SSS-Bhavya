@@ -36,7 +36,7 @@ const STAFF_MEMBERS = [
   'Unassigned',
   'Amit Verma (Kolkata Sales)',
   'Sanjay Jain (B2B Dispatch)',
-  'Ravi Sharma (Surat Desk)',
+  'Ravi Sharma (Wholesale Desk)',
   'Neha Agarwal (VIP Accounts)'
 ];
 

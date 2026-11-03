@@ -300,7 +300,7 @@ export function WholesaleExplorer({
         next.set(product.id, {
           product,
           sizeBreakdown: breakdown,
-          totalQuantity: product.moq || 6,
+          totalQuantity: product.moq || 4,
         });
       }
       return next;
@@ -319,7 +319,7 @@ export function WholesaleExplorer({
       next.set(productId, {
         ...item,
         sizeBreakdown: newBreakdown,
-        totalQuantity: Math.max(item.product.moq || 6, newTotal),
+        totalQuantity: Math.max(item.product.moq || 4, newTotal),
       });
       return next;
     });
@@ -637,7 +637,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
           </button>
         </div>
       ) : (
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 min-w-0 w-full">
           {filteredProducts.map((product) => {
             const fallbackSrc = getProductFallbackImage(product.style_type || product.category?.name);
             const primaryImage = product.images?.find((img) => img.is_primary) || product.images?.[0];
@@ -652,7 +652,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
             return (
               <div
                 key={product.id}
-                className={`group relative bg-white border rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between ${
+                className={`group relative bg-white border rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-w-0 w-full ${
                   isSelected ? 'border-emerald-600 ring-2 ring-emerald-500/30' : 'border-[#E7E0D5]'
                 }`}
               >
@@ -778,12 +778,12 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                       </div>
 
                       <span className="bg-[#FAF7F2] border border-[#E7E0D5] text-zinc-700 text-[10px] font-semibold px-2 py-0.5 rounded">
-                        MOQ: {product.moq ? `${product.moq} pcs` : 'On Request'}
+                        MOQ: {product.moq ? `${product.moq} pcs` : '4 pcs'}
                       </span>
                     </div>
 
                     {/* Action buttons (Specs & Official Quote Enquiry) */}
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                       <button
                         type="button"
                         onClick={() => setActiveQuickViewProduct(product)}
@@ -791,7 +791,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                         title="View Full Specifications"
                       >
                         <Layers className="w-3 h-3 text-[#722F37]" />
-                        <span>Specs</span>
+                        <span className="truncate">Specs</span>
                       </button>
 
                       <button
@@ -801,7 +801,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                         title="Submit Price Request"
                       >
                         <FileText className="w-3 h-3 text-[#C5A059]" />
-                        <span>Get Quote</span>
+                        <span className="truncate">Get Quote</span>
                       </button>
                     </div>
 
@@ -815,7 +815,7 @@ Please confirm live warehouse availability, size ratio stock, and applicable who
                       className="mt-2 w-full inline-flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold rounded-lg bg-[#25D366]/10 text-emerald-800 border border-emerald-300 hover:bg-[#25D366] hover:text-white transition-all shadow-2xs"
                     >
                       <PhoneCall className="w-3 h-3" />
-                      <span>WhatsApp Quote</span>
+                      <span className="truncate">WhatsApp Quote</span>
                     </a>
                   </div>
                 </div>

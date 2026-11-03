@@ -23,7 +23,7 @@ export function WholesaleRoadmap() {
     {
       number: '03',
       title: 'GST Billing & Express Dispatch',
-      desc: 'Same-day parcel packing with formal GST invoice, handed over to your preferred national transport or courier from Kolkata / Surat.',
+      desc: 'Same-day parcel packing with formal GST invoice, handed over to your preferred national transport or courier from Kolkata central dispatch.',
       icon: Truck,
     },
   ];
@@ -84,7 +84,7 @@ export function WholesaleRoadmap() {
           <div className="mt-12 pt-8 border-t border-[#E7E0D5] flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
             <div className="text-xs text-zinc-600 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Barabazar (Kolkata) &amp; Surat Warehouses • Trusted by 5,000+ Stores</span>
+              <span>Barabazar (Kolkata) Central Warehouses • Trusted by 5,000+ Stores</span>
             </div>
 
             <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">

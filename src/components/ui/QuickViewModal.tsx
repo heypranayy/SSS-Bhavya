@@ -274,17 +274,17 @@ export function QuickViewModal({
                 <div className="bg-[#FAF7F2] p-3 rounded-xl border border-[#E7E0D5] space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-zinc-900">Ratio Pack Specifications:</span>
-                    <span className="text-[10px] text-zinc-600 font-mono">MOQ: {product.moq || 6} pcs Set</span>
+                    <span className="text-[10px] text-zinc-600 font-mono">MOQ: {product.moq || 4} pcs Set</span>
                   </div>
                   <p className="text-[11px] text-zinc-600">
-                    Standard Wholesale Ratio Set includes sizes M, L, XL, XXL. Sold as complete set for boutique and showroom display.
+                    Standard Wholesale Ratio Set includes sizes M, L, XL, 2XL, 3XL (Flexible Ratio). Sold as complete set for boutique and showroom display.
                   </p>
                 </div>
 
                 {/* Wholesale Trust Notice */}
                 <div className="text-[11px] text-zinc-500 flex items-center gap-1.5 pt-1">
                   <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>GST Billing • Surat & Barabazar Hubs • Pan-India Transport</span>
+                  <span>GST Billing • Barabazar Central Hub • Pan-India Transport</span>
                 </div>
               </div>
 

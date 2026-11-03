@@ -1160,7 +1160,7 @@ export function UniversalCatalogBuilder({
                       onChange={(e) => setFilterReadyStock(e.target.value === 'ready')}
                       className="w-full text-xs py-2 px-3 rounded-lg border border-[#E7E0D5] bg-[#FAF7F2] focus:bg-white focus:outline-none focus:border-[#722F37]"
                     >
-                      <option value="ready">Ready Stock in Hubs (Surat/Barabazar)</option>
+                      <option value="ready">Ready Stock in Central Hub (Barabazar)</option>
                       <option value="all">Include Made-to-Order & Advance Booking</option>
                     </select>
                   </div>

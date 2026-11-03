@@ -18,7 +18,7 @@ export default async function AllProductsPage() {
     id: 'col-all-products',
     name: 'All Wholesale Designs & Collections',
     slug: 'all-products',
-    description: `Complete wholesale catalog featuring ${products.length} ready-to-dispatch designs manufactured across our Kolkata Barabazar and Surat textile hubs. Minimum order 6 pieces per design.`,
+    description: `Complete wholesale catalog featuring ${products.length} ready-to-dispatch designs manufactured across our central factory looms and Barabazar wholesale hub. Minimum order 4 pieces per design.`,
     is_featured: true,
     product_count: products.length,
   };

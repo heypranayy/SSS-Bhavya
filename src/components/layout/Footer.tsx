@@ -32,13 +32,13 @@ export function Footer() {
       {/* Brand Marquee Ticker */}
       <div className="border-b border-white/10 pb-8 mb-12 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap flex items-center text-xs tracking-widest uppercase font-mono text-[#C5A059]">
-          <span className="mx-8">★ DIRECT MANUFACTURER LOOMS (SURAT)</span>
+          <span className="mx-8">★ DIRECT FACTORY MASTER LOOMS</span>
           <span className="mx-8">★ BARABAZAR (KOLKATA) DISPATCH HUB</span>
           <span className="mx-8">★ STRICTLY B2B WHOLESALE • MOQ 6 PCS</span>
           <span className="mx-8">★ SERVING 5,000+ BOUTIQUE PARTNERS</span>
           <span className="mx-8">★ FULL GST INVOICING & FAST TRANSPORT</span>
           {/* Duplicate for infinite loop */}
-          <span className="mx-8">★ DIRECT MANUFACTURER LOOMS (SURAT)</span>
+          <span className="mx-8">★ DIRECT FACTORY MASTER LOOMS</span>
           <span className="mx-8">★ BARABAZAR (KOLKATA) DISPATCH HUB</span>
           <span className="mx-8">★ STRICTLY B2B WHOLESALE • MOQ 6 PCS</span>
           <span className="mx-8">★ SERVING 5,000+ BOUTIQUE PARTNERS</span>
@@ -127,7 +127,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  Surat Mills & Heritage
+                  Master Mills & Heritage
                 </Link>
               </li>
               <li>
