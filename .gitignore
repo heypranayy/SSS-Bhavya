@@ -35,21 +35,17 @@ yarn-error.log*
 .env
 !.env.example
 
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
 /dist/
 .vinext/
 .wrangler/
 
-# Firestore export dumps (contain customer data) and Firebase keys
+# Local data exports (contain customer data)
 /migration-data/
-*service-account*.json
-*firebase-adminsdk*.json
+*.sql.local
 .dev.vars*
 !.dev.vars.example

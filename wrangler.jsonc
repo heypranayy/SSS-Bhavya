@@ -29,7 +29,7 @@
     { "pattern": "bhavyafashions.com", "custom_domain": true },
     { "pattern": "www.bhavyafashions.com", "custom_domain": true }
   ],
-  // All app data (former Firestore collections, staff logins, sessions). Schema: migrations/
+  // All app data (products, catalogs, customers, inquiries, staff logins, sessions). Schema: migrations/
   "d1_databases": [
     {
       "binding": "DB",

@@ -4,8 +4,7 @@ import type { ColumnValue, DocTable } from './index';
 
 /**
  * Indexed columns stored next to each record's JSON `data`. Shared by the
- * repositories, the Firestore import script and the test database seeder so
- * the three never drift apart.
+ * repositories and the test database seeder so they never drift apart.
  */
 
 const now = () => new Date().toISOString();

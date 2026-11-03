@@ -1,6 +1,6 @@
 -- Bhavya Fashions B2B schema on Cloudflare D1.
 --
--- Each former Firestore collection becomes one table. The full record is kept
+-- Each collection of records is one table. The full record is kept
 -- as JSON in `data` (products, catalogs and inquiries are deeply nested), and
 -- the fields the app filters, sorts or looks up by are copied into real columns
 -- with indexes. Repositories in src/lib/repository/* keep both in sync.
@@ -101,7 +101,7 @@ CREATE TABLE sessions (
 );
 CREATE INDEX idx_sessions_staff ON sessions (staff_id);
 
--- Key/value app settings (replaces Firestore system_metadata/site_settings).
+-- Key/value app settings (site_settings).
 CREATE TABLE settings (
   key         TEXT PRIMARY KEY,
   value       TEXT NOT NULL,

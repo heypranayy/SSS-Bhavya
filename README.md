@@ -61,7 +61,9 @@ npm install
 ### 2. Local Database
 ```bash
 npm run db:migrate:local
-node scripts/import-to-cloudflare.ts --target local   # needs a Firestore dump; see docs/cloudflare-migration.md
+# optional: copy the production data into the local database
+npx wrangler d1 export bhavya-fashions-db --remote --no-schema --output migration-data/prod.sql
+npx wrangler d1 execute bhavya-fashions-db --local --file migration-data/prod.sql
 ```
 Data lives in Cloudflare D1 and images in R2. Locally, Wrangler keeps both in `.wrangler/state`. No database credentials or `.env` secrets are needed.
 
@@ -87,7 +89,7 @@ npm run db:migrate:remote
 npm run build
 npm run deploy
 ```
-See [docs/cloudflare-migration.md](docs/cloudflare-migration.md) for the D1/R2 setup and the Firebase import.
+See [docs/cloudflare-migration.md](docs/cloudflare-migration.md) for the account, D1/R2 setup and admin login.
 
 ---
 
